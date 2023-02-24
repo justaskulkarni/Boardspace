@@ -17,7 +17,7 @@ app.get('/', (req,res) =>{
     res.send("Welcome to home page sir")
 })
 
-const MYPORT = process.env.PORT || 6000
+const MYPORT = process.env.PORT || 6001
 
 app.listen(MYPORT, () =>{
     console.log("Ready to serve you master")
