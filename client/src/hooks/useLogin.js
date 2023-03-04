@@ -1,33 +1,42 @@
-import { useState  } from 'react';
-import { useAuthContext } from './useAuthContext';
+// Custom Hook
+// Sends login request to api end point
+// Get back a response
+// If successful, then update the AuthContext and update the user property with the user's email so that we can have it in our application
 
-export const useLogin = () =>{
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
-    const {dispatch} = useAuthContext();
+import { useState } from 'react'
+import { useAuthContext } from './useAuthContext'
 
-    const login = async(email, password) =>{
-        setIsLoading(true);
-        setError(null);
+export const useLogin = () => {
+  const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(null)
+  const { dispatch } = useAuthContext()
 
-        const response = await fetch('localhost:6001/api/user/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
-        });
+  const login = async (email, password) => {
+    setIsLoading(true)
+    setError(null)
 
-        const json = await response.json();
+    const response = await fetch('/api/user/login', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, password })
+    })
+    const json = await response.json()
 
-        if(!response.ok){
-            setIsLoading(false);
-            setError(json.error);
-        }
-
-        if(response.ok){
-            localStorage.setItem('user', JSON.stringify(json));
-            dispatch({type: 'LOGIN', payload: json});
-            setIsLoading(false);
-        }
+    if (!response.ok) {
+      setIsLoading(false)
+      setError(json.error)
     }
-    return { login, isLoading, error };
+    if (response.ok) {
+      // save the user to local storage
+      localStorage.setItem('user', JSON.stringify(json))
+
+      // update the auth context
+      dispatch({type: 'LOGIN', payload: json})
+
+      // update loading state
+      setIsLoading(false)
+    }
+  }
+
+  return { login, isLoading, error }
 }

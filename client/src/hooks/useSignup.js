@@ -1,3 +1,8 @@
+// Custom Hook
+// Sends signup request to api end point
+// Get back a response
+// If successful, then update the AuthContext and update the user property with the user's email so that we can have it in our application
+
 import { useState } from 'react';
 import { useAuthContext } from './useAuthContext';
 
@@ -7,7 +12,7 @@ export const useSignup = () =>{
     const {dispatch} = useAuthContext();
 
     const signup = async(email, password) =>{
-        setIsloading(true);
+        setIsLoading(true);
         setError(null);
 
         const response = await fetch('localhost:6001/api/user/signup', {
@@ -19,7 +24,7 @@ export const useSignup = () =>{
         const json = await response.json();
 
         if(!response.ok){
-            setIsloading(false);
+            setIsLoading(false);
             setError(json.error);
         }
 
