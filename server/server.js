@@ -8,15 +8,18 @@ const app = express();
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
+const temproutes = require('./models/user')
+
 app.use(cors())
 app.use(bodyParser.json())
 
+app.use('/',temproutes)
 
 app.use(express.urlencoded({extended : true}))
+
 const mongoose = require('mongoose');
 
 const DB_URL = process.env.MONGO_URL
-
 mongoose.connect(DB_URL)
 .then(() => console.log('Mongoup'))
 .catch(e => console.log(e))
