@@ -3,6 +3,7 @@ import { useSignup } from "../hooks/useSignup"
 import { Link } from "react-router-dom"
 
 const Signup = () => {
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const {signup, error, isLoading} = useSignup()
@@ -10,13 +11,19 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await signup(email, password)
+    await signup(username, email, password)
   }
 
   return (
     <form className="signup" onSubmit={handleSubmit}>
       <h3>Sign Up</h3>
       
+      <label>Username:</label>
+      <input 
+        type="text" 
+        onChange={(e) => setUsername(e.target.value)} 
+        value={username} 
+      />
       <label>Email address:</label>
       <input 
         type="email" 
