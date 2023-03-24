@@ -5,12 +5,14 @@ import { useAuthContext } from './hooks/useAuthContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import Navbar from './components/Navbar';
 
 function App() {
   const { user } = useAuthContext();
 
   return (
     <div className="App">
+      <Navbar />
       <BrowserRouter>
         <div>
           <Routes>

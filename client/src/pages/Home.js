@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-import navbar from '../components/navbar'
 
 const Home = () => {
   const { logout } = useLogout()
@@ -15,13 +14,13 @@ const Home = () => {
 
   return (
     <div>
-    <navbar />
 
       Home
-
+      
       {user && (
             <div>
               <span>{user.username}</span>
+              <navbar />
               <button onClick={handleClick}>Log out</button>
             </div>
       )}
