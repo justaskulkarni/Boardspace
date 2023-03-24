@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useSignup } from "../hooks/useSignup"
 import { Link } from "react-router-dom"
 
+import navbar from "../components/navbar"
+
 const Signup = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')

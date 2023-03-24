@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
 
+import navbar from '../components/navbar'
+
 const Home = () => {
   const { logout } = useLogout()
   const { user } = useAuthContext()
@@ -13,6 +15,8 @@ const Home = () => {
 
   return (
     <div>
+    <navbar />
+
       Home
 
       {user && (
