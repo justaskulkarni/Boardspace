@@ -20,6 +20,8 @@ const Login = () => {
     
     if(json.success)
     {
+      localStorage.setItem("Token",json.authToken)
+      console.log(localStorage.getItem("Token"))
       navigate("/youin")
     }
 
