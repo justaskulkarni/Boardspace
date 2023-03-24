@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
 
 
     } catch (error) {
-        res.json({ mssg: error.message })
+        res.json({ error: error.message })
     }
 
 

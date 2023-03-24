@@ -1,10 +1,12 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 const Signup = () => {
   const [creadentials, setCredentials] = useState({email:"", password:""})
   const [error, setError] = useState(null)
+
+  let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -17,13 +19,15 @@ const Signup = () => {
 
     const json = await response.json()
 
-    if(json.error)
+    if(json.success)
     {
-      setError(json.mssg)
+      navigate("/youin")
     }
 
-    console.log(json)
-
+    if(json.error)
+    {
+      setError(json.error)
+    }
   }
 
   const onChange = (event) =>{
@@ -31,6 +35,7 @@ const Signup = () => {
   }
 
   return (
+    <>
     <form className="signup" onSubmit={handleSubmit}>
       <h3>Sign Up</h3>
   
@@ -50,9 +55,10 @@ const Signup = () => {
       />
 
       <button>Sign up</button>
-      <button><Link to="/login">Login</Link></button>
       {error && <div className="error">{error}</div>}
     </form>
+    <button><Link to="/login">Login</Link></button>
+    </>
   )
 }
 
