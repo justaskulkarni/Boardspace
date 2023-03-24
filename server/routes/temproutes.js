@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
@@ -13,83 +13,80 @@ const jwt = require('jsonwebtoken')
 
 const router = express.Router()
 
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env,SECRET , {
-        expiresIn: 3 * 24 * 60 * 60
-    });
-}
+// const createToken = (id) => {
+//     return jwt.sign({ id }, process.env,SECRET , {
+//         expiresIn: 3 * 24 * 60 * 60
+//     });
+// }
 
-router.post('/login', async(req,res) =>{
-    if(!req.body.username || !req.body.password)
-    {
-        throw Error('All fields must be filled')
-    }
+router.post('/login', async (req, res) => {
 
-    const requser = await User.findOne({username : req.body.username})
+    try {
 
-    if(!requser)
-    {
-        throw Error('Incorrect username')
-    }
+        if (!req.body.username || !req.body.password) {
+            throw Error('All fields must be filled')
+        }
 
-    try{
-        const match = await bcrypt.compare(req.body.password,requser.password)
+        const requser = await User.findOne({ username: req.body.username })
 
-        if(!match)
-        {
+        if (!requser) {
+            throw Error('Incorrect username')
+        }
+
+        const match = await bcrypt.compare(req.body.password, requser.password)
+
+        if (!match) {
             throw Error('Password is incorrect')
         }
-        else{
-            const token = createToken(requser._id)
-            res.json({token})
+        else {
+            // const token = createToken(requser._id)
+            // res.json({token})
+            res.json({ success: true })
         }
-        
 
-    }catch(error)
-    {
-        res.json({mssg: error.message})
+
+    } catch (error) {
+        res.json({ mssg: error.message })
     }
 
 
 })
 
-router.post('/signup', async(req,res) =>{
+router.post('/signup', async (req, res) => {
 
-    if(!req.body.email || !req.body.password || !req.body.username)
-    {
-        throw Error('All fields must be filled')
-    }
+    try {
+        if (!req.body.email || !req.body.password || !req.body.username) {
+            throw Error('All fields must be filled')
+        }
 
-    if(!validator.isEmail(req.body.email))
-    {
-        throw Error('Email not valid')
-    }
+        if (!validator.isEmail(req.body.email)) {
+            throw Error('Email not valid')
+        }
 
-    if(!validator.isStrongPassword(req.body.password))
-    {
-        throw Error('Password not strong enough')
-    }
+        if (!validator.isStrongPassword(req.body.password)) {
+            throw Error('Password not strong enough')
+        }
 
-    try{
+
         const salt = await bcrypt.genSalt(12)
         pass = req.body.password
         const hashp = await bcrypt.hash(pass, salt);
 
         const newUser = new User({
 
-            email : req.body.email,
-            username : req.body.username,
-            password : hashp
+            email: req.body.email,
+            username: req.body.username,
+            password: hashp
         })
 
         await newUser.save()
 
-        const token = createToken(newUser._id)
+        // const token = createToken(newUser._id)
 
-        res.json(req.body.username,token)
+        res.json({ success: true })
 
-    }catch(error){
-        res.json({error : error.message})
+    } catch (error) {
+        res.json({ error: error.message })
     }
 })
 

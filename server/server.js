@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.urlencoded({extended : true}))
 app.use(cors())
+app.use(express.json())
 app.use(bodyParser.json())
 
 
@@ -17,7 +18,7 @@ const temproutes = require('./routes/temproutes')
 
 
 
-app.use('/',temproutes)
+app.use('/api/',temproutes)
 
 
 
