@@ -1,0 +1,21 @@
+.outerdiv {
+    display: flex;
+}
+
+.imgdiv{
+    height: 100px;
+}
+
+.button1 {
+    background-color: transparent;
+    border: 0px;
+}
+
+.button1:hover{
+    background: #D0F5F4;
+}
+
+.link1{
+    text-decoration: none;
+    color: black;
+}
