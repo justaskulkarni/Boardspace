@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import {useAuthContext} from '../hooks/useAuthContext'
 
+import navbarlogo from '../assets/navbarlogo.png'
+
 const Navbar = () => {
    const { logout } = useLogout()
   const { user } = useAuthContext()
@@ -13,7 +15,7 @@ const Navbar = () => {
   return (
     
     <div>
-       <img src = "navbarl" />
+       <img src = {navbarlogo} />
        {user && (
             <div>
               <span>{user.username}</span>
