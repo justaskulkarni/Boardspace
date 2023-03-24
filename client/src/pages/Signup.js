@@ -1,46 +1,55 @@
 import { useState } from "react"
-import { useSignup } from "../hooks/useSignup"
 import { Link } from "react-router-dom"
 
 
 const Signup = () => {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const {signup, error, isLoading} = useSignup()
+  const [creadentials, setCredentials] = useState({email:"", password:""})
+  const [error, setError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    console.log(email,password,username)
+    const response = await fetch("http://localhost:6100/api/signup" , {
+      method : 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email:creadentials.email,password:creadentials.password})
+    })
 
-    await signup(username, email, password)
+    const json = await response.json()
+
+    if(json.error)
+    {
+      setError(json.mssg)
+    }
+
+    console.log(json)
+
+  }
+
+  const onChange = (event) =>{
+    setCredentials({...creadentials,[event.target.name]:event.target.value})
   }
 
   return (
     <form className="signup" onSubmit={handleSubmit}>
       <h3>Sign Up</h3>
-      
-      <label>Username:</label>
-      <input 
-        type="text" 
-        onChange={(e) => setUsername(e.target.value)} 
-        value={username} 
-      />
-      <label>Email address:</label>
+  
+      <label htmlFor="email">Email address:</label>
       <input 
         type="email" 
-        onChange={(e) => setEmail(e.target.value)} 
-        value={email} 
+        value={creadentials.email}
+        name = "email"
+        onChange={onChange}
       />
-      <label>Password:</label>
+      <label htmlFor="password">Password:</label>
       <input 
-        type="password" 
-        onChange={(e) => setPassword(e.target.value)} 
-        value={password} 
+        type="password"  
+        value={creadentials.password}
+        name = "password"
+        onChange={onChange}
       />
 
-      <button disabled={isLoading}>Sign up</button>
+      <button>Sign up</button>
       <button><Link to="/login">Login</Link></button>
       {error && <div className="error">{error}</div>}
     </form>

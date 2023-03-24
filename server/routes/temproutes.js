@@ -23,14 +23,14 @@ router.post('/login', async (req, res) => {
 
     try {
 
-        if (!req.body.username || !req.body.password) {
+        if (!req.body.email || !req.body.password) {
             throw Error('All fields must be filled')
         }
 
-        const requser = await User.findOne({ username: req.body.username })
+        const requser = await User.findOne({ email: req.body.email })
 
         if (!requser) {
-            throw Error('Incorrect username')
+            throw Error('Incorrect Email')
         }
 
         const match = await bcrypt.compare(req.body.password, requser.password)
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
 router.post('/signup', async (req, res) => {
 
     try {
-        if (!req.body.email || !req.body.password || !req.body.username) {
+        if (!req.body.email || !req.body.password) {
             throw Error('All fields must be filled')
         }
 
@@ -75,7 +75,6 @@ router.post('/signup', async (req, res) => {
         const newUser = new User({
 
             email: req.body.email,
-            username: req.body.username,
             password: hashp
         })
 
