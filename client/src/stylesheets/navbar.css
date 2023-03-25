@@ -3,19 +3,41 @@
 }
 
 .imgdiv{
-    height: 100px;
+    float:left;
+    margin-top: 0.9rem;
+    margin-left:0.7rem;
+    height: 7rem;
+}
+
+.buttons{
+    position: relative;
+    width: 100%;
+    margin-top: 2.1rem;
+    padding-right: 22rem;
+    font-size: 20rem;
 }
 
 .button1 {
+    float: right;
+    padding-right: 2rem;
     background-color: transparent;
     border: 0px;
+    font-size:1.2rem;
+}
+
+.button1:active{
+    color:#ab39fa;
 }
 
 .button1:hover{
-    background: #D0F5F4;
+    color:#ab39fa;
 }
 
-.link1{
-    text-decoration: none;
-    color: black;
+.button1:focus{
+    color:#ab39fa;
 }
+
+ .link1{
+    text-decoration: none;
+    color:black;
+} 
