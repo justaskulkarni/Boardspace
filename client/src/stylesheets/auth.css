@@ -2,6 +2,7 @@
     position: relative;
     float:right;
     width: 60%;
+    font-size: 2rem;
 }
 
 form{
@@ -11,9 +12,7 @@ form{
 .formheader{
     margin-bottom:7rem;
     margin-top:9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-left:21rem;
 }
 
 .headertext{
@@ -21,21 +20,56 @@ form{
 }
 
 input{
-    margin-left:17rem; 
+    margin-left:18rem; 
     display: block;
     border:none;
     border-bottom:0.1rem solid gray;
-    margin-top: 2rem;
-    font-size:1.2rem; 
+    margin-top: 2rem; 
+    font-size: 1.5rem;
+}
+
+.buttonscontainer{
+    display:inline;
 }
 
 .signupbutton{
-    margin-left: 17rem;
+    margin-left: 18rem;
     margin-top: 2rem;
-    font-size: 1.2rem;
-    display:flex;
+    border:none;
+    text-decoration: none;
+    background-color: white;
+    color:blue;
+    font-weight:bolder;
+    font-size: 1.5rem;
 }
 
 .loginbutton{
+    text-decoration: none;
     margin-top:0;
+    background-color: blue;
+    border-radius:1rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    margin-left:5rem;
+    font-weight:bolder;
+    color:white;
+    font-size:1.5rem;
+}
+
+
+.forgotpasswordbutton{
+    display:block;
+    margin-left:21rem;
+    margin-top:2rem;
+    font-size: 1rem;
+    border:none;
+    font-weight:bolder;
+    background-color: white;
+    color:blue;
+    font-size:1.1rem;
+}
+
+.buttontext{
+    color:white;
+    text-decoration: none;
 }

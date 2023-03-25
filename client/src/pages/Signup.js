@@ -60,10 +60,13 @@ const Signup = () => {
           className="inputbox"
         />
 
-        <button className="signupbutton">Sign up</button>
         </div>
       </form>
-      <button className="loginbutton"><Link to="/login">Login</Link></button>
+      <div className="buttonscontainer">
+        <button className="signupbutton">sign up</button>
+        <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
+      </div>
+      <button className="forgotpasswordbutton">forgot password?</button>
       {error && <div className="error">{error}</div>}
     </div>
     </>

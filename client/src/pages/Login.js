@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import '../stylesheets/auth.css'
 
 
 const Login = () => {
@@ -39,28 +40,35 @@ const Login = () => {
 
   return (
     <>
-    <form className="login" onSubmit={handleSubmit}>
-      <h3>Log In</h3>
-      
-      <label htmlFor="email">Email:</label>
-      <input 
-        type="email" 
-        value={creadentials.email}
-        name = "email"
-        onChange={onChange} 
-      />
-      <label htmlFor="password">Password:</label>
-      <input 
-        type="password"  
-        value={creadentials.password}
-        name = "password"
-        onChange={onChange} 
-      />
+    <div className="rightdiv">
+      <form className="login" onSubmit={handleSubmit}>
+        <h3 className="formheader"><span className="headertext">Log In</span></h3>
+        <div className="formcontent">
+        <input 
+          type="email" 
+          value={creadentials.email}
+          name = "email"
+          onChange={onChange} 
+          placeholder="email"
+        />
+        <input 
+          type="password"  
+          value={creadentials.password}
+          name = "password"
+          onChange={onChange}
+          placeholder="password" 
+        />
+        </div>
 
-      <button>Log in</button>
+      </form>
+      <div className="buttonscontainer">
+        <button className="signupbutton">login</button>
+        <button className="loginbutton"><Link to="/signup"><span className="buttontext">sign up</span></Link></button>
+      </div>
+      <button className="forgotpasswordbutton">forgot password?</button>
       {error && <div className="error">{error}</div>}
-    </form>
-    <button><Link to="/signup">Signup</Link></button>
+      
+    </div>
     </>
   )
 }
