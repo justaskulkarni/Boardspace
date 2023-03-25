@@ -6,6 +6,7 @@ import '../stylesheets/auth.css'
 const Signup = () => {
   const [creadentials, setCredentials] = useState({email:"", password:""})
   const [error, setError] = useState(null)
+  const [showOtpDiv, setShowOtpDiv] = useState(false)
 
   let navigate = useNavigate()
 
@@ -22,7 +23,8 @@ const Signup = () => {
 
     if(json.success)
     {
-      navigate("/youin")
+      setShowOtpDiv(true);
+      /* navigate("/youin") */
     }
 
     if(json.error)
@@ -63,11 +65,32 @@ const Signup = () => {
         </div>
       </form>
       <div className="buttonscontainer">
-        <button className="signupbutton">sign up</button>
+        <button className="signupbutton" >sign up</button>
         <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
       </div>
-      <button className="forgotpasswordbutton">forgot password?</button>
+      <button className="forgotpasswordbutton" onClick>forgot password?</button>
       {error && <div className="error">{error}</div>}
+      { showOtpDiv &&
+      (<div>
+        <form className="signup" onSubmit={handleSubmit}>
+          <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
+          <div className="formcontent">
+            <input 
+              type="number" 
+              value={creadentials.otp}
+              name = "otp"
+              onChange={onChange}
+              placeholder="otp"
+              className="inputbox"
+            />
+          </div>
+        </form>
+
+        <div className="buttonscontainer">
+          <button className="signupbutton" >submit OTP</button>
+        </div>
+      </div>)
+      }
     </div>
     </>
   )
