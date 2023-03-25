@@ -19,18 +19,6 @@ const Navbar = () => {
   
     <div className="outerdiv">
       <div><img className='imgdiv' src={navbarlogo} /></div>
-<<<<<<< HEAD
-      <div className="buttons">
-        <button className="button1"><Link className='link1' to="/signup">Signup</Link></button>
-        <button className="button1"><Link className='link1' to="/login">Login</Link></button>
-        <button className="button1">Plans</button>
-        <button className="button1">Contact</button>
-        <button className="button1">Join</button>
-        <button className="button1">Our Team</button>
-        <button className="button1">About</button>
-        <button className="button1">Services</button>
-        <button className="button1" autoFocus>Home</button>
-=======
       <div>
         {(!localStorage.getItem("Token")) ?
         <div>
@@ -40,7 +28,6 @@ const Navbar = () => {
           :
           <button className="button1" onClick={handleLogout}>Logout</button>
         } 
->>>>>>> 884f3a2317b4a6b10eadd5f386d76fa06c6645b5
       </div>
       
     </div>
