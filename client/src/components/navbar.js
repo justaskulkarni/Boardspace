@@ -1,7 +1,5 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useLogout } from '../hooks/useLogout'
-import { useAuthContext } from '../hooks/useAuthContext'
 
 import navbarlogo from '../assets/navbarlogo.png'
 import '../stylesheets/navbar.css'
@@ -18,7 +16,7 @@ const Navbar = () => {
   return (
   
     <div className="outerdiv">
-      <div><img className='imgdiv' src={navbarlogo} /></div>
+      <div><img className='imgdiv' src={navbarlogo} alt = "" /></div>
       <div>
         {(!localStorage.getItem("Token")) ?
         <div>
