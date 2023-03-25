@@ -68,16 +68,17 @@ router.post('/semisignup', async (req, res) => {
                     },
                     To: [{
                         Email: req.body.email,
-                        Name: "Woh chod"
+                        Name: req.body.name
                     }],
-                    Subject: "Mail through API",
+                    Subject: "Welcome to boardspace",
                     HTMLPart: `
             <div>
-                <h1>Hi hello this is your otp</h1>
+                <h1>Welcome ${req.body.name}</h1>
+                <h3>This is your otp</h3>
                 <h3>${genotp}</h3>
             </div>
             `,
-                    TextPart: "Dear receiptent maa chudayo maine email implement kar diya "
+                    TextPart: `Dear ${req.body.name} your otp is : ${genotp} `
                 }]
             })
 
@@ -86,23 +87,20 @@ router.post('/semisignup', async (req, res) => {
             mexist.otp = genotp
             await mexist.save()
 
-            const token = createToken(mexist.email)
-            res.json({ emailToken: token })
+            res.json({ success: true })
         }
         else {
 
             const newMentor = new Mentor({
-                email : req.body.email,
-                otp : genotp
+                email: req.body.email,
+                otp: genotp,
+                name: req.body.name
             })
 
             await newMentor.save()
 
-            const token = createToken(newMentor.email)
-            res.json({emailToken : token})
-
+            res.json({ success: true })
         }
-        
 
     } catch (error) {
         res.status(400).json({ error: error.message })
