@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import '../stylesheets/auth.css'
 
 const Signup = () => {
-  const [creadentials, setCredentials] = useState({ email: "", otp: 0, name: "" })
+  const [creadentials, setCredentials] = useState({ email: "", otp: null, name: "" })
   const [error, setError] = useState(null)
   const [showOtpDiv, setShowOtpDiv] = useState(false)
 
@@ -85,11 +85,13 @@ const Signup = () => {
             />
 
           </div>
-          <button className="signupbutton" >sign up</button>
+          { !showOtpDiv &&
+            <button className="signupbutton" >sign up</button>
+          }
         </form>
         <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
         {error && <div className="error">{error}</div>}
-        {showOtpDiv &&
+        { showOtpDiv && 
           (<div>
             <form className="signup" onSubmit={handleSubmit2}>
               <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
