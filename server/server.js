@@ -6,6 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', true)
 
 const app = express();
 app.use(express.urlencoded({extended : true}))
@@ -14,18 +15,19 @@ app.use(express.json())
 app.use(bodyParser.json())
 
 
-const temproutes = require('./routes/temproutes')
+const mentorroutes = require('./routes/MentorRoutes')
+const studentroutes = require('./routes/StudentRoutes')
+const adminroutes = require('./routes/AdminRoutes')
 
-
-
-app.use('/api/',temproutes)
-
-
+app.use('/api/mentor/',mentorroutes)
+app.use('/api/student/',studentroutes)
+app.use('/api/admin/' ,adminroutes)
 
 const DB_URL = process.env.MONGO_URL
 mongoose.connect(DB_URL)
 .then(() => console.log('Mongoup'))
 .catch(e => console.log(e))
+
 
 app.get('/', (req,res) =>{
     res.send("Welcome to home page sir")

@@ -1,0 +1,170 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
+const express = require('express');
+
+const Mentor = require('../models/mentor')
+
+const bcrypt = require('bcrypt')
+const validator = require('validator')
+const jwt = require('jsonwebtoken')
+const otpgen = require('otp-generators')
+const Mailjet = require('node-mailjet')
+
+const router = express.Router()
+
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.SECRET, {
+        expiresIn: 3 * 24 * 60 * 60
+    });
+}
+
+const mailjet = new Mailjet.apiConnect(process.env.MJ_PUBLIC, process.env.MJ_SECRET)
+
+router.post('/login', async (req, res) => {
+
+    try {
+
+        if (!req.body.email || !req.body.password) {
+            throw Error('All fields must be filled')
+        }
+
+        const reqmentor = await Mentor.findOne({ email: req.body.email })
+
+        if (!reqmentor) {
+            throw Error('Incorrect Email')
+        }
+
+        const match = await bcrypt.compare(req.body.password, reqmentor.password)
+
+        if (!match) {
+            throw Error('Password is incorrect')
+        }
+        else {
+            const token = createToken(reqmentor._id)
+            res.json({ success: true, authToken: token })
+        }
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+
+})
+
+router.post('/semisignup', async (req, res) => {
+
+    try {
+
+        const genotp = otpgen.generate(6, { alphabets: false, upperCase: false, specialChar: false })
+
+        const request = mailjet
+            .post('send', { version: 'v3.1' })
+            .request({
+                Messages: [{
+                    From: {
+                        Email: "bahetisid06@gmail.com",
+                        Name: "Siddhant"
+                    },
+                    To: [{
+                        Email: req.body.email,
+                        Name: "Woh chod"
+                    }],
+                    Subject: "Mail through API",
+                    HTMLPart: `
+            <div>
+                <h1>Hi hello this is your otp</h1>
+                <h3>${genotp}</h3>
+            </div>
+            `,
+                    TextPart: "Dear receiptent maa chudayo maine email implement kar diya "
+                }]
+            })
+
+        const mexist = await Mentor.findOne({ email: req.body.email })
+        if (mexist) {
+            mexist.otp = genotp
+            await mexist.save()
+
+            const token = createToken(mexist.email)
+            res.json({ emailToken: token })
+        }
+        else {
+
+            const newMentor = new Mentor({
+                email : req.body.email,
+                otp : genotp
+            })
+
+            await newMentor.save()
+
+            const token = createToken(newMentor.email)
+            res.json({emailToken : token})
+
+        }
+        
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/verifyotp', async (req, res) => {
+
+    try {
+
+        const reqm = await Mentor.findOne({ email: req.body.email })
+
+        if (!req.body.otp) {
+            throw Error('Enter a valid OTP')
+        }
+
+        if (reqm.otp == req.body.otp) {
+            res.json({ success: true })
+        }
+        else {
+            throw Error('Enter a valid OTP')
+        }
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/signup', async (req, res) => {
+
+    try {
+        if (!req.body.email || !req.body.password) {
+            throw Error('All fields must be filled')
+        }
+
+        if (!validator.isEmail(req.body.email)) {
+            throw Error('Email not valid')
+        }
+
+        if (!validator.isStrongPassword(req.body.password)) {
+            throw Error('Password not strong enough')
+        }
+
+
+        const salt = await bcrypt.genSalt(12)
+        pass = req.body.password
+        const hashp = await bcrypt.hash(pass, salt);
+
+        const newMentor = new Mentor({
+
+            email: req.body.email,
+            password: hashp
+        })
+
+        await newMentor.save()
+
+        const token = createToken(newMentor._id)
+        res.json({ success: true, authToken: token })
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+module.exports = router;
