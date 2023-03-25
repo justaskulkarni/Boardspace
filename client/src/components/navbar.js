@@ -13,18 +13,18 @@ const Navbar = () => {
     localStorage.removeItem("Token")
     navigate("/")
   }
-  return (
+   return (
   
     <div className="outerdiv">
       <div><img className='imgdiv' src={navbarlogo} alt = "" /></div>
       <div>
         {(!localStorage.getItem("Token")) ?
-        <div>
+        <div className="buttons">
           <button className="button1"><Link className='link1' to="/login">Login</Link></button>
           <button className="button1"><Link className='link1' to="/signup">Signup</Link></button>
         </div>
           :
-          <button className="button1" onClick={handleLogout}>Logout</button>
+          <button className="buttons button1" onClick={handleLogout}>Logout</button>
         } 
       </div>
       

@@ -12,8 +12,8 @@
 .buttons{
     position: relative;
     width: 100%;
-    margin-top: 2.1rem;
-    padding-right: 22rem;
+    margin-top: 1.8rem;
+    padding-right: 82rem;
     font-size: 20rem;
 }
 
@@ -22,7 +22,7 @@
     padding-right: 2rem;
     background-color: transparent;
     border: 0px;
-    font-size:1.2rem;
+    font-size:1.4rem;
 }
 
 .button1:active{

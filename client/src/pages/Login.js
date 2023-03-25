@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../stylesheets/auth.css'
-
+import Navbar from "../components/Navbar";
 
 const Login = () => {
   const [creadentials, setCredentials] = useState({email:"", password:""})
@@ -40,6 +40,7 @@ const Login = () => {
 
   return (
     <>
+    <Navbar />
     <div className="rightdiv">
       <form className="login" onSubmit={handleSubmit}>
         <h3 className="formheader"><span className="headertext">Log In</span></h3>

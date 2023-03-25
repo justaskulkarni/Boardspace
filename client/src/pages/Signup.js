@@ -88,7 +88,6 @@ const Signup = () => {
           <button className="signupbutton" >sign up</button>
         </form>
         <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
-        <button className="forgotpasswordbutton" onClick>forgot password?</button>
         {error && <div className="error">{error}</div>}
         {showOtpDiv &&
           (<div>
