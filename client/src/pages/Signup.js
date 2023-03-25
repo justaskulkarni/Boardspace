@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
+import '../stylesheets/auth.css'
 
 const Signup = () => {
   const [creadentials, setCredentials] = useState({email:"", password:""})
@@ -36,28 +37,38 @@ const Signup = () => {
 
   return (
     <>
-    <form className="signup" onSubmit={handleSubmit}>
-      <h3>Sign Up</h3>
+    <div className="rightdiv">
+      <form className="signup" onSubmit={handleSubmit}>
+        <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
+    
+        <div className="formcontent">
+        <input 
+          type="email" 
+          value={creadentials.email}
+          name = "email"
+          onChange={onChange}
+          placeholder="email"
+          className="inputbox"
+        />
   
-      <label htmlFor="email">Email address:</label>
-      <input 
-        type="email" 
-        value={creadentials.email}
-        name = "email"
-        onChange={onChange}
-      />
-      <label htmlFor="password">Password:</label>
-      <input 
-        type="password"  
-        value={creadentials.password}
-        name = "password"
-        onChange={onChange}
-      />
+        <input 
+          type="password"  
+          value={creadentials.password}
+          name = "password"
+          onChange={onChange}
+          placeholder="password"
+          className="inputbox"
+        />
 
-      <button>Sign up</button>
+        </div>
+      </form>
+      <div className="buttonscontainer">
+        <button className="signupbutton">sign up</button>
+        <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
+      </div>
+      <button className="forgotpasswordbutton">forgot password?</button>
       {error && <div className="error">{error}</div>}
-    </form>
-    <button><Link to="/login">Login</Link></button>
+    </div>
     </>
   )
 }
