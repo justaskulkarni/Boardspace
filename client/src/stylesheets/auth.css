@@ -1,0 +1,41 @@
+.rightdiv{
+    position: relative;
+    float:right;
+    width: 60%;
+}
+
+form{
+    display:block;
+}
+
+.formheader{
+    margin-bottom:7rem;
+    margin-top:9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headertext{
+    border-bottom:0.3rem solid blue;
+}
+
+input{
+    margin-left:17rem; 
+    display: block;
+    border:none;
+    border-bottom:0.1rem solid gray;
+    margin-top: 2rem;
+    font-size:1.2rem; 
+}
+
+.signupbutton{
+    margin-left: 17rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    display:flex;
+}
+
+.loginbutton{
+    margin-top:0;
+}
