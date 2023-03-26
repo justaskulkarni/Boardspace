@@ -4,23 +4,30 @@ import Navbar from '../components/Navbar'
 import '../stylesheets/auth.css'
 
 const Signup2 = () => {
-  const [isBoardTopper, setIsBoardTopper] = useState(false)
-  const [isJEETopper, setIsJEETopper] = useState(false)
-  const [isNEETTopper, setIsNEETTopper] = useState(false)
-  const [isMastersStudent, setIsMastersStudent] = useState(false)
-  const [isPHDStudent, setIsPHDStudent] = useState(false)
-  const [details, setDetails] = useState({password:"", idurl:""})
-  const onChange2 = (event) => {
+  
+
+  const [topper,setTopper] = useState([])
+  const [details, setDetails] = useState({ password: "", idurl: "" })
+  
+  const onChange1 = (event) => {
     setDetails({ ...details, [event.target.name]: event.target.value })
   }
-  const handleSubmit3 = async (e) => {
+
+  const onChange2 = (event) => {
+    setTopper({ ...topper, [event.target.name] : event.target.value })
+    console.log(topper)
+  }
+
+  const handleSubmit2 = async (e) => {
 
     e.preventDefault()
+    console.log("Wait there")
 
   }
   return (
+    <>
     <div>
-        </Navbar>
+        <Navbar />
         <form className="signup" onSubmit={handleSubmit2}>
               <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
               <div className="formcontent">
@@ -28,7 +35,7 @@ const Signup2 = () => {
                   type="text"
                   value={details.password}
                   name="password"
-                  onChange={onChange2}
+                  onChange={onChange1}
                   placeholder="password"
                   className="inputbox"
                 />
@@ -36,7 +43,7 @@ const Signup2 = () => {
                   type="text"
                   value={details.idurl}
                   name="idurl"
-                  onChange={onChange2}
+                  onChange={onChange1}
                   placeholder="idurl"
                   className="inputbox"
                 />
@@ -44,8 +51,8 @@ const Signup2 = () => {
                 <input
                   type="checkbox"
                   defaultChecked={false}
-                  value={isBoardTopper}
-                  onChange={() => setIsBoardTopper(true)}
+                  value={"Board Topper"}
+                  onChange={onChange2}
                   name="Board Topper"
                 />Board Topper
                 </label>
@@ -53,8 +60,8 @@ const Signup2 = () => {
                 <input
                   type="checkbox"
                   defaultChecked={false}
-                  value={isJEETopper}
-                  onChange={() => setIsJEETopper(true)}
+                  value={"JEE Topper"}
+                  onChange={onChange2}
                   name="JEE Topper"
                 />JEE Topper
                 </label>
@@ -62,8 +69,8 @@ const Signup2 = () => {
                 <input
                   type="checkbox"
                   defaultChecked={false}
-                  value={isNEETTopper}
-                  onChange={() => setIsNEETTopper(true)}
+                  value={"Neet Topper"}
+                  onChange={onChange2}
                   name="Neet Topper"
                 />NEET Topper
                 </label>
@@ -71,8 +78,8 @@ const Signup2 = () => {
                 <input
                   type="checkbox"
                   defaultChecked={false}
-                  value={isMastersStudent}
-                  onChange={() => setIsMastersStudent(true)}
+                  value={"Masters"}
+                  onChange={onChange2}
                   name="Masters"
                 />Masters Student
                 </label>
@@ -80,14 +87,16 @@ const Signup2 = () => {
                 <input
                   type="checkbox"
                   defaultChecked={false}
-                  value={isPHDStudent}
-                  onChange={() => setIsPHDStudent(true)}
+                  value={"PHD"}
+                  onChange={onChange2}
                   name="PHD"
                 />PHD Student
                 </label>
             </div>
+            <button className="signupbutton">Submit</button>
         </form>
     </div>
+    </>
   )
 }
 

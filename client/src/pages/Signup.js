@@ -48,7 +48,7 @@ const Signup = () => {
 
     if (json.success) {
       console.log("Success che balak")
-      navigate("/")
+      navigate("/complete_details")
     }
 
     if (json.error) {
