@@ -25,6 +25,8 @@ const Signup2 = () => {
 
     e.preventDefault()
     console.log(details)
+    const toppersArray = Object.values(topper).map((top) => top);
+    console.log(toppersArray)
 
     const response = await fetch("http://localhost:6100/api/mentor/signup", {
       method: 'POST',

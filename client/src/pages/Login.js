@@ -39,35 +39,37 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="rightdiv">
-        <form className="login" onSubmit={handleSubmit}>
-          <h3 className="formheader"><span className="headertext">Log In</span></h3>
-          <div className="formcontent">
-            <input
-              type="email"
-              value={creadentials.email}
-              name="email"
-              onChange={onChange}
-              placeholder="email"
-            />
-            <input
-              type="password"
-              value={creadentials.password}
-              name="password"
-              onChange={onChange}
-              placeholder="password"
-            />
-          </div>
+      <div className="mostout">
+        <div className="colourdiv"></div>
+        <div className="rightdiv">
+          <form className="login" onSubmit={handleSubmit}>
+            <h3 className="formheader"><span className="headertext">Log In</span></h3>
+            <div className="formcontent">
+              <input
+                type="email"
+                value={creadentials.email}
+                name="email"
+                onChange={onChange}
+                placeholder="email"
+              />
+              <input
+                type="password"
+                value={creadentials.password}
+                name="password"
+                onChange={onChange}
+                placeholder="password"
+              />
+            </div>
 
 
-          <div className="buttonscontainer">
-            <button className="signupbutton">login</button>
-            <button className="loginbutton"><Link to="/signup"><span className="buttontext">sign up</span></Link></button>
-          </div>
-        </form>
-        <button className="forgotpasswordbutton">forgot password?</button>
-        {error && <div className="error">{error}</div>}
+            <div className="buttonscontainer">
+              <button className="signupbutton">login</button>
+            </div>
+          </form>
+          <button className="forgotpasswordbutton">forgot password?</button>
+          {error && <div className="error">{error}</div>}
 
+        </div>
       </div>
     </>
   )
