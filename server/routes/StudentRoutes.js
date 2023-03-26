@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
 router.post('/signup', async (req, res) => {
 
     try {
-        if (!req.body.email || !req.body.password || !req.body.name || !req.body.phonenum) {
+        if (!req.body.email || !req.body.password || !req.body.name) {
             throw Error('All fields must be filled')
         }
 

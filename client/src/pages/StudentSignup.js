@@ -13,27 +13,28 @@ const StudentSignup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-    
+
         const response = await fetch("http://localhost:6100/api/student/signup", {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: creadentials.email, name: creadentials.name, phonenum: creadentials.phonenum, password:creadentials.password })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: creadentials.email, name: creadentials.name, phonenum: creadentials.phonenum, password: creadentials.password })
         })
-    
+
         const json = await response.json()
-    
+
         if (json.success) {
-          navigate("/")
+            localStorage.setItem("Student", json.authToken)
+            navigate("/studentin")
         }
-    
+
         if (json.error) {
-          setError(json.error)
+            setError(json.error)
         }
-      }
+    }
 
     const onChange = (event) => {
         setCredentials({ ...creadentials, [event.target.name]: event.target.value })
-      }
+    }
 
     return (
         <>
@@ -78,7 +79,7 @@ const StudentSignup = () => {
                                 value={creadentials.phonenum}
                                 name="phonenum"
                                 onChange={onChange}
-                                placeholder="Number"
+                                placeholder="Number (Optional)"
                                 className="inputbox"
                             />
 
@@ -87,10 +88,11 @@ const StudentSignup = () => {
                         <button className="signupbutton" >Sign up</button>
                         <button className=""><Link to={"/student/login"}>Login</Link></button>
                     </form>
-
+                    {error && <div className="error">{error}</div>}
                 </div>
+                
             </div>
-            {error && <div className="error">{error}</div>}
+            
         </>
     )
 }

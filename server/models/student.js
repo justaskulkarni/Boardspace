@@ -7,8 +7,8 @@ const studentSchema = new Schema({
     password : {type : String},
     phonenum : {
         type : Number,
-        min : [1000000000],
-        max : [9999999999]
+        min : [1000000000, "Enter a valid Number"],
+        max : [9999999999, "Enter a valid Number"]
     },
     stname : {type : String}
 })
