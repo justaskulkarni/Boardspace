@@ -62,6 +62,7 @@ const Signup = () => {
     <>
       <Navbar />
       <div className="rightdiv">
+      { !showOtpDiv &&
         <form className="signup" onSubmit={handleSubmit1}>
           <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
 
@@ -85,11 +86,13 @@ const Signup = () => {
             />
 
           </div>
-          { !showOtpDiv &&
+          
             <button className="signupbutton" >sign up</button>
+            <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
+            </form>
           }
-        </form>
-        <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
+        
+        
         {error && <div className="error">{error}</div>}
         { showOtpDiv && 
           (<div>
