@@ -1,8 +1,26 @@
-import React from 'react'
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import Navbar from '../components/Navbar'
+import '../stylesheets/auth.css'
 
 const Signup2 = () => {
+  const [isBoardTopper, setIsBoardTopper] = useState(false)
+  const [isJEETopper, setIsJEETopper] = useState(false)
+  const [isNEETTopper, setIsNEETTopper] = useState(false)
+  const [isMastersStudent, setIsMastersStudent] = useState(false)
+  const [isPHDStudent, setIsPHDStudent] = useState(false)
+  const [details, setDetails] = useState({password:"", idurl:""})
+  const onChange2 = (event) => {
+    setDetails({ ...details, [event.target.name]: event.target.value })
+  }
+  const handleSubmit3 = async (e) => {
+
+    e.preventDefault()
+
+  }
   return (
     <div>
+        </Navbar>
         <form className="signup" onSubmit={handleSubmit2}>
               <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
               <div className="formcontent">
@@ -67,6 +85,7 @@ const Signup2 = () => {
                   name="PHD"
                 />PHD Student
                 </label>
+            </div>
         </form>
     </div>
   )
