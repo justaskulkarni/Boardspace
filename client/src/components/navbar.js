@@ -26,8 +26,7 @@ const Navbar = () => {
       <div>
         {(!localStorage.getItem("Mentor")) ?
         <div className="buttons">
-          <button className="button1"><Link className='link1' to="/login">Mentor Login</Link></button>
-          <button className="button1"><Link className='link1' to="/signup">Mentor Signup</Link></button>
+          <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
         </div>
           :
           <button className="buttons button1" onClick={handleLogout}>Mentor Logout</button>
@@ -35,8 +34,7 @@ const Navbar = () => {
 
         {(!localStorage.getItem("Student")) ?
         <div className="buttons">
-          <button className="button1"><Link className='link1' to="/student/login">Student Login</Link></button>
-          <button className="button1"><Link className='link1' to="/student/signup">Student Signup</Link></button>
+          <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
         </div>
           :
           <button className="buttons button1" onClick={handleLogout2}>Student Logout</button>

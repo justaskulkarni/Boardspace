@@ -47,7 +47,6 @@ const Signup = () => {
     const json = await response.json()
 
     if (json.success) {
-      console.log("Success che balak")
       navigate("/complete_details",{
         state :{
           email : creadentials.email
@@ -93,6 +92,7 @@ const Signup = () => {
               </div>
 
               <button className="signupbutton" >sign up</button>
+              <button className="signupbutton"><Link to={"/login"}>Login</Link></button>
             </form>
           }
 
