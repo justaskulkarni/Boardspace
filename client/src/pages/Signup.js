@@ -5,8 +5,16 @@ import '../stylesheets/auth.css'
 
 const Signup = () => {
   const [creadentials, setCredentials] = useState({ email: "", otp: null, name: "" })
+  const [details, setDetails] = useState({password:"", idurl:""})
   const [error, setError] = useState(null)
   const [showOtpDiv, setShowOtpDiv] = useState(false)
+  const [showSecondForm, setShowSecondForm] = useState(false)
+  const [isBoardTopper, setIsBoardTopper] = useState(false)
+  const [isJEETopper, setIsJEETopper] = useState(false)
+  const [isNEETTopper, setIsNEETTopper] = useState(false)
+  const [isMastersStudent, setIsMastersStudent] = useState(false)
+  const [isPHDStudent, setIsPHDStudent] = useState(false)
+  
 
   let navigate = useNavigate()
 
@@ -30,8 +38,12 @@ const Signup = () => {
     }
   }
 
-  const onChange = (event) => {
+  const onChange1 = (event) => {
     setCredentials({ ...creadentials, [event.target.name]: event.target.value })
+  }
+
+  const onChange2 = (event) => {
+    setDetails({ ...details, [event.target.name]: event.target.value })
   }
 
   const handleSubmit2 = async (e) => {
@@ -48,7 +60,8 @@ const Signup = () => {
 
     if (json.success) {
       console.log("Success che balak")
-      navigate("/")
+      /* navigate("/") */
+      setShowSecondForm(true)
     }
 
     if (json.error) {
@@ -57,6 +70,11 @@ const Signup = () => {
 
   }
 
+  const handleSubmit3 = async (e) => {
+
+    e.preventDefault()
+
+  }
 
   return (
     <>
@@ -71,7 +89,7 @@ const Signup = () => {
               type="text"
               value={creadentials.name}
               name="name"
-              onChange={onChange}
+              onChange={onChange1}
               placeholder="Name"
               className="inputbox"
             />
@@ -80,7 +98,7 @@ const Signup = () => {
               type="email"
               value={creadentials.email}
               name="email"
-              onChange={onChange}
+              onChange={onChange1}
               placeholder="Email"
               className="inputbox"
             />
@@ -94,7 +112,7 @@ const Signup = () => {
         
         
         {error && <div className="error">{error}</div>}
-        { showOtpDiv && 
+        { showOtpDiv && !showSecondForm && 
           (<div>
             <form className="signup" onSubmit={handleSubmit2}>
               <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
@@ -103,7 +121,7 @@ const Signup = () => {
                   type="number"
                   value={creadentials.otp}
                   name="otp"
-                  onChange={onChange}
+                  onChange={onChange1}
                   placeholder="OTP"
                   className="inputbox"
                 />
@@ -114,6 +132,83 @@ const Signup = () => {
               <button className="signupbutton" >Submit OTP</button>
               </form>
           </div>)
+        }
+        {
+          showSecondForm &&
+          (
+            <div>
+              <form className="signup" onSubmit={handleSubmit2}>
+              <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
+              <div className="formcontent">
+                <input
+                  type="text"
+                  value={details.password}
+                  name="password"
+                  onChange={onChange2}
+                  placeholder="password"
+                  className="inputbox"
+                />
+                <input
+                  type="text"
+                  value={details.idurl}
+                  name="idurl"
+                  onChange={onChange2}
+                  placeholder="idurl"
+                  className="inputbox"
+                />
+                <label htmlFor="boardtopper" className="checkboxstyle">
+                <input
+                  type="checkbox"
+                  defaultChecked={false}
+                  value={isBoardTopper}
+                  onChange={() => setIsBoardTopper(true)}
+                  name="Board Topper"
+                />Board Topper
+                </label>
+                <label htmlFor="jeetopper" className="checkboxstyle">
+                <input
+                  type="checkbox"
+                  defaultChecked={false}
+                  value={isJEETopper}
+                  onChange={() => setIsJEETopper(true)}
+                  name="JEE Topper"
+                />JEE Topper
+                </label>
+                <label htmlFor="neettopper" className="checkboxstyle">
+                <input
+                  type="checkbox"
+                  defaultChecked={false}
+                  value={isNEETTopper}
+                  onChange={() => setIsNEETTopper(true)}
+                  name="Neet Topper"
+                />NEET Topper
+                </label>
+                <label htmlFor="masters" className="checkboxstyle">
+                <input
+                  type="checkbox"
+                  defaultChecked={false}
+                  value={isMastersStudent}
+                  onChange={() => setIsMastersStudent(true)}
+                  name="Masters"
+                />Masters Student
+                </label>
+                <label htmlFor="phd" className="checkboxstyle">
+                <input
+                  type="checkbox"
+                  defaultChecked={false}
+                  value={isPHDStudent}
+                  onChange={() => setIsPHDStudent(true)}
+                  name="PHD"
+                />PHD Student
+                </label>
+              </div>
+            
+
+            
+              <button className="signupbutton" >Submit Details</button>
+              </form>
+            </div>
+          )
         }
       </div>
     </>

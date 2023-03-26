@@ -73,3 +73,8 @@ input{
     color:white;
     text-decoration: none;
 }
+
+.checkboxstyle{
+    display: flex;
+}
+
