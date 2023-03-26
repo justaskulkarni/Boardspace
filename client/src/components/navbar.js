@@ -13,6 +13,12 @@ const Navbar = () => {
     localStorage.removeItem("Mentor")
     navigate("/")
   }
+
+  const handleLogout2 = () => {
+    localStorage.removeItem("Student")
+    navigate("/")
+  }
+
    return (
   
     <div className="outerdiv">
@@ -20,12 +26,23 @@ const Navbar = () => {
       <div>
         {(!localStorage.getItem("Mentor")) ?
         <div className="buttons">
-          <button className="button1"><Link className='link1' to="/login">Login</Link></button>
-          <button className="button1"><Link className='link1' to="/signup">Signup</Link></button>
+          <button className="button1"><Link className='link1' to="/login">Mentor Login</Link></button>
+          <button className="button1"><Link className='link1' to="/signup">Mentor Signup</Link></button>
         </div>
           :
-          <button className="buttons button1" onClick={handleLogout}>Logout</button>
+          <button className="buttons button1" onClick={handleLogout}>Mentor Logout</button>
         } 
+
+        {(!localStorage.getItem("Student")) ?
+        <div className="buttons">
+          <button className="button1"><Link className='link1' to="/student/login">Student Login</Link></button>
+          <button className="button1"><Link className='link1' to="/student/signup">Student Signup</Link></button>
+        </div>
+          :
+          <button className="buttons button1" onClick={handleLogout2}>Student Logout</button>
+        }
+
+        <button className="button1">Our Team</button>
       </div>
       
     </div>

@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import Protected from './pages/Protected';
 import MentorPrivateRoutes from './utils/MentorPrivateRoutes';
 import Signup2 from './pages/Signup2';
+import StudentLogin from './pages/StudentLogin';
+import StudentSignup from './pages/StudentSignup';
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/student/login" element={<StudentLogin />} />
+          <Route path="/student/signup" element={<StudentSignup />} />
           <Route path="/complete_details" element={<Signup2 />} />
           <Route element={<MentorPrivateRoutes />}>
             <Route path="/youin" element={<Protected />} />
