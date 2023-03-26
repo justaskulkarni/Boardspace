@@ -61,60 +61,63 @@ const Signup = () => {
   return (
     <>
       <Navbar />
-      <div className="rightdiv">
-      { !showOtpDiv &&
-        <form className="signup" onSubmit={handleSubmit1}>
-          <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
+      <div className="mostout">
+        <div className="colourdiv"></div>
+        <div className="rightdiv">
+          {!showOtpDiv &&
+            <form className="signup" onSubmit={handleSubmit1}>
+              <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
 
-          <div className="formcontent">
-            <input
-              type="text"
-              value={creadentials.name}
-              name="name"
-              onChange={onChange}
-              placeholder="Name"
-              className="inputbox"
-            />
-
-            <input
-              type="email"
-              value={creadentials.email}
-              name="email"
-              onChange={onChange}
-              placeholder="Email"
-              className="inputbox"
-            />
-
-          </div>
-          
-            <button className="signupbutton" >sign up</button>
-            <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
-            </form>
-          }
-        
-        
-        {error && <div className="error">{error}</div>}
-        { showOtpDiv && 
-          (<div>
-            <form className="signup" onSubmit={handleSubmit2}>
-              <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
               <div className="formcontent">
                 <input
-                  type="number"
-                  value={creadentials.otp}
-                  name="otp"
+                  type="text"
+                  value={creadentials.name}
+                  name="name"
                   onChange={onChange}
-                  placeholder="OTP"
+                  placeholder="Name"
                   className="inputbox"
                 />
-              </div>
-            
 
-            
-              <button className="signupbutton" >Submit OTP</button>
+                <input
+                  type="email"
+                  value={creadentials.email}
+                  name="email"
+                  onChange={onChange}
+                  placeholder="Email"
+                  className="inputbox"
+                />
+
+              </div>
+
+              <button className="signupbutton" >sign up</button>
+              <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
+            </form>
+          }
+
+
+          {error && <div className="error">{error}</div>}
+          {showOtpDiv &&
+            (<div>
+              <form className="signup" onSubmit={handleSubmit2}>
+                <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
+                <div className="formcontent">
+                  <input
+                    type="number"
+                    value={creadentials.otp}
+                    name="otp"
+                    onChange={onChange}
+                    placeholder="OTP"
+                    className="inputbox"
+                  />
+                </div>
+
+
+
+                <button className="signupbutton" >Submit OTP</button>
               </form>
-          </div>)
-        }
+            </div>)
+          }
+        </div>
       </div>
     </>
   )
