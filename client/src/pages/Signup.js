@@ -175,7 +175,6 @@ const Signup = () => {
 
                 <button className="signupbutton" >Submit OTP</button>
               </form>
-<<<<<<< HEAD
           </div>)
         }
         {
@@ -255,11 +254,6 @@ const Signup = () => {
             </div>
           )
         }
-=======
-            </div>)
-          }
-        </div>
->>>>>>> 5e4678fcfe176c8ca4a67f37a871f1d65cec1dac
       </div>
     </>
   )
