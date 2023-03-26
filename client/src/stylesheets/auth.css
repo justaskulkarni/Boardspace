@@ -88,3 +88,7 @@ input{
 .mostout{
     display: flex;
 }
+
+.checkboxstyle{
+    display:flex;
+}
