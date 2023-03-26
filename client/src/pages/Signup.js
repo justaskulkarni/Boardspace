@@ -86,7 +86,6 @@ const Signup = () => {
             <form className="signup" onSubmit={handleSubmit1}>
               <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
 
-<<<<<<< HEAD
           <div className="formcontent">
             <input
               type="text"
@@ -126,15 +125,6 @@ const Signup = () => {
                   name="otp"
                   onChange={onChange1}
                   placeholder="OTP"
-=======
-              <div className="formcontent">
-                <input
-                  type="text"
-                  value={creadentials.name}
-                  name="name"
-                  onChange={onChange}
-                  placeholder="Name"
->>>>>>> 5e4678fcfe176c8ca4a67f37a871f1d65cec1dac
                   className="inputbox"
                 />
 
