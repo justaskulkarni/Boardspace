@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
 import Protected from './pages/Protected';
-import PrivateRoutes from './utils/PrivateRoutes';
+import MentorPrivateRoutes from './utils/MentorPrivateRoutes';
 import Signup2 from './pages/Signup2';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/complete_details" element={<Signup2 />} />
-          <Route element={<PrivateRoutes />}>
+          <Route element={<MentorPrivateRoutes />}>
             <Route path="/youin" element={<Protected />} />
           </Route>
         </Routes>

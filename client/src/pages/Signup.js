@@ -48,7 +48,11 @@ const Signup = () => {
 
     if (json.success) {
       console.log("Success che balak")
-      navigate("/complete_details")
+      navigate("/complete_details",{
+        state :{
+          email : creadentials.email
+        }
+      })
     }
 
     if (json.error) {

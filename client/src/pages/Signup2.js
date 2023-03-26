@@ -1,14 +1,17 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
 import '../stylesheets/auth.css'
 
 const Signup2 = () => {
   
+  const location = useLocation()
+  const navigate = useNavigate()
 
+  const[error,setError] = useState(null)
   const [topper,setTopper] = useState([])
-  const [details, setDetails] = useState({ password: "", idurl: "" })
-  
+  const [details, setDetails] = useState({ password: "", idurl: "" ,email:location.state.email})
+
   const onChange1 = (event) => {
     setDetails({ ...details, [event.target.name]: event.target.value })
   }
@@ -21,7 +24,25 @@ const Signup2 = () => {
   const handleSubmit2 = async (e) => {
 
     e.preventDefault()
-    console.log("Wait there")
+    console.log(details)
+
+    const response = await fetch("http://localhost:6100/api/mentor/signup", {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: details.email, idurl: details.idurl, password:details.password })
+    })
+
+    const json = await response.json()
+
+    if (json.success) {
+      localStorage.setItem("Mentor",json.authToken)
+      console.log(localStorage.getItem("Mentor"))
+      navigate("/youin")
+    }
+
+    if (json.error) {
+      setError(json.error)
+    }
 
   }
   return (

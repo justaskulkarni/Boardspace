@@ -56,6 +56,14 @@ router.post('/semisignup', async (req, res) => {
 
     try {
 
+        if (!validator.isEmail(req.body.email)) {
+            throw Error('Email not valid')
+        }
+
+        if (!req.body.email || !req.body.name) {
+            throw Error('All fields must be filled')
+        }
+
         const genotp = otpgen.generate(6, { alphabets: false, upperCase: false, specialChar: false })
 
         const request = mailjet
@@ -132,32 +140,27 @@ router.post('/verifyotp', async (req, res) => {
 router.post('/signup', async (req, res) => {
 
     try {
-        if (!req.body.email || !req.body.password) {
+        if (!req.body.idurl || !req.body.password) {
             throw Error('All fields must be filled')
         }
 
-        if (!validator.isEmail(req.body.email)) {
-            throw Error('Email not valid')
-        }
 
         if (!validator.isStrongPassword(req.body.password)) {
             throw Error('Password not strong enough')
         }
 
-
         const salt = await bcrypt.genSalt(12)
         pass = req.body.password
         const hashp = await bcrypt.hash(pass, salt);
 
-        const newMentor = new Mentor({
+        const umentor = await Mentor.findOne({email : req.body.email})
 
-            email: req.body.email,
-            password: hashp
-        })
+        umentor.password = hashp
+        umentor.idurl = req.body.idurl
+        
+        await umentor.save()
 
-        await newMentor.save()
-
-        const token = createToken(newMentor._id)
+        const token = createToken(umentor._id)
         res.json({ success: true, authToken: token })
 
     } catch (error) {
