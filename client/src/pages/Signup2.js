@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
-import '../stylesheets/auth.css'
+import '../stylesheets/signup2.css'
 
 const Signup2 = () => {
   
@@ -49,73 +49,78 @@ const Signup2 = () => {
     <>
     <div>
         <Navbar />
-        <form className="signup" onSubmit={handleSubmit2}>
-              <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
-              <div className="formcontent">
-                <input
-                  type="text"
-                  value={details.password}
-                  name="password"
-                  onChange={onChange1}
-                  placeholder="password"
-                  className="inputbox"
-                />
-                <input
-                  type="text"
-                  value={details.idurl}
-                  name="idurl"
-                  onChange={onChange1}
-                  placeholder="idurl"
-                  className="inputbox"
-                />
-                <label htmlFor="boardtopper" className="checkboxstyle">
-                <input
-                  type="checkbox"
-                  defaultChecked={false}
-                  value={"Board Topper"}
-                  onChange={onChange2}
-                  name="Board Topper"
-                />Board Topper
-                </label>
-                <label htmlFor="jeetopper" className="checkboxstyle">
-                <input
-                  type="checkbox"
-                  defaultChecked={false}
-                  value={"JEE Topper"}
-                  onChange={onChange2}
-                  name="JEE Topper"
-                />JEE Topper
-                </label>
-                <label htmlFor="neettopper" className="checkboxstyle">
-                <input
-                  type="checkbox"
-                  defaultChecked={false}
-                  value={"Neet Topper"}
-                  onChange={onChange2}
-                  name="Neet Topper"
-                />NEET Topper
-                </label>
-                <label htmlFor="masters" className="checkboxstyle">
-                <input
-                  type="checkbox"
-                  defaultChecked={false}
-                  value={"Masters"}
-                  onChange={onChange2}
-                  name="Masters"
-                />Masters Student
-                </label>
-                <label htmlFor="phd" className="checkboxstyle">
-                <input
-                  type="checkbox"
-                  defaultChecked={false}
-                  value={"PHD"}
-                  onChange={onChange2}
-                  name="PHD"
-                />PHD Student
-                </label>
+        <div className="mostout">
+            <div className="colourdiv"></div>
+            <div className="rightdiv">
+            <form className="signup" onSubmit={handleSubmit2}>
+                <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
+                <div className="formcontent">
+                    <input
+                    type="text"
+                    value={details.password}
+                    name="password"
+                    onChange={onChange1}
+                    placeholder="password"
+                    className="inputbox"
+                    />
+                    <input
+                    type="text"
+                    value={details.idurl}
+                    name="idurl"
+                    onChange={onChange1}
+                    placeholder="idurl"
+                    className="inputbox"
+                    />
+                    <label htmlFor="boardtopper" className="checkboxstyle">
+                    <input
+                    type="checkbox"
+                    defaultChecked={false}
+                    value={"Board Topper"}
+                    onChange={onChange2}
+                    name="Board Topper"
+                    /><p>Board Topper</p>
+                    </label>
+                    <label htmlFor="jeetopper" className="checkboxstyle">
+                    <input
+                    type="checkbox"
+                    defaultChecked={false}
+                    value={"JEE Topper"}
+                    onChange={onChange2}
+                    name="JEE Topper"
+                    /><p>JEE Topper</p>
+                    </label>
+                    <label htmlFor="neettopper" className="checkboxstyle">
+                    <input
+                    type="checkbox"
+                    defaultChecked={false}
+                    value={"Neet Topper"}
+                    onChange={onChange2}
+                    name="Neet Topper"
+                    /><p>NEET Topper</p>
+                    </label>
+                    <label htmlFor="masters" className="checkboxstyle">
+                    <input
+                    type="checkbox"
+                    defaultChecked={false}
+                    value={"Masters"}
+                    onChange={onChange2}
+                    name="Masters"
+                    /><p>Masters Student</p>
+                    </label>
+                    <label htmlFor="phd" className="checkboxstyle">
+                    <input
+                    type="checkbox"
+                    defaultChecked={false}
+                    value={"PHD"}
+                    onChange={onChange2}
+                    name="PHD"
+                    /><p>PHD Student</p>
+                    </label>
+                </div>
+                <button className="signupbutton">Submit</button>
+            </form>
             </div>
-            <button className="signupbutton">Submit</button>
-        </form>
+        </div>
     </div>
     </>
   )
