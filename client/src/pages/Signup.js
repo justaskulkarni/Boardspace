@@ -79,11 +79,14 @@ const Signup = () => {
   return (
     <>
       <Navbar />
-      <div className="rightdiv">
-      { !showOtpDiv &&
-        <form className="signup" onSubmit={handleSubmit1}>
-          <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
+      <div className="mostout">
+        <div className="colourdiv"></div>
+        <div className="rightdiv">
+          {!showOtpDiv &&
+            <form className="signup" onSubmit={handleSubmit1}>
+              <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
 
+<<<<<<< HEAD
           <div className="formcontent">
             <input
               type="text"
@@ -123,14 +126,56 @@ const Signup = () => {
                   name="otp"
                   onChange={onChange1}
                   placeholder="OTP"
+=======
+              <div className="formcontent">
+                <input
+                  type="text"
+                  value={creadentials.name}
+                  name="name"
+                  onChange={onChange}
+                  placeholder="Name"
+>>>>>>> 5e4678fcfe176c8ca4a67f37a871f1d65cec1dac
                   className="inputbox"
                 />
-              </div>
-            
 
-            
-              <button className="signupbutton" >Submit OTP</button>
+                <input
+                  type="email"
+                  value={creadentials.email}
+                  name="email"
+                  onChange={onChange}
+                  placeholder="Email"
+                  className="inputbox"
+                />
+
+              </div>
+
+              <button className="signupbutton" >sign up</button>
+              <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
+            </form>
+          }
+
+
+          {error && <div className="error">{error}</div>}
+          {showOtpDiv &&
+            (<div>
+              <form className="signup" onSubmit={handleSubmit2}>
+                <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
+                <div className="formcontent">
+                  <input
+                    type="number"
+                    value={creadentials.otp}
+                    name="otp"
+                    onChange={onChange}
+                    placeholder="OTP"
+                    className="inputbox"
+                  />
+                </div>
+
+
+
+                <button className="signupbutton" >Submit OTP</button>
               </form>
+<<<<<<< HEAD
           </div>)
         }
         {
@@ -210,6 +255,11 @@ const Signup = () => {
             </div>
           )
         }
+=======
+            </div>)
+          }
+        </div>
+>>>>>>> 5e4678fcfe176c8ca4a67f37a871f1d65cec1dac
       </div>
     </>
   )

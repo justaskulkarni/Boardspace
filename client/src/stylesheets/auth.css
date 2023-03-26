@@ -74,5 +74,17 @@ input{
     text-decoration: none;
 }
 
+.colourdiv{
+    position: relative;
+    height: 60rem;
+    width: 55rem ;
+    background-color: #9e3ffd;
+    transform: rotate(15.59deg);
+    left: -6rem;
+    top: -17rem;
+    z-index: -1;
+}
 
-
+.mostout{
+    display: flex;
+}
