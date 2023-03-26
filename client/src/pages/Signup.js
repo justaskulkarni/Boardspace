@@ -4,17 +4,9 @@ import Navbar from '../components/Navbar'
 import '../stylesheets/auth.css'
 
 const Signup = () => {
-  const [creadentials, setCredentials] = useState({ email: "", otp: null, name: "" })
-  const [details, setDetails] = useState({password:"", idurl:""})
+  const [creadentials, setCredentials] = useState({ email: "", otp:0, name: "" })
   const [error, setError] = useState(null)
   const [showOtpDiv, setShowOtpDiv] = useState(false)
-  const [showSecondForm, setShowSecondForm] = useState(false)
-  const [isBoardTopper, setIsBoardTopper] = useState(false)
-  const [isJEETopper, setIsJEETopper] = useState(false)
-  const [isNEETTopper, setIsNEETTopper] = useState(false)
-  const [isMastersStudent, setIsMastersStudent] = useState(false)
-  const [isPHDStudent, setIsPHDStudent] = useState(false)
-  
 
   let navigate = useNavigate()
 
@@ -38,12 +30,8 @@ const Signup = () => {
     }
   }
 
-  const onChange1 = (event) => {
+  const onChange = (event) => {
     setCredentials({ ...creadentials, [event.target.name]: event.target.value })
-  }
-
-  const onChange2 = (event) => {
-    setDetails({ ...details, [event.target.name]: event.target.value })
   }
 
   const handleSubmit2 = async (e) => {
@@ -60,19 +48,12 @@ const Signup = () => {
 
     if (json.success) {
       console.log("Success che balak")
-      /* navigate("/") */
-      setShowSecondForm(true)
+      navigate("/")
     }
 
     if (json.error) {
       setError(json.error)
     }
-
-  }
-
-  const handleSubmit3 = async (e) => {
-
-    e.preventDefault()
 
   }
 
@@ -86,45 +67,13 @@ const Signup = () => {
             <form className="signup" onSubmit={handleSubmit1}>
               <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
 
-          <div className="formcontent">
-            <input
-              type="text"
-              value={creadentials.name}
-              name="name"
-              onChange={onChange1}
-              placeholder="Name"
-              className="inputbox"
-            />
-
-            <input
-              type="email"
-              value={creadentials.email}
-              name="email"
-              onChange={onChange1}
-              placeholder="Email"
-              className="inputbox"
-            />
-
-          </div>
-          
-            <button className="signupbutton" >sign up</button>
-            <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
-            </form>
-          }
-        
-        
-        {error && <div className="error">{error}</div>}
-        { showOtpDiv && !showSecondForm && 
-          (<div>
-            <form className="signup" onSubmit={handleSubmit2}>
-              <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
               <div className="formcontent">
                 <input
-                  type="number"
-                  value={creadentials.otp}
-                  name="otp"
-                  onChange={onChange1}
-                  placeholder="OTP"
+                  type="text"
+                  value={creadentials.name}
+                  name="name"
+                  onChange={onChange}
+                  placeholder="Name"
                   className="inputbox"
                 />
 
@@ -142,12 +91,9 @@ const Signup = () => {
               <button className="signupbutton" >sign up</button>
               <button className="loginbutton"><Link to="/login"><span className="buttontext">login</span></Link></button>
             </form>
-            </div>)
           }
 
-
-          {error && <div className="error">{error}</div>}
-          {showOtpDiv 
+          {showOtpDiv &&
             (<div>
               <form className="signup" onSubmit={handleSubmit2}>
                 <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
@@ -161,29 +107,13 @@ const Signup = () => {
                     className="inputbox"
                   />
                 </div>
-
-
-
                 <button className="signupbutton" >Submit OTP</button>
               </form>
-          </div>)
-        }
-        {
-          showSecondForm &&
-          (
-            <div>
-              
-              </div>
-            
-
-            
-              <button className="signupbutton" >Submit Details</button>
-              </form>
-            </div>
-          )
-        }
+            </div>)
+          }
+          {error && <div className="error">{error}</div>}
+        </div>
       </div>
-  
     </>
   )
 }
