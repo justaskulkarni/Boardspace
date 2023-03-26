@@ -10,7 +10,7 @@ const Navbar = () => {
   let navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem("Token")
+    localStorage.removeItem("Mentor")
     navigate("/")
   }
    return (
@@ -18,7 +18,7 @@ const Navbar = () => {
     <div className="outerdiv">
       <div><img className='imgdiv' src={navbarlogo} alt = "" /></div>
       <div>
-        {(!localStorage.getItem("Token")) ?
+        {(!localStorage.getItem("Mentor")) ?
         <div className="buttons">
           <button className="button1"><Link className='link1' to="/login">Login</Link></button>
           <button className="button1"><Link className='link1' to="/signup">Signup</Link></button>

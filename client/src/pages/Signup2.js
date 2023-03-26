@@ -56,7 +56,7 @@ const Signup2 = () => {
                 <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
                 <div className="formcontent">
                     <input
-                    type="text"
+                    type="password"
                     value={details.password}
                     name="password"
                     onChange={onChange1}
@@ -120,8 +120,10 @@ const Signup2 = () => {
                 <button className="signupbutton">Submit</button>
             </form>
             </div>
+            {error && <div className="error">{error}</div>}
         </div>
     </div>
+
     </>
   )
 }
