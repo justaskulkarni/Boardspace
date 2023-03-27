@@ -1,43 +1,51 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import jwt_decode from 'jwt-decode'
 
 import navbarlogo from '../assets/navbarlogo.png'
 import '../stylesheets/navbar.css'
 
 
 const Navbar = () => {
-  
+
   let navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem("Mentor")
+    localStorage.removeItem("Token")
     navigate("/")
   }
 
-  const handleLogout2 = () => {
-    localStorage.removeItem("Student")
-    navigate("/")
+  const returnRole = (reqtoken) => {
+    if (reqtoken) {
+      var decoded = jwt_decode(reqtoken)
+      return (decoded.role)
+    }
+    else {
+      return (null)
+    }
   }
 
-   return (
-  
+  var frole = returnRole(localStorage.getItem("Token"))
+
+  return (
+
     <div className="outerdiv">
-      <div><img className='imgdiv' src={navbarlogo} alt = "" /></div>
-      <div className="content">
-        {(!localStorage.getItem("Mentor")) ?
-        <div className="buttons">
-          <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
-        </div>
-          :
+      <div><img className='imgdiv' src={navbarlogo} alt="" /></div>
+      <div>
+        {(localStorage.getItem("Token") && frole === "Mentor") ?
           <button className="buttons button1" onClick={handleLogout}>Mentor Logout</button>
-        } 
-
-        {(!localStorage.getItem("Student")) ?
-        <div className="buttons">
-          <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
-        </div>
           :
-          <button className="buttons button1" onClick={handleLogout2}>Student Logout</button>
+          <div className="buttons">
+            <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
+          </div>
+        }
+
+        {(localStorage.getItem("Token") && frole === "Student") ?
+          <button className="buttons button1" onClick={handleLogout}>Student Logout</button>
+          :
+          <div className="buttons">
+            <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
+          </div>
         }
 
         {/* <button className="buttons button1">Our Team</button> */}
@@ -45,7 +53,7 @@ const Navbar = () => {
           <button className="button1">OurTeam</button>
         </div>
       </div>
-      
+
     </div>
   )
 }

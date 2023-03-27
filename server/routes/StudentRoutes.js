@@ -13,8 +13,8 @@ const jwt = require('jsonwebtoken')
 
 const router = express.Router()
 
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.SECRET , {
+const createToken = (id,role) => {
+    return jwt.sign({ id,role }, process.env.SECRET , {
         expiresIn: 3 * 24 * 60 * 60
     });
 }
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
             throw Error('Password is incorrect')
         }
         else {
-            const token = createToken(reqstud._id)
+            const token = createToken(reqstud._id, "Student")
             res.json({ success: true, authToken: token })
         }
 
@@ -77,7 +77,7 @@ router.post('/signup', async (req, res) => {
 
         await newStud.save()
 
-        const token = createToken(newStud._id)
+        const token = createToken(newStud._id,"Student")
         res.json({ success: true, authToken: token })
 
     } catch (error) {

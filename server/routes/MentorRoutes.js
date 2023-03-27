@@ -14,8 +14,8 @@ const Mailjet = require('node-mailjet')
 
 const router = express.Router()
 
-const createToken = (id) => {
-    return jwt.sign({ id }, process.env.SECRET, {
+const createToken = (id,role) => {
+    return jwt.sign({ id,role }, process.env.SECRET, {
         expiresIn: 3 * 24 * 60 * 60
     });
 }
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
             throw Error('Password is incorrect')
         }
         else {
-            const token = createToken(reqmentor._id)
+            const token = createToken(reqmentor._id, "Mentor")
             res.json({ success: true, authToken: token })
         }
 
@@ -160,7 +160,7 @@ router.post('/signup', async (req, res) => {
         
         await umentor.save()
 
-        const token = createToken(umentor._id)
+        const token = createToken(umentor._id, "Mentor")
         res.json({ success: true, authToken: token })
 
     } catch (error) {
