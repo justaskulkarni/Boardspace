@@ -4,6 +4,7 @@
     overflow-x: hidden;
     justify-content: space-between;
     position: fixed;
+    width: 100%;
 }
 
 .imgdiv{

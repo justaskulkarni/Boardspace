@@ -31,29 +31,22 @@ const Navbar = () => {
 
     <div className="outerdiv">
       <div><img className='imgdiv' src={navbarlogo} alt="" /></div>
-      <div>
+      <div className='buttons'>
         {(localStorage.getItem("Token") && frole === "Mentor") ?
           <button className="buttons button1" onClick={handleLogout}>Mentor Logout</button>
           :
-          <div className="buttons">
-            <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
-          </div>
+          <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
         }
 
         {(localStorage.getItem("Token") && frole === "Student") ?
           <button className="buttons button1" onClick={handleLogout}>Student Logout</button>
           :
-          <div className="buttons">
-            <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
-          </div>
+          <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
         }
 
         {/* <button className="buttons button1">Our Team</button> */}
-        <div className="buttons">
-          <button className="button1">OurTeam</button>
-        </div>
+        <button className="button1">OurTeam</button>
       </div>
-
     </div>
   )
 }
