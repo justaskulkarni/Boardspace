@@ -21,8 +21,7 @@ const Login = () => {
     const json = await response.json()
 
     if (json.success) {
-      localStorage.setItem("Mentor", json.authToken)
-      console.log(localStorage.getItem("Mentor"))
+      localStorage.setItem("Token", json.authToken)
       navigate("/youin")
     }
 

@@ -21,7 +21,7 @@ const StudentLogin = () => {
         const json = await response.json()
 
         if (json.success) {
-            localStorage.setItem("Student", json.authToken)
+            localStorage.setItem("Token", json.authToken)
             navigate("/studentin")
         }
 
