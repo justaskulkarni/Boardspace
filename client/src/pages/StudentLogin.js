@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import '../stylesheets/auth.css'
 
 const StudentLogin = () => {
 
@@ -39,10 +40,10 @@ const StudentLogin = () => {
             <Navbar />
 
             <div className="mostout">
-                <div className="colourdiv"></div>
+                <div className="colour1"></div>
                 <div className="rightdiv">
                     <form className="signup" onSubmit={handleSubmit}>
-                        <h3 className="formheader"><span className="headertext">Student Login</span></h3>
+                        <h3 className="formheader"><span className="loginhead1">Student Login</span></h3>
 
                         <div className="formcontent">
                             <input
@@ -59,15 +60,18 @@ const StudentLogin = () => {
                                 value={creadentials.password}
                                 name="password"
                                 onChange={onChange}
-                                placeholder="Passowrd"
+                                placeholder="Password"
                                 className="inputbox"
                             />
 
                         </div>
 
-                        <button className="signupbutton" >Login</button>
-                        <button className=""><Link to={"/student/signup"}>Signup</Link></button>
+                        <div className="buttonscontainer">
+                        <button className="loginbutton" >Login</button>
+                        <button className="signupbutton"><Link className="lol" to={"/student/signup"}>signup</Link></button>
+                        </div>
                     </form>
+                    <button className="forgotpasswordbutton">forgot password?</button>
                     {error && <div className="error">{error}</div>}
                 </div>
             </div>
