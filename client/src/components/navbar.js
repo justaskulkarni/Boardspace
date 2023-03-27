@@ -23,7 +23,7 @@ const Navbar = () => {
   
     <div className="outerdiv">
       <div><img className='imgdiv' src={navbarlogo} alt = "" /></div>
-      <div>
+      <div className="content">
         {(!localStorage.getItem("Mentor")) ?
         <div className="buttons">
           <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
@@ -40,7 +40,10 @@ const Navbar = () => {
           <button className="buttons button1" onClick={handleLogout2}>Student Logout</button>
         }
 
-        <button className="button1">Our Team</button>
+        {/* <button className="buttons button1">Our Team</button> */}
+        <div className="buttons">
+          <button className="button1">OurTeam</button>
+        </div>
       </div>
       
     </div>

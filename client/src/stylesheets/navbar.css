@@ -3,6 +3,7 @@
     display: flex;
     overflow-x: hidden;
     justify-content: space-between;
+    position: fixed;
 }
 
 .imgdiv{
@@ -11,11 +12,16 @@
     margin-left:0.7rem;
     height: 7rem;
 }
+.content{
+    display: flex;
+    flex-direction: row;
+}
 
 .buttons{
     position: relative;
     width: 100%;
-    margin-top: 1.8rem;
+    margin-top: 2.15rem;
+    margin-left: 5rem;
     font-size: 20rem;
 }
 
@@ -25,19 +31,23 @@
     background-color: transparent;
     border: 0px;
     font-size:1.4rem;
+    color: black;
 }
 
-.button1:active{
+/* .button1:active{
     color:#ab39fa;
-}
+} */
 
 .button1:hover{
     color:#ab39fa;
 }
-
-.button1:focus{
-    color:#ab39fa;
+.button1 .link1:hover{
+    color: #ab39fa;
 }
+
+/* .button1:focus{
+    color:#ab39fa;
+} */
 
  .link1{
     text-decoration: none;

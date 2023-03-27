@@ -3,6 +3,9 @@
     float:right;
     width: 60%;
     font-size: 2rem;
+    margin-top: 12rem;
+    display: flex;
+    flex-direction: column;
 }
 
 form{
@@ -16,7 +19,9 @@ form{
 }
 
 .headertext{
-    border-bottom:0.3rem solid blue;
+    border-bottom:0.2rem solid blue;
+    position: relative;
+    left: 2rem;
 }
 
 input{
@@ -33,7 +38,7 @@ input{
 }
 
 .signupbutton{
-    margin-left: 18rem;
+    /* margin-left: 18rem; */
     margin-top: 2rem;
     border:none;
     text-decoration: none;
@@ -41,6 +46,8 @@ input{
     color:blue;
     font-weight:bolder;
     font-size: 1.5rem;
+    position: relative;
+    left: 2.3rem;
 }
 
 .loginbutton{
@@ -50,16 +57,21 @@ input{
     border-radius:1rem;
     padding-left:1rem;
     padding-right:1rem;
-    margin-left:5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    /* padding: 0.5rem; */
+    /* margin-left:5rem; */
     font-weight:bolder;
     color:white;
     font-size:1.5rem;
+    position: relative;
+    left: 13.2rem;
 }
 
 
 .forgotpasswordbutton{
     display:block;
-    margin-left:21rem;
+    /* margin-left:21rem; */
     margin-top:2rem;
     font-size: 1rem;
     border:none;
@@ -67,6 +79,9 @@ input{
     background-color: white;
     color:blue;
     font-size:1.1rem;
+    text-decoration: none;
+    position: relative;
+    right: 11rem;
 }
 
 .buttontext{
@@ -76,7 +91,7 @@ input{
 
 .colourdiv{
     position: relative;
-    height: 60rem;
+    height: 80rem;
     width: 55rem ;
     background-color: #9e3ffd;
     transform: rotate(15.59deg);
@@ -87,6 +102,8 @@ input{
 
 .mostout{
     display: flex;
+    /* flex-direction: column; */
+    /* margin-top: 5rem; */
 }
 
 .checkboxstyle{
