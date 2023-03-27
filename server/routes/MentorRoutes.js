@@ -157,6 +157,9 @@ router.post('/signup', async (req, res) => {
 
         umentor.password = hashp
         umentor.idurl = req.body.idurl
+        umentor.toparea = req.body.topper
+        umentor.otp = null
+        umentor.otpverified = true
         
         await umentor.save()
 
