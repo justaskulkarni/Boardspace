@@ -9,29 +9,75 @@ const Signup2 = () => {
   const navigate = useNavigate()
 
   const[error,setError] = useState(null)
-  const [topper,setTopper] = useState([])
+  const topper = []
   const [details, setDetails] = useState({ password: "", idurl: "" ,email:location.state.email})
+
+  var isNeetTopper = false
+  var isJeeTopper = false
+  var isBoardTopper = false
+  var isMasters = false
+  var isPHD = false
 
   const onChange1 = (event) => {
     setDetails({ ...details, [event.target.name]: event.target.value })
   }
 
-  const onChange2 = (event) => {
-    setTopper({ ...topper, [event.target.name] : event.target.value })
-    console.log(topper)
+  const onChange2 = () => {
+    isNeetTopper = !isNeetTopper
+  }
+
+  const onChange3 = () => {
+    isBoardTopper = !isBoardTopper
+  }
+
+  const onChange4 = () => {
+    isJeeTopper = !isJeeTopper
+  }
+
+  const onChange5 = () => {
+    isMasters = !isMasters
+  }
+
+  const onChange6 = () => {
+    isPHD = !isPHD
   }
 
   const handleSubmit2 = async (e) => {
 
     e.preventDefault()
     console.log(details)
-    const toppersArray = Object.values(topper).map((top) => top);
-    console.log(toppersArray)
+    
+    if(isBoardTopper)
+    {
+      topper.push("Board Topper")
+    }
+
+    if(isJeeTopper)
+    {
+      topper.push("JEE Topper")
+    }
+
+    if(isMasters)
+    {
+      topper.push("Masters")
+    }
+
+    if(isNeetTopper)
+    {
+      topper.push("Neet Topper")
+    }
+
+    if(isPHD)
+    {
+      topper.push("PHD")
+    }
+
+    console.log(topper)
 
     const response = await fetch("http://localhost:6100/api/mentor/signup", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: details.email, idurl: details.idurl, password:details.password })
+      body: JSON.stringify({ email: details.email, idurl: details.idurl, password:details.password, topper:topper })
     })
 
     const json = await response.json()
@@ -77,7 +123,7 @@ const Signup2 = () => {
                     type="checkbox"
                     defaultChecked={false}
                     value={"Board Topper"}
-                    onChange={onChange2}
+                    onChange={onChange3}
                     name="Board Topper"
                     /><p>Board Topper</p>
                     </label>
@@ -86,7 +132,7 @@ const Signup2 = () => {
                     type="checkbox"
                     defaultChecked={false}
                     value={"JEE Topper"}
-                    onChange={onChange2}
+                    onChange={onChange4}
                     name="JEE Topper"
                     /><p>JEE Topper</p>
                     </label>
@@ -104,7 +150,7 @@ const Signup2 = () => {
                     type="checkbox"
                     defaultChecked={false}
                     value={"Masters"}
-                    onChange={onChange2}
+                    onChange={onChange5}
                     name="Masters"
                     /><p>Masters Student</p>
                     </label>
@@ -113,7 +159,7 @@ const Signup2 = () => {
                     type="checkbox"
                     defaultChecked={false}
                     value={"PHD"}
-                    onChange={onChange2}
+                    onChange={onChange6}
                     name="PHD"
                     /><p>PHD Student</p>
                     </label>
