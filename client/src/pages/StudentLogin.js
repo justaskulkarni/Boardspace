@@ -38,7 +38,7 @@ const StudentLogin = () => {
     return (
         <>
             <Navbar />
-
+            <div className="wrapper">
             <div className="mostout">
                 <div className="colour1"></div>
                 <div className="rightdiv">
@@ -74,6 +74,7 @@ const StudentLogin = () => {
                     <button className="forgotpasswordbutton">forgot password?</button>
                     {error && <div className="error">{error}</div>}
                 </div>
+            </div>
             </div>
         </>
     )

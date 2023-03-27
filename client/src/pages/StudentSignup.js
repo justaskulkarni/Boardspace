@@ -39,7 +39,7 @@ const StudentSignup = () => {
     return (
         <>
             <Navbar />
-
+            <div className="wrapper">
             <div className="mostout">
                 <div className="colourdiv"></div>
                 <div className="rightdiv">
@@ -92,7 +92,7 @@ const StudentSignup = () => {
                 </div>
                 
             </div>
-            
+            </div>
         </>
     )
 }

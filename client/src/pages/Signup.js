@@ -69,6 +69,7 @@ const Signup = () => {
   return (
     <>
       <Navbar />
+      <div className="wrapper">
       <div className="mostout">
         <div className="colourdiv"></div>
         <div className="rightdiv">
@@ -122,6 +123,7 @@ const Signup = () => {
           }
           {error && <div className="error">{error}</div>}
         </div>
+      </div>
       </div>
     </>
   )

@@ -38,6 +38,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
+      <div className="wrapper">
       <div className="mostout">
         <div className="colour1"></div>
         <div className="rightdiv">
@@ -70,6 +71,7 @@ const Login = () => {
           {error && <div className="error">{error}</div>}
 
         </div>
+      </div>
       </div>
     </>
   )

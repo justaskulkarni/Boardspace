@@ -1,10 +1,12 @@
-
-.rightdiv {
+*{
+    overflow:hidden;
+}
+.rightdiv2 {
     position: relative;
     float: right;
     width: 60%;
     font-size: 2rem;
-    
+    margin-top: 5rem;
 }
 
 form {
@@ -12,7 +14,7 @@ form {
 }
 
 .formheader {
-    margin-bottom: 1.7rem;
+    margin-bottom: 0.4rem;
     margin-top: 0.5rem;
     margin-left: 21rem;
 }
@@ -22,12 +24,13 @@ form {
 }
 
 input {
-    margin-left: 18rem;
+    margin-left: 16rem;
     display: block;
     border: none;
     border-bottom: 0.1rem solid gray;
     margin-top: 2rem;
     font-size: 1.5rem;
+    margin-bottom:0;
 }
 
 .buttonscontainer {
@@ -92,14 +95,30 @@ input {
 }
 
 .checkboxstyle {
-    display: flex;
+    display:flex;
 }
 
 label{
-    font-size:1.2rem;
-    height:3rem;
+    height:4.1rem;
 }
 
 p{
-    padding-top:0.4rem;
+    padding-top:1.5rem;
+    font-size: 0.8rem; 
+    padding-left: 1rem;   
+}
+
+.signupbutton2 {
+    margin-left: 18rem;
+    margin-top: 1rem;
+    border: none;
+    text-decoration: none;
+    background-color: white;
+    color: blue;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.boxstyle{
+    transform: scale(1.5);
 }

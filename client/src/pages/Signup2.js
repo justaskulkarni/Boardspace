@@ -98,7 +98,7 @@ const Signup2 = () => {
         <Navbar />
         <div className="mostout">
             <div className="colourdiv"></div>
-            <div className="rightdiv">
+            <div className="rightdiv2">
             <form className="signup" onSubmit={handleSubmit2}>
                 <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
                 <div className="formcontent">
@@ -125,6 +125,7 @@ const Signup2 = () => {
                     value={"Board Topper"}
                     onChange={onChange3}
                     name="Board Topper"
+                    className="boxstyle"
                     /><p>Board Topper</p>
                     </label>
                     <label htmlFor="jeetopper" className="checkboxstyle">
@@ -134,6 +135,7 @@ const Signup2 = () => {
                     value={"JEE Topper"}
                     onChange={onChange4}
                     name="JEE Topper"
+                    className="boxstyle"
                     /><p>JEE Topper</p>
                     </label>
                     <label htmlFor="neettopper" className="checkboxstyle">
@@ -143,6 +145,7 @@ const Signup2 = () => {
                     value={"Neet Topper"}
                     onChange={onChange2}
                     name="Neet Topper"
+                    className="boxstyle"
                     /><p>NEET Topper</p>
                     </label>
                     <label htmlFor="masters" className="checkboxstyle">
@@ -152,6 +155,7 @@ const Signup2 = () => {
                     value={"Masters"}
                     onChange={onChange5}
                     name="Masters"
+                    className="boxstyle"
                     /><p>Masters Student</p>
                     </label>
                     <label htmlFor="phd" className="checkboxstyle">
@@ -161,10 +165,11 @@ const Signup2 = () => {
                     value={"PHD"}
                     onChange={onChange6}
                     name="PHD"
+                    className="boxstyle"
                     /><p>PHD Student</p>
                     </label>
                 </div>
-                <button className="signupbutton">Submit</button>
+                <button className="signupbutton2">Submit</button>
             </form>
             </div>
             {error && <div className="error">{error}</div>}
