@@ -14,8 +14,8 @@ const Mailjet = require('node-mailjet')
 
 const router = express.Router()
 
-const createToken = (id,role) => {
-    return jwt.sign({ id,role }, process.env.SECRET, {
+const createToken = (id, role) => {
+    return jwt.sign({ id, role }, process.env.SECRET, {
         expiresIn: 3 * 24 * 60 * 60
     });
 }
@@ -92,10 +92,16 @@ router.post('/semisignup', async (req, res) => {
 
         const mexist = await Mentor.findOne({ email: req.body.email })
         if (mexist) {
-            mexist.otp = genotp
-            await mexist.save()
+            if (mexist.otpverified) {
+                const token = createToken(mexist._id, "Mentor")
+                res.json({ isOtpVerified: true, authToken: token })
+            }
+            else {
+                mexist.otp = genotp
+                await mexist.save()
 
-            res.json({ success: true })
+                res.json({ success: true })
+            }
         }
         else {
 
@@ -153,14 +159,14 @@ router.post('/signup', async (req, res) => {
         pass = req.body.password
         const hashp = await bcrypt.hash(pass, salt);
 
-        const umentor = await Mentor.findOne({email : req.body.email})
+        const umentor = await Mentor.findOne({ email: req.body.email })
 
         umentor.password = hashp
         umentor.idurl = req.body.idurl
         umentor.toparea = req.body.topper
         umentor.otp = null
         umentor.otpverified = true
-        
+
         await umentor.save()
 
         const token = createToken(umentor._id, "Mentor")

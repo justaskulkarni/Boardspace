@@ -21,6 +21,12 @@ const Signup = () => {
 
     const json = await response.json()
 
+    if(json.isOtpVerified)
+    {
+      localStorage.setItem("Token",json.authToken)
+      navigate("/youin")
+    }
+
     if (json.success) {
       setShowOtpDiv(true);
     }
