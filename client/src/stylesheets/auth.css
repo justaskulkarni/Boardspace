@@ -70,6 +70,7 @@ input{
 }
 .lol{
     text-decoration: none;
+    color:blue
 }
 
 .loginbutton{
@@ -132,4 +133,16 @@ input{
 
 .checkboxstyle{
     display:flex;
+}
+
+.button2 {
+    /* margin-left: 18rem; */
+    margin-top: 2rem;
+    border: none;
+    background-color: white;
+    color: blue;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    position: relative;
+    left: 2.3rem;
 }
