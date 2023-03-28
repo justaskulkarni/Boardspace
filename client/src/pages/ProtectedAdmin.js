@@ -1,11 +1,12 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import Card from '../components/Card'
 
 const ProtectedAdmin = () => {
   return (
     <>
     <Navbar />
-    <div>Namaste jara yeh admin ke liye protected hai</div>
+    <Card />
     </>
     
   )
