@@ -38,11 +38,12 @@ const Login = () => {
   return (
     <>
       <Navbar />
+      <div className="wrapper">
       <div className="mostout">
-        <div className="colourdiv"></div>
+        <div className="colour1"></div>
         <div className="rightdiv">
           <form className="login" onSubmit={handleSubmit}>
-            <h3 className="formheader"><span className="headertext">Log In</span></h3>
+            <h3 className="formheader"><span className="loginhead">Log In</span></h3>
             <div className="formcontent">
               <input
                 type="email"
@@ -63,13 +64,14 @@ const Login = () => {
 
             <div className="buttonscontainer">
               <button className="loginbutton">login</button>
-              <button className="signupbutton"><Link to={"/signup"}>signup</Link></button>
+              <button className="signupbutton"><Link className="lol" to={"/signup"}>signup</Link></button>
             </div>
           </form>
           <button className="forgotpasswordbutton">forgot password?</button>
           {error && <div className="error">{error}</div>}
 
         </div>
+      </div>
       </div>
     </>
   )

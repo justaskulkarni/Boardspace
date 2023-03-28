@@ -6,6 +6,7 @@ import navbarlogo from '../assets/navbarlogo.png'
 import '../stylesheets/navbar.css'
 
 
+
 const Navbar = () => {
 
   let navigate = useNavigate()
@@ -45,7 +46,7 @@ const Navbar = () => {
         }
 
         {/* <button className="buttons button1">Our Team</button> */}
-        <button className="button1">OurTeam</button>
+        <button className="button1">Our Team</button>
       </div>
     </div>
   )

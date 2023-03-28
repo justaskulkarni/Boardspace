@@ -12,9 +12,15 @@ const mentorSchema = new Schema({
         type : [String],
         enum : ['Board Topper', 'JEE Topper', 'Neet Topper', 'Masters','PHD']
     },
-    isverify : {type : Boolean},
+    isverify : {
+        type : Boolean,
+        default : false
+    },
     ppfurl : {type : String},
-    otpverified : {type : Boolean}
+    otpverified : {
+        type : Boolean,
+        default : false
+    }
 })
 
 module.exports = mongoose.model('Mentor', mentorSchema)

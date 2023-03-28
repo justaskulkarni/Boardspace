@@ -21,6 +21,12 @@ const Signup = () => {
 
     const json = await response.json()
 
+    if(json.isOtpVerified)
+    {
+      localStorage.setItem("Token",json.authToken)
+      navigate("/youin")
+    }
+
     if (json.success) {
       setShowOtpDiv(true);
     }
@@ -63,6 +69,7 @@ const Signup = () => {
   return (
     <>
       <Navbar />
+      <div className="wrapper">
       <div className="mostout">
         <div className="colourdiv"></div>
         <div className="rightdiv">
@@ -116,6 +123,7 @@ const Signup = () => {
           }
           {error && <div className="error">{error}</div>}
         </div>
+      </div>
       </div>
     </>
   )

@@ -12,6 +12,8 @@
     margin-top: 0.9rem;
     margin-left:0.7rem;
     height: 7rem;
+    width: 100%;
+    object-fit: cover;
 }
 .content{
     display: flex;
@@ -35,10 +37,6 @@
     color: black;
 }
 
-/* .button1:active{
-    color:#ab39fa;
-} */
-
 .button1:hover{
     color:#ab39fa;
 }
@@ -46,9 +44,6 @@
     color: #ab39fa;
 }
 
-/* .button1:focus{
-    color:#ab39fa;
-} */
 
  .link1{
     text-decoration: none;

@@ -39,7 +39,7 @@ const StudentSignup = () => {
     return (
         <>
             <Navbar />
-
+            <div className="wrapper">
             <div className="mostout">
                 <div className="colourdiv"></div>
                 <div className="rightdiv">
@@ -86,13 +86,13 @@ const StudentSignup = () => {
                         </div>
 
                         <button className="signupbutton" >Sign up</button>
-                        <button className=""><Link to={"/student/login"}>Login</Link></button>
+                        <button className="button2"><Link className="lol" to={"/student/login"}>Login</Link></button>
                     </form>
                     {error && <div className="error">{error}</div>}
                 </div>
                 
             </div>
-            
+            </div>
         </>
     )
 }
