@@ -82,6 +82,27 @@ app.post('/isStudent', (req, res) => {
     })
 })
 
+app.post('/isAdmin', (req, res) => {
+
+    const token = req.body.token
+
+    jwt.verify(token, process.env.SECRET, async (err, decocdedToken) => {
+        if (err) {
+            res.json({ success: false })
+        }
+        else {
+            const match = Admin.findById(decocdedToken.id)
+
+            if (match) {
+                res.json({ success: true })
+            }
+            else {
+                res.json({ success: false })
+            }
+        }
+    })
+})
+
 const MYPORT = process.env.PORT || 6100
 
 app.listen(MYPORT, () => {
