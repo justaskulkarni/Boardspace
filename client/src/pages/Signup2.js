@@ -3,96 +3,134 @@ import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
 import '../stylesheets/signup2.css'
 
-import jwt_decode from 'jwt-decode'
-
 const Signup2 = () => {
-  
+
   const location = useLocation()
   const navigate = useNavigate()
 
   const cloudinaryRef = useRef()
   const widgetRef = useRef()
 
-  const returnId = (reqtoken) => {
-    if (reqtoken) {
-      var decoded = jwt_decode(reqtoken)
-      return (decoded.id)
-    }
-    else {
-      return (null)
-    }
-  }
-
-  const[error,setError] = useState(null)
+  const [error, setError] = useState(null)
   const topper = []
-  const [details, setDetails] = useState({ password: "", idurl: "" ,email:location.state.email})
+  const [details, setDetails] = useState({ password: "", idurl: "", email: location.state.email })
 
-  var isNeetTopper = false
-  var isJeeTopper = false
-  var isBoardTopper = false
-  var isMasters = false
-  var isPHD = false
+  const [isNeetTopper, setNeet] = useState(false)
+  const [isJeeTopper, setJee] = useState(false)
+  const [isBoardTopper, setBoard] = useState(false)
+  const [isMasters, setMaster] = useState(false)
+  const [isPHD, setPHD] = useState(false)
 
   const onChange1 = (event) => {
     setDetails({ ...details, [event.target.name]: event.target.value })
   }
 
-  var uid = returnId(localStorage.getItem("Token"))
-  const userid = String(uid)
+  const upload = async (surl) => {
+    const response = await fetch(`http://localhost:6100/api/mentor/addurl/${details.email}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: surl })
+    })
 
-  const onChange2 = () => {
-    isNeetTopper = !isNeetTopper
+    const json = await response.json()
+
+    if (json.error) {
+      setError(json.error)
+    }
+  }
+
+  const onChange2 = async () => {
+    setNeet(!isNeetTopper)
     widgetRef.current = cloudinaryRef.current.createUploadWidget({
       cloudName: 'djb8pgo4n',
       uploadPreset: 'm79rihxp',
-      public_id: `${userid}/neet`
-    }, function (error, result) {
+      public_id: `${details.email}/neet`
+    }, function async(error, result) {
+      console.log(result)
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
     })
   }
 
   const onChange3 = () => {
-    isBoardTopper = !isBoardTopper
+    setBoard(!isBoardTopper)
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/board`
+    }, function async(error, result) {
+      console.log(result)
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
   }
 
   const onChange4 = () => {
-    isJeeTopper = !isJeeTopper
+    setJee(!isJeeTopper)
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n', 
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/jee`
+    }, function async(error, result) {
+      console.log(result)
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
   }
 
   const onChange5 = () => {
-    isMasters = !isMasters
+    setMaster(!isMasters)
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/master`
+    }, function async(error, result) {
+      console.log(result)
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
   }
 
   const onChange6 = () => {
-    isPHD = !isPHD
+    setPHD(!isPHD)
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/phd`
+    }, function async(error, result) {
+      console.log(result)
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
   }
 
   const handleSubmit2 = async (e) => {
 
     e.preventDefault()
     console.log(details)
-    
-    if(isBoardTopper)
-    {
+
+    if (isBoardTopper) {
       topper.push("Board Topper")
     }
 
-    if(isJeeTopper)
-    {
+    if (isJeeTopper) {
       topper.push("JEE Topper")
     }
 
-    if(isMasters)
-    {
+    if (isMasters) {
       topper.push("Masters")
     }
 
-    if(isNeetTopper)
-    {
+    if (isNeetTopper) {
       topper.push("Neet Topper")
     }
 
-    if(isPHD)
-    {
+    if (isPHD) {
       topper.push("PHD")
     }
 
@@ -101,15 +139,15 @@ const Signup2 = () => {
     const response = await fetch("http://localhost:6100/api/mentor/signup", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: details.email, idurl: details.idurl, password:details.password, topper:topper })
+      body: JSON.stringify({ email: details.email, idurl: details.idurl, password: details.password, topper: topper })
     })
 
     const json = await response.json()
 
     if (json.success) {
-      navigate("/notaccepted",{
-        state:{
-          message : json.mssg
+      navigate("/notaccepted", {
+        state: {
+          message: json.mssg
         }
       })
     }
@@ -120,96 +158,103 @@ const Signup2 = () => {
 
   }
 
+  const handleSubmit3 = async (e) => {
+    e.preventDefault()
+    widgetRef.current.open()
+  }
+
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary
   }, [])
 
   return (
     <>
-    <div>
+      <div>
         <Navbar />
         <div className="mostout">
-            <div className="colourdiv"></div>
-            <div className="rightdiv2">
+          <div className="colourdiv"></div>
+          <div className="rightdiv2">
             <form className="signup" onSubmit={handleSubmit2}>
-                <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
-                <div className="formcontent">
-                    <input
-                    type="password"
-                    value={details.password}
-                    name="password"
-                    onChange={onChange1}
-                    placeholder="password"
-                    className="inputbox"
-                    />
-                    <input
-                    type="text"
-                    value={details.idurl}
-                    name="idurl"
-                    onChange={onChange1}
-                    placeholder="idurl"
-                    className="inputbox"
-                    />
-                    <label htmlFor="boardtopper" className="checkboxstyle">
-                    <input
+              <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
+              <div className="formcontent">
+                <input
+                  type="password"
+                  value={details.password}
+                  name="password"
+                  onChange={onChange1}
+                  placeholder="password"
+                  className="inputbox"
+                />
+                <input
+                  type="text"
+                  value={details.idurl}
+                  name="idurl"
+                  onChange={onChange1}
+                  placeholder="idurl"
+                  className="inputbox"
+                />
+                <label htmlFor="boardtopper" className="checkboxstyle">
+                  <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"Board Topper"}
                     onChange={onChange3}
                     name="Board Topper"
                     className="boxstyle"
-                    /><p>Board Topper</p>
-                    </label>
-                    <label htmlFor="jeetopper" className="checkboxstyle">
-                    <input
+                  /><p>Board Topper</p>
+                  {isBoardTopper && <button onClick={handleSubmit3}>Board</button>}
+                </label>
+                <label htmlFor="jeetopper" className="checkboxstyle">
+                  <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"JEE Topper"}
                     onChange={onChange4}
                     name="JEE Topper"
                     className="boxstyle"
-                    /><p>JEE Topper</p>
-                    </label>
-                    <label htmlFor="neettopper" className="checkboxstyle">
-                    <input
+                  /><p>JEE Topper</p>
+                  {isJeeTopper && <button onClick={handleSubmit3}>JEE</button>}
+                </label>
+                <label htmlFor="neettopper" className="checkboxstyle">
+                  <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"Neet Topper"}
                     onChange={onChange2}
                     name="Neet Topper"
                     className="boxstyle"
-                    /><p>NEET Topper</p>
-                    <button onClick={(e) => {
-                      e.preventDefault()
-                      widgetRef.current.open()}}>Neet</button>
-                    </label>
-                    <label htmlFor="masters" className="checkboxstyle">
-                    <input
+                  /><p>NEET Topper</p>
+                  {isNeetTopper && <button onClick={handleSubmit3}>Neet</button>}
+                </label>
+                <label htmlFor="masters" className="checkboxstyle">
+                  <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"Masters"}
                     onChange={onChange5}
                     name="Masters"
                     className="boxstyle"
-                    /><p>Masters Student</p>
-                    </label>
-                    <label htmlFor="phd" className="checkboxstyle">
-                    <input
+                  /><p>Masters Student</p>
+                  {isMasters && <button onClick={handleSubmit3}>Masters</button>}
+                </label>
+                <label htmlFor="phd" className="checkboxstyle">
+                  <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"PHD"}
                     onChange={onChange6}
                     name="PHD"
                     className="boxstyle"
-                    /><p>PHD Student</p>
-                    </label>
-                </div>
-                <button className="signupbutton2">Submit</button>
+                  /><p>PHD Student</p>
+                  {isPHD && <button onClick={handleSubmit3}>PHD</button>}
+                </label>
+              </div>
+              <button className="signupbutton2">Submit</button>
             </form>
-            </div>
-            {error && <div className="error">{error}</div>}
+          </div>
+          {error && <div className="error">{error}</div>}
         </div>
-    </div>
+      </div>
 
     </>
   )

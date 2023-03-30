@@ -206,4 +206,22 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+router.post('/addurl/:email', async(req,res) =>{
+
+    try {
+        const {email} = req.params
+
+        const reqm = await Mentor.findOne({email : email})
+    
+        reqm.idurl.push(req.body.url)
+        reqm.save()
+        console.log("Saved sir", req.body.url)
+        res.json({success:true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+    
+})
+
 module.exports = router;

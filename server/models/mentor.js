@@ -7,7 +7,7 @@ const mentorSchema = new Schema({
     password : {type : String},
     otp : {type : String},
     name : {type : String},
-    idurl : {type : String},
+    idurl : {type : [String]},
     toparea : {
         type : [String],
         enum : ['Board Topper', 'JEE Topper', 'Neet Topper', 'Masters','PHD']
