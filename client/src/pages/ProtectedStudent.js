@@ -6,15 +6,16 @@ const ProtectedStudent = () => {
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary
   }, [])
-}
+
   return (
     <>
-    {/* <Navbar /> */}
-    {/* <div>Namaste jara yeh student ke liye protected hai</div> */}
+    <Navbar />
+    <div>Namaste jara yeh student ke liye protected hai</div>
     
 
     </>
     
   )
+}
 
 export default ProtectedStudent
