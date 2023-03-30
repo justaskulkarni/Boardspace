@@ -20,6 +20,10 @@ const Login = () => {
 
     const json = await response.json()
 
+    if(json.noverify){
+      
+    }
+
     if (json.success) {
       localStorage.setItem("Token", json.authToken)
       navigate("/youin")

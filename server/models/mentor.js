@@ -20,6 +20,10 @@ const mentorSchema = new Schema({
     otpverified : {
         type : Boolean,
         default : false
+    },
+    isreject : {
+        type : Boolean,
+        default : false
     }
 })
 

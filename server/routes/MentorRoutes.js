@@ -36,6 +36,14 @@ router.post('/login', async (req, res) => {
             throw Error('Incorrect Email')
         }
 
+        if (!reqmentor.isverify) {
+            res.json({ noverify: "Tumhi verify nahi jhale ahe balak thoda time ruka" })
+        }
+
+        if (reqmentor.isreject) {
+            res.json({ reject: "Tumcha request delete jhala ahe bethu ya kadhi tari" })
+        }
+
         const match = await bcrypt.compare(req.body.password, reqmentor.password)
 
         if (!match) {
