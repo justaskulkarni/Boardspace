@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import { useEffect, useRef } from 'react'
 import jwt_decode from 'jwt-decode'
-import { extractPublicId } from 'cloudinary-build-url'
+
 
 const ProtectedStudent = () => {
 
@@ -32,11 +32,14 @@ const ProtectedStudent = () => {
 
   return (
     <>
-      <button onClick={() => widgetRef.current.open()}>
-        Upload
-      </button>
-      {/* <Navbar /> */}
-      {/* <div>Namaste jara yeh student ke liye protected hai</div> */}
+      <Navbar />
+
+      <div>
+        <button onClick={() => widgetRef.current.open()}>
+          Upload
+        </button>
+      </div>
+      
     </>
   )
 }

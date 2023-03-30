@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 
@@ -6,7 +6,7 @@ const Admin_land = () => {
 
   const getdata = async() => {
 
-    const response = await fetch("http://localhost:6100/api/mentor/getall", {
+    const response = await fetch("http://localhost:6100/api/admin/getall", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -19,7 +19,9 @@ const Admin_land = () => {
     }
   }
   
-  
+  useEffect(() => {
+    getdata()
+  },[])
 
   return (
     <>
