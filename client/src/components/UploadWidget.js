@@ -7,4 +7,4 @@ const UploadWidget = () => {
   }, [])
 }
 
-  export default upload
+  export default UploadWidget 
