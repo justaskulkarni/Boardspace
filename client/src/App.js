@@ -18,35 +18,37 @@ import AdminSignup from './pages/AdminSignup';
 import ProtectedStudent from './pages/ProtectedStudent';
 import AdminLand from './pages/AdminLand';
 import Notaccepted from './pages/Notaccepted';
+import NotFound from './pages/NotFound';
 
 function App() {
 
   return (
     <>
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/student/login" element={<StudentLogin />} />
-          <Route path="/student/signup" element={<StudentSignup />} />
-          <Route path="/complete_details" element={<Signup2 />} />
-          <Route path="/admin/login/boardspace" element={<AdminLogin />} />
-          <Route path="/admin/signup/boardspace" element={<AdminSignup />} />
-          <Route path="/notaccepted" element={<Notaccepted />} />
-          <Route element={<MentorPrivateRoutes />}>
-            <Route path="/youin" element={<Protected />} />
-          </Route>
-          <Route element={<StudentPrivateRoutes />}>
-            <Route path="/studentin" element={<ProtectedStudent />} />
-          </Route>
-          <Route element={<AdminPrivateRoutes />}>
-            <Route path="/admin/landing" element={<AdminLand />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/student/login" element={<StudentLogin />} />
+            <Route path="/student/signup" element={<StudentSignup />} />
+            <Route path="/complete_details" element={<Signup2 />} />
+            <Route path="/admin/login/boardspace" element={<AdminLogin />} />
+            <Route path="/admin/signup/boardspace" element={<AdminSignup />} />
+            <Route path="/notaccepted" element={<Notaccepted />} />
+            <Route element={<MentorPrivateRoutes />}>
+              <Route path="/youin" element={<Protected />} />
+            </Route>
+            <Route element={<StudentPrivateRoutes />}>
+              <Route path="/studentin" element={<ProtectedStudent />} />
+            </Route>
+            <Route element={<AdminPrivateRoutes />}>
+              <Route path="/admin/landing" element={<AdminLand />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }
