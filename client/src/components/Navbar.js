@@ -34,18 +34,18 @@ const Navbar = () => {
       <div><img className='imgdiv' src={navbarlogo} alt="" /></div>
       <div className='buttons'>
         {(localStorage.getItem("Token") && frole === "Mentor") ?
-          <button className="buttons button1" onClick={handleLogout}>Mentor Logout</button>
+          <button className="button1" onClick={handleLogout}>Mentor Logout</button>
           :
           <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
         }
 
         {(localStorage.getItem("Token") && frole === "Student") ?
-          <button className="buttons button1" onClick={handleLogout}>Student Logout</button>
+          <button className="button1" onClick={handleLogout}>Student Logout</button>
           :
           <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
         }
 
-        {/* <button className="buttons button1">Our Team</button> */}
+        {localStorage.getItem("Token") && frole === "Admin" && <button className='button1' onClick={handleLogout}>Admin Logout</button>}
         <button className="button1">Our Team</button>
       </div>
     </div>

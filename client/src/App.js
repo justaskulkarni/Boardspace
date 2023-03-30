@@ -16,7 +16,7 @@ import AdminLogin from './pages/AdminLogin';
 import StudentSignup from './pages/StudentSignup';
 import AdminSignup from './pages/AdminSignup';
 import ProtectedStudent from './pages/ProtectedStudent';
-import ProtectedAdmin from './pages/ProtectedAdmin';
+import Admin_land from './pages/Admin_land';
 import Notaccepted from './pages/Notaccepted';
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
           <Route path="/student/login" element={<StudentLogin />} />
           <Route path="/student/signup" element={<StudentSignup />} />
           <Route path="/complete_details" element={<Signup2 />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/signup" element={<AdminSignup />} />
+          <Route path="/admin/login/boardspace" element={<AdminLogin />} />
+          <Route path="/admin/signup/boardspace" element={<AdminSignup />} />
           <Route path="/notaccepted" element={<Notaccepted />} />
           <Route element={<MentorPrivateRoutes />}>
             <Route path="/youin" element={<Protected />} />
@@ -42,7 +42,7 @@ function App() {
             <Route path="/studentin" element={<ProtectedStudent />} />
           </Route>
           <Route element={<AdminPrivateRoutes />}>
-            <Route path="/adminin" element={<ProtectedAdmin />} />
+            <Route path="/admin/landing" element={<Admin_land />} />
           </Route>
         </Routes>
       </BrowserRouter>

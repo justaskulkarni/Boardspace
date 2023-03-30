@@ -81,7 +81,7 @@ router.post('/semisignup', async (req, res) => {
         const salt = await bcrypt.genSalt(12)
         const hashotp = await bcrypt.hash(genotp, salt);
 
-        const bhejootp = false
+        var bhejootp = false
 
         const mexist = await Mentor.findOne({ email: req.body.email })
         if (mexist) {
