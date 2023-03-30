@@ -1,30 +1,22 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import { useEffect, useRef } from 'react'
-import UploadWidget from '../components/UploadWidget'
+
 
 const ProtectedStudent = () => {
+
+  const cloudinaryRef = useRef()
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary
+    console.log(cloudinaryRef.current)
+  }, [])
+
   return (
     <>
-    {/* <Navbar />
-    <div>Namaste jara yeh student ke liye protected hai</div> */}
-    <UploadWidget/>
+      <Navbar />
+      <div>Namaste jara yeh student ke liye protected hai</div>
     </>
   )
 }
-
-// const UploadWidget = () => {
-//   const cloudinaryRef = useRef()
-//   useEffect(() => {
-//     cloudinaryRef.current = window.cloudinary
-//     console.log(cloudinaryRef.current)
-//   }, [])
-
-//   return (
-//     <>
-//     </>
-    
-//   )
-// }
 
 export default ProtectedStudent
