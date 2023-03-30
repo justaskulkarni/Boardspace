@@ -2,7 +2,6 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import { useEffect, useRef } from 'react'
 import jwt_decode from 'jwt-decode'
-import { extractPublicId } from 'cloudinary-build-url'
 
 const ProtectedStudent = () => {
 
@@ -25,7 +24,7 @@ const ProtectedStudent = () => {
     widgetRef.current = cloudinaryRef.current.createUploadWidget({
       cloudName: 'djb8pgo4n',
       uploadPreset: 'm79rihxp',
-      public_id: `${userid}/hello/hi`
+      public_id: `${userid}/abc/123`
     }, function (error, result) {
     })
   }, [])
@@ -35,6 +34,9 @@ const ProtectedStudent = () => {
       <button onClick={() => widgetRef.current.open()}>
         Upload
       </button>
+      <div>
+          <img src={result.secure_url}></img>
+      </div>
       {/* <Navbar /> */}
       {/* <div>Namaste jara yeh student ke liye protected hai</div> */}
     </>
