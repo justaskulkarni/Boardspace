@@ -16,7 +16,7 @@ import AdminLogin from './pages/AdminLogin';
 import StudentSignup from './pages/StudentSignup';
 import AdminSignup from './pages/AdminSignup';
 import ProtectedStudent from './pages/ProtectedStudent';
-import Admin_land from './pages/Admin_land';
+import AdminLand from './pages/AdminLand';
 import Notaccepted from './pages/Notaccepted';
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
             <Route path="/studentin" element={<ProtectedStudent />} />
           </Route>
           <Route element={<AdminPrivateRoutes />}>
-            <Route path="/admin/landing" element={<Admin_land />} />
+            <Route path="/admin/landing" element={<AdminLand />} />
           </Route>
         </Routes>
       </BrowserRouter>

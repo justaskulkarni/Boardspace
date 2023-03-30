@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 
-const Admin_land = () => {
+const AdminLand = () => {
 
   const [idArray, setIdArray] = useState([]) 
   
@@ -26,7 +26,7 @@ const Admin_land = () => {
   
   useEffect(() => {
     getdata(); 
-  },[])
+  },[idArray])
 
   return (
     <>
@@ -36,4 +36,4 @@ const Admin_land = () => {
   )
 }
 
-export default Admin_land
+export default AdminLand
