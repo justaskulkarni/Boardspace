@@ -1,12 +1,27 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
 import '../stylesheets/signup2.css'
+
+import jwt_decode from 'jwt-decode'
 
 const Signup2 = () => {
   
   const location = useLocation()
   const navigate = useNavigate()
+
+  const cloudinaryRef = useRef()
+  const widgetRef = useRef()
+
+  const returnId = (reqtoken) => {
+    if (reqtoken) {
+      var decoded = jwt_decode(reqtoken)
+      return (decoded.id)
+    }
+    else {
+      return (null)
+    }
+  }
 
   const[error,setError] = useState(null)
   const topper = []
@@ -22,8 +37,17 @@ const Signup2 = () => {
     setDetails({ ...details, [event.target.name]: event.target.value })
   }
 
+  var uid = returnId(localStorage.getItem("Token"))
+  const userid = String(uid)
+
   const onChange2 = () => {
     isNeetTopper = !isNeetTopper
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${userid}/neet`
+    }, function (error, result) {
+    })
   }
 
   const onChange3 = () => {
@@ -95,6 +119,11 @@ const Signup2 = () => {
     }
 
   }
+
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary
+  }, [])
+
   return (
     <>
     <div>
@@ -150,6 +179,9 @@ const Signup2 = () => {
                     name="Neet Topper"
                     className="boxstyle"
                     /><p>NEET Topper</p>
+                    <button onClick={(e) => {
+                      e.preventDefault()
+                      widgetRef.current.open()}}>Neet</button>
                     </label>
                     <label htmlFor="masters" className="checkboxstyle">
                     <input
