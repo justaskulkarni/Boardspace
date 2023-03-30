@@ -31,14 +31,17 @@ const ProtectedStudent = () => {
 
   return (
     <>
-      <button onClick={() => widgetRef.current.open()}>
-        Upload
-      </button>
+      <Navbar />
+
+      <div>
+        <button onClick={() => widgetRef.current.open()}>
+          Upload
+        </button>
       <div>
           <img src={result.secure_url}></img>
       </div>
-      {/* <Navbar /> */}
-      {/* <div>Namaste jara yeh student ke liye protected hai</div> */}
+      </div>
+      
     </>
   )
 }

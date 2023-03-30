@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require('express');
 
 const Admin = require('../models/admin')
+const Mentor = require('../models/mentor')
 
 const bcrypt = require('bcrypt')
 const validator = require('validator')
@@ -12,8 +13,8 @@ const jwt = require('jsonwebtoken')
 
 const router = express.Router()
 
-const createToken = (id,role) => {
-    return jwt.sign({ id,role }, process.env.SECRET , {
+const createToken = (id, role) => {
+    return jwt.sign({ id, role }, process.env.SECRET, {
         expiresIn: 3 * 24 * 60 * 60
     });
 }
@@ -55,7 +56,7 @@ router.post('/signup', async (req, res) => {
             throw Error('All fields must be filled')
         }
 
-        if(!validator.isEmail(req.body.email)){
+        if (!validator.isEmail(req.body.email)) {
             throw Error('Enter a valid number')
         }
 
@@ -68,14 +69,14 @@ router.post('/signup', async (req, res) => {
         const hashp = await bcrypt.hash(pass, salt);
 
         const newAdmin = new Admin({
-            email : req.body.email,
-            password : hashp,
-            username : req.body.name
+            email: req.body.email,
+            password: hashp,
+            username: req.body.name
         })
 
         await newAdmin.save()
 
-        const token = createToken(newAdmin._id,"Admin")
+        const token = createToken(newAdmin._id, "Admin")
         res.json({ success: true, authToken: token })
 
     } catch (error) {
@@ -83,5 +84,20 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+router.get('/getall', async (req, res) => {
+
+    try {
+        Mentor.find({ otpverified: true, isverify: false }, async (err, data) => {
+            if (err) {
+                throw Error(`${err}`)
+            }
+            else {
+                res.json({ success: true, data: data })
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
 
 module.exports = router;
