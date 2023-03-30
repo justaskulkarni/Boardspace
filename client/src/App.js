@@ -17,7 +17,6 @@ import StudentSignup from './pages/StudentSignup';
 import AdminSignup from './pages/AdminSignup';
 import ProtectedStudent from './pages/ProtectedStudent';
 import ProtectedAdmin from './pages/ProtectedAdmin';
-import UploadWidget from './components/UploadWidget';
 
 function App() {
 
@@ -45,9 +44,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
-    <div>
-      <UploadWidget />
     </div>
     </>
   );
