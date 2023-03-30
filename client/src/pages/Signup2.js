@@ -83,8 +83,11 @@ const Signup2 = () => {
     const json = await response.json()
 
     if (json.success) {
-      localStorage.setItem("Token",json.authToken)
-      navigate("/youin")
+      navigate("/notaccepted",{
+        state:{
+          message : json.mssg
+        }
+      })
     }
 
     if (json.error) {

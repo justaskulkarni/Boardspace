@@ -36,6 +36,10 @@ router.post('/login', async (req, res) => {
             throw Error('Incorrect Email')
         }
 
+        if (!reqmentor.otpverified) {
+            res.json({ noverify: "Kindly complete the signup proceddure before loggin in" })
+        }
+
         if (!reqmentor.isverify) {
             res.json({ noverify: "Tumhi verify nahi jhale ahe balak thoda time ruka" })
         }
@@ -74,48 +78,38 @@ router.post('/semisignup', async (req, res) => {
 
         const genotp = otpgen.generate(6, { alphabets: false, upperCase: false, specialChar: false })
 
-        const request = mailjet
-            .post('send', { version: 'v3.1' })
-            .request({
-                Messages: [{
-                    From: {
-                        Email: "bahetisid06@gmail.com",
-                        Name: "Siddhant"
-                    },
-                    To: [{
-                        Email: req.body.email,
-                        Name: req.body.name
-                    }],
-                    Subject: "Welcome to boardspace",
-                    HTMLPart: `
-            <div>
-                <h1>Welcome ${req.body.name}</h1>
-                <h3>This is your otp</h3>
-                <h3>${genotp}</h3>
-            </div>
-            `,
-                    TextPart: `Dear ${req.body.name} your otp is : ${genotp} `
-                }]
-            })
+        const salt = await bcrypt.genSalt(12)
+        const hashotp = await bcrypt.hash(genotp, salt);
+
+        const bhejootp = false
 
         const mexist = await Mentor.findOne({ email: req.body.email })
         if (mexist) {
             if (mexist.otpverified) {
-                const token = createToken(mexist._id, "Mentor")
-                res.json({ isOtpVerified: true, authToken: token })
+                if (mexist.isverify) {
+                    const token = createToken(mexist._id, "Mentor")
+                    res.json({ isOtpVerified: true, authToken: token })
+                }
+                else if (mexist.isreject) {
+                    res.json({ noverify: "Your request is rejected contact admin" })
+                }
+                else if (!mexist.isverify) {
+                    res.json({ noverify: "Have patience we have got everything" })
+                }
             }
             else {
-                mexist.otp = genotp
+                bhejootp = true
+                mexist.otp = hashotp
                 await mexist.save()
-
                 res.json({ success: true })
             }
         }
         else {
 
+            bhejootp = true
             const newMentor = new Mentor({
                 email: req.body.email,
-                otp: genotp,
+                otp: hashotp,
                 name: req.body.name
             })
 
@@ -124,6 +118,31 @@ router.post('/semisignup', async (req, res) => {
             res.json({ success: true })
         }
 
+        if (bhejootp) {
+            const request = mailjet
+                .post('send', { version: 'v3.1' })
+                .request({
+                    Messages: [{
+                        From: {
+                            Email: "bahetisid06@gmail.com",
+                            Name: "Siddhant"
+                        },
+                        To: [{
+                            Email: req.body.email,
+                            Name: req.body.name
+                        }],
+                        Subject: "Welcome to boardspace",
+                        HTMLPart: `
+            <div>
+                <h1>Welcome ${req.body.name}</h1>
+                <h3>This is your otp</h3>
+                <h3>${genotp}</h3>
+            </div>
+            `,
+                        TextPart: `Dear ${req.body.name} your otp is : ${genotp} `
+                    }]
+                })
+        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -136,10 +155,14 @@ router.post('/verifyotp', async (req, res) => {
         const reqm = await Mentor.findOne({ email: req.body.email })
 
         if (!req.body.otp) {
-            throw Error('Enter a valid OTP')
+            throw Error('Enter a OTP')
         }
 
-        if (reqm.otp == req.body.otp) {
+        const matchotp = await bcrypt.compare(req.body.otp, reqm.otp)
+
+        if (matchotp) {
+            reqm.otp = null
+            await reqm.save()
             res.json({ success: true })
         }
         else {
@@ -172,13 +195,11 @@ router.post('/signup', async (req, res) => {
         umentor.password = hashp
         umentor.idurl = req.body.idurl
         umentor.toparea = req.body.topper
-        umentor.otp = null
         umentor.otpverified = true
 
         await umentor.save()
 
-        const token = createToken(umentor._id, "Mentor")
-        res.json({ success: true, authToken: token })
+        res.json({ success: true, mssg: "You have succesfully completed eveyrhting kindly wait till we verify you ohk" })
 
     } catch (error) {
         res.status(400).json({ error: error.message })

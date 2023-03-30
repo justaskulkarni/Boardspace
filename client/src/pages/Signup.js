@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import '../stylesheets/auth.css'
 
 const Signup = () => {
-  const [creadentials, setCredentials] = useState({ email: "", otp:0, name: "" })
+  const [creadentials, setCredentials] = useState({ email: "", otp: 0, name: "" })
   const [error, setError] = useState(null)
   const [showOtpDiv, setShowOtpDiv] = useState(false)
 
@@ -21,9 +21,16 @@ const Signup = () => {
 
     const json = await response.json()
 
-    if(json.isOtpVerified)
-    {
-      localStorage.setItem("Token",json.authToken)
+    if (json.noverify) {
+      navigate("/notaccepted", {
+        state: {
+          message: json.noverify
+        }
+      })
+    }
+
+    if (json.isOtpVerified) {
+      localStorage.setItem("Token", json.authToken)
       navigate("/youin")
     }
 
@@ -53,9 +60,9 @@ const Signup = () => {
     const json = await response.json()
 
     if (json.success) {
-      navigate("/complete_details",{
-        state :{
-          email : creadentials.email
+      navigate("/complete_details", {
+        state: {
+          email: creadentials.email
         }
       })
     }
@@ -70,60 +77,60 @@ const Signup = () => {
     <>
       <Navbar />
       <div className="wrapper">
-      <div className="mostout">
-        <div className="colourdiv"></div>
-        <div className="rightdiv">
-          {!showOtpDiv &&
-            <form className="signup" onSubmit={handleSubmit1}>
-              <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
+        <div className="mostout">
+          <div className="colourdiv"></div>
+          <div className="rightdiv">
+            {!showOtpDiv &&
+              <form className="signup" onSubmit={handleSubmit1}>
+                <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
 
-              <div className="formcontent">
-                <input
-                  type="text"
-                  value={creadentials.name}
-                  name="name"
-                  onChange={onChange}
-                  placeholder="Name"
-                  className="inputbox"
-                />
-
-                <input
-                  type="email"
-                  value={creadentials.email}
-                  name="email"
-                  onChange={onChange}
-                  placeholder="Email"
-                  className="inputbox"
-                />
-
-              </div>
-
-              <button className="signupbutton" >sign up</button>
-              <button className="signupbutton"><Link to={"/login"}>Login</Link></button>
-            </form>
-          }
-
-          {showOtpDiv &&
-            (<div>
-              <form className="signup" onSubmit={handleSubmit2}>
-                <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
                 <div className="formcontent">
                   <input
-                    type="number"
-                    value={creadentials.otp}
-                    name="otp"
+                    type="text"
+                    value={creadentials.name}
+                    name="name"
                     onChange={onChange}
-                    placeholder="OTP"
+                    placeholder="Name"
                     className="inputbox"
                   />
+
+                  <input
+                    type="email"
+                    value={creadentials.email}
+                    name="email"
+                    onChange={onChange}
+                    placeholder="Email"
+                    className="inputbox"
+                  />
+
                 </div>
-                <button className="signupbutton" >Submit OTP</button>
+
+                <button className="signupbutton" >sign up</button>
+                <button className="signupbutton"><Link to={"/login"}>Login</Link></button>
               </form>
-            </div>)
-          }
-          {error && <div className="error">{error}</div>}
+            }
+
+            {showOtpDiv &&
+              (<div>
+                <form className="signup" onSubmit={handleSubmit2}>
+                  <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
+                  <div className="formcontent">
+                    <input
+                      type="number"
+                      value={creadentials.otp}
+                      name="otp"
+                      onChange={onChange}
+                      placeholder="OTP"
+                      className="inputbox"
+                    />
+                  </div>
+                  <button className="signupbutton" >Submit OTP</button>
+                </form>
+              </div>)
+            }
+            {error && <div className="error">{error}</div>}
+          </div>
         </div>
-      </div>
       </div>
     </>
   )

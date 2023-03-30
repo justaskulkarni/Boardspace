@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const Notaccepted = () => {
 
-    
+    const location = useLocation()
 
-  return (
+    return (
+        <>
 
-    <div>Notaccepted</div>
-  )
+            <Navbar />
+            <div>
+                {location.state && <div>{location.state.message}</div>}
+            </div>
+
+        </>
+    )
 }
 
 export default Notaccepted

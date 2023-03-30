@@ -17,6 +17,7 @@ import StudentSignup from './pages/StudentSignup';
 import AdminSignup from './pages/AdminSignup';
 import ProtectedStudent from './pages/ProtectedStudent';
 import ProtectedAdmin from './pages/ProtectedAdmin';
+import Notaccepted from './pages/Notaccepted';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/complete_details" element={<Signup2 />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/signup" element={<AdminSignup />} />
+          <Route path="/notaccepted" element={<Notaccepted />} />
           <Route element={<MentorPrivateRoutes />}>
             <Route path="/youin" element={<Protected />} />
           </Route>
