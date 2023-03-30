@@ -21,7 +21,19 @@ const Login = () => {
     const json = await response.json()
 
     if(json.noverify){
-      
+      navigate("/notaccepted" , {
+        state : {
+          message : json.noverify
+        }
+      })
+    }
+
+    if(json.isreject){
+      navigate("/notaccepted" , {
+        state : {
+          message : json.isreject
+        }
+      })
     }
 
     if (json.success) {
