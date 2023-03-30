@@ -6,7 +6,6 @@ const AdminPrivateRoutes = () => {
   const returnRole = (reqtoken) => {
         if (reqtoken) {
             var decoded = jwt_decode(reqtoken)
-            console.log(decoded.role)
             return (decoded.role)
         }
         else {
@@ -15,8 +14,6 @@ const AdminPrivateRoutes = () => {
     }
 
     var frole = returnRole(localStorage.getItem("Token"))
-
-    console.log(frole)
 
     return (
         (localStorage.getItem("Token") && frole === "Admin") ? <Outlet /> : <Navigate to="/admin/login" />

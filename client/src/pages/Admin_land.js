@@ -4,10 +4,8 @@ import Card from '../components/Card'
 
 const Admin_land = () => {
 
-  const mssg = "hey gya majha message"
   const idArray = [] 
   
-
   const getdata = async() => {
 
     const response = await fetch("http://localhost:6100/api/admin/getall", {
@@ -19,21 +17,28 @@ const Admin_land = () => {
 
     if(json.success)
     {
-      console.log(json.data)
-      console.log(json.data[0]._id)
+      for(var i=0;i<json.data.length;i++)
+      {
+        idArray.push(json.data[i]._id)
+      }
       
+      console.log(idArray)
     }
   }
   
   useEffect(() => {
     getdata()
-    console.log(idArray)
   },[])
 
   return (
     <>
     <Navbar />
-    <Card message1= {mssg}/>
+    {
+      idArray.map((ment) => {
+        <Card mentid={ment}/> 
+        console.log("Hey",ment)
+      })  
+    }
     </>
     
   )
