@@ -38,7 +38,6 @@ const ProtectedStudent = () => {
           Upload
         </button>
       <div>
-          <img src={result.secure_url}></img>
       </div>
       </div>
       
