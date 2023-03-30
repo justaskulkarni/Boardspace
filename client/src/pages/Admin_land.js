@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 
 const Admin_land = () => {
 
   const mssg = "hey gya majha message"
+  const idArray = [] 
+  
 
   const getdata = async() => {
 
@@ -18,11 +20,14 @@ const Admin_land = () => {
     if(json.success)
     {
       console.log(json.data)
+      console.log(json.data[0]._id)
+      
     }
   }
   
   useEffect(() => {
     getdata()
+    console.log(idArray)
   },[])
 
   return (
