@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
         if (!match) {
             throw Error('Password is incorrect')
         }
-        else {
+        else if(match && reqmentor.isverify) {
             const token = createToken(reqmentor._id, "Mentor")
             res.json({ success: true, authToken: token })
         }

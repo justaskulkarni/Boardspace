@@ -100,4 +100,37 @@ router.get('/getall', async (req, res) => {
     }
 })
 
+router.post('/verify/mentor/:id', async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+
+        const reqmentor = await Mentor.findById(id)
+        
+        reqmentor.isverify = true;
+        await reqmentor.save()
+
+        res.json({success: true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.get('/verify/mentor/dets/:id', async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+
+        const reqmentor = await Mentor.findById(id)
+        
+        res.json({success: true, mentdets : reqmentor})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
 module.exports = router;

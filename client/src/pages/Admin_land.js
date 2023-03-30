@@ -4,6 +4,8 @@ import Card from '../components/Card'
 
 const Admin_land = () => {
 
+  const mssg = "hey gya majha message"
+
   const getdata = async() => {
 
     const response = await fetch("http://localhost:6100/api/admin/getall", {
@@ -26,7 +28,7 @@ const Admin_land = () => {
   return (
     <>
     <Navbar />
-    <Card />
+    <Card message1= {mssg}/>
     </>
     
   )
