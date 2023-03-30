@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //utils
 import MentorPrivateRoutes from './utils/MentorPrivateRoutes';
@@ -34,9 +34,6 @@ function App() {
           <Route path="/admin/signup" element={<AdminSignup />} />
           <Route element={<MentorPrivateRoutes />}>
             <Route path="/youin" element={<Protected />} />
-          </Route>
-          <Route element={<StudentPrivateRoutes />}>
-            <Route path="/studentin" element={<ProtectedStudent />} />
           </Route>
           <Route element={<StudentPrivateRoutes />}>
             <Route path="/studentin" element={<ProtectedStudent />} />
