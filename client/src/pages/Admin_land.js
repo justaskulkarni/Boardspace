@@ -4,7 +4,7 @@ import Card from '../components/Card'
 
 const Admin_land = () => {
 
-  const idArray = [] 
+  const [idArray, setIdArray] = useState([]) 
   
   const getdata = async() => {
 
@@ -17,30 +17,22 @@ const Admin_land = () => {
 
     if(json.success)
     {
-      for(var i=0;i<json.data.length;i++)
-      {
-        idArray.push(json.data[i]._id)
-      }
       
-      console.log(idArray)
+      const newIdArray = json.data.map(item => item._id);
+      setIdArray(newIdArray)
+      console.log(newIdArray)
     }
   }
   
   useEffect(() => {
-    getdata()
+    getdata(); 
   },[])
 
   return (
     <>
     <Navbar />
-    {
-      idArray.map((ment) => {
-        <Card mentid={ment}/> 
-        console.log("Hey",ment)
-      })  
-    }
+    {idArray.map((id) => <Card key={id} mentid={id} />)}
     </>
-    
   )
 }
 
