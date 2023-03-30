@@ -1,14 +1,10 @@
 import { useEffect, useRef } from 'react'
-const upload = () => {
+const UploadWidget = () => {
   const cloudinaryRef = useRef()
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary
+    console.log(cloudinaryRef.current)
   }, [])
 }
-//   return (
-//     <>
-//     </>
-    
-//   )
 
   export default upload
