@@ -23,7 +23,7 @@ const AdminLogin = () => {
 
         if (json.success) {
             localStorage.setItem("Token", json.authToken)
-            navigate("/adminin")
+            navigate("/admin/landing")
         }
 
         if (json.error) {
