@@ -41,72 +41,22 @@ const Signup2 = () => {
 
   const onChange2 = async () => {
     setNeet(!isNeetTopper)
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/neet`
-    }, function async(error, result) {
-      console.log(result)
-      if (result.event === "success") {
-        upload(result.info.secure_url)
-      }
-    })
   }
 
   const onChange3 = () => {
     setBoard(!isBoardTopper)
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/board`
-    }, function async(error, result) {
-      console.log(result)
-      if (result.event === "success") {
-        upload(result.info.secure_url)
-      }
-    })
   }
 
   const onChange4 = () => {
     setJee(!isJeeTopper)
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n', 
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/jee`
-    }, function async(error, result) {
-      console.log(result)
-      if (result.event === "success") {
-        upload(result.info.secure_url)
-      }
-    })
   }
 
   const onChange5 = () => {
     setMaster(!isMasters)
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/master`
-    }, function async(error, result) {
-      console.log(result)
-      if (result.event === "success") {
-        upload(result.info.secure_url)
-      }
-    })
   }
 
   const onChange6 = () => {
     setPHD(!isPHD)
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/phd`
-    }, function async(error, result) {
-      console.log(result)
-      if (result.event === "success") {
-        upload(result.info.secure_url)
-      }
-    })
   }
 
   const handleSubmit2 = async (e) => {
@@ -160,6 +110,71 @@ const Signup2 = () => {
 
   const handleSubmit3 = async (e) => {
     e.preventDefault()
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/board`
+    }, function async(error, result) {
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
+    widgetRef.current.open()
+  }
+
+  const handleSubmit4 = async (e) => {
+    e.preventDefault()
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/jee`
+    }, function async(error, result) {
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
+    widgetRef.current.open()
+  }
+
+  const handleSubmit5 = async (e) => {
+    e.preventDefault()
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/neet`
+    }, function async(error, result) {
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
+    widgetRef.current.open()
+  }
+
+  const handleSubmit6 = async (e) => {
+    e.preventDefault()
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/masters`
+    }, function async(error, result) {
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
+    widgetRef.current.open()
+  }
+
+  const handleSubmit7 = async (e) => {
+    e.preventDefault()
+    widgetRef.current = cloudinaryRef.current.createUploadWidget({
+      cloudName: 'djb8pgo4n',
+      uploadPreset: 'm79rihxp',
+      public_id: `${details.email}/phd`
+    }, function async(error, result) {
+      if (result.event === "success") {
+        upload(result.info.secure_url)
+      }
+    })
     widgetRef.current.open()
   }
 
@@ -213,7 +228,7 @@ const Signup2 = () => {
                     name="JEE Topper"
                     className="boxstyle"
                   /><p>JEE Topper</p>
-                  {isJeeTopper && <button onClick={handleSubmit3}>JEE</button>}
+                  {isJeeTopper && <button onClick={handleSubmit4}>JEE</button>}
                 </label>
                 <label htmlFor="neettopper" className="checkboxstyle">
                   <input
@@ -224,7 +239,7 @@ const Signup2 = () => {
                     name="Neet Topper"
                     className="boxstyle"
                   /><p>NEET Topper</p>
-                  {isNeetTopper && <button onClick={handleSubmit3}>Neet</button>}
+                  {isNeetTopper && <button onClick={handleSubmit5}>Neet</button>}
                 </label>
                 <label htmlFor="masters" className="checkboxstyle">
                   <input
@@ -235,7 +250,7 @@ const Signup2 = () => {
                     name="Masters"
                     className="boxstyle"
                   /><p>Masters Student</p>
-                  {isMasters && <button onClick={handleSubmit3}>Masters</button>}
+                  {isMasters && <button onClick={handleSubmit6}>Masters</button>}
                 </label>
                 <label htmlFor="phd" className="checkboxstyle">
                   <input
@@ -246,7 +261,7 @@ const Signup2 = () => {
                     name="PHD"
                     className="boxstyle"
                   /><p>PHD Student</p>
-                  {isPHD && <button onClick={handleSubmit3}>PHD</button>}
+                  {isPHD && <button onClick={handleSubmit7}>PHD</button>}
                 </label>
               </div>
               <button className="signupbutton2">Submit</button>

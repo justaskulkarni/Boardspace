@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import '../stylesheets/auth.css'
 
 const Signup = () => {
-  const [creadentials, setCredentials] = useState({ email: "", otp: 0, name: "" })
+  const [creadentials, setCredentials] = useState({ email: "", otp: "", name: "" })
   const [error, setError] = useState(null)
   const [showOtpDiv, setShowOtpDiv] = useState(false)
 
