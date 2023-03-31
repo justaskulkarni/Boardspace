@@ -2,13 +2,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top:20vh;
+    margin-top:10vh;
+}
+
+.cardstyle:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
 }
 
 .innerdiv{
-    background-color: rgba(183, 188, 189, 0.664);
+    background-color: #eeeded;
     width:50%;
     display:inline;
+    border-radius:1rem;
+    box-shadow:rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .innermost{
@@ -18,16 +27,17 @@
 .cardcontent{
     font-weight: bolder;
     font-size: 1.2rem;
-    color:blue;
+    color:#291755;
 }
 
 .verifybutton {
     margin-top: 2rem;
     margin-bottom: 2rem;
+    margin-left: -9rem;
     border: none;
     border-radius: 1rem;
     background-color: rgb(255, 255, 255);
-    color: blue;
+    color: #291755;
     font-weight: bolder;
     font-size: 1.5rem;
     position: relative;

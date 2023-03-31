@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
+import '../stylesheets/adminlanding.css'
 
 const AdminLand = () => {
 
@@ -31,7 +32,45 @@ const AdminLand = () => {
   return (
     <>
     <Navbar />
-    {idArray.map((id) => <Card key={id} mentid={id} />)}
+    <div className="row">
+      <div class="column left">
+        <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Home</span></button></div>
+        <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Messages</span></button></div>
+        <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Feedbacks</span></button></div>
+        
+      </div>
+      <div class="column middle">
+        <div className="leftbox">
+          <span className="analytics">Analytics</span>
+          <span className="welcometext">Welcome back, lets get back to work</span>
+        </div>
+        <div className="rightbox">
+          <input type="text" placeholder="Search dashboard" className="searchbox"/>
+        </div>
+        <span className="mentorrequests">Mentor Requests</span>
+        <div className="cardcontainer">
+          {idArray.map((id) => <Card key={id} mentid={id} />)}
+        </div>
+      </div>
+      <div class="column right">
+        <div className="detailscontainer">
+          <div className="profilephotobox"></div>
+        </div>
+        <div className="detailscontainer">
+          <span className="mentorrequests">Ojas Binayake</span>
+        </div>
+        <div className="detailscontainer">
+          <span className="welcometext">Admin</span>
+        </div>
+        <div className="statscontainer">
+          <div className="mentorrequests">457</div><br /><span className="welcometext">students</span>
+          <div className="mentorrequests">450</div><br /><span className="welcometext">mentors</span>
+          <div className="mentorrequests">12</div><br /><span className="welcometext">students</span>
+
+          </div>
+      </div>
+    </div>
+    
     </>
   )
 }
