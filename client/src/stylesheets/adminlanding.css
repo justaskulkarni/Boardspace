@@ -12,18 +12,20 @@
 .middle {
     width: 60%;
     overflow-y:scroll;
-    margin-top: 10vh;
+    margin-top: 3vh;
+}
+
+.topcontainer{
+    display:flex;
+    justify-content:space-around;
 }
 
 .leftbox{
     width:50%;
-    display:inline;
 }
 
 .rightbox{
     width: 100%;
-    position: relative;
-    display: flex;
 }
 
 .analytics{
@@ -56,6 +58,7 @@
     border-radius: 0.2rem;
     background-color: #F5F9FD;
     padding:0.8rem;
+
     font-size:1rem;
 }
 
@@ -67,7 +70,7 @@
 }
 
 .smallcardleft:first-of-type{
-    margin-top:15vh;
+    margin-top:10vh;
 }
 
 .smallcardright {
@@ -94,7 +97,7 @@
 .profilephotobox{
     height:20vh;
     width:9vw;
-    margin-top:15vh; 
+    margin-top:5vh; 
     border-radius: 160rem;
     background-color: #9A9A9A;
 }
@@ -107,6 +110,20 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.imgstyle {
+    float: left;
+    margin-top: 0.9rem;
+    height: 7rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.logoutbtn{
+    border:white;
+    border-radius: 1rem;
+    background:white;
 }
 
 @media screen and (max-width: 600px) {

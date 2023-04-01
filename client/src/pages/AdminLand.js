@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Card from '../components/Card'
 import '../stylesheets/adminlanding.css'
+import dashboardlogo from '../assets/navbarlogo.png'
+import jwt_decode from 'jwt-decode'
 
 const AdminLand = () => {
 
@@ -29,23 +32,44 @@ const AdminLand = () => {
     getdata(); 
   },[idArray])
 
+  let navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem("Token")
+    navigate("/")
+  }
+
+  const returnRole = (reqtoken) => {
+    if (reqtoken) {
+      var decoded = jwt_decode(reqtoken)
+      return (decoded.role)
+    }
+    else {
+      return (null)
+    }
+  }
+
+  var frole = returnRole(localStorage.getItem("Token"))
+
   return (
     <>
-    <Navbar />
     <div className="row">
       <div class="column left">
+        <div className="imgbox"><img className='imgstyle' src={dashboardlogo} alt="" /></div>
         <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Home</span></button></div>
         <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Messages</span></button></div>
         <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Feedbacks</span></button></div>
         
       </div>
       <div class="column middle">
-        <div className="leftbox">
-          <span className="analytics">Analytics</span>
-          <span className="welcometext">Welcome back, lets get back to work</span>
-        </div>
-        <div className="rightbox">
-          <input type="text" placeholder="Search dashboard" className="searchbox"/>
+        <div className="topcontainer">
+          <div className="leftbox">
+            <span className="analytics">Analytics</span>
+            <span className="welcometext">Welcome back, lets get back to work</span>
+          </div>
+          <div className="rightbox">
+            <input type="text" placeholder="Search dashboard" className="searchbox"/>
+          </div>
         </div>
         <span className="mentorrequests">Mentor Requests</span>
         <div className="cardcontainer">
@@ -62,10 +86,38 @@ const AdminLand = () => {
         <div className="detailscontainer">
           <span className="welcometext">Admin</span>
         </div>
+        <div className="detailscontainer">
+          
+        {localStorage.getItem("Token") && frole === "Admin" && <button className="logoutbtn" onClick={handleLogout}><span className="welcometext">Logout</span></button>}
+        </div>
         <div className="statscontainer">
-          <div className="mentorrequests">457</div><br /><span className="welcometext">students</span>
+          <div>
+            <div className="detailscontainer">
+              <div className="mentorrequests">457</div>
+            </div>
+            <div className="detailscontainer">
+              <span className="welcometext">students</span>
+            </div>
+          </div>
+          <div>
+            <div className="detailscontainer">
+              <div className="mentorrequests">450</div>
+            </div>
+            <div className="detailscontainer">
+              <span className="welcometext">mentors</span>
+            </div>
+          </div>
+          <div>
+            <div className="detailscontainer">
+              <div className="mentorrequests">12</div>
+            </div>
+            <div className="detailscontainer">
+              <span className="welcometext">messages</span>
+            </div>
+          </div>
+          {/* 
           <div className="mentorrequests">450</div><br /><span className="welcometext">mentors</span>
-          <div className="mentorrequests">12</div><br /><span className="welcometext">students</span>
+          <div className="mentorrequests">12</div><br /><span className="welcometext">students</span> */}
 
           </div>
       </div>
