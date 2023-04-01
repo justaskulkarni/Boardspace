@@ -55,12 +55,22 @@ const Card = ({mentid}) => {
 
   return (
     <div className="cardstyle">
-      <div className="innerdiv">
-        <div className="innermost">
-            <p className="cardcontent">Name: {creadentials.mname}</p>
-            <p className="cardcontent">Email: {creadentials.email} </p>
+      <div className="statscontainer">
+        <div className="innerdiv">
+            <div className="innermost">
+              <p className="cardcontent">Name: {creadentials.mname}</p>
+              <p className="cardcontent">Email: {creadentials.email} </p>
+            </div>
+            <div className="innermost">
+              Topper in:
+            </div>
+            <div className="innermost">
+              <button className="verifybutton">Docs</button>
+            </div>
+            <div className="innermost">
+              <button className="verifybutton" onClick={() => getverify()}>Verify</button>
+            </div>
         </div>
-        <button className="verifybutton" onClick={() => getverify()}>Verify</button>
       </div>
       {error && <div className="error">{error}</div>}
     </div>  
