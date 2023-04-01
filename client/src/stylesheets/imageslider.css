@@ -1,0 +1,86 @@
+.popup-container {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popup {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    overflow-y: auto;
+}
+
+.popup button:hover {
+    color: #f00;
+}
+
+.image-slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.image-slider {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.image-slider img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 20px;
+    margin-left:60vw;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-slider img:not(:first-child) {
+    transform: translateX(-100%);
+}
+
+.popup button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+    
+}
+
+.image-slider button {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 10px;
+    z-index: 1;
+    
+}
+
+.prevbtn{
+    margin-top:15vh;
+}
+
+.nextbtn{
+    margin-top:25vh;
+}

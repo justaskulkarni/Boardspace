@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import ImageSlider from './ImageSlider'
 import '../stylesheets/card.css'
-
 import document from '../assets/document.png'
 import verify from '../assets/verify.png'
 
@@ -9,7 +9,15 @@ const Card = ({mentid}) => {
   const [error, setError] = useState(null)
   const [creadentials, setCredentials] = useState({ email: "", mname: ""})
 
+  const [isOpen, setIsOpen] = useState(false);
 
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const getdata = async() =>{
@@ -70,7 +78,7 @@ const Card = ({mentid}) => {
             <div className="innermost">
               <div className="statscontainer">
                 <div>
-                <button className="verifybutton"><img src={document} className='butimgdiv'></img></button>
+                <button className="verifybutton" onClick={handleOpen}><img src={document} className='butimgdiv'></img></button>
                 </div>
               </div>
             </div>
@@ -83,6 +91,14 @@ const Card = ({mentid}) => {
             </div>
         </div>
       </div>
+      {isOpen && (
+        <div className="popup-container">
+          <div className="popup">
+            <button onClick={handleClose}>Close</button>
+            <ImageSlider />
+          </div>
+        </div>
+      )}
       {error && <div className="error">{error}</div>}
     </div>  
   )
