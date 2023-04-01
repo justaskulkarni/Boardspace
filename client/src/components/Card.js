@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import '../stylesheets/card.css'
 
+import document from '../assets/document.png'
+import verify from '../assets/verify.png'
+
 const Card = ({mentid}) => {
 
   const [error, setError] = useState(null)
@@ -67,14 +70,14 @@ const Card = ({mentid}) => {
             <div className="innermost">
               <div className="statscontainer">
                 <div>
-                <button className="verifybutton">Docs</button>
+                <button className="verifybutton"><img src={document} className='butimgdiv'></img></button>
                 </div>
               </div>
             </div>
             <div className="innermost">
               <div className="statscontainer">
                 <div>
-                <button className="verifybutton" onClick={() => getverify()}>Verify</button>
+                <button className="verifybutton" onClick={() => getverify()}><img src={verify} className='butimgdiv'></img></button>
                 </div>
               </div>
             </div>

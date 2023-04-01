@@ -53,3 +53,9 @@
     font-size: 1.5rem;
     position: relative;
 }
+
+.butimgdiv{
+    height: 2rem;
+    width: 2rem;
+    object-fit: contain;
+}
