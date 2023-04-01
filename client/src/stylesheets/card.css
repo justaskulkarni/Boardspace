@@ -9,7 +9,7 @@
     /* display: flex;
     align-items: center;
     justify-content: center; */
-    margin-top: 5vh;
+    margin-top: 1vh;
 }
 
 .innerdiv{
@@ -20,8 +20,20 @@
     box-shadow:rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.xyz{
+    margin-top:4.5vh;
+}
+
+/* .innermost :first-of-type{
+    margin-left:3.5vw;
+} */
+
 .innermost{
-    margin-left:5vw;
+    width:80%;
+}
+
+.innermost:first-of-type {
+    width: 200vw;
 }
 
 .cardcontent{
@@ -32,10 +44,8 @@
 }
 
 .verifybutton {
-    /* margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: -9rem; */
     border: none;
+    margin-right:20vw;
     border-radius: 1rem;
     background-color: rgb(255, 255, 255);
     color: #291755;

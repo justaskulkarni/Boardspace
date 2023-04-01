@@ -61,14 +61,22 @@ const Card = ({mentid}) => {
               <p className="cardcontent">Name: {creadentials.mname}</p>
               <p className="cardcontent">Email: {creadentials.email} </p>
             </div>
-            <div className="innermost">
-              Topper in:
+            <div className="innermost xyz">
+              Topper
             </div>
             <div className="innermost">
-              <button className="verifybutton">Docs</button>
+              <div className="statscontainer">
+                <div>
+                <button className="verifybutton">Docs</button>
+                </div>
+              </div>
             </div>
             <div className="innermost">
-              <button className="verifybutton" onClick={() => getverify()}>Verify</button>
+              <div className="statscontainer">
+                <div>
+                <button className="verifybutton" onClick={() => getverify()}>Verify</button>
+                </div>
+              </div>
             </div>
         </div>
       </div>
