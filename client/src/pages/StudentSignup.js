@@ -41,10 +41,10 @@ const StudentSignup = () => {
             <Navbar />
             <div className="wrapper">
             <div className="mostout">
-                <div className="colourdiv"></div>
+                <div className="colour1"></div>
                 <div className="rightdiv">
                     <form className="signup" onSubmit={handleSubmit}>
-                        <h3 className="formheader"><span className="headertext">Student Sign Up</span></h3>
+                        <h3 className="formheader"><span className="loginhead">Student Sign Up</span></h3>
 
                         <div className="formcontent">
                             <input
@@ -85,8 +85,11 @@ const StudentSignup = () => {
 
                         </div>
 
-                        <button className="signupbutton" >Sign up</button>
-                        <button className="button2"><Link className="lol" to={"/student/login"}>Login</Link></button>
+                        
+                        <button className="loginbutton" >SignUp</button>
+                        <button className="signupbutton"><Link className="lol" to={"/student/login"}>Login</Link></button>
+                        
+
                     </form>
                     {error && <div className="error">{error}</div>}
                 </div>

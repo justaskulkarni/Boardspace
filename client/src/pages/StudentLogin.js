@@ -68,7 +68,7 @@ const StudentLogin = () => {
 
                         <div className="buttonscontainer">
                         <button className="loginbutton" >Login</button>
-                        <button className="signupbutton"><Link className="lol" to={"/student/signup"}>signup</Link></button>
+                        <button className="signupbutton"><Link className="lol" to={"/student/signup"}>SignUp</Link></button>
                         </div>
                     </form>
                     <button className="forgotpasswordbutton">forgot password?</button>
