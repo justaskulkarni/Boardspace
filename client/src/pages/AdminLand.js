@@ -20,11 +20,9 @@ const AdminLand = () => {
     const json = await response.json()
 
     if(json.success)
-    {
-      
+    { 
       const newIdArray = json.data.map(item => item._id);
       setIdArray(newIdArray)
-      console.log(newIdArray)
     }
   }
   

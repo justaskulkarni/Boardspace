@@ -8,6 +8,7 @@ const Card = ({mentid}) => {
 
   const [error, setError] = useState(null)
   const [creadentials, setCredentials] = useState({ email: "", mname: ""})
+  const [imags, setImgarr] = useState([])
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,6 +33,7 @@ const Card = ({mentid}) => {
       if(json.success)
       {
         setCredentials({email:json.mentdets.email, mname:json.mentdets.name})
+        setImgarr(...imags,json.mentdets.idurl)
       }
   
       if(json.error)
@@ -95,7 +97,7 @@ const Card = ({mentid}) => {
         <div className="popup-container">
           <div className="popup">
             <button onClick={handleClose}>Close</button>
-            <ImageSlider />
+            <ImageSlider imgarr = {imags}/>
           </div>
         </div>
       )}

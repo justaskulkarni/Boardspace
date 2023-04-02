@@ -10,11 +10,11 @@ const images = [
   'https://upload.wikimedia.org/wikipedia/commons/e/e0/Long_March_2D_launching_VRSS-1.jpg'
 ];
 
-const ImageSlider = () => {
+const ImageSlider = ({imgarr}) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleNext = () => {
-    if (currentSlide === images.length - 1) {
+    if (currentSlide === imgarr.length - 1) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
@@ -23,7 +23,7 @@ const ImageSlider = () => {
 
   const handlePrev = () => {
     if (currentSlide === 0) {
-      setCurrentSlide(images.length - 1);
+      setCurrentSlide(imgarr.length - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -32,7 +32,7 @@ const ImageSlider = () => {
   return (
     <div className="image-slider">
       <button className="prevbtn" onClick={handlePrev}>Prev</button>
-      <img src={images[currentSlide]} alt={`Image ${currentSlide + 1}`} />
+      <img src={imgarr[currentSlide]} alt={`Image ${currentSlide + 1}`} />
       <button className="nextbtn" onClick={handleNext}>Next</button>
     </div>
   );
