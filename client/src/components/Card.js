@@ -80,14 +80,14 @@ const Card = ({mentid}) => {
             <div className="innermost">
               <div className="statscontainer">
                 <div>
-                <button className="verifybutton" onClick={handleOpen}><img src={document} className='butimgdiv'></img></button>
+                <button className="verifybutton" onClick={handleOpen}><img src={document} className="butimgdiv"></img></button>
                 </div>
               </div>
             </div>
             <div className="innermost">
               <div className="statscontainer">
                 <div>
-                <button className="verifybutton" onClick={() => getverify()}><img src={verify} className='butimgdiv'></img></button>
+                <button className="verifybutton" onClick={() => getverify()}><img src={verify} className="butimgdiv"></img></button>
                 </div>
               </div>
             </div>

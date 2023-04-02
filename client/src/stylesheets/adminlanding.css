@@ -43,6 +43,14 @@
     display: block;
 }
 
+.mentorrequests2 {
+    color: #505887;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+    margin-top:3vh;
+}
+
 .notifications {
     color: #505887;
     font-size: 1.2rem;
@@ -52,6 +60,12 @@
 .welcometext{
     color:#9A9A9A;
     font-size:1rem;
+}
+
+.welcometext2 {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 .searchbox{
@@ -125,6 +139,9 @@
     border:white;
     border-radius: 1rem;
     background:white;
+    bottom:0;
+    margin-left: 2vw;
+    
 }
 
 @media screen and (max-width: 600px) {

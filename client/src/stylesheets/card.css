@@ -2,14 +2,7 @@
     /* align-items: center;
     justify-content: center; */
     width:90%;
-    margin-top:10vh;
-}
-
-.cardstyle:first-of-type {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
-    margin-top: 1vh;
+    margin-top:1vh;
 }
 
 .innerdiv{
@@ -38,9 +31,10 @@
 
 .cardcontent{
     font-weight: bolder;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color:#291755;
-    padding:0.3rem
+    padding:0.01rem;
+    padding-left:1rem;
 }
 
 .verifybutton {
