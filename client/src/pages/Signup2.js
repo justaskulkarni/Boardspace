@@ -200,14 +200,6 @@ const Signup2 = () => {
                   placeholder="password"
                   className="inputbox"
                 />
-                <input
-                  type="text"
-                  value={details.idurl}
-                  name="idurl"
-                  onChange={onChange1}
-                  placeholder="idurl"
-                  className="inputbox"
-                />
                 <label htmlFor="boardtopper" className="checkboxstyle">
                   <input
                     type="checkbox"
