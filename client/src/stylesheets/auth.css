@@ -1,9 +1,8 @@
 .wrapper{
-    /* display: block; */
     overflow: hidden;
 }
 .rightdiv{
-    position: relative;
+    position:absolute;
     float:right;
     width: 60%;
     font-size: 2rem;
@@ -11,6 +10,9 @@
     display: flex;
     flex-direction: column;
     right: 3.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
 }
 
 form{
@@ -19,26 +21,25 @@ form{
 
 .formheader{
     display:flex;
-    justify-content: center;
     margin-bottom:5rem;
     margin-top:9rem;
     margin-left:10rem;
+    width:35rem;
     position: relative;
-    right: 6.5rem;
+    right: 3.5rem;
+    
 }
 
 .loginhead{
     border-bottom: 0.2rem solid blue;
     position: relative;
-    right: 1rem;
-    /* left: 4rem; */
+    left: 3.5rem;
+ 
 }
 .loginhead1{
-    border-bottom: 0.2rem solid blue;
-    position: relative;
-    right: 1rem;
-    /* left: 2rem; */
+    border-bottom: 0.2rem solid blue;  
 }
+
 
 
 input{
@@ -52,9 +53,11 @@ input{
 }
 
 .buttonscontainer{
-    display:inline;
+    display:inherit;
     /* position: relative;
     top:1rem; */
+    /* justify-content:center; */
+    /* width: fit-content; */
 }
 
 .signupbutton{
@@ -65,9 +68,9 @@ input{
     color:blue;
     font-weight:bolder;
     font-size: 1.5rem;
-    position: relative;
-    left: 2.3rem;
-}
+    /* position: relative;
+    left: 1rem;*/
+} 
 .lol{
     text-decoration: none;
     color:blue
@@ -82,20 +85,17 @@ input{
     padding-right:1rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    /* padding: 0.5rem; */
-    /* margin-left:5rem; */
     font-weight:bolder;
     color:white;
     font-size:1.5rem;
     position: relative;
-    left: 13.2rem;
+    left: 11.5rem;
 }
 
 
 .forgotpasswordbutton{
     display:block;
-    /* margin-left:21rem; */
-    /* margin-top:7rem; */
+
     font-size: 1rem;
     border:none;
     font-weight:bolder;
@@ -104,7 +104,7 @@ input{
     font-size:1.1rem;
     text-decoration: none;
     position: relative;
-    right: 7rem;
+    right: 8rem;
     /* top: 2rem; */
 }
 
@@ -115,20 +115,20 @@ input{
 
 
 .colour1{
-    position: relative;
+    position: absolute;
     height: 80rem;
     width: 55rem ;
     background-color: #9e3ffd;
     transform: rotate(15.59deg);
-    left: -6rem;
+    left: -12rem;
     top: -17rem;
     z-index: -1;
 }
 .mostout{
     display: flex;
     height: 100%;
-    /* flex-direction: column; */
-    /* margin-top: 5rem; */
+
+
 }
 
 .checkboxstyle{

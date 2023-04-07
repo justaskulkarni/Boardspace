@@ -89,7 +89,7 @@ const Signup = () => {
       <Navbar />
       <div className="wrapper">
         <div className="mostout">
-          <div className="colourdiv"></div>
+          <div className="colour1"></div>
           <div className="rightdiv">
             {!showOtpDiv &&
               <form className="signup" onSubmit={handleSubmit1}>
@@ -115,9 +115,11 @@ const Signup = () => {
                   />
 
                 </div>
-
-                <button className="signupbutton" >sign up</button>
-                <button className="signupbutton"><Link to={"/login"}>Login</Link></button>
+                <div className="buttonscontainer">
+                <button className="signupbutton" >SignUp</button>
+                <button className="loginbutton"><Link className='lol' to={"/login"}>Login</Link></button>
+                </div>
+                
               </form>
             }
 

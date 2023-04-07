@@ -177,7 +177,10 @@ router.post('/verifyotp', async (req, res) => {
 router.post('/signup', async (req, res) => {
 
     try {
-        if (!req.body.idurl || !req.body.password) {
+
+        const umentor = await Mentor.findOne({ email: req.body.email })
+
+        if (!req.body.password || umentor.idurl.length === 0) {
             throw Error('All fields must be filled')
         }
 
@@ -190,10 +193,7 @@ router.post('/signup', async (req, res) => {
         pass = req.body.password
         const hashp = await bcrypt.hash(pass, salt);
 
-        const umentor = await Mentor.findOne({ email: req.body.email })
-
         umentor.password = hashp
-        umentor.idurl = req.body.idurl
         umentor.toparea = req.body.topper
         umentor.otpverified = true
 
@@ -212,9 +212,10 @@ router.post('/addurl/:email', async(req,res) =>{
         const {email} = req.params
 
         const reqm = await Mentor.findOne({email : email})
-    
+        
         reqm.idurl.push(req.body.url)
-        reqm.save()
+        await reqm.save();
+        console.log(reqm)
         console.log("Saved sir", req.body.url)
         res.json({success:true})
 
