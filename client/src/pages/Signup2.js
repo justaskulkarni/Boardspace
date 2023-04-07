@@ -36,6 +36,9 @@ const Signup2 = () => {
 
     if (json.error) {
       setError(json.error)
+      setTimeout(() => {
+        setError(null);
+      }, 4000);
     }
   }
 

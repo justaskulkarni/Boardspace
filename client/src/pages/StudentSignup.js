@@ -29,6 +29,15 @@ const StudentSignup = () => {
 
         if (json.error) {
             setError(json.error)
+            setCredentials({
+                email: "",
+                phonenum: 0,
+                name: "",
+                password: ""
+            });
+            setTimeout(() => {
+                setError(null);
+            }, 4000);
         }
     }
 

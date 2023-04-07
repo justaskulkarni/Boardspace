@@ -146,3 +146,8 @@ input{
     position: relative;
     left: 2.3rem;
 }
+
+.error{
+    color: red;
+    margin-left:15rem;
+}

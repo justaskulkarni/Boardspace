@@ -29,6 +29,14 @@ const AdminSignup = () => {
 
         if (json.error) {
             setError(json.error)
+            setCredentials({
+                email: "",
+                name: "",
+                password: ""
+            });
+            setTimeout(() => {
+                setError(null);
+            }, 4000);
         }
     }
 

@@ -40,6 +40,14 @@ const Signup = () => {
 
     if (json.error) {
       setError(json.error)
+      setCredentials({
+        email: "",
+        otp: "",
+        name: ""
+      });
+      setTimeout(() => {
+        setError(null);
+      }, 4000);
     }
   }
 
@@ -69,6 +77,9 @@ const Signup = () => {
 
     if (json.error) {
       setError(json.error)
+      setTimeout(() => {
+        setError(null);
+      }, 4000);
     }
 
   }

@@ -28,6 +28,13 @@ const StudentLogin = () => {
 
         if (json.error) {
             setError(json.error)
+            setCredentials({
+                email: "",
+                password: ""
+            });
+            setTimeout(() => {
+                setError(null);
+            }, 4000);
         }
     }
 
