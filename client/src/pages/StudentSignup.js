@@ -53,7 +53,7 @@ const StudentSignup = () => {
                 <div className="colour1"></div>
                 <div className="rightdiv">
                     <form className="signup" onSubmit={handleSubmit}>
-                        <h3 className="formheader"><span className="loginhead">Student Sign Up</span></h3>
+                        <h3 className="formheader"><span className="loginhead1">Student Sign Up</span></h3>
 
                         <div className="formcontent">
                             <input

@@ -93,7 +93,7 @@ const Signup = () => {
           <div className="rightdiv">
             {!showOtpDiv &&
               <form className="signup" onSubmit={handleSubmit1}>
-                <h3 className="formheader"><span className="headertext">Sign Up</span></h3>
+                <h3 className="formheader"><span className="loginhead">Sign Up</span></h3>
 
                 <div className="formcontent">
                   <input
@@ -116,8 +116,8 @@ const Signup = () => {
 
                 </div>
                 <div className="buttonscontainer">
-                <button className="signupbutton" >SignUp</button>
-                <button className="loginbutton"><Link className='lol' to={"/login"}>Login</Link></button>
+                <button className="loginbutton" >SignUp</button>
+                <button className="signupbutton"><Link className='lol' to={"/login"}>Login</Link></button>
                 </div>
                 
               </form>
