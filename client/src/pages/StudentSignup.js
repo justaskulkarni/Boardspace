@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 import '../stylesheets/auth.css'
 
+
 const StudentSignup = () => {
 
     const [creadentials, setCredentials] = useState({ email: "", phonenum: 0, name: "", password: "" })

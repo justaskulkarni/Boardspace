@@ -147,6 +147,12 @@ input{
 }
 
 .error{
-    color: red;
-    margin-left:15rem;
+    color: #cc393d;
+    text-align: center;
+    margin-top: 3rem;
+    margin-right: 4rem;
+    width: 35%;
+    height: 5%;
+    background-color: #ffeded;
+    border: 0.05rem solid black;
 }
