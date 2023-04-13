@@ -1,0 +1,93 @@
+.cardstyle{
+    width:90%;
+    margin-top:1vh;
+}
+
+.innerdiv{
+    background-color: #eeeded;
+    display: flex;
+    justify-content: space-between;
+    border-radius:1rem;
+    box-shadow:rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.innermost{
+    width:80%;
+    margin-top: 4.5vh;
+}
+
+.innermost:first-of-type {
+    width: 200vw;
+}
+
+.innermost1 {
+    width: 80%;
+
+}
+
+.innermost1:first-of-type {
+    width: 200vw;
+}
+
+.cardcontent{
+    font-weight: bolder;
+    font-size: 1rem;
+    color:#291755;
+    padding:0.01rem;
+    padding-left:1rem;
+}
+
+.verifybutton {
+    border: none;
+    margin-right:20vw;
+    border-radius: 1rem;
+    background-color: rgb(255, 255, 255);
+    color: #291755;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    position: relative;
+}
+
+.butimgdiv{
+    height: 2rem;
+    width: 2rem;
+    object-fit: contain;
+}
+
+.popupcontainer {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.popup {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    overflow-y: auto;
+}
+
+.popup button:hover {
+    color: #f00;
+}
+
+.popup button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 2;
+
+}

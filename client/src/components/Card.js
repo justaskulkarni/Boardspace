@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ImageSlider from './ImageSlider'
-import '../stylesheets/card.css'
+import styles from '../stylesheets/card.module.css'
 import document from '../assets/document.png'
 import verify from '../assets/verify.png'
 
@@ -67,41 +67,41 @@ const Card = ({mentid}) => {
   }
 
   return (
-    <div className="cardstyle">
-      <div className="statscontainer">
-        <div className="innerdiv">
-            <div className="innermost">
-              <p className="cardcontent">Name: {creadentials.mname}</p>
-              <p className="cardcontent">Email: {creadentials.email} </p>
+    <div className={styles.cardstyle}>
+      <div className={styles.statscontainer}>
+        <div className={styles.innerdiv}>
+            <div className={styles.innermost1}>
+              <p className={styles.cardcontent}>Name: {creadentials.mname}</p>
+              <p className={styles.cardcontent}>Email: {creadentials.email} </p>
             </div>
-            <div className="innermost xyz">
+            <div className={styles.innermost}>
               Topper
             </div>
-            <div className="innermost">
-              <div className="statscontainer">
+            <div className={styles.innermost}>
+              <div className={styles.statscontainer}>
                 <div>
-                <button className="verifybutton" onClick={handleOpen}><img src={document} className="butimgdiv"></img></button>
+                <button className={styles.verifybutton} onClick={handleOpen}><img src={document} className={styles.butimgdiv}></img></button>
                 </div>
               </div>
             </div>
-            <div className="innermost">
-              <div className="statscontainer">
+            <div className={styles.innermost}>
+              <div className={styles.statscontainer}>
                 <div>
-                <button className="verifybutton" onClick={() => getverify()}><img src={verify} className="butimgdiv"></img></button>
+                <button className={styles.verifybutton} onClick={() => getverify()}><img src={verify} className={styles.butimgdiv}></img></button>
                 </div>
               </div>
             </div>
         </div>
       </div>
       {isOpen && (
-        <div className="popup-container">
-          <div className="popup">
+        <div className={styles.popupcontainer}>
+          <div className={styles.popup}>
             <button onClick={handleClose}>Close</button>
             <ImageSlider imgarr = {imags}/>
           </div>
         </div>
       )}
-      {error && <div className="error">{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
     </div>  
   )
 }

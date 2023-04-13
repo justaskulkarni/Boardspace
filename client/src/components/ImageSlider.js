@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../stylesheets/imageslider.css';
+import styles from '../stylesheets/imageslider.module.css';
 
 const images = [
   'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
@@ -30,10 +30,10 @@ const ImageSlider = ({imgarr}) => {
   };
 
   return (
-    <div className="image-slider">
-      <button className="prevbtn" onClick={handlePrev}>Prev</button>
+    <div className={styles.imageslider}>
+      <button className={styles.prevbtn} onClick={handlePrev}>Prev</button>
       <img src={imgarr[currentSlide]} alt={`Image ${currentSlide + 1}`} />
-      <button className="nextbtn" onClick={handleNext}>Next</button>
+      <button className={styles.nextbtn} onClick={handleNext}>Next</button>
     </div>
   );
 };
