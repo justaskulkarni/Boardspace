@@ -1,0 +1,30 @@
+.page_404 {
+  padding: 20vh 0;
+  background: #fff;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 100px;
+  margin-bottom: 0vh;
+  margin-top: 0;
+  padding-bottom: 40vh;
+  text-align: center;
+}
+
+.content_box_404 {
+  margin-top: -10vh;
+  text-align: center;
+}
+
+.h3 {
+  padding-top: 0;
+}

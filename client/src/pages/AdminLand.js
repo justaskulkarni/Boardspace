@@ -54,10 +54,12 @@ const AdminLand = () => {
 
   const getrejected = () => {
     navigate("/admin/rejected/reqs")
+    navigate(0)
   }
 
   const gethome = () => {
     navigate("/admin/landing")
+    navigate(0)
   }
 
   return (

@@ -142,6 +142,7 @@ router.put('/reject/mentor/:id', async (req, res) => {
         const reqmentor = await Mentor.findById(id)
 
         reqmentor.isreject = true
+        reqmentor.rejectreason = req.body.reason
         await reqmentor.save()
 
         res.json({ success: true })

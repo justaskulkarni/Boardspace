@@ -1,28 +1,27 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //utils
-import MentorPrivateRoutes from './utils/MentorPrivateRoutes';
-import StudentPrivateRoutes from './utils/StudentPrivateRoutes';
-import AdminPrivateRoutes from './utils/AdminPrivateRoutes';
+import MentorPrivateRoutes from "./utils/MentorPrivateRoutes";
+import StudentPrivateRoutes from "./utils/StudentPrivateRoutes";
+import AdminPrivateRoutes from "./utils/AdminPrivateRoutes";
 
 // pages & components
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Home from './pages/Home';
-import Protected from './pages/Protected';
-import Signup2 from './pages/Signup2';
-import StudentLogin from './pages/StudentLogin';
-import AdminLogin from './pages/AdminLogin';
-import StudentSignup from './pages/StudentSignup';
-import AdminSignup from './pages/AdminSignup';
-import ProtectedStudent from './pages/ProtectedStudent';
-import AdminLand from './pages/AdminLand';
-import Notaccepted from './pages/Notaccepted';
-import NotFound from './pages/NotFound';
-import AdminRejected from './pages/AdminRejected';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Home from "./pages/Home";
+import Protected from "./pages/Protected";
+import Signup2 from "./pages/Signup2";
+import StudentLogin from "./pages/StudentLogin";
+import AdminLogin from "./pages/AdminLogin";
+import StudentSignup from "./pages/StudentSignup";
+import AdminSignup from "./pages/AdminSignup";
+import ProtectedStudent from "./pages/ProtectedStudent";
+import AdminLand from "./pages/AdminLand";
+import Notaccepted from "./pages/Notaccepted";
+import Not404 from "./pages/404";
+import AdminRejected from "./pages/AdminRejected";
 
 function App() {
-
   return (
     <>
       <div className="App">
@@ -45,9 +44,9 @@ function App() {
             </Route>
             <Route element={<AdminPrivateRoutes />}>
               <Route path="/admin/landing" element={<AdminLand />} />
-              <Route path="/admin/rejected/reqs" element={<AdminRejected />}/>
+              <Route path="/admin/rejected/reqs" element={<AdminRejected />} />
             </Route>
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<Not404 />} />
           </Routes>
         </BrowserRouter>
       </div>
@@ -56,4 +55,3 @@ function App() {
 }
 
 export default App;
-

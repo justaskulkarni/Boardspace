@@ -8,7 +8,7 @@ import deletelogo from '../assets/delete.png'
 const RejectCard = ({mentid}) => {
   
   const [imags, setImgarr] = useState([])
-
+  const [creadentials, setCredentials] = useState({ email: "", mname: "",topper:[]})
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {

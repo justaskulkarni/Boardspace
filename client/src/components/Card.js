@@ -4,6 +4,7 @@ import styles from '../stylesheets/card.module.css'
 import document from '../assets/document.png'
 import verify from '../assets/verify.png'
 import noverify from '../assets/noverify.png'
+import Popup from 'reactjs-popup'
 
 const Card = ({mentid}) => {
 
@@ -62,11 +63,15 @@ const Card = ({mentid}) => {
       }
   }
 
-  const rejecthim = async() =>{
+  const [reason , setreason] = useState("")
 
-    const response = await fetch(`http://localhost:6100/api/admin/verify/mentor/${mentid}`, { 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch(`http://localhost:6100/api/admin/reject/mentor/${mentid}`, { 
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({reason : reason})
     })
 
     const json = await response.json()
@@ -75,6 +80,12 @@ const Card = ({mentid}) => {
     {
       setError(json.error)
     }
+
+  }
+
+  const onentertxt = (event) => {
+    setreason(event.target.value)
+    console.log(reason)
   }
 
   return (
@@ -90,7 +101,15 @@ const Card = ({mentid}) => {
               <div className={styles.btncontainer}>
                 <button className={styles.verifybutton} onClick={handleOpen}><img src={document} className={styles.butimgdiv}></img></button>
                 <button className={styles.verifybutton} onClick={() => getverify()}><img src={verify} className={styles.butimgdiv}></img></button>
-                <button className={styles.verifybutton} onClick={() => rejecthim()} ><img src={noverify} className={styles.butimgdiv}></img></button>
+                <Popup trigger=
+                {<button className={styles.verifybutton} ><img src={noverify} className={styles.butimgdiv}></img></button>}
+                position="right center">
+                <form onSubmit={handleSubmit}>
+                  <input type="text" onChange={onentertxt} value={reason} placeholder='Enter your reason'/>
+                  <button>Submit</button>
+                </form>
+                </Popup>
+                
               </div>
             </div>
         </div>
