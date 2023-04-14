@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import dashboardlogo from '../assets/navbarlogo.png'
+import RejectCard from '../components/RejectCard'
 
 const AdminRejected = () => {
 
@@ -102,6 +103,11 @@ const AdminRejected = () => {
               <span className="welcometext">messages</span>
             </div>
           </div>
+
+
+          </div>
+          <div className="cardcontainer">
+            {idArray.map((id) => <RejectCard key={id} mentid={id} />)}
           </div>
       </div>
     </div>
