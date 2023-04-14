@@ -87,7 +87,7 @@ router.post('/signup', async (req, res) => {
 router.get('/getall', async (req, res) => {
 
     try {
-        Mentor.find({ otpverified: true, isverify: false }, async (err, data) => {
+        Mentor.find({ otpverified: true, isverify: false, isreject: false }, async (err, data) => {
             if (err) {
                 throw Error(`${err}`)
             }
@@ -100,7 +100,7 @@ router.get('/getall', async (req, res) => {
     }
 })
 
-router.post('/verify/mentor/:id', async (req, res) => {
+router.put('/verify/mentor/:id', async (req, res) => {
 
     const { id } = req.params
 
@@ -128,6 +128,23 @@ router.get('/verify/mentor/dets/:id', async (req, res) => {
         
         res.json({success: true, mentdets : reqmentor})
 
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.put('/reject/mentor/:id', async (req, res) => {
+    
+    const {id} = req.params
+
+    try {
+        
+        const reqmentor = await Mentor.findById(id)
+
+        reqmentor.isreject = true
+        await reqmentor.save()
+
+        res.json({success : true})
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
