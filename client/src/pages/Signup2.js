@@ -16,6 +16,12 @@ const Signup2 = () => {
   const topper = []
   const [details, setDetails] = useState({ password: "", idurl: "", email: location.state.email })
 
+  let var1 = 0
+  let var2 = 0
+  let var3 = 0
+  let var4 = 0
+  let var5 = 0
+
   const [isNeetTopper, setNeet] = useState(false)
   const [isJeeTopper, setJee] = useState(false)
   const [isBoardTopper, setBoard] = useState(false)
@@ -42,22 +48,62 @@ const Signup2 = () => {
 
   const onChange2 = async () => {
     setNeet(!isNeetTopper)
+    if(isNeetTopper === true){
+      var1 = 1
+      console.log(var1)
+    }
+    else{
+      var1 = 0;
+      console.log(var1)
+    }
   }
 
   const onChange3 = () => {
     setBoard(!isBoardTopper)
+    if(isBoardTopper === true){
+      var2 = 1
+      console.log(var2)
+    }
+    else{
+      var2 = 0
+      console.log(var2)
+    }
   }
 
   const onChange4 = () => {
     setJee(!isJeeTopper)
+    if(isJeeTopper === true){
+      var3 = 1
+      console.log(var3)
+    }
+    else{
+      var3 = 0
+      console.log(var3)
+    }
   }
 
   const onChange5 = () => {
     setMaster(!isMasters)
+    if(isMasters === true){
+      var4 = 1
+      console.log(var4)
+    }
+    else{
+      var4 = 0
+      console.log(var4)
+    }
   }
 
   const onChange6 = () => {
     setPHD(!isPHD)
+    if(isPHD === true){
+      var5 = 1
+      console.log(var5)
+    }
+    else{
+      var5 = 0
+      console.log(var5)
+    }
   }
 
   const handleSubmit2 = async (e) => {
@@ -87,11 +133,17 @@ const Signup2 = () => {
 
 
     console.log(topper)
-
+    
     if(topper.length === 0){
       setError("Select atleast one field")
       return 
     }
+    if(var1 != 0 || var2 != 0 || var3 != 0 || var4 != 0 || var5 != 0){
+      setError("Some documents not uploaded")
+      return 
+    }
+
+
 
     const response = await fetch("http://localhost:6100/api/mentor/signup", {
       method: 'POST',
@@ -126,6 +178,8 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var2 = 0
+        console.log(var2)
       }
     })
     widgetRef.current.open()
@@ -140,6 +194,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var3 = 0
       }
     })
     widgetRef.current.open()
@@ -154,6 +209,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var1 = 0
       }
     })
     widgetRef.current.open()
@@ -168,6 +224,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var4 = 0
       }
     })
     widgetRef.current.open()
@@ -182,6 +239,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var5 = 0
       }
     })
     widgetRef.current.open()
