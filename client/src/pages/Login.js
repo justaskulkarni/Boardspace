@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import '../stylesheets/auth.css'
+import styles from '../stylesheets/auth.module.css'
 import Navbar from "../components/Navbar";
 
 const Login = () => {
@@ -61,19 +61,20 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="wrapper">
-      <div className="mostout">
-        <div className="colour1"></div>
-        <div className="rightdiv">
-          <form className="login" onSubmit={handleSubmit}>
-            <h3 className="formheader"><span className="loginhead">Log In</span></h3>
-            <div className="formcontent">
+      <div className={styles.wrapper}>
+      <div className={styles.mostout}>
+        <div className={styles.colour1}></div>
+        <div className={styles.rightdiv}>
+          <form className={styles.login} onSubmit={handleSubmit}>
+            <h3 className={styles.formheader}><span className={styles.loginhead}>Log In</span></h3>
+            <div className={styles.formcontent}>
               <input
                 type="email"
                 value={creadentials.email}
                 name="email"
                 onChange={onChange}
                 placeholder="email"
+                className={styles.inputbox}
               />
               <input
                 type="password"
@@ -81,17 +82,18 @@ const Login = () => {
                 name="password"
                 onChange={onChange}
                 placeholder="password"
+                className={styles.inputbox}
               />
             </div>
 
 
-            <div className="buttonscontainer">
-              <button className="loginbutton">Login</button>
-              <button className="signupbutton"><Link className="lol" to={"/signup"}>SignUp</Link></button>
+            <div className={styles.buttonscontainer}>
+              <button className={styles.loginbutton}>Login</button>
+              <button className={styles.signupbutton}><Link className={styles.lol} to={"/signup"}>SignUp</Link></button>
             </div>
           </form>
-          <button className="forgotpasswordbutton">forgot password?</button>
-          {error && <div className="error">{error}</div>}
+          <button className={styles.forgotpasswordbutton}>forgot password?</button>
+          {error && <div className={styles.error}>{error}</div>}
 
         </div>
       </div>
