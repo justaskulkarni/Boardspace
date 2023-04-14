@@ -118,7 +118,7 @@ router.put('/verify/mentor/:id', async (req, res) => {
     }
 })
 
-router.get('/verify/mentor/dets/:id', async (req, res) => {
+router.get('/mentor/dets/:id', async (req, res) => {
 
     const { id } = req.params
 
@@ -166,5 +166,38 @@ router.get('/get/rejected', async (req, res) => {
         res.status(400).json({ error: error.message })
     }    
 })
+
+router.post('/confirm/delete/:id', async (req,res) => {
+    try {
+        
+        const {id} = req.params
+
+        await Mentor.findByIdAndDelete(id)
+
+        res.json({success:true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/mentor/undo/:id', async (req,res) => {
+    try {
+        
+        const {id} = req.params
+
+        const reqmentor = await Mentor.findById(id)
+
+        reqmentor.isreject = false
+        reqmentor.rejectreason = ""
+        await reqmentor.save()
+
+        res.json({success:true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
 
 module.exports = router;
