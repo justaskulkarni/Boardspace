@@ -118,7 +118,7 @@ router.put('/verify/mentor/:id', async (req, res) => {
     }
 })
 
-router.get('/verify/mentor/dets/:id', async (req, res) => {
+router.get('/mentor/dets/:id', async (req, res) => {
 
     const { id } = req.params
 
@@ -142,6 +142,7 @@ router.put('/reject/mentor/:id', async (req, res) => {
         const reqmentor = await Mentor.findById(id)
 
         reqmentor.isreject = true
+        reqmentor.isverify = false
         reqmentor.rejectreason = req.body.reason
         await reqmentor.save()
 
@@ -155,6 +156,54 @@ router.get('/get/rejected', async (req, res) => {
 
     try {
         Mentor.find({ otpverified: true, isverify: false, isreject: true }, async (err, data) => {
+            if (err) {
+                throw Error(`${err}`)
+            }
+            else {
+                res.json({ success: true, data: data })
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }    
+})
+
+router.post('/confirm/delete/:id', async (req,res) => {
+    try {
+        
+        const {id} = req.params
+
+        await Mentor.findByIdAndDelete(id)
+
+        res.json({success:true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/mentor/undo/:id', async (req,res) => {
+    try {
+        
+        const {id} = req.params
+
+        const reqmentor = await Mentor.findById(id)
+
+        reqmentor.isreject = false
+        reqmentor.rejectreason = ""
+        await reqmentor.save()
+
+        res.json({success:true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.get('/get/accepted', async (req, res) => {
+
+    try {
+        Mentor.find({ otpverified: true, isverify: true, isreject: false }, async (err, data) => {
             if (err) {
                 throw Error(`${err}`)
             }

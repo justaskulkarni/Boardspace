@@ -5,6 +5,7 @@ import document from '../assets/document.png'
 import verify from '../assets/verify.png'
 import noverify from '../assets/noverify.png'
 import Popup from 'reactjs-popup'
+import { useNavigate } from 'react-router-dom'
 
 const Card = ({mentid}) => {
 
@@ -25,7 +26,7 @@ const Card = ({mentid}) => {
   useEffect(() => {
     const getdata = async() =>{
 
-      const response = await fetch(`http://localhost:6100/api/admin/verify/mentor/dets/${mentid}`, {
+      const response = await fetch(`http://localhost:6100/api/admin/mentor/dets/${mentid}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       })
@@ -47,6 +48,8 @@ const Card = ({mentid}) => {
 
     getdata()
   },[])
+
+  let navigate = useNavigate()
 
   const getverify = async() =>{
   
@@ -76,6 +79,11 @@ const Card = ({mentid}) => {
 
     const json = await response.json()
 
+    if(json.success)
+    {
+      navigate("/admin/landing")
+    }
+
     if(json.error)
     {
       setError(json.error)
@@ -85,7 +93,6 @@ const Card = ({mentid}) => {
 
   const onentertxt = (event) => {
     setreason(event.target.value)
-    console.log(reason)
   }
 
   return (

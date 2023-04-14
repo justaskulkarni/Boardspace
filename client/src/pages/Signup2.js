@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
+import uploadicon from '../assets/upload.png'
 import '../stylesheets/signup2.css'
 
 const Signup2 = () => {
@@ -14,6 +15,12 @@ const Signup2 = () => {
   const [error, setError] = useState(null)
   const topper = []
   const [details, setDetails] = useState({ password: "", idurl: "", email: location.state.email })
+
+  let var1 = 0
+  let var2 = 0
+  let var3 = 0
+  let var4 = 0
+  let var5 = 0
 
   const [isNeetTopper, setNeet] = useState(false)
   const [isJeeTopper, setJee] = useState(false)
@@ -36,30 +43,67 @@ const Signup2 = () => {
 
     if (json.error) {
       setError(json.error)
-      setTimeout(() => {
-        setError(null);
-      }, 4000);
     }
   }
 
   const onChange2 = async () => {
     setNeet(!isNeetTopper)
+    if(isNeetTopper === true){
+      var1 = 1
+      console.log(var1)
+    }
+    else{
+      var1 = 0;
+      console.log(var1)
+    }
   }
 
   const onChange3 = () => {
     setBoard(!isBoardTopper)
+    if(isBoardTopper === true){
+      var2 = 1
+      console.log(var2)
+    }
+    else{
+      var2 = 0
+      console.log(var2)
+    }
   }
 
   const onChange4 = () => {
     setJee(!isJeeTopper)
+    if(isJeeTopper === true){
+      var3 = 1
+      console.log(var3)
+    }
+    else{
+      var3 = 0
+      console.log(var3)
+    }
   }
 
   const onChange5 = () => {
     setMaster(!isMasters)
+    if(isMasters === true){
+      var4 = 1
+      console.log(var4)
+    }
+    else{
+      var4 = 0
+      console.log(var4)
+    }
   }
 
   const onChange6 = () => {
     setPHD(!isPHD)
+    if(isPHD === true){
+      var5 = 1
+      console.log(var5)
+    }
+    else{
+      var5 = 0
+      console.log(var5)
+    }
   }
 
   const handleSubmit2 = async (e) => {
@@ -87,7 +131,19 @@ const Signup2 = () => {
       topper.push("PHD")
     }
 
+
     console.log(topper)
+    
+    if(topper.length === 0){
+      setError("Select atleast one field")
+      return 
+    }
+    if(var1 != 0 || var2 != 0 || var3 != 0 || var4 != 0 || var5 != 0){
+      setError("Some documents not uploaded")
+      return 
+    }
+
+
 
     const response = await fetch("http://localhost:6100/api/mentor/signup", {
       method: 'POST',
@@ -105,6 +161,8 @@ const Signup2 = () => {
       })
     }
 
+    console.log(json.error)
+
     if (json.error) {
       setError(json.error)
     }
@@ -120,6 +178,8 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var2 = 0
+        console.log(var2)
       }
     })
     widgetRef.current.open()
@@ -134,6 +194,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var3 = 0
       }
     })
     widgetRef.current.open()
@@ -148,6 +209,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var1 = 0
       }
     })
     widgetRef.current.open()
@@ -162,6 +224,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var4 = 0
       }
     })
     widgetRef.current.open()
@@ -176,6 +239,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
+        var5 = 0
       }
     })
     widgetRef.current.open()
@@ -212,7 +276,7 @@ const Signup2 = () => {
                     name="Board Topper"
                     className="boxstyle"
                   /><p>Board Topper</p>
-                  {isBoardTopper && <button onClick={handleSubmit3}>Board</button>}
+                  {isBoardTopper && <button className="uploadbutton" onClick={handleSubmit3}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="jeetopper" className="checkboxstyle">
                   <input
@@ -223,7 +287,7 @@ const Signup2 = () => {
                     name="JEE Topper"
                     className="boxstyle"
                   /><p>JEE Topper</p>
-                  {isJeeTopper && <button onClick={handleSubmit4}>JEE</button>}
+                  {isJeeTopper && <button className="uploadbutton" onClick={handleSubmit4}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="neettopper" className="checkboxstyle">
                   <input
@@ -234,7 +298,7 @@ const Signup2 = () => {
                     name="Neet Topper"
                     className="boxstyle"
                   /><p>NEET Topper</p>
-                  {isNeetTopper && <button onClick={handleSubmit5}>Neet</button>}
+                  {isNeetTopper && <button className="uploadbutton" onClick={handleSubmit5}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="masters" className="checkboxstyle">
                   <input
@@ -245,7 +309,7 @@ const Signup2 = () => {
                     name="Masters"
                     className="boxstyle"
                   /><p>Masters Student</p>
-                  {isMasters && <button onClick={handleSubmit6}>Masters</button>}
+                  {isMasters && <button className="uploadbutton" onClick={handleSubmit6}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="phd" className="checkboxstyle">
                   <input
@@ -256,13 +320,13 @@ const Signup2 = () => {
                     name="PHD"
                     className="boxstyle"
                   /><p>PHD Student</p>
-                  {isPHD && <button onClick={handleSubmit7}>PHD</button>}
+                  {isPHD && <button className="uploadbutton" onClick={handleSubmit7}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
               </div>
               <button className="signupbutton2">Submit</button>
             </form>
+            {error && <div className="error">{error}</div>}
           </div>
-          {error && <div className="error">{error}</div>}
         </div>
       </div>
 
