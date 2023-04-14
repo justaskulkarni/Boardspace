@@ -180,7 +180,7 @@ router.post('/signup', async (req, res) => {
 
         const umentor = await Mentor.findOne({ email: req.body.email })
 
-        if (!req.body.password || umentor.idurl.length === 0) {
+        if (!req.body.password) {
             throw Error('All fields must be filled')
         }
 

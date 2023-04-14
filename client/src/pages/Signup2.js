@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
+import uploadicon from '../assets/upload.png'
 import '../stylesheets/signup2.css'
 
 const Signup2 = () => {
@@ -36,9 +37,6 @@ const Signup2 = () => {
 
     if (json.error) {
       setError(json.error)
-      setTimeout(() => {
-        setError(null);
-      }, 4000);
     }
   }
 
@@ -87,7 +85,13 @@ const Signup2 = () => {
       topper.push("PHD")
     }
 
+
     console.log(topper)
+
+    if(topper.length === 0){
+      setError("Select atleast one field")
+      return 
+    }
 
     const response = await fetch("http://localhost:6100/api/mentor/signup", {
       method: 'POST',
@@ -104,6 +108,8 @@ const Signup2 = () => {
         }
       })
     }
+
+    console.log(json.error)
 
     if (json.error) {
       setError(json.error)
@@ -212,7 +218,7 @@ const Signup2 = () => {
                     name="Board Topper"
                     className="boxstyle"
                   /><p>Board Topper</p>
-                  {isBoardTopper && <button onClick={handleSubmit3}>Board</button>}
+                  {isBoardTopper && <button className="uploadbutton" onClick={handleSubmit3}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="jeetopper" className="checkboxstyle">
                   <input
@@ -223,7 +229,7 @@ const Signup2 = () => {
                     name="JEE Topper"
                     className="boxstyle"
                   /><p>JEE Topper</p>
-                  {isJeeTopper && <button onClick={handleSubmit4}>JEE</button>}
+                  {isJeeTopper && <button className="uploadbutton" onClick={handleSubmit4}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="neettopper" className="checkboxstyle">
                   <input
@@ -234,7 +240,7 @@ const Signup2 = () => {
                     name="Neet Topper"
                     className="boxstyle"
                   /><p>NEET Topper</p>
-                  {isNeetTopper && <button onClick={handleSubmit5}>Neet</button>}
+                  {isNeetTopper && <button className="uploadbutton" onClick={handleSubmit5}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="masters" className="checkboxstyle">
                   <input
@@ -245,7 +251,7 @@ const Signup2 = () => {
                     name="Masters"
                     className="boxstyle"
                   /><p>Masters Student</p>
-                  {isMasters && <button onClick={handleSubmit6}>Masters</button>}
+                  {isMasters && <button className="uploadbutton" onClick={handleSubmit6}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
                 <label htmlFor="phd" className="checkboxstyle">
                   <input
@@ -256,13 +262,13 @@ const Signup2 = () => {
                     name="PHD"
                     className="boxstyle"
                   /><p>PHD Student</p>
-                  {isPHD && <button onClick={handleSubmit7}>PHD</button>}
+                  {isPHD && <button className="uploadbutton" onClick={handleSubmit7}><img src={uploadicon} className="butimgdiv"></img></button>}
                 </label>
               </div>
               <button className="signupbutton2">Submit</button>
             </form>
+            {error && <div className="error">{error}</div>}
           </div>
-          {error && <div className="error">{error}</div>}
         </div>
       </div>
 

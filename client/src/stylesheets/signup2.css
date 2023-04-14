@@ -122,3 +122,29 @@ p{
 .boxstyle{
     transform: scale(1.5);
 }
+
+.uploadbutton {
+    border: none;
+    border-radius: 0.75rem;
+    background-color: rgb(255, 255, 255);
+    right:-7vw;
+    position: relative;
+}
+
+.butimgdiv {
+    height: 2rem;
+    width: 2rem;
+    margin-top:2rem;
+    object-fit: contain;
+}
+
+.error {
+    color: #cc393d;
+    text-align: center;
+    margin-left: 12rem;
+    width: 60%;
+    height: 5%;
+    font-size: 1.6rem;
+    background-color: #ffeded;
+    border: 0.05rem solid black;
+}
