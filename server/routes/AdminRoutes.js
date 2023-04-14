@@ -142,6 +142,7 @@ router.put('/reject/mentor/:id', async (req, res) => {
         const reqmentor = await Mentor.findById(id)
 
         reqmentor.isreject = true
+        reqmentor.isverify = false
         reqmentor.rejectreason = req.body.reason
         await reqmentor.save()
 
@@ -199,5 +200,20 @@ router.post('/mentor/undo/:id', async (req,res) => {
     }
 })
 
+router.get('/get/accepted', async (req, res) => {
+
+    try {
+        Mentor.find({ otpverified: true, isverify: true, isreject: false }, async (err, data) => {
+            if (err) {
+                throw Error(`${err}`)
+            }
+            else {
+                res.json({ success: true, data: data })
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }    
+})
 
 module.exports = router;

@@ -20,6 +20,7 @@ import AdminLand from "./pages/AdminLand";
 import Notaccepted from "./pages/Notaccepted";
 import Not404 from "./pages/404";
 import AdminRejected from "./pages/AdminRejected";
+import AdminAccept from "./pages/AdminAccept";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route element={<AdminPrivateRoutes />}>
               <Route path="/admin/landing" element={<AdminLand />} />
               <Route path="/admin/rejected/reqs" element={<AdminRejected />} />
+              <Route path="/admin/accepted/reqs" element={<AdminAccept />} />
             </Route>
             <Route path="*" element={<Not404 />} />
           </Routes>
