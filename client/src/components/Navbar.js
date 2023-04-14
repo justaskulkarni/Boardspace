@@ -44,8 +44,6 @@ const Navbar = () => {
           :
           <button className={styles.button1}><Link className={styles.link1} to="/student/login">Student</Link></button>
         }
-
-        {localStorage.getItem("Token") && frole === "Admin" && <button className={styles.link1} onClick={handleLogout}>Admin Logout</button>}
         <button className={styles.button1}>Our Team</button>
       </div>
     </div>
