@@ -22,7 +22,6 @@ const adminroutes = require('./routes/AdminRoutes')
 
 const Mentor = require('./models/mentor')
 const Student = require('./models/student')
-const Admin = require('./models/admin')
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
@@ -38,69 +37,18 @@ app.get('/', (req, res) => {
     res.send("Welcome to home page sir")
 })
 
-app.post('/isMentor', (req, res) => {
+app.get('/getnums' , async (req,res) => {
 
-    const token = req.body.token
+    try {
+        
+        const allmentors = await Mentor.count()
+        const allstudents = await Student.count({})
+        res.json({success : true, mentors : allmentors, stud : allstudents})
 
-    jwt.verify(token, process.env.SECRET, async (err, decocdedToken) => {
-        if (err) {
-            res.json({ success: false })
-        }
-        else {
-            const match = await Mentor.findById(decocdedToken.id)
-            console.log("Match is", match)
-
-            if (match) {
-                console.log(decocdedToken.id)
-                res.json({ success: true })
-            }
-            else {
-                res.json({ success: false })
-            }
-        }
-    })
-})
-
-app.post('/isStudent', (req, res) => {
-
-    const token = req.body.token
-
-    jwt.verify(token, process.env.SECRET, async (err, decocdedToken) => {
-        if (err) {
-            res.json({ success: false })
-        }
-        else {
-            const match = Student.findById(decocdedToken.id)
-
-            if (match) {
-                res.json({ success: true })
-            }
-            else {
-                res.json({ success: false })
-            }
-        }
-    })
-})
-
-app.post('/isAdmin', (req, res) => {
-
-    const token = req.body.token
-
-    jwt.verify(token, process.env.SECRET, async (err, decocdedToken) => {
-        if (err) {
-            res.json({ success: false })
-        }
-        else {
-            const match = Admin.findById(decocdedToken.id)
-
-            if (match) {
-                res.json({ success: true })
-            }
-            else {
-                res.json({ success: false })
-            }
-        }
-    })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+    
 })
 
 const MYPORT = process.env.PORT || 6100

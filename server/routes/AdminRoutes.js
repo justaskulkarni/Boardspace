@@ -107,11 +107,11 @@ router.put('/verify/mentor/:id', async (req, res) => {
     try {
 
         const reqmentor = await Mentor.findById(id)
-        
+
         reqmentor.isverify = true;
         await reqmentor.save()
 
-        res.json({success: true})
+        res.json({ success: true })
 
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -125,8 +125,8 @@ router.get('/verify/mentor/dets/:id', async (req, res) => {
     try {
 
         const reqmentor = await Mentor.findById(id)
-        
-        res.json({success: true, mentdets : reqmentor})
+
+        res.json({ success: true, mentdets: reqmentor })
 
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -134,20 +134,36 @@ router.get('/verify/mentor/dets/:id', async (req, res) => {
 })
 
 router.put('/reject/mentor/:id', async (req, res) => {
-    
-    const {id} = req.params
+
+    const { id } = req.params
 
     try {
-        
+
         const reqmentor = await Mentor.findById(id)
 
         reqmentor.isreject = true
         await reqmentor.save()
 
-        res.json({success : true})
+        res.json({ success: true })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
+})
+
+router.get('/get/rejected', async (req, res) => {
+
+    try {
+        Mentor.find({ otpverified: true, isverify: false, isreject: true }, async (err, data) => {
+            if (err) {
+                throw Error(`${err}`)
+            }
+            else {
+                res.json({ success: true, data: data })
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }    
 })
 
 module.exports = router;
