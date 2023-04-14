@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
 
     <div className={styles.outerdiv}>
-      <div><img className={styles.imgdiv} src={navbarlogo} alt="" /></div>
+      <div><Link to="/"><img className={styles.imgdiv} src={navbarlogo} alt="" /></Link></div>
       <div className={styles.buttons}>
         {(localStorage.getItem("Token") && frole === "Mentor") ?
           <button className={styles.button1} onClick={handleLogout}>Mentor Logout</button>
