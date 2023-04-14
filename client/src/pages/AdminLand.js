@@ -92,10 +92,6 @@ const AdminLand = () => {
         <div className="detailscontainer">
           <span className="welcometext">Admin</span>
         </div>
-        {/* <div className="detailscontainer">
-          
-        {localStorage.getItem("Token") && frole === "Admin" && <button className="logoutbtn" onClick={handleLogout}><span className="welcometext">Logout</span></button>}
-        </div> */}
         <div className="statscontainer">
           <div>
             <div className="detailscontainer">
