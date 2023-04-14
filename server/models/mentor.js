@@ -24,6 +24,10 @@ const mentorSchema = new Schema({
     isreject : {
         type : Boolean,
         default : false
+    },
+    rejectreason : {
+        type: String,
+        default: " "
     }
 })
 
