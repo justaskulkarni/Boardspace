@@ -19,6 +19,7 @@ import ProtectedStudent from './pages/ProtectedStudent';
 import AdminLand from './pages/AdminLand';
 import Notaccepted from './pages/Notaccepted';
 import NotFound from './pages/NotFound';
+import AdminRejected from './pages/AdminRejected';
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
             </Route>
             <Route element={<AdminPrivateRoutes />}>
               <Route path="/admin/landing" element={<AdminLand />} />
+              <Route path="/admin/rejected/reqs" element={<AdminRejected />}/>
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -49,7 +49,9 @@ const AdminLand = () => {
 
   var frole = returnRole(localStorage.getItem("Token"))
 
-  
+  const getrejected = () => {
+    navigate("/admin/rejected/reqs")
+  }
 
   return (
     <>
@@ -59,6 +61,7 @@ const AdminLand = () => {
         <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Home</span></button></div>
         <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Messages</span></button></div>
         <div className="smallcardleft"><button className="leftbutton"><span className="notifications">Feedbacks</span></button></div>
+        <div className="smallcardleft"><button className="leftbutton" onClick={getrejected}><span className="notifications">Rejected</span></button></div>
         {localStorage.getItem("Token") && frole === "Admin" && <button className="logoutbtn" onClick={handleLogout}><span className="welcometext2">Logout</span></button>}
       </div>
       <div class="column middle">

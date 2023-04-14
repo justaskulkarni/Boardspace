@@ -19,6 +19,8 @@ app.use(bodyParser.json())
 const mentorroutes = require('./routes/MentorRoutes')
 const studentroutes = require('./routes/StudentRoutes')
 const adminroutes = require('./routes/AdminRoutes')
+const chatroutes = require('./routes/ChatRoutes')
+const messageroutes = require('./routes/AdminRoutes')
 
 const Mentor = require('./models/mentor')
 const Student = require('./models/student')
@@ -27,6 +29,8 @@ const Admin = require('./models/admin')
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
 app.use('/api/admin/', adminroutes)
+app.use('/api/chat/', chatroutes)
+app.use('/api/message/', messageroutes)
 
 const DB_URL = process.env.MONGO_URL
 mongoose.connect(DB_URL)

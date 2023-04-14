@@ -16,7 +16,7 @@ const AdminPrivateRoutes = () => {
     var frole = returnRole(localStorage.getItem("Token"))
 
     return (
-        (localStorage.getItem("Token") && frole === "Admin") ? <Outlet /> : <Navigate to="/admin/login" />
+        (localStorage.getItem("Token") && frole === "Admin") ? <Outlet /> : <Navigate to="/admin/login/boardspace" />
     )
 }
 

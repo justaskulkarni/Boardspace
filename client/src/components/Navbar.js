@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import jwt_decode from 'jwt-decode'
 
 import navbarlogo from '../assets/navbarlogo.png'
-import '../stylesheets/navbar.css'
+import styles from '../stylesheets/navbar.module.css'
 
 
 
@@ -30,23 +30,23 @@ const Navbar = () => {
 
   return (
 
-    <div className="outerdiv">
-      <div><img className='imgdiv' src={navbarlogo} alt="" /></div>
-      <div className='buttons'>
+    <div className={styles.outerdiv}>
+      <div><img className={styles.imgdiv} src={navbarlogo} alt="" /></div>
+      <div className={styles.buttons}>
         {(localStorage.getItem("Token") && frole === "Mentor") ?
-          <button className="button1" onClick={handleLogout}>Mentor Logout</button>
+          <button className={styles.button1} onClick={handleLogout}>Mentor Logout</button>
           :
-          <button className="button1"><Link className='link1' to="/login">Mentor</Link></button>
+          <button className={styles.button1}><Link className={styles.link1} to="/login">Mentor</Link></button>
         }
 
         {(localStorage.getItem("Token") && frole === "Student") ?
-          <button className="button1" onClick={handleLogout}>Student Logout</button>
+          <button className={styles.button1} onClick={handleLogout}>Student Logout</button>
           :
-          <button className="button1"><Link className='link1' to="/student/login">Student</Link></button>
+          <button className={styles.button1}><Link className={styles.link1} to="/student/login">Student</Link></button>
         }
 
-        {localStorage.getItem("Token") && frole === "Admin" && <button className='button1' onClick={handleLogout}>Admin Logout</button>}
-        <button className="button1">Our Team</button>
+        {localStorage.getItem("Token") && frole === "Admin" && <button className={styles.link1} onClick={handleLogout}>Admin Logout</button>}
+        <button className={styles.button1}>Our Team</button>
       </div>
     </div>
   )
