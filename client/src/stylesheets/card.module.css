@@ -12,22 +12,20 @@
 }
 
 .innermost{
-    width:80%;
-    margin-top: 4.5vh;
+    margin-top: 5.5vh;
 }
 
-.innermost:first-of-type {
+/* .innermost:first-of-type {
     width: 200vw;
-}
+} */
 
 .innermost1 {
-    width: 80%;
-
+    width: 60%;
 }
 
-.innermost1:first-of-type {
+/* .innermost1:first-of-type {
     width: 200vw;
-}
+} */
 
 .cardcontent{
     font-weight: bolder;
@@ -39,12 +37,9 @@
 
 .verifybutton {
     border: none;
-    margin-right:20vw;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     background-color: rgb(255, 255, 255);
-    color: #291755;
-    font-weight: bolder;
-    font-size: 1.5rem;
+    margin-right: 1vw;
     position: relative;
 }
 
@@ -89,5 +84,9 @@
     font-size: 24px;
     cursor: pointer;
     z-index: 2;
+}
 
+.btncontainer {
+    display: flex;
+    justify-content: space-between;
 }
