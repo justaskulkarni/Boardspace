@@ -2,7 +2,7 @@ import Navbar from '../components/Navbar'
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
-import '../stylesheets/auth.css'
+import styles from '../stylesheets/auth.module.css'
 
 const AdminSignup = () => {
 
@@ -47,21 +47,21 @@ const AdminSignup = () => {
     return (
         <>
             <Navbar />
-            <div className="wrapper">
-            <div className="mostout">
-                <div className="colourdiv"></div>
-                <div className="rightdiv">
-                    <form className="signup" onSubmit={handleSubmit}>
-                        <h3 className="formheader"><span className="headertext">Admin Sign Up</span></h3>
+            <div className={styles.wrapper}>
+            <div className={styles.mostout}>
+                <div className={styles.colour1}></div>
+                <div className={styles.rightdiv}>
+                    <form className={styles.signup} onSubmit={handleSubmit}>
+                        <h3 className={styles.formheader}><span className={styles.headertext}>Admin Sign Up</span></h3>
 
-                        <div className="formcontent">
+                        <div className={styles.formcontent}>
                             <input
                                 type="text"
                                 value={creadentials.name}
                                 name="name"
                                 onChange={onChange}
                                 placeholder="Name"
-                                className="inputbox"
+                                className={styles.inputbox}
                             />
 
                             <input
@@ -70,7 +70,7 @@ const AdminSignup = () => {
                                 name="email"
                                 onChange={onChange}
                                 placeholder="Email"
-                                className="inputbox"
+                                className={styles.inputbox}
                             />
 
                             <input
@@ -79,15 +79,15 @@ const AdminSignup = () => {
                                 name="password"
                                 onChange={onChange}
                                 placeholder="Password"
-                                className="inputbox"
+                                className={styles.inputbox}
                             />
 
                         </div>
 
-                        <button className="signupbutton" >Sign up</button>
-                        <button className="button2"><Link className="lol" to={"/admin/login"}>Login</Link></button>
+                        <button className={styles.signupbutton} >Sign up</button>
+                        <button className={styles.button2}><Link className={styles.lol} to={"/admin/login"}>Login</Link></button>
                     </form>
-                    {error && <div className="error">{error}</div>}
+                    {error && <div className={styles.error}>{error}</div>}
                 </div>
                 
             </div>

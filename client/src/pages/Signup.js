@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
-import '../stylesheets/auth.css'
+import styles from '../stylesheets/auth.module.css'
 
 const Signup = () => {
   const [creadentials, setCredentials] = useState({ email: "", otp: "", name: "" })
@@ -87,22 +87,22 @@ const Signup = () => {
   return (
     <>
       <Navbar />
-      <div className="wrapper">
-        <div className="mostout">
-          <div className="colour1"></div>
-          <div className="rightdiv">
+      <div className={styles.wrapper}>
+        <div className={styles.mostout}>
+          <div className={styles.colour1}></div>
+          <div className={styles.rightdiv}>
             {!showOtpDiv &&
-              <form className="signup" onSubmit={handleSubmit1}>
-                <h3 className="formheader"><span className="loginhead">Sign Up</span></h3>
+              <form className={styles.signup} onSubmit={handleSubmit1}>
+                <h3 className={styles.formheader}><span className={styles.loginhead}>Sign Up</span></h3>
 
-                <div className="formcontent">
+                <div className={styles.formcontent}>
                   <input
                     type="text"
                     value={creadentials.name}
                     name="name"
                     onChange={onChange}
                     placeholder="Name"
-                    className="inputbox"
+                    className={styles.inputbox}
                   />
 
                   <input
@@ -111,13 +111,13 @@ const Signup = () => {
                     name="email"
                     onChange={onChange}
                     placeholder="Email"
-                    className="inputbox"
+                    className={styles.inputbox}
                   />
 
                 </div>
-                <div className="buttonscontainer">
-                <button className="loginbutton" >SignUp</button>
-                <button className="signupbutton"><Link className='lol' to={"/login"}>Login</Link></button>
+                <div className={styles.buttonscontainer}>
+                <button className={styles.loginbutton} >SignUp</button>
+                <button className={styles.signupbutton}><Link className={styles.lol} to={"/login"}>Login</Link></button>
                 </div>
                 
               </form>
@@ -125,23 +125,23 @@ const Signup = () => {
 
             {showOtpDiv &&
               (<div>
-                <form className="signup" onSubmit={handleSubmit2}>
-                  <h3 className="formheader"><span className="headertext">Enter your OTP</span></h3>
-                  <div className="formcontent">
+                <form className={styles.signup} onSubmit={handleSubmit2}>
+                  <h3 className={styles.formheader}><span className={styles.headertext}>Enter your OTP</span></h3>
+                  <div className={styles.formcontent}>
                     <input
                       type="number"
                       value={creadentials.otp}
                       name="otp"
                       onChange={onChange}
                       placeholder="OTP"
-                      className="inputbox"
+                      className={styles.inputbox}
                     />
                   </div>
-                  <button className="signupbutton" >Submit OTP</button>
+                  <button className={styles.signupbutton} >Submit OTP</button>
                 </form>
               </div>)
             }
-            {error && <div className="error">{error}</div>}
+            {error && <div className={styles.error}>{error}</div>}
           </div>
         </div>
       </div>
