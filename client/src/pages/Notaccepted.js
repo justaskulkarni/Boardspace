@@ -92,7 +92,7 @@ const Notaccepted = () => {
         />
       </head>
 
-      <body>
+      <body className={styles.outermost}>
         <div className={styles.outerdiv}>
           <div>
             <Link to="/">
