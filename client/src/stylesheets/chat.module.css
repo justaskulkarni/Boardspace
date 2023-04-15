@@ -9,3 +9,32 @@
 .right {
     width: 80%;
 }
+
+.notifications {
+    color: #505887;
+    font-size: 1.2rem;
+    display: block;
+}
+
+.notifications1 {
+    color: #505887;
+    font-size: 1.7rem;
+    display: block;
+}
+
+.smallcardleft {
+    display: block;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 2vw;
+}
+
+.smallcardleft:first-of-type {
+    margin-top: 10vh;
+}
+
+.leftbutton {
+    border: none;
+    background-color: white;
+
+}
