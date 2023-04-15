@@ -30,12 +30,12 @@ app.use('/api/admin/', adminroutes)
 const server = require('http').createServer(app)
 const MYPORT = process.env.PORT || 6100
 
-const io = require('socket.io')(server, {
-    cors: {
-      origin: 'http://localhost:3000',
-      methods: ['GET', 'POST']
-    }
-  })
+// const io = require('socket.io')(server, {
+//     cors: {
+//       origin: 'http://localhost:3000',
+//       methods: ['GET', 'POST']
+//     }
+//   })
 
 const DB_URL = process.env.MONGO_URL
 mongoose.connect(DB_URL)
@@ -61,29 +61,13 @@ app.get('/getnums' , async (req,res) => {
     
 })
 
-const multer = require('multer')
 
-
-const cloudinary = require('cloudinary').v2
-
-cloudinary.config({
-    cloud_name : process.env.CLOUD_C_NAME,
-    api_key : process.env.CLOUD_KEY,
-    api_secret : process.env.CLOUD_SECRET
-})
-
-
-const uploader = multer({
-    storage : multer.diskStorage({}),
-    limits : {fileSize : 500000}
-})
-
-app.post('/temp', uploader.single('image'), async(req,res) => {
+// app.post('/temp', uploader.single('image'), async(req,res) => {
     
-    const haha = await cloudinary.uploader.upload(req.file.path)
+//     const haha = await cloudinary.uploader.upload(req.file.path)
 
-    console.log(haha.secure_url)
-})
+//     console.log(haha.secure_url)
+// })
 
 server.listen(MYPORT, () => {
     console.log(`Ready to serve you master on ${MYPORT}`)
