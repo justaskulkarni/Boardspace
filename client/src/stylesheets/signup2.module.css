@@ -1,0 +1,156 @@
+*{
+    overflow:hidden;
+}
+.rightdiv {
+    position: absolute;
+    float: right;
+    width: 60%;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    right: 3.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+
+form {
+    display: block;
+}
+
+.formheader {
+    margin-bottom: 0.4rem;
+    margin-top: 0.5rem;
+    margin-left: 21rem;
+}
+
+.headertext {
+    border-bottom: 0.3rem solid blue;
+}
+
+input {
+    margin-left: 16rem;
+    display: block;
+    border: none;
+    border-bottom: 0.1rem solid gray;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    margin-bottom:0;
+}
+
+.buttonscontainer {
+    display: inline;
+}
+
+.signupbutton {
+    margin-left: 18rem;
+    margin-top: 2rem;
+    border: none;
+    text-decoration: none;
+    background-color: white;
+    color: blue;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.loginbutton {
+    text-decoration: none;
+    margin-top: 0;
+    background-color: blue;
+    border-radius: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 5rem;
+    font-weight: bolder;
+    color: white;
+    font-size: 1.5rem;
+}
+
+
+.forgotpasswordbutton {
+    display: block;
+    margin-left: 21rem;
+    margin-top: 2rem;
+    font-size: 1rem;
+    border: none;
+    font-weight: bolder;
+    background-color: white;
+    color: blue;
+    font-size: 1.1rem;
+}
+
+.buttontext {
+    color: white;
+    text-decoration: none;
+}
+
+
+.colour1 {
+    height: 80rem;
+    position: absolute;
+    width: 55rem;
+    background-color: #9e3ffd;
+    transform: rotate(15.59deg);
+    left: -12rem;
+    top: -17rem;
+    z-index: -1;
+}
+
+.mostout {
+    display: flex;
+}
+
+.checkboxstyle {
+    display:flex;
+}
+
+label{
+    height:4.1rem;
+}
+
+p{
+    padding-top:1.5rem;
+    font-size: 0.8rem; 
+    padding-left: 1rem;   
+}
+
+.signupbutton2 {
+    margin-left: 18rem;
+    margin-top: 1rem;
+    border: none;
+    text-decoration: none;
+    background-color: white;
+    color: blue;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.boxstyle{
+    transform: scale(1.5);
+}
+
+.uploadbutton {
+    border: none;
+    border-radius: 0.75rem;
+    background-color: rgb(255, 255, 255);
+    right:-7vw;
+    position: relative;
+}
+
+.butimgdiv {
+    height: 2rem;
+    width: 2rem;
+    margin-top:2rem;
+    object-fit: contain;
+}
+
+.error {
+    color: #cc393d;
+    text-align: center;
+    margin-left: 12rem;
+    width: 60%;
+    height: 5%;
+    font-size: 1.6rem;
+    background-color: #ffeded;
+    border: 0.05rem solid black;
+}

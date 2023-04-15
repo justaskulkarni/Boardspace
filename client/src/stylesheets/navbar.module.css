@@ -28,7 +28,7 @@
     font-size: 20rem;
 }
 
-.button1 {
+.tail{
     float: right;
     padding-right: 2rem;
     background-color: transparent;
@@ -37,10 +37,10 @@
     color: black;
 }
 
-.button1:hover{
+.tail:hover{
     color:#ab39fa;
 }
-.button1 .link1:hover{
+.tail .link1:hover{
     color: #ab39fa;
 }
 
