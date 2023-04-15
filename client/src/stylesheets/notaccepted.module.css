@@ -1,0 +1,253 @@
+.outermost {
+  background-color: #1c2127;
+}
+.container {
+  margin-top: 3.5rem;
+  position: absolute;
+  right: 3rem;
+}
+.message {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  position: absolute;
+  top: 18rem;
+  left: 12rem;
+}
+.message2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+  width: 22.5rem;
+  position: absolute;
+  top: 22rem;
+  left: 12.3rem;
+}
+
+.neon {
+  text-align: center;
+  /* width: 12rem; */
+  padding-left: 3.5rem;
+  padding-top: 1.3rem;
+  font-family: "Varela Round", sans-serif;
+  font-size: 4.5rem;
+  color: #9344f5;
+  letter-spacing: 0.1875rem;
+  text-shadow: 0 0 0.3125rem #9344f5;
+  animation: flux 2s linear infinite;
+}
+.trash {
+  width: 10.625rem;
+  height: 13.75rem;
+  background-color: #585f67;
+  top: 18.75rem;
+}
+.can {
+  width: 11.875rem;
+  height: 1.875rem;
+  background-color: #6b737c;
+  border-radius: 0.9375rem 0.9375rem 0 0;
+}
+.doorframe {
+  height: 30.9375rem;
+  width: 18.4375rem;
+  border-radius: 5.625rem 5.625rem 0 0;
+  background-color: #8594a5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.door {
+  height: 28.125rem;
+  width: 15.625rem;
+  border-radius: 4.375rem 4.375rem 0 0;
+  background-color: #a0aec0;
+}
+
+.eye {
+  top: 0.9375rem;
+  left: 1.5625rem;
+  height: 0.3125rem;
+  width: 0.9375rem;
+  border-radius: 50%;
+  background-color: white;
+  animation: eye 7s ease-in-out infinite;
+  position: absolute;
+}
+.eye2 {
+  left: 4.0625rem;
+}
+
+.window {
+  height: 2.5rem;
+  width: 8.125rem;
+  background-color: #1c2127;
+  border-radius: 0.1875rem;
+  margin: 5rem auto;
+  position: relative;
+}
+
+.leaf {
+  height: 2.5rem;
+  width: 8.125rem;
+  background-color: #000000;
+  border-radius: 0.1875rem;
+  margin: 5rem auto;
+  animation: leaf 7s infinite;
+  transform-origin: right;
+}
+
+.handle {
+  height: 0.5rem;
+  width: 3.125rem;
+  border-radius: 0.25rem;
+  background-color: #ebf3fc;
+  position: absolute;
+  margin-top: 15.625rem;
+  margin-left: 1.875rem;
+}
+
+.rectangle {
+  height: 4.375rem;
+  width: 1.5625rem;
+  background-color: #cbd8e6;
+  border-radius: 0.25rem;
+  position: absolute;
+  margin-top: 13.75rem;
+  margin-left: 1.25rem;
+}
+.entiredoor {
+  padding-left: 12rem;
+}
+
+@keyframes leaf {
+  0% {
+    transform: scaleX(1);
+  }
+  5% {
+    transform: scaleX(0.2);
+  }
+  70% {
+    transform: scaleX(0.2);
+  }
+  75% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes eye {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  5% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(0.9375rem);
+  }
+  35% {
+    transform: translateX(0.9375rem);
+  }
+  40% {
+    transform: translateX(-0.9375rem);
+  }
+  60% {
+    transform: translateX(-0.9375rem);
+  }
+  65% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes flux {
+  0%,
+  100% {
+    text-shadow: 0 0 0.3125rem #8c33f9f7, 0 0 0.9375rem #8c33f9f7,
+      0 0 3.125rem #8c33f9f7, 0 0 3.125rem #8c33f9f7, 0 0 0.125rem #8c33f9f7,
+      0.125rem 0.125rem 0.1875rem #8c33f9f7;
+    color: #8c33f9f7;
+  }
+  50% {
+    text-shadow: 0 0 3px #a05af6f0, 0 0 7px #a05af6f0, 0 0 25px #a05af6f0,
+      0 0 25px #a05af6f0, 0 0 2px #a05af6f0, 2px 2px 3px #a05af6f0;
+    color: #a05af6f0;
+  }
+}
+
+/* TEMP */
+@keyframes templol {
+  0%,
+  100% {
+    text-shadow: 0 0 5px #00ffc6, 0 0 15px #00ffc6, 0 0 50px #00ffc6,
+      0 0 50px #00ffc6, 0 0 2px #b9ffe8, 2px 2px 3px #12e29c;
+    color: #4bffef;
+  }
+  50% {
+    text-shadow: 0 0 3px #00b58d, 0 0 7px #00b58d, 0 0 25px #00b58d,
+      0 0 25px #00b58d, 0 0 2px #00b58d, 2px 2px 3px #006a60;
+    color: #63d3ae;
+  }
+}
+
+/* Navbar css */
+.outerdiv {
+  display: flex;
+  overflow-x: hidden;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+}
+
+.imgdiv {
+  float: left;
+  margin-top: 0.9rem;
+  margin-left: 0.7rem;
+  height: 7rem;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(10);
+}
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons {
+  position: relative;
+  width: 100%;
+  margin-top: 2.15rem;
+  margin-left: 5rem;
+  font-size: 20rem;
+}
+
+.button1 {
+  float: right;
+  padding-right: 2rem;
+  background-color: transparent;
+  border: 0px;
+  font-size: 1.4rem;
+  color: rgb(255, 255, 255);
+}
+
+.button1:hover {
+  color: #ab39fa;
+}
+.button1 .link1:hover {
+  color: #ab39fa;
+}
+
+.link1 {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
