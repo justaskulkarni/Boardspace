@@ -16,11 +16,7 @@ const Signup2 = () => {
   const topper = []
   const [details, setDetails] = useState({ password: "", idurl: "", email: location.state.email })
 
-  let var1 = 0
-  let var2 = 0
-  let var3 = 0
-  let var4 = 0
-  let var5 = 0
+  const [count, setcount] = useState(0)
 
   const [isNeetTopper, setNeet] = useState(false)
   const [isJeeTopper, setJee] = useState(false)
@@ -48,61 +44,52 @@ const Signup2 = () => {
 
   const onChange2 = async () => {
     setNeet(!isNeetTopper)
-    if(isNeetTopper === true){
-      var1 = 1
-      console.log(var1)
+    if (isNeetTopper === true) {
+      setcount(count+1)
+      console.log(count)
     }
-    else{
-      var1 = 0;
-      console.log(var1)
+    else {
+      setcount(count-1)
     }
   }
 
   const onChange3 = () => {
     setBoard(!isBoardTopper)
-    if(isBoardTopper === true){
-      var2 = 1
-      console.log(var2)
+    if (isBoardTopper === true) {
+      setcount(count+1)
     }
-    else{
-      var2 = 0
-      console.log(var2)
+    else {
+      setcount(count-1)
     }
   }
 
   const onChange4 = () => {
     setJee(!isJeeTopper)
-    if(isJeeTopper === true){
-      var3 = 1
-      console.log(var3)
+    if (isJeeTopper === true) {
+      setcount(count+1)
     }
-    else{
-      var3 = 0
-      console.log(var3)
+    else {
+      setcount(count-1)
     }
   }
 
   const onChange5 = () => {
     setMaster(!isMasters)
-    if(isMasters === true){
-      var4 = 1
-      console.log(var4)
+    if (isMasters === true) {
+      setcount(count+1)
     }
-    else{
-      var4 = 0
-      console.log(var4)
+    else {
+      setcount(count-1)
     }
   }
 
   const onChange6 = () => {
     setPHD(!isPHD)
-    if(isPHD === true){
-      var5 = 1
-      console.log(var5)
+    if (isPHD === true) {
+      setcount(count+1)
     }
-    else{
-      var5 = 0
-      console.log(var5)
+    else {
+      setcount(count-1)
     }
   }
 
@@ -133,38 +120,37 @@ const Signup2 = () => {
 
 
     console.log(topper)
-    
-    if(topper.length === 0){
+
+    if (topper.length === 0) {
       setError("Select atleast one field")
-      return 
+      return error
     }
-    if(var1 != 0 || var2 != 0 || var3 != 0 || var4 != 0 || var5 != 0){
-      setError("Some documents not uploaded")
-      return 
-    }
-
-
-
-    const response = await fetch("http://localhost:6100/api/mentor/signup", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: details.email, idurl: details.idurl, password: details.password, topper: topper })
-    })
-
-    const json = await response.json()
-
-    if (json.success) {
-      navigate("/notaccepted", {
-        state: {
-          message: json.mssg
-        }
+    if (count === 0) {
+      const response = await fetch("http://localhost:6100/api/mentor/signup", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: details.email, idurl: details.idurl, password: details.password, topper: topper })
       })
+
+      const json = await response.json()
+
+      if (json.success) {
+        navigate("/notaccepted", {
+          state: {
+            message: json.mssg
+          }
+        })
+      }
+
+      console.log(json.error)
+
+      if (json.error) {
+        setError(json.error)
+      }
     }
-
-    console.log(json.error)
-
-    if (json.error) {
-      setError(json.error)
+    else{
+      setError("Kindly upload all the documents")
+      return error
     }
 
   }
@@ -178,8 +164,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
-        var2 = 0
-        console.log(var2)
+        setcount(count-1)
       }
     })
     widgetRef.current.open()
@@ -193,8 +178,7 @@ const Signup2 = () => {
       public_id: `${details.email}/jee`
     }, function async(error, result) {
       if (result.event === "success") {
-        upload(result.info.secure_url)
-        var3 = 0
+        setcount(count-1)
       }
     })
     widgetRef.current.open()
@@ -208,8 +192,7 @@ const Signup2 = () => {
       public_id: `${details.email}/neet`
     }, function async(error, result) {
       if (result.event === "success") {
-        upload(result.info.secure_url)
-        var1 = 0
+        setcount(count-1)
       }
     })
     widgetRef.current.open()
@@ -223,8 +206,7 @@ const Signup2 = () => {
       public_id: `${details.email}/masters`
     }, function async(error, result) {
       if (result.event === "success") {
-        upload(result.info.secure_url)
-        var4 = 0
+        setcount(count-1)
       }
     })
     widgetRef.current.open()
@@ -238,8 +220,7 @@ const Signup2 = () => {
       public_id: `${details.email}/phd`
     }, function async(error, result) {
       if (result.event === "success") {
-        upload(result.info.secure_url)
-        var5 = 0
+        setcount(count-1)
       }
     })
     widgetRef.current.open()
