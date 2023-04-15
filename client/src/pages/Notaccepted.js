@@ -92,7 +92,7 @@ const Notaccepted = () => {
         />
       </head>
 
-      <body className={styles.outermost}>
+      
         <div className={styles.outerdiv}>
           <div>
             <Link to="/">
@@ -147,7 +147,7 @@ const Notaccepted = () => {
             </div>
           </div>
         </div>
-      </body>
+      
     </>
   );
 };
