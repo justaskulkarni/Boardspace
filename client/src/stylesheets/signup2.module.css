@@ -14,6 +14,7 @@
     align-items: center;
     align-content: center;
     font-family: 'Poppins', sans-serif;
+    margin-top: 9rem;
 }
 
 form {
@@ -28,6 +29,7 @@ form {
 
 .headertext {
     border-bottom: 0.3rem solid blue;
+    padding-bottom: 0.5rem;
 }
 
 input {
@@ -155,4 +157,17 @@ p{
     font-size: 1.6rem;
     background-color: #ffeded;
     border: 0.05rem solid black;
+}
+
+.formcontent {
+    margin-top: 3rem;
+}
+
+.fileinput {
+    display: flex;
+
+}
+
+.filefield {
+    display: none;
 }

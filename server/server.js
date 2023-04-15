@@ -19,8 +19,6 @@ app.use(bodyParser.json())
 const mentorroutes = require('./routes/MentorRoutes')
 const studentroutes = require('./routes/StudentRoutes')
 const adminroutes = require('./routes/AdminRoutes')
-const chatroutes = require('./routes/ChatRoutes')
-const messageroutes = require('./routes/AdminRoutes')
 
 const Mentor = require('./models/mentor')
 const Student = require('./models/student')
@@ -28,8 +26,16 @@ const Student = require('./models/student')
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
 app.use('/api/admin/', adminroutes)
-app.use('/api/chat/', chatroutes)
-app.use('/api/message/', messageroutes)
+
+const server = require('http').createServer(app)
+const MYPORT = process.env.PORT || 6100
+
+// const io = require('socket.io')(server, {
+//     cors: {
+//       origin: 'http://localhost:3000',
+//       methods: ['GET', 'POST']
+//     }
+//   })
 
 const DB_URL = process.env.MONGO_URL
 mongoose.connect(DB_URL)
@@ -55,8 +61,14 @@ app.get('/getnums' , async (req,res) => {
     
 })
 
-const MYPORT = process.env.PORT || 6100
 
-app.listen(MYPORT, () => {
+// app.post('/temp', uploader.single('image'), async(req,res) => {
+    
+//     const haha = await cloudinary.uploader.upload(req.file.path)
+
+//     console.log(haha.secure_url)
+// })
+
+server.listen(MYPORT, () => {
     console.log(`Ready to serve you master on ${MYPORT}`)
 })

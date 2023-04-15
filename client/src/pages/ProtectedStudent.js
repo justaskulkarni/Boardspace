@@ -1,46 +1,61 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
-import { useEffect, useRef } from 'react'
-import jwt_decode from 'jwt-decode'
 
 const ProtectedStudent = () => {
 
-  const returnId = (reqtoken) => {
-    if (reqtoken) {
-      var decoded = jwt_decode(reqtoken)
-      return (decoded.id)
-    }
-    else {
-      return (null)
-    }
-  }
-  var uid = returnId(localStorage.getItem("Token"))
-  const userid = String(uid)
+  const [temp, settemp] = useState({ name: "", file: null })
 
-  const cloudinaryRef = useRef()
-  const widgetRef = useRef()
-  useEffect(() => {
-    cloudinaryRef.current = window.cloudinary
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${userid}/abc/123`
-    }, function (error, result) {
-    })
-  }, [])
+  const hello = (event) => {
+    settemp({ ...temp, [event.target.name]: event.target.value })
+  }
+
+  const rukjao = (event) => {
+    let file1 = event.target.files[0]
+    settemp({ ...temp, file: file1 })
+    console.log("hi")
+  }
+
+
+  const handleme = async(e) => {
+    e.preventDefault()
+    console.log(temp)
+
+    const typef = temp.file.type
+    const splitted = typef.split("/")
+
+    if(splitted[0] === "image"){
+      
+      let data = new FormData()
+
+      data.append('image',temp.file)
+      data.append('hello',temp.name)
+  
+      const response = await fetch('http://localhost:6100/temp', {
+        method: 'POST',
+        body: data
+      })
+  
+      const json = await response.json()
+  
+      if (json.error) {
+        console.log(json.error)
+      }
+    }
+    else{
+      console.log("hatt teri mkc")
+    }
+    
+  }
 
   return (
     <>
-      <Navbar />
-
       <div>
-        <button onClick={() => widgetRef.current.open()}>
-          Upload
-        </button>
-      <div>
+        <form onSubmit={handleme} encType="multipart/form">
+          <input type="file" onChange={rukjao} />
+          <input type="text" onChange={hello} name="name" value={temp.name} />
+          <button>fuck</button>
+        </form>
       </div>
-      </div>
-      
     </>
   )
 }

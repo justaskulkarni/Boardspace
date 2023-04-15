@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
 import uploadicon from '../assets/upload.png'
+import subicon from '../assets/submitdoc.png'
 import styles from '../stylesheets/signup2.module.css'
 
 const Signup2 = () => {
@@ -18,21 +19,24 @@ const Signup2 = () => {
 
   const [count, setcount] = useState(0)
 
-  const [isNeetTopper, setNeet] = useState(false)
-  const [isJeeTopper, setJee] = useState(false)
-  const [isBoardTopper, setBoard] = useState(false)
-  const [isMasters, setMaster] = useState(false)
-  const [isPHD, setPHD] = useState(false)
+  const [isNeetTopper, setNeet] = useState({enabled : false, file: null, disable:false})
+  const [isJeeTopper, setJee] = useState({enabled : false, file: null, disable:false})
+  const [isBoardTopper, setBoard] = useState({enabled : false, file: null, disable:false})
+  const [isMasters, setMaster] = useState({enabled : false, file: null, disable:false})
+  const [isPHD, setPHD] = useState({enabled : false, file: null, disable:false})
 
   const onChange1 = (event) => {
     setDetails({ ...details, [event.target.name]: event.target.value })
   }
 
-  const upload = async (surl) => {
+  const upload = async (exe) => {
+
+    let data = new FormData()
+    data.append('image',exe)
+
     const response = await fetch(`http://localhost:6100/api/mentor/addurl/${details.email}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url: surl })
+      body: data
     })
 
     const json = await response.json()
@@ -42,78 +46,88 @@ const Signup2 = () => {
     }
   }
 
+  const checkkarobt = () => {
+    if(isBoardTopper.enabled && !isBoardTopper.disable)
+    {
+      return false
+    }
+
+    if(isJeeTopper.enabled && !isJeeTopper.disable)
+    {
+      return false
+    }
+
+    if(isMasters.enabled && !isMasters.disable)
+    {
+      return false
+    }
+
+    if(isNeetTopper.enabled && !isNeetTopper.disable)
+    {
+      return false
+    }
+
+    if(isPHD.enabled && !isPHD.disable)
+    {
+      return false
+    }
+
+    return true
+  }
+
   const onChange2 = async () => {
-    setNeet(!isNeetTopper)
-    if (isNeetTopper === true) {
-      setcount((count) => count+1)
-      console.log(count)
-    }
-    else {
-      setcount((count) => count-1)
-    }
+    setNeet({...isNeetTopper, enabled : !isNeetTopper.enabled})
+  }
+
+  const onChange2a = async (event) => {
+    let file1 = event.target.files[0]
+    setNeet({...isNeetTopper, file : file1})
   }
 
   const onChange3 = () => {
-    setBoard(!isBoardTopper)
-    if (isBoardTopper === true) {
-      setcount((count) => count+1)
-    }
-    else {
-      setcount((count) => count-1)
-    }
+    setBoard({...isBoardTopper,enabled : !isBoardTopper.enabled})
+  }
+
+  const onChange3a = (event) => {
+    let file1 = event.target.files[0]
+    console.log(file1)
+    setBoard({ ...isBoardTopper, file : file1 })
+    console.log(isBoardTopper.file)
   }
 
   const onChange4 = () => {
-    setJee(!isJeeTopper)
-    if (isJeeTopper === true) {
-      setcount((count) => count+1)
-    }
-    else {
-      setcount((count) => count-1)
-    }
+    setJee({...isJeeTopper,enabled : !isJeeTopper.enabled})
   }
 
   const onChange5 = () => {
-    setMaster(!isMasters)
-    if (isMasters === true) {
-      setcount((count) => count+1)
-    }
-    else {
-      setcount((count) => count-1)
-    }
+    setMaster({...isMasters, enabled : !isMasters.enabled})
   }
 
   const onChange6 = () => {
-    setPHD(!isPHD)
-    if (isPHD === true) {
-      setcount((count) => count+1)
-    }
-    else {
-      setcount((count) => count-1)
-    }
+    setPHD({...isPHD, enabled: !isPHD.enabled})
   }
 
   const handleSubmit2 = async (e) => {
 
     e.preventDefault()
 
-    if (isBoardTopper) {
+    if (isBoardTopper.enabled) {
       topper.push("Board Topper")
     }
 
-    if (isJeeTopper) {
+    if (isJeeTopper.enabled) {
       topper.push("JEE Topper")
     }
 
-    if (isMasters) {
+    if (isMasters.enabled) {
       topper.push("Masters")
     }
 
-    if (isNeetTopper) {
+    if (isNeetTopper.enabled) {
       topper.push("Neet Topper")
     }
 
-    if (isPHD) {
+    if (isPHD.enabled) {
       topper.push("PHD")
     }
 
@@ -154,17 +168,10 @@ const Signup2 = () => {
 
   const handleSubmit3 = async (e) => {
     e.preventDefault()
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/board`
-    }, function async(error, result) {
-      if (result.event === "success") {
-        upload(result.info.secure_url)
-        setcount((count) => count-1)
-      }
-    })
-    widgetRef.current.open()
+    setBoard({...isBoardTopper,disable : true})
+    console.log(setBoard.file)
+    await upload(setBoard.file)
+    
   }
 
   const handleSubmit4 = async (e) => {
@@ -234,75 +241,45 @@ const Signup2 = () => {
         <div className={styles.mostout}>
           <div className={styles.colour1}></div>
           <div className={styles.rightdiv}>
-            <form className={styles.signup} onSubmit={handleSubmit2}>
+            <form className={styles.signup} onSubmit={handleSubmit2} encType="multipart/form">
               <h3 className={styles.formheader}><span className={styles.headertext}>Enter your Details</span></h3>
               <div className={styles.formcontent}>
-                <input
-                  type="password"
-                  value={details.password}
-                  name="password"
-                  onChange={onChange1}
-                  placeholder="password"
-                  className={styles.inputbox}
-                />
+                <input type="password" value={details.password} name="password" onChange={onChange1} placeholder="password" className={styles.inputbox} />
+                
                 <label htmlFor="boardtopper" className={styles.checkboxstyle}>
-                  <input
-                    type="checkbox"
-                    defaultChecked={false}
-                    value={"Board Topper"}
-                    onChange={onChange3}
-                    name="Board Topper"
-                    className={styles.boxstyle}
-                  /><p>Board Topper</p>
-                  {isBoardTopper && <button className={styles.uploadbutton} onClick={handleSubmit3}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} /><p>Board Topper</p>
+                  {isBoardTopper.enabled &&<div className={styles.fileinput}>
+                    <label htmlFor="boardtop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
+                    <input type="file" className={styles.filefield} id="boardtop" onChange={onChange3a} />
+                    </label>
+                    {isBoardTopper.file && <button className={styles.uploadbutton} onClick={handleSubmit3}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  </div> }
                 </label>
+
                 <label htmlFor="jeetopper" className={styles.checkboxstyle}>
-                  <input
-                    type="checkbox"
-                    defaultChecked={false}
-                    value={"JEE Topper"}
-                    onChange={onChange4}
-                    name="JEE Topper"
-                    className={styles.boxstyle}
-                  /><p>JEE Topper</p>
-                  {isJeeTopper && <button className={styles.uploadbutton} onClick={handleSubmit4}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"JEE Topper"} onChange={onChange4} name="JEE Topper" className={styles.boxstyle} /><p>JEE Topper</p>
+                  {isJeeTopper.enabled && <button className={styles.uploadbutton} onClick={handleSubmit4}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
+
                 <label htmlFor="neettopper" className={styles.checkboxstyle}>
-                  <input
-                    type="checkbox"
-                    defaultChecked={false}
-                    value={"Neet Topper"}
-                    onChange={onChange2}
-                    name="Neet Topper"
-                    className={styles.boxstyle}
-                  /><p>NEET Topper</p>
-                  {isNeetTopper && <button className={styles.uploadbutton} onClick={handleSubmit5}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"Neet Topper"} onChange={onChange2} name="Neet Topper" className={styles.boxstyle} /><p>NEET Topper</p>
+                  {isNeetTopper.enabled && <button className={styles.uploadbutton} onClick={handleSubmit5}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
+
                 <label htmlFor="masters" className={styles.checkboxstyle}>
-                  <input
-                    type="checkbox"
-                    defaultChecked={false}
-                    value={"Masters"}
-                    onChange={onChange5}
-                    name="Masters"
-                    className={styles.boxstyle}
-                  /><p>Masters Student</p>
-                  {isMasters && <button className={styles.uploadbutton} onClick={handleSubmit6}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"Masters"} onChange={onChange5} name="Masters" className={styles.boxstyle}/><p>Masters Student</p>
+                  {isMasters.enabled && <button className={styles.uploadbutton} onClick={handleSubmit6}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
+
                 <label htmlFor="phd" className={styles.checkboxstyle}>
-                  <input
-                    type="checkbox"
-                    defaultChecked={false}
-                    value={"PHD"}
-                    onChange={onChange6}
-                    name="PHD"
-                    className={styles.boxstyle}
-                  /><p>PHD Student</p>
-                  {isPHD && <button className={styles.uploadbutton} onClick={handleSubmit7}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"PHD"} onChange={onChange6} name="PHD" className={styles.boxstyle} /><p>PHD Student</p>
+                  {isPHD.enabled && <button className={styles.uploadbutton} onClick={handleSubmit7}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
               </div>
+              
               <button className={styles.signupbutton2}>Submit</button>
             </form>
+            
             {error && <div className={styles.error}>{error}</div>}
           </div>
         </div>
