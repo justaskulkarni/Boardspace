@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
+import Navbar from "../components/Navbar";
 
 const SOCKET_URL = "http://localhost:6001";
 const socket = io(SOCKET_URL);
@@ -61,6 +62,7 @@ const Chat = () => {
 
   return (
     <>
+        <Navbar />
         <div className={styles.row}>
             <div className={styles.column + " " + styles.left}>
                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
