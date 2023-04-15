@@ -14,7 +14,7 @@ const Signup2 = () => {
 
   const [error, setError] = useState(null)
   const topper = []
-  const [details, setDetails] = useState({ password: "", idurl: "", email: location.state.email })
+  const [details, setDetails] = useState({ password: "", email: location.state.email })
 
   const [count, setcount] = useState(0)
 
@@ -45,58 +45,57 @@ const Signup2 = () => {
   const onChange2 = async () => {
     setNeet(!isNeetTopper)
     if (isNeetTopper === true) {
-      setcount(count+1)
+      setcount((count) => count+1)
       console.log(count)
     }
     else {
-      setcount(count-1)
+      setcount((count) => count-1)
     }
   }
 
   const onChange3 = () => {
     setBoard(!isBoardTopper)
     if (isBoardTopper === true) {
-      setcount(count+1)
+      setcount((count) => count+1)
     }
     else {
-      setcount(count-1)
+      setcount((count) => count-1)
     }
   }
 
   const onChange4 = () => {
     setJee(!isJeeTopper)
     if (isJeeTopper === true) {
-      setcount(count+1)
+      setcount((count) => count+1)
     }
     else {
-      setcount(count-1)
+      setcount((count) => count-1)
     }
   }
 
   const onChange5 = () => {
     setMaster(!isMasters)
     if (isMasters === true) {
-      setcount(count+1)
+      setcount((count) => count+1)
     }
     else {
-      setcount(count-1)
+      setcount((count) => count-1)
     }
   }
 
   const onChange6 = () => {
     setPHD(!isPHD)
     if (isPHD === true) {
-      setcount(count+1)
+      setcount((count) => count+1)
     }
     else {
-      setcount(count-1)
+      setcount((count) => count-1)
     }
   }
 
   const handleSubmit2 = async (e) => {
 
     e.preventDefault()
-    console.log(details)
 
     if (isBoardTopper) {
       topper.push("Board Topper")
@@ -118,18 +117,18 @@ const Signup2 = () => {
       topper.push("PHD")
     }
 
-
-    console.log(topper)
-
     if (topper.length === 0) {
       setError("Select atleast one field")
       return error
     }
+
+
+
     if (count === 0) {
       const response = await fetch("http://localhost:6100/api/mentor/signup", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: details.email, idurl: details.idurl, password: details.password, topper: topper })
+        body: JSON.stringify({ email: details.email, password: details.password, topper: topper })
       })
 
       const json = await response.json()
@@ -141,8 +140,6 @@ const Signup2 = () => {
           }
         })
       }
-
-      console.log(json.error)
 
       if (json.error) {
         setError(json.error)
@@ -164,7 +161,7 @@ const Signup2 = () => {
     }, function async(error, result) {
       if (result.event === "success") {
         upload(result.info.secure_url)
-        setcount(count-1)
+        setcount((count) => count-1)
       }
     })
     widgetRef.current.open()
@@ -178,7 +175,7 @@ const Signup2 = () => {
       public_id: `${details.email}/jee`
     }, function async(error, result) {
       if (result.event === "success") {
-        setcount(count-1)
+        setcount((count) => count-1)
       }
     })
     widgetRef.current.open()
@@ -192,7 +189,7 @@ const Signup2 = () => {
       public_id: `${details.email}/neet`
     }, function async(error, result) {
       if (result.event === "success") {
-        setcount(count-1)
+        setcount((count) => count-1)
       }
     })
     widgetRef.current.open()
@@ -206,7 +203,7 @@ const Signup2 = () => {
       public_id: `${details.email}/masters`
     }, function async(error, result) {
       if (result.event === "success") {
-        setcount(count-1)
+        setcount((count) => count-1)
       }
     })
     widgetRef.current.open()
@@ -220,7 +217,7 @@ const Signup2 = () => {
       public_id: `${details.email}/phd`
     }, function async(error, result) {
       if (result.event === "success") {
-        setcount(count-1)
+        setcount((count) => count-1)
       }
     })
     widgetRef.current.open()
