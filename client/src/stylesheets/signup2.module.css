@@ -1,12 +1,19 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+.mostout {
     overflow:hidden;
 }
-.rightdiv2 {
-    position: relative;
+.rightdiv {
+    position: absolute;
     float: right;
     width: 60%;
     font-size: 2rem;
-    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    right: 3.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 form {
@@ -79,13 +86,14 @@ input {
     text-decoration: none;
 }
 
-.colourdiv {
-    position: relative;
-    height: 60rem;
+
+.colour1 {
+    height: 80rem;
+    position: absolute;
     width: 55rem;
     background-color: #9e3ffd;
     transform: rotate(15.59deg);
-    left: -6rem;
+    left: -12rem;
     top: -17rem;
     z-index: -1;
 }
@@ -121,4 +129,30 @@ p{
 
 .boxstyle{
     transform: scale(1.5);
+}
+
+.uploadbutton {
+    border: none;
+    border-radius: 0.75rem;
+    background-color: rgb(255, 255, 255);
+    right:-7vw;
+    position: relative;
+}
+
+.butimgdiv {
+    height: 2rem;
+    width: 2rem;
+    margin-top:2rem;
+    object-fit: contain;
+}
+
+.error {
+    color: #cc393d;
+    text-align: center;
+    margin-left: 12rem;
+    width: 60%;
+    height: 5%;
+    font-size: 1.6rem;
+    background-color: #ffeded;
+    border: 0.05rem solid black;
 }
