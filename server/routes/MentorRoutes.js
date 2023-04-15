@@ -225,16 +225,14 @@ router.post('/addurl/:email', uploader.single('image'), async(req,res) =>{
     try {
         console.log("hi")
         const rurl = await cloudinary.uploader.upload(req.file.path)
-        console.log(rurl)
-        // const {email} = req.params
+        console.log(rurl.secure_url)
+        const {email} = req.params
 
-        // const reqm = await Mentor.findOne({email : email})
+        const reqm = await Mentor.findOne({email : email})
         
-        // reqm.idurl.push(req.body.url)
-        // await reqm.save();
-        // console.log(reqm)
-        // console.log("Saved sir", req.body.url)
-        // res.json({success:true})
+        reqm.idurl.push(rurl.secure_url)
+        await reqm.save()
+        res.json({success:true})
 
     } catch (error) {
         res.status(400).json({ error: error.message })
