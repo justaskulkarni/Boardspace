@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
 import uploadicon from '../assets/upload.png'
-import '../stylesheets/signup2.css'
+import styles from '../stylesheets/signup2.module.css'
 
 const Signup2 = () => {
 
@@ -231,79 +231,79 @@ const Signup2 = () => {
     <>
       <div>
         <Navbar />
-        <div className="mostout">
-          <div className="colourdiv"></div>
-          <div className="rightdiv2">
-            <form className="signup" onSubmit={handleSubmit2}>
-              <h3 className="formheader"><span className="headertext">Enter your Details</span></h3>
-              <div className="formcontent">
+        <div className={styles.mostout}>
+          <div className={styles.colour1}></div>
+          <div className={styles.rightdiv}>
+            <form className={styles.signup} onSubmit={handleSubmit2}>
+              <h3 className={styles.formheader}><span className={styles.headertext}>Enter your Details</span></h3>
+              <div className={styles.formcontent}>
                 <input
                   type="password"
                   value={details.password}
                   name="password"
                   onChange={onChange1}
                   placeholder="password"
-                  className="inputbox"
+                  className={styles.inputbox}
                 />
-                <label htmlFor="boardtopper" className="checkboxstyle">
+                <label htmlFor="boardtopper" className={styles.checkboxstyle}>
                   <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"Board Topper"}
                     onChange={onChange3}
                     name="Board Topper"
-                    className="boxstyle"
+                    className={styles.boxstyle}
                   /><p>Board Topper</p>
-                  {isBoardTopper && <button className="uploadbutton" onClick={handleSubmit3}><img src={uploadicon} className="butimgdiv"></img></button>}
+                  {isBoardTopper && <button className={styles.uploadbutton} onClick={handleSubmit3}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
-                <label htmlFor="jeetopper" className="checkboxstyle">
+                <label htmlFor="jeetopper" className={styles.checkboxstyle}>
                   <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"JEE Topper"}
                     onChange={onChange4}
                     name="JEE Topper"
-                    className="boxstyle"
+                    className={styles.boxstyle}
                   /><p>JEE Topper</p>
-                  {isJeeTopper && <button className="uploadbutton" onClick={handleSubmit4}><img src={uploadicon} className="butimgdiv"></img></button>}
+                  {isJeeTopper && <button className={styles.uploadbutton} onClick={handleSubmit4}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
-                <label htmlFor="neettopper" className="checkboxstyle">
+                <label htmlFor="neettopper" className={styles.checkboxstyle}>
                   <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"Neet Topper"}
                     onChange={onChange2}
                     name="Neet Topper"
-                    className="boxstyle"
+                    className={styles.boxstyle}
                   /><p>NEET Topper</p>
-                  {isNeetTopper && <button className="uploadbutton" onClick={handleSubmit5}><img src={uploadicon} className="butimgdiv"></img></button>}
+                  {isNeetTopper && <button className={styles.uploadbutton} onClick={handleSubmit5}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
-                <label htmlFor="masters" className="checkboxstyle">
+                <label htmlFor="masters" className={styles.checkboxstyle}>
                   <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"Masters"}
                     onChange={onChange5}
                     name="Masters"
-                    className="boxstyle"
+                    className={styles.boxstyle}
                   /><p>Masters Student</p>
-                  {isMasters && <button className="uploadbutton" onClick={handleSubmit6}><img src={uploadicon} className="butimgdiv"></img></button>}
+                  {isMasters && <button className={styles.uploadbutton} onClick={handleSubmit6}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
-                <label htmlFor="phd" className="checkboxstyle">
+                <label htmlFor="phd" className={styles.checkboxstyle}>
                   <input
                     type="checkbox"
                     defaultChecked={false}
                     value={"PHD"}
                     onChange={onChange6}
                     name="PHD"
-                    className="boxstyle"
+                    className={styles.boxstyle}
                   /><p>PHD Student</p>
-                  {isPHD && <button className="uploadbutton" onClick={handleSubmit7}><img src={uploadicon} className="butimgdiv"></img></button>}
+                  {isPHD && <button className={styles.uploadbutton} onClick={handleSubmit7}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
                 </label>
               </div>
-              <button className="signupbutton2">Submit</button>
+              <button className={styles.signupbutton2}>Submit</button>
             </form>
-            {error && <div className="error">{error}</div>}
+            {error && <div className={styles.error}>{error}</div>}
           </div>
         </div>
       </div>

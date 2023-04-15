@@ -1,10 +1,12 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .outerdiv {
     display: flex;
     overflow-x: hidden;
     justify-content: space-between;
     position: fixed;
     width: 100%;
+    font-family: 'Poppins', sans-serif;
+    top:0;
 }
 
 .imgdiv{
@@ -28,7 +30,7 @@
     font-size: 20rem;
 }
 
-.button1 {
+.tail{
     float: right;
     padding-right: 2rem;
     background-color: transparent;
@@ -37,10 +39,10 @@
     color: black;
 }
 
-.button1:hover{
+.tail:hover{
     color:#ab39fa;
 }
-.button1 .link1:hover{
+.tail .link1:hover{
     color: #ab39fa;
 }
 

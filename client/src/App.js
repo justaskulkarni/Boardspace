@@ -21,6 +21,7 @@ import Notaccepted from "./pages/Notaccepted";
 import Not404 from "./pages/404";
 import AdminRejected from "./pages/AdminRejected";
 import AdminAccept from "./pages/AdminAccept";
+import Chat from "./pages/Chat";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             </Route>
             <Route element={<StudentPrivateRoutes />}>
               <Route path="/studentin" element={<ProtectedStudent />} />
+              <Route path="/chat" element={<Chat />} />
             </Route>
             <Route element={<AdminPrivateRoutes />}>
               <Route path="/admin/landing" element={<AdminLand />} />
