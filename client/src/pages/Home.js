@@ -14,7 +14,10 @@ const ParallaxAnimation = () => {
 		<div className="parallax-container">
 			<div
 				className="parallax-bg"
-				style={{ transform: `translateY(-${offsetY * 0.5}px)` }}
+				style={{
+					transform: `translateY(-${offsetY * 0.5}px)`,
+					backgroundImage: `url("../assets/background.jpg")`,
+				}}
 			/>
 			<div
 				className="parallax-content"
