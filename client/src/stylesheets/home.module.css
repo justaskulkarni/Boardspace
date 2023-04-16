@@ -1,4 +1,27 @@
-.parallax-container {
+html {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-family: "Monument Extended", Arial, Helvetica, sans-serif;
+}
+
+body {
+	color: white;
+	margin: 0;
+	padding: 0;
+	perspective: 1px;
+	transform-style: preserve-3d;
+	height: 100%;
+	width: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+header {
+	box-sizing: border-box;
+	min-height: 100vh;
 	position: relative;
 	height: 100vh;
 }
@@ -19,4 +42,8 @@
 	padding: 50px;
 	color: #fff;
 	text-align: center;
+}
+
+.parallax-container {
+	margin-top: 20rem;
 }

@@ -18,6 +18,7 @@
   margin-top: 0;
   padding-bottom: 40vh;
   text-align: center;
+  color:black;
 }
 
 .content_box_404 {
@@ -27,4 +28,6 @@
 
 .h3 {
   padding-top: 0;
+  color:black;
+  font-size: 2rem;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar'
 import uploadicon from '../assets/upload.png'
@@ -10,20 +10,22 @@ const Signup2 = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const cloudinaryRef = useRef()
-  const widgetRef = useRef()
-
   const [error, setError] = useState(null)
   const topper = []
   const [details, setDetails] = useState({ password: "", email: location.state.email })
 
-  const [count, setcount] = useState(0)
+  const [isNeetTopper, setNeet] = useState({enabled : false, file:false, disable:false})
+  const [isJeeTopper, setJee] = useState({enabled : false, file:false, disable:false})
+  const [isBoardTopper, setBoard] = useState({enabled : false, file:false, disable:false})
+  const [isMasters, setMaster] = useState({enabled : false, file:false, disable:false})
+  const [isPHD, setPHD] = useState({enabled : false, file:false, disable:false})
 
-  const [isNeetTopper, setNeet] = useState({enabled : false, file: null, disable:false})
-  const [isJeeTopper, setJee] = useState({enabled : false, file: null, disable:false})
-  const [isBoardTopper, setBoard] = useState({enabled : false, file: null, disable:false})
-  const [isMasters, setMaster] = useState({enabled : false, file: null, disable:false})
-  const [isPHD, setPHD] = useState({enabled : false, file: null, disable:false})
+  const neetd = useRef(null)
+  const jeed = useRef(null)
+  const boardd = useRef(null)
+  const mastd = useRef(null)
+  const phdd = useRef(null)
+
 
   const onChange1 = (event) => {
     setDetails({ ...details, [event.target.name]: event.target.value })
@@ -79,9 +81,10 @@ const Signup2 = () => {
     setNeet({...isNeetTopper, enabled : !isNeetTopper.enabled})
   }
 
-  const onChange2a = async (event) => {
+  const onChange2a = (event) => {
     let file1 = event.target.files[0]
-    setNeet({...isNeetTopper, file : file1})
+    neetd.current = file1
+    setNeet({...isNeetTopper, file :true })
   }
 
   const onChange3 = () => {
@@ -90,21 +93,38 @@ const Signup2 = () => {
 
   const onChange3a = (event) => {
     let file1 = event.target.files[0]
-    console.log(file1)
-    setBoard({ ...isBoardTopper, file : file1 })
-    console.log(isBoardTopper.file)
+    boardd.current = file1
+    setBoard({...isBoardTopper, file :true })
   }
 
   const onChange4 = () => {
     setJee({...isJeeTopper,enabled : !isJeeTopper.enabled})
   }
 
+  const onChange4a = (event) => {
+    let file1 = event.target.files[0]
+    jeed.current = file1
+    setJee({...isJeeTopper, file :true })
+  }
+
   const onChange5 = () => {
     setMaster({...isMasters, enabled : !isMasters.enabled})
   }
 
+  const onChange5a = (event) => {
+    let file1 = event.target.files[0]
+    mastd.current = file1
+    setMaster({...isMasters, file :true })
+  }
+
   const onChange6 = () => {
     setPHD({...isPHD, enabled: !isPHD.enabled})
+  }
+
+  const onChange6a = (event) => {
+    let file1 = event.target.files[0]
+    phdd.current = file1
+    setPHD({...isPHD, file :true })
   }
 
   const handleSubmit2 = async (e) => {
@@ -136,9 +156,9 @@ const Signup2 = () => {
       return error
     }
 
+    const check = checkkarobt()
 
-
-    if (count === 0) {
+    if (check) {
       const response = await fetch("http://localhost:6100/api/mentor/signup", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -163,76 +183,37 @@ const Signup2 = () => {
       setError("Kindly upload all the documents")
       return error
     }
-
   }
 
   const handleSubmit3 = async (e) => {
     e.preventDefault()
-    setBoard({...isBoardTopper,disable : true})
-    console.log(setBoard.file)
-    await upload(setBoard.file)
-    
+    setBoard({...isBoardTopper,disable:true})
+    await upload(boardd.current)
   }
 
   const handleSubmit4 = async (e) => {
     e.preventDefault()
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/jee`
-    }, function async(error, result) {
-      if (result.event === "success") {
-        setcount((count) => count-1)
-      }
-    })
-    widgetRef.current.open()
+    setJee({...isJeeTopper,disable:true})
+    await upload(jeed.current)
   }
 
   const handleSubmit5 = async (e) => {
     e.preventDefault()
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/neet`
-    }, function async(error, result) {
-      if (result.event === "success") {
-        setcount((count) => count-1)
-      }
-    })
-    widgetRef.current.open()
+    setNeet({...isNeetTopper,disable:true})
+    await upload(neetd.current)
   }
 
   const handleSubmit6 = async (e) => {
     e.preventDefault()
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/masters`
-    }, function async(error, result) {
-      if (result.event === "success") {
-        setcount((count) => count-1)
-      }
-    })
-    widgetRef.current.open()
+    setMaster({...isMasters,disable:true})
+    await upload(mastd.current)
   }
 
   const handleSubmit7 = async (e) => {
     e.preventDefault()
-    widgetRef.current = cloudinaryRef.current.createUploadWidget({
-      cloudName: 'djb8pgo4n',
-      uploadPreset: 'm79rihxp',
-      public_id: `${details.email}/phd`
-    }, function async(error, result) {
-      if (result.event === "success") {
-        setcount((count) => count-1)
-      }
-    })
-    widgetRef.current.open()
+    setPHD({...isPHD,disable:true})
+    await upload(phdd.current)
   }
-
-  useEffect(() => {
-    cloudinaryRef.current = window.cloudinary
-  }, [])
 
   return (
     <>
@@ -248,7 +229,7 @@ const Signup2 = () => {
                 
                 <label htmlFor="boardtopper" className={styles.checkboxstyle}>
                   <input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} /><p>Board Topper</p>
-                  {isBoardTopper.enabled &&<div className={styles.fileinput}>
+                  {isBoardTopper.enabled && !isBoardTopper.disable &&<div className={styles.fileinput}>
                     <label htmlFor="boardtop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="boardtop" onChange={onChange3a} />
                     </label>
@@ -257,23 +238,43 @@ const Signup2 = () => {
                 </label>
 
                 <label htmlFor="jeetopper" className={styles.checkboxstyle}>
-                  <input type="checkbox" defaultChecked={false} value={"JEE Topper"} onChange={onChange4} name="JEE Topper" className={styles.boxstyle} /><p>JEE Topper</p>
-                  {isJeeTopper.enabled && <button className={styles.uploadbutton} onClick={handleSubmit4}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"JEE Topper"} onChange={onChange4} name="JEE Topper" className={styles.boxstyle} disabled={isJeeTopper.disable}/><p>JEE Topper</p>
+                  {isJeeTopper.enabled && !isJeeTopper.disable &&<div className={styles.fileinput}>
+                    <label htmlFor="jeetop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
+                    <input type="file" className={styles.filefield} id="jeetop" onChange={onChange4a} />
+                    </label>
+                    {isJeeTopper.file && <button className={styles.uploadbutton} onClick={handleSubmit4}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  </div> }
                 </label>
 
                 <label htmlFor="neettopper" className={styles.checkboxstyle}>
-                  <input type="checkbox" defaultChecked={false} value={"Neet Topper"} onChange={onChange2} name="Neet Topper" className={styles.boxstyle} /><p>NEET Topper</p>
-                  {isNeetTopper.enabled && <button className={styles.uploadbutton} onClick={handleSubmit5}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"Neet Topper"} onChange={onChange2} name="Neet Topper" className={styles.boxstyle} disabled={isNeetTopper.disable} /><p>NEET Topper</p>
+                  {isNeetTopper.enabled && !isNeetTopper.disable &&<div className={styles.fileinput}>
+                    <label htmlFor="neettop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
+                    <input type="file" className={styles.filefield} id="neettop" onChange={onChange2a} />
+                    </label>
+                    {isNeetTopper.file && <button className={styles.uploadbutton} onClick={handleSubmit5}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  </div> }
                 </label>
 
                 <label htmlFor="masters" className={styles.checkboxstyle}>
-                  <input type="checkbox" defaultChecked={false} value={"Masters"} onChange={onChange5} name="Masters" className={styles.boxstyle}/><p>Masters Student</p>
-                  {isMasters.enabled && <button className={styles.uploadbutton} onClick={handleSubmit6}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"Masters"} onChange={onChange5} name="Masters" className={styles.boxstyle} disabled={isMasters.disable}/><p>Masters Student</p>
+                  {isMasters.enabled && isMasters.disable &&<div className={styles.fileinput}>
+                    <label htmlFor="masttop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
+                    <input type="file" className={styles.filefield} id="masttop" onChange={onChange5a} />
+                    </label>
+                    {isMasters.file && <button className={styles.uploadbutton} onClick={handleSubmit6}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  </div> }
                 </label>
 
                 <label htmlFor="phd" className={styles.checkboxstyle}>
-                  <input type="checkbox" defaultChecked={false} value={"PHD"} onChange={onChange6} name="PHD" className={styles.boxstyle} /><p>PHD Student</p>
-                  {isPHD.enabled && <button className={styles.uploadbutton} onClick={handleSubmit7}><img src={uploadicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  <input type="checkbox" defaultChecked={false} value={"PHD"} onChange={onChange6} name="PHD" className={styles.boxstyle} disabled={isPHD.disable} /><p>PHD Student</p>
+                  {isPHD.enabled && !isPHD.disable &&<div className={styles.fileinput}>
+                    <label htmlFor="phdtop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
+                    <input type="file" className={styles.filefield} id="phdtop" onChange={onChange6a} />
+                    </label>
+                    {isPHD.file && <button className={styles.uploadbutton} onClick={handleSubmit7}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
+                  </div> }
                 </label>
               </div>
               

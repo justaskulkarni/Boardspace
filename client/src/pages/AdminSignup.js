@@ -84,8 +84,12 @@ const AdminSignup = () => {
 
                         </div>
 
-                        <button className={styles.signupbutton} >Sign up</button>
-                        <button className={styles.button2}><Link className={styles.lol} to={"/admin/login"}>Login</Link></button>
+{/*                         <button className={styles.signupbutton} >Sign up</button>
+                        <button className={styles.button2}><Link className={styles.lol} to={"/admin/login"}>Login</Link></button> */}
+                        <div className={styles.buttonscontainer}>
+                        <button className={styles.loginbutton} >Sign up</button>
+                        <button className={styles.signupbutton}><Link className={styles.lol} to={"/admin/login"}>Login</Link></button>
+                        </div>
                     </form>
                     {error && <div className={styles.error}>{error}</div>}
                 </div>
