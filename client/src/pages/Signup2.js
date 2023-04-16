@@ -267,7 +267,7 @@ const Signup2 = () => {
 
                 <label htmlFor="masters" className={styles.checkboxstyle}>
                   <input type="checkbox" defaultChecked={false} value={"Masters"} onChange={onChange5} name="Masters" className={styles.boxstyle} disabled={isMasters.disable}/><p>Masters Student</p>
-                  {isMasters.enabled && isMasters.disable &&<div className={styles.fileinput}>
+                  {isMasters.enabled && !isMasters.disable &&<div className={styles.fileinput}>
                     <label htmlFor="masttop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="masttop" onChange={onChange5a} />
                     </label>
