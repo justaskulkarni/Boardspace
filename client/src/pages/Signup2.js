@@ -84,6 +84,7 @@ const Signup2 = () => {
   const onChange2a = (event) => {
     let file1 = event.target.files[0]
     neetd.current = file1
+    document.getElementById("filename2a").textContent = file1.name
     setNeet({...isNeetTopper, file :true })
   }
 
@@ -94,6 +95,7 @@ const Signup2 = () => {
   const onChange3a = (event) => {
     let file1 = event.target.files[0]
     boardd.current = file1
+    document.getElementById("filename3a").textContent = file1.name
     setBoard({...isBoardTopper, file :true })
   }
 
@@ -104,6 +106,7 @@ const Signup2 = () => {
   const onChange4a = (event) => {
     let file1 = event.target.files[0]
     jeed.current = file1
+    document.getElementById("filename4a").textContent = file1.name
     setJee({...isJeeTopper, file :true })
   }
 
@@ -114,6 +117,7 @@ const Signup2 = () => {
   const onChange5a = (event) => {
     let file1 = event.target.files[0]
     mastd.current = file1
+    document.getElementById("filename5a").textContent = file1.name
     setMaster({...isMasters, file :true })
   }
 
@@ -124,6 +128,7 @@ const Signup2 = () => {
   const onChange6a = (event) => {
     let file1 = event.target.files[0]
     phdd.current = file1
+    document.getElementById("filename6a").textContent = file1.name
     setPHD({...isPHD, file :true })
   }
 
@@ -233,6 +238,7 @@ const Signup2 = () => {
                     <label htmlFor="boardtop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="boardtop" onChange={onChange3a} />
                     </label>
+                    <p id="filename3a"></p>
                     {isBoardTopper.file && <button className={styles.uploadbutton} onClick={handleSubmit3}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
                   </div> }
                 </label>
@@ -243,6 +249,7 @@ const Signup2 = () => {
                     <label htmlFor="jeetop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="jeetop" onChange={onChange4a} />
                     </label>
+                    <p id="filename4a"></p>
                     {isJeeTopper.file && <button className={styles.uploadbutton} onClick={handleSubmit4}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
                   </div> }
                 </label>
@@ -253,6 +260,7 @@ const Signup2 = () => {
                     <label htmlFor="neettop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="neettop" onChange={onChange2a} />
                     </label>
+                    <p id="filename2a"></p>
                     {isNeetTopper.file && <button className={styles.uploadbutton} onClick={handleSubmit5}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
                   </div> }
                 </label>
@@ -263,6 +271,7 @@ const Signup2 = () => {
                     <label htmlFor="masttop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="masttop" onChange={onChange5a} />
                     </label>
+                    <p id="filename5a"></p>
                     {isMasters.file && <button className={styles.uploadbutton} onClick={handleSubmit6}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
                   </div> }
                 </label>
@@ -273,6 +282,7 @@ const Signup2 = () => {
                     <label htmlFor="phdtop"><img src={uploadicon} className={styles.butimgdiv} alt=' '></img>
                     <input type="file" className={styles.filefield} id="phdtop" onChange={onChange6a} />
                     </label>
+                    <p id="filename6a"></p>
                     {isPHD.file && <button className={styles.uploadbutton} onClick={handleSubmit7}><img src={subicon} className={styles.butimgdiv} alt=' '></img></button>}
                   </div> }
                 </label>
