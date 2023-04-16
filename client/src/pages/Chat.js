@@ -10,6 +10,7 @@ import React from "react";
 
  const Chat = () => {
 
+    const [room, setRoom] = useState("")
     //  const [rooms, setRooms] = useState([]);
     //  const [currentRoom, setCurrentRoom] = useState([]);
     //  const [members, setMembers] = useState([]);
@@ -31,14 +32,11 @@ import React from "react";
     //      return month + "/" + day + "/" + year;
     //  }
 
-    //  function joinRoom(room, isPublic = true) {
-    //      socket.emit("join-room", room, currentRoom);
-    //      setCurrentRoom(room);
-
-    //      if (isPublic) {
-    //          setPrivateMemberMsg(null);
-    //      }
-    //  }
+      function joinRoom(room) {
+          console.log("Im here")
+          socket.emit("join-room", room);
+          console.log(room)
+      }
 
     //  useEffect(() => {
     //      setCurrentRoom("general");
@@ -65,6 +63,11 @@ import React from "react";
         setMessage(event.target.value)
     }
 
+    const change2 = (event) => {
+        setRoom(event.target.value)
+        
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -81,7 +84,7 @@ import React from "react";
          <div className={styles.row}>
              <div className={styles.column + " " + styles.left}>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room1</span></button></div>
+                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>General</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room2</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room3</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room4</span></button></div>
@@ -95,6 +98,8 @@ import React from "react";
                  <input type="text" onChange={change1}/>
                  <button>send</button>
                  </form>
+                 <input type="text" onChange={change2}/>
+                 <button onClick={() => joinRoom(room)}>join</button>
              </div>
          </div>
      </>
