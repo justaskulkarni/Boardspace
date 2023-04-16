@@ -61,8 +61,15 @@ app.get('/getnums' , async (req,res) => {
     
 })
 
+let message = ""
+
 io.on("connection", (socket) => {
     console.log(socket.id)
+
+    socket.on("send-message", message => {
+        io.emit("receive-message" , message)
+        console.log(message)
+    })
 })
 
 // app.post('/temp', uploader.single('image'), async(req,res) => {

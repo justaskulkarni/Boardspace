@@ -13,7 +13,7 @@ import React from "react";
     //  const [rooms, setRooms] = useState([]);
     //  const [currentRoom, setCurrentRoom] = useState([]);
     //  const [members, setMembers] = useState([]);
-    //  const [message, setMessage] = useState("");
+     const [message, setMessage] = useState("")
     //  const [messages, setMessages] = useState([]);
     //  const [privateMemberMsg, setPrivateMemberMsg] = useState({});
     //  const [newMessages, setNewMessages] = useState({});
@@ -61,6 +61,20 @@ import React from "react";
     //          .then((data) => setRooms(data));
     //  }
 
+    const change1 = (event) => {
+        setMessage(event.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        socket.emit("send-message" , (message))
+    }
+
+    socket.on("receive-message" , (message) => {
+        console.log(message)
+    })
+
    return (
      <>
          <Navbar />
@@ -77,6 +91,10 @@ import React from "react";
              </div>
              <div className={styles.column + " " + styles.right}>
                  Yaha pe chats aayenge
+                 <form onSubmit={handleSubmit}>
+                 <input type="text" onChange={change1}/>
+                 <button>send</button>
+                 </form>
              </div>
          </div>
      </>
