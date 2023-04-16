@@ -71,7 +71,7 @@ import React from "react";
         socket.emit("send-message" , (message))
     }
 
-    socket.on("receive-message" , (message) => {
+    socket.off("receive-message").on("receive-message" , (message) => {
         console.log(message)
     })
 
