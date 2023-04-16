@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "../stylesheets/home.module.css";
+import Navbar from "../components/Navbar";
+/* import "../stylesheets/home.module.css";
 
-const ParallaxAnimation = () => {
+const Home = () => {
 	const [offsetY, setOffsetY] = useState(0);
 
 	useEffect(() => {
@@ -11,23 +12,38 @@ const ParallaxAnimation = () => {
 	}, []);
 
 	return (
-		<div className="parallax-container">
-			<div
-				className="parallax-bg"
-				style={{ transform: `translateY(-${offsetY * 0.5}px)` }}
-			/>
-			<div
-				className="parallax-content"
-				style={{ transform: `translateY(${offsetY * 0.8}px)` }}
-			>
-				<h1>Parallax Animation</h1>
-				<p>
-					This is a simple example of a parallax animation created in
-					React.
-				</p>
-			</div>
-		</div>
+    <>
+      <Navbar />
+      <div className="parallax-container">
+        <div
+          className="parallax-bg"
+          style={{ transform: `translateY(-${offsetY * 0.5}px)` }}
+        />
+        <div
+          className="parallax-content"
+          style={{ transform: `translateY(${offsetY * 0.8}px)` }}
+        >
+          <h1>Parallax Animation</h1>
+          <p>
+            This is a simple example of a parallax animation created in
+            React.
+          </p>
+        </div>
+      </div>
+    </>
 	);
 };
 
-export default ParallaxAnimation;
+export default Home; */
+
+const Home = () => {
+  return (
+    <div>
+      <Navbar />
+      Home
+    </div>
+  )
+}
+
+export default Home
+

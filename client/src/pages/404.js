@@ -13,8 +13,8 @@ function NotFound() {
                 </div>
                 
                 <div className={styles.content_box_404}>
-                  <h3> Look like you're lost</h3>
-                  <p className={styles.h3}> The page you are looking for not avaible!</p>
+                  <h3 className={styles.h3}> Looks like you're lost</h3>
+                  <p className={styles.h3}> The page you are looking for not available!</p>
                 </div>
       </section>
     </>
