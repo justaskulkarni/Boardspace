@@ -15,7 +15,7 @@ import React from "react";
     //  const [currentRoom, setCurrentRoom] = useState([]);
     //  const [members, setMembers] = useState([]);
      const [message, setMessage] = useState("")
-    //  const [messages, setMessages] = useState([]);
+     const [messages, setMessages] = useState([]);
     //  const [privateMemberMsg, setPrivateMemberMsg] = useState({});
     //  const [newMessages, setNewMessages] = useState({});
     
@@ -33,7 +33,6 @@ import React from "react";
     //  }
 
       function joinRoom(room) {
-          console.log("Im here")
           socket.emit("join-room", room);
           console.log(room)
       }
@@ -49,9 +48,10 @@ import React from "react";
     //      setMembers(payload);
     //  });
     
-    //  socket.off("room-messages").on("room-messages", (roomMessages) => {
-    //      setMessages(roomMessages);
-    //  });
+      socket.off("room-messages").on("room-messages", (roomMessages) => {
+          setMessages(roomMessages)
+          console.log(roomMessages);
+      });
 
     //  function getRooms() {
     //      fetch("http://localhost:6001/rooms")

@@ -73,6 +73,7 @@ io.on("connection", (socket) => {
     socket.on("join-room", room => {
         socket.join(room)
         console.log(room)
+        socket.emit('room-messages', "mai idhar hu")
     })
 })
 
