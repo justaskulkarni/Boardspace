@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ImageSlider from './ImageSlider'
 import styles from '../stylesheets/card.module.css'
+import styles2 from '../stylesheets/imageslider.module.css'
 import document from '../assets/document.png'
 import verify from '../assets/verify.png'
 import noverify from '../assets/noverify.png'
@@ -122,8 +123,8 @@ const Card = ({mentid}) => {
         </div>
       </div>
       {isOpen && (
-        <div className={styles.popupcontainer}>
-          <div className={styles.popup}>
+        <div className={styles2.popupcontainer}>
+          <div className={styles2.popup}>
             <button onClick={handleClose}>Close</button>
             <ImageSlider imgarr = {imags}/>
           </div>
