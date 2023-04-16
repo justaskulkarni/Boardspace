@@ -66,9 +66,13 @@ let message = ""
 io.on("connection", (socket) => {
     console.log(socket.id)
 
-    socket.on("send-message", message => {
-        io.emit("receive-message" , message)
-        console.log(message)
+    socket.on("send-message", (message,room) => {
+        io.to(room).emit("receive-message", message)
+    })
+
+    socket.on("join-room", room => {
+        socket.join(room)
+        console.log(room)
     })
 })
 

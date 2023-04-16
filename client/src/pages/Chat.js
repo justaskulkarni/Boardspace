@@ -69,9 +69,8 @@ import React from "react";
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-
-        socket.emit("send-message" , (message))
+        e.preventDefault()  
+        socket.emit("send-message" , (message,room))
     }
 
     socket.off("receive-message").on("receive-message" , (message) => {
@@ -100,7 +99,7 @@ import React from "react";
                  </form>
                  <input type="text" onChange={change2}/>
                  <button onClick={() => joinRoom(room)}>join</button>
-             </div>
+                 </div>
          </div>
      </>
    )
