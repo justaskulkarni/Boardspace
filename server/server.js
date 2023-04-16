@@ -21,7 +21,7 @@ const studentroutes = require('./routes/StudentRoutes')
 const adminroutes = require('./routes/AdminRoutes')
 
 const Mentor = require('./models/mentor')
-const Student = require('./models/student')
+const Student = require('./models/student');
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
@@ -30,12 +30,12 @@ app.use('/api/admin/', adminroutes)
 const server = require('http').createServer(app)
 const MYPORT = process.env.PORT || 6100
 
-// const io = require('socket.io')(server, {
-//     cors: {
-//       origin: 'http://localhost:3000',
-//       methods: ['GET', 'POST']
-//     }
-//   })
+const io = require('socket.io')(server, {
+    cors: {
+      origin: 'http://localhost:3000',
+      methods: ['GET', 'POST']
+    }
+  })
 
 const DB_URL = process.env.MONGO_URL
 mongoose.connect(DB_URL)
@@ -61,6 +61,9 @@ app.get('/getnums' , async (req,res) => {
     
 })
 
+io.on("connection", (socket) => {
+    console.log(socket.id)
+})
 
 // app.post('/temp', uploader.single('image'), async(req,res) => {
     
