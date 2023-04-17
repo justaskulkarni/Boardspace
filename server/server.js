@@ -66,10 +66,20 @@ let message = ""
 
 async function getMessagesFromRoom(currentRoom){
   let roomMessages = await Message.aggregate([
-    {$match: {to: currentRoom}}
-  ])
+    {$match: {to: currentRoom}},
+    {$lookup: {
+      from: "students", // Replace with the name of the Student collection
+      localField: "from",
+      foreignField: "_id",
+      as: "fromStudent"
+    }},
+    {$addFields: {from: {$arrayElemAt: ["$fromStudent.stname", 0]}}},
+    {$project: {fromStudent: 0}} // Exclude fromStudent field from the final output
+  ]);
   return roomMessages;
 }
+
+
 
 io.on("connection", (socket) => {
     console.log(socket.id)

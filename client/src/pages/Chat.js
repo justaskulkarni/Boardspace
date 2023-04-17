@@ -146,6 +146,7 @@ import jwt_decode from 'jwt-decode'
                 </form> 
                 {messages.map((message) => (
   <div key={message._id}>
+    <p>{message.from}</p>
     <p>{message.content}</p>
     <p>{message.time}</p>
     <p>{message.date}</p>
