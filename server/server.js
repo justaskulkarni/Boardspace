@@ -22,6 +22,7 @@ const adminroutes = require('./routes/AdminRoutes')
 
 const Mentor = require('./models/mentor')
 const Student = require('./models/student');
+const Message = require('./models/message')
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
@@ -63,18 +64,50 @@ app.get('/getnums' , async (req,res) => {
 
 let message = ""
 
+async function getMessagesFromRoom(currentRoom){
+  let roomMessages = await Message.aggregate([
+    {$match: {to: currentRoom}}
+  ])
+  return roomMessages;
+}
+
 io.on("connection", (socket) => {
     console.log(socket.id)
 
-    socket.on("send-message", (message,room) => {
-        io.to(room).emit("receive-message", message)
+    socket.on("send-message", async(currentMessage, time, date, role, currentRoom, userId) => {
+        try{
+            console.log(currentMessage, time, date, role, currentRoom, userId)
+            const user = await Student.findById(userId);
+
+            if (!user) {
+                console.log("User not found");
+                return;
+            }
+            const newMessage = new Message({
+                content: currentMessage,
+                time: time,
+                date: date,
+                role: role,
+                to: currentRoom,
+                from: user._id 
+            });
+            await newMessage.save();
+            console.log("Message saved:", newMessage);
+            let roomMessages = await getMessagesFromRoom(currentRoom);
+            console.log(roomMessages)
+            io.emit('room-messages', roomMessages);
+        }
+        catch(error){
+            console.log(error)
+        }
+        
     })
 
-    socket.on("join-room", room => {
+    /* socket.on("join-room", room => {
         socket.join(room)
         console.log(room)
         socket.emit('room-messages', "mai idhar hu")
-    })
+    }) */
 })
 
 // app.post('/temp', uploader.single('image'), async(req,res) => {
