@@ -23,6 +23,7 @@ const adminroutes = require('./routes/AdminRoutes')
 const Mentor = require('./models/mentor')
 const Student = require('./models/student');
 const Message = require('./models/message')
+const Admin = require('./models/admin')
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
@@ -114,13 +115,13 @@ io.on("connection", (socket) => {
     // })
 
     socket.on("join", async(room) => {
+        
         await socket.join(room)
-        console.log(room)
     })
 
     socket.on("send", async(room,message) => {
         console.log("im here")
-        await io.to(room).emit("receive" , message)
+        await socket.brodcast.to(room).emit("receive" , message)
     })
 
 })
@@ -131,6 +132,28 @@ io.on("connection", (socket) => {
 
 //     console.log(haha.secure_url)
 // })
+
+app.get('/temp' , async (req,res) => {
+
+    // const newMessage = new Message({
+    //     content : "Hey",
+    //     fromid : "64257e870ea24575379b7885",
+    //     fromrole : "Admin"
+    // })
+
+    // await newMessage.save()
+
+    const reqmessage = await Message.findById('643e5ddc24c587d5c9d85efc')
+
+    if(reqmessage.fromrole === "Admin")
+    {
+        const dets = await Admin.findById(reqmessage.fromid)
+        res.send(dets)
+        return
+    }
+
+    res.send("jhala")
+})
 
 server.listen(MYPORT, () => {
     console.log(`Ready to serve you master on ${MYPORT}`)
