@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+.outerdiv {
+	display: flex;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	justify-content: space-between;
+	position: fixed;
+	width: 100%;
+	font-family: "Poppins", sans-serif;
+	top: 0;
+	background-color: transparent;
+	height: 5.5rem;
+}
+
+.temp {
+	background-color: #fefeff;
+    border-bottom: 0.35px solid rgba(0, 0, 0, 0.19);
+}
+
+.imgdiv {
+	float: left;
+	margin-top: 0.9rem;
+	margin-left: 1.5rem;
+	height: 6.5rem;
+	width: 100%;
+	object-fit: cover;
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+}
+
+.buttons {
+	position: relative;
+	width: 100%;
+	margin-top: 2.15rem;
+	margin-left: 5rem;
+	font-size: 20rem;
+}
+
+.tail {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	float: right;
+	padding-right: 2rem;
+	background-color: transparent;
+	border: 0px;
+	font-size: 1.125rem;
+	color: #16163f;
+}
+
+.tail:hover {
+	color: #9e3ffd;
+}
+
+.tail .link1:hover {
+	color: #9e3ffd;
+}
+
+.link1 {
+	text-decoration: none;
+	color: black;
+}
