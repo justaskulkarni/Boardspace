@@ -6,7 +6,6 @@ const messageSchema = new Schema({
     content : {type : String},
     time : {type : String},
     date : {type: String},
-    role : {type: String},
     to : {type: String},
     fromid : { type : Schema.Types.ObjectId},
     fromrole : {type : String , enum : ['Admin' , 'Student', 'Mentor']}
