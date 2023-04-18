@@ -34,16 +34,18 @@ import jwt_decode from 'jwt-decode'
     const date = getCurrentDate()
     const role = decoded.role
     const userId = decoded.id
-    socket.emit("send-message" , currentMessage, time, date, role, currentRoom, userId) */ 
-    console.log("Function call ho raha hai")
-    socket.emit("send", currentRoom, currentMessage)
+    socket.emit("send-message" , currentMessage, time, date, role, currentRoom, userId) */
+    var decoded = jwt_decode(localStorage.getItem("Token"))
+    const role = decoded.role
+    const userId = decoded.id
+    socket.emit("send-room", currentRoom, currentMessage, role, userId)
   }
   const handleSubmit2 = async(e) =>{
     e.preventDefault()
     socket.emit("join", roomToJoin)
   }
-  socket.off("receive").on("receive", (message) =>{
-    console.log(message)
+  socket.off("receive").on("receive", (message, role) =>{
+    console.log(message, role)
   })
   const getCurrentTime = () => {
     const date = new Date();
