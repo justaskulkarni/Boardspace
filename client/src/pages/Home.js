@@ -9,7 +9,7 @@ function Home() {
 	return (
 		<>
 			<div className={styles.Home}>
-				<Parallax strength={400} bgImage={bg} bgClassName={styles.bgimg}>
+				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{"height" : "100vh", "width" : "100%","object-fit" : "fill"}}>
 					<Navbar />
 					<div className={styles.parallaxsize}>
 						<div className={styles.power}>
