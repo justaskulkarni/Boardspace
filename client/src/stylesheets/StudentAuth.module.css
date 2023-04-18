@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Work+Sans:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Work+Sans&display=swap");
+
+.login {
+	font-family: "Work Sans", sans-serif;
+	color: #16163f;
+	/* padding-top: 7rem; */
+	font-size: 3rem;
+	text-align: center;
+	margin-top: 7rem;
+}
+
+.newuser {
+	text-align: center;
+	font-family: "Montserrat", sans-serif;
+	font-size: 17px;
+	margin-top: -1.9rem;
+}
+
+.button {
+	color: #9e3ffd;
+}
+
+.forms {
+	align-items: center;
+	justify-content: center;
+}
