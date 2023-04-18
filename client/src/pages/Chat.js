@@ -4,6 +4,7 @@ import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
 import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
+import sendicon from '../assets/send.png'
 
  const SOCKET_URL = "http://localhost:6100";
 
@@ -12,10 +13,11 @@ import jwt_decode from 'jwt-decode'
  const Chat = () => {
 
   const [currentMessage, setCurrentMessage] = useState("")
+  const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([]);
-   const handleChange1 = (event) => {
+  const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }/*
   const handleChange2 = (event) =>{
@@ -25,6 +27,7 @@ import jwt_decode from 'jwt-decode'
     setRoomToJoin(event.target.value)
   } */
   const handleButtonClick = (roomName) => {
+    setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
   const handleSubmit = async(e) =>{
@@ -35,34 +38,25 @@ import jwt_decode from 'jwt-decode'
     const role = decoded.role
     const userId = decoded.id
     socket.emit("send-message" , currentMessage, time, date, role, currentRoom, userId) */
+    
     var decoded = jwt_decode(localStorage.getItem("Token"))
     const role = decoded.role
     const userId = decoded.id
     socket.emit("send-room", currentRoom, currentMessage, role, userId)
+    setCurrentMessage("")
   }
   const handleSubmit2 = async(e) =>{
     e.preventDefault()
     socket.emit("join", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role) =>{
-    console.log(message, role)
+  socket.off("receive-room").on("receive-room", (message, role, time, date) =>{
+    setMessages(prevMessages => [...prevMessages, { message, role, time, date }]);
+    console.log(message, role, time, date)
   })
-  const getCurrentTime = () => {
-    const date = new Date();
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${hours}:${minutes}`;
-  };
 
-  const getCurrentDate = () => {
-    const date = new Date();
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
   socket.off("room-messages").on("room-messages", (roomMessages) => {
         setMessages(roomMessages);
+        console.log("im here")
         console.log(roomMessages)
   });
     //  const [room, setRoom] = useState("")
@@ -147,17 +141,36 @@ import jwt_decode from 'jwt-decode'
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Admin2</span></button></div>
              </div>
              <div className={styles.column + " " + styles.right}>
-                {currentRoom && 
-                  <form onSubmit={handleSubmit}>
+                <ul className={styles.chatMessages}>
+                  {messages.map((msg, index) => (
+                    <li className={styles.chatMessage} key={index}>
+                      <div className={styles.tooltip}>
+                        <p className={styles.message}>{msg.message}</p>
+                        
+                        <p className={styles.time}>{msg.time}</p>
+                        
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                {currentRoom &&   
+                <form onSubmit={handleSubmit} className={styles.chatForm}>
                   <input
                     type="text"
                     name="message"
+                    value={currentMessage}
                     onChange={handleChange1}
                     placeholder="Type your message here"
-                  />  
-                  <button>Send Message</button>
-                </form>  
+                    className={styles.chatInput}
+                  />
+                  <button type="submit" className={styles.chatButton}>
+                    <img src={sendicon} />
+                  </button>
+                </form>
                 }
+                
+
+
                 {/* <form onSubmit={handleSubmit2}>
                   <input
                     type="text"
