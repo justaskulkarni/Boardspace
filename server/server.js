@@ -136,7 +136,7 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
 
-        await socket.brodcast.to(room).emit("receive-room" ,message,role)
+        await socket.broadcast.to(room).emit("receive-room" ,message,role)
     })
 
 })
