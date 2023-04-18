@@ -115,11 +115,12 @@ io.on("connection", (socket) => {
 
     socket.on("join", async(room) => {
         await socket.join(room)
-        console.log(socket.room)
+        console.log(room)
     })
 
     socket.on("send", async(room,message) => {
-        await socket.to(room).emit("recieve" , message)
+        console.log("im here")
+        await io.emit("receive" , message)
     })
 
 })
