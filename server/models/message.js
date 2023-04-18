@@ -8,7 +8,8 @@ const messageSchema = new Schema({
     date : {type: String},
     role : {type: String},
     to : {type: String},
-    from : {type: mongoose.Schema.Types.ObjectId, ref: 'Student'}
+    fromid : { type : Schema.Types.ObjectId},
+    fromrole : {type : String , enum : ['Admin' , 'Student', 'Mentor']}
 })
 
 module.exports = mongoose.model('Message', messageSchema)
