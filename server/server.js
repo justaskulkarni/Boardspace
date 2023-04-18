@@ -120,7 +120,7 @@ io.on("connection", (socket) => {
 
     socket.on("send", async(room,message) => {
         console.log("im here")
-        await io.emit("receive" , message)
+        await io.to(room).emit("receive" , message)
     })
 
 })
