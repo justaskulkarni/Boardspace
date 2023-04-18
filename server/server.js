@@ -63,22 +63,22 @@ app.get('/getnums' , async (req,res) => {
     
 })
 
-let message = ""
+// let message = ""
 
-async function getMessagesFromRoom(currentRoom){
-  let roomMessages = await Message.aggregate([
-    {$match: {to: currentRoom}},
-    {$lookup: {
-      from: "students", // Replace with the name of the Student collection
-      localField: "from",
-      foreignField: "_id",
-      as: "fromStudent"
-    }},
-    {$addFields: {from: {$arrayElemAt: ["$fromStudent.stname", 0]}}},
-    {$project: {fromStudent: 0}} // Exclude fromStudent field from the final output
-  ]);
-  return roomMessages;
-}
+// async function getMessagesFromRoom(currentRoom){
+//   let roomMessages = await Message.aggregate([
+//     {$match: {to: currentRoom}},
+//     {$lookup: {
+//       from: "students", // Replace with the name of the Student collection
+//       localField: "from",
+//       foreignField: "_id",
+//       as: "fromStudent"
+//     }},
+//     {$addFields: {from: {$arrayElemAt: ["$fromStudent.stname", 0]}}},
+//     {$project: {fromStudent: 0}} // Exclude fromStudent field from the final output
+//   ]);
+//   return roomMessages;
+// }
 
 
 
@@ -114,7 +114,13 @@ io.on("connection", (socket) => {
         
     // })
 
-    socket.on("join", async(room) => {
+    socket.on("join-room", async(prevroom,room) => {
+        
+        await socket.leave(prevroom)
+        await socket.join(room)
+    })
+
+    socket.on("join-one", async(room) => {
         
         await socket.join(room)
     })
@@ -136,7 +142,7 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
 
-        await socket.broadcast.to(room).emit("receive-room" ,message,role)
+        await socket.broadcast.to(room).emit("receive-room" ,message,role,reqd,reqt)
     })
 
 })
@@ -148,27 +154,27 @@ io.on("connection", (socket) => {
 //     console.log(haha.secure_url)
 // })
 
-app.get('/temp' , async (req,res) => {
+// app.get('/temp' , async (req,res) => {
 
-    // const newMessage = new Message({
-    //     content : "Hey",
-    //     fromid : "64257e870ea24575379b7885",
-    //     fromrole : "Admin"
-    // })
+//     // const newMessage = new Message({
+//     //     content : "Hey",
+//     //     fromid : "64257e870ea24575379b7885",
+//     //     fromrole : "Admin"
+//     // })
 
-    // await newMessage.save()
+//     // await newMessage.save()
 
-    const reqmessage = await Message.findById('643e5ddc24c587d5c9d85efc')
+//     const reqmessage = await Message.findById('643e5ddc24c587d5c9d85efc')
 
-    if(reqmessage.fromrole === "Admin")
-    {
-        const dets = await Admin.findById(reqmessage.fromid)
-        res.send(dets)
-        return
-    }
+//     if(reqmessage.fromrole === "Admin")
+//     {
+//         const dets = await Admin.findById(reqmessage.fromid)
+//         res.send(dets)
+//         return
+//     }
 
-    res.send("jhala")
-})
+//     res.send("jhala")
+// })
 
 server.listen(MYPORT, () => {
     console.log(`Ready to serve you master on ${MYPORT}`)
