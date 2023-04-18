@@ -13,6 +13,7 @@ import jwt_decode from 'jwt-decode'
 
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
+  const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([]);
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
@@ -20,15 +21,26 @@ import jwt_decode from 'jwt-decode'
   const handleChange2 = (event) =>{
     setCurrentRoom(event.target.value)
   }
+  const handleChange3 = (event) =>{
+    setRoomToJoin(event.target.value)
+  }
   const handleSubmit = async(e) =>{
     e.preventDefault()
-    var decoded = jwt_decode(localStorage.getItem("Token")) 
+    /* var decoded = jwt_decode(localStorage.getItem("Token")) 
     const time = getCurrentTime()
     const date = getCurrentDate()
     const role = decoded.role
     const userId = decoded.id
-    socket.emit("send-message" , currentMessage, time, date, role, currentRoom, userId) 
+    socket.emit("send-message" , currentMessage, time, date, role, currentRoom, userId) */ 
+    socket.emit("send", currentRoom, currentMessage)
   }
+  const handleSubmit2 = async(e) =>{
+    e.preventDefault()
+    socket.emit("join", roomToJoin)
+  }
+  socket.off("receive").on("receive", (message) =>{
+    console.log(message)
+  })
   const getCurrentTime = () => {
     const date = new Date();
     const hours = String(date.getHours()).padStart(2, '0');
@@ -129,6 +141,15 @@ import jwt_decode from 'jwt-decode'
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Admin2</span></button></div>
              </div>
              <div className={styles.column + " " + styles.right}>
+                <form onSubmit={handleSubmit2}>
+                  <input
+                    type="text"
+                    name="room name"
+                    onChange={handleChange3}
+                    placeholder="Type the name of room to join"
+                  /> 
+                  <button>Join Room</button>
+                </form>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"
@@ -143,8 +164,9 @@ import jwt_decode from 'jwt-decode'
                     placeholder="Type the name of the room you want to send this message to"
                   /> 
                   <button>Send Message</button>
-                </form> 
-                {messages.map((message) => (
+                </form>
+
+                {/* {messages.map((message) => (
   <div key={message._id}>
     <p>{message.from}</p>
     <p>{message.content}</p>
@@ -152,7 +174,7 @@ import jwt_decode from 'jwt-decode'
     <p>{message.date}</p>
     <p>{message.role}</p>
   </div>
-                ))}
+                ))} */}
               </div>
          </div>
      </>
