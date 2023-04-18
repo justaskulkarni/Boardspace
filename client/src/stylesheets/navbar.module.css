@@ -1,28 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .outerdiv {
     display: flex;
     overflow-x: hidden;
+    overflow-y: hidden;
     justify-content: space-between;
     position: fixed;
     width: 100%;
     font-family: 'Poppins', sans-serif;
-    top:0;
+    top: 0;
+    background-color: #fffefe;
+    height: 5.5rem;
 }
 
-.imgdiv{
-    float:left;
+.imgdiv {
+    float: left;
     margin-top: 0.9rem;
-    margin-left:0.7rem;
-    height: 7rem;
+    margin-left: 1.5rem;
+    height: 6.5rem;
     width: 100%;
     object-fit: cover;
 }
-.content{
+
+.content {
     display: flex;
     flex-direction: row;
 }
 
-.buttons{
+.buttons {
     position: relative;
     width: 100%;
     margin-top: 2.15rem;
@@ -30,24 +35,24 @@
     font-size: 20rem;
 }
 
-.tail{
+.tail {
     float: right;
     padding-right: 2rem;
     background-color: transparent;
     border: 0px;
-    font-size:1.4rem;
+    font-size: 1.4rem;
     color: black;
 }
 
-.tail:hover{
-    color:#ab39fa;
-}
-.tail .link1:hover{
+.tail:hover {
     color: #ab39fa;
 }
 
+.tail .link1:hover {
+    color: #ab39fa;
+}
 
- .link1{
+.link1 {
     text-decoration: none;
-    color:black;
-} 
+    color: black;
+}
