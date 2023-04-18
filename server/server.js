@@ -142,7 +142,8 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
 
-        await socket.broadcast.to(room).emit("receive-room" ,message,role,reqd,reqt)
+        await io.emit("receive-room" ,message, role, reqt, reqd)
+        /* await socket.broadcast.to(room).emit("receive-room" ,message,role,reqd,reqt) */
     })
 
 })
