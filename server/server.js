@@ -119,9 +119,24 @@ io.on("connection", (socket) => {
         await socket.join(room)
     })
 
-    socket.on("send", async(room,message) => {
-        console.log("im here")
-        await socket.brodcast.to(room).emit("receive" , message)
+    socket.on("send-room", async(room,message,role,id) => {
+        
+        const dateob = new Date()
+        const reqt = dateob.getHours()+':'+dateob.getMinutes()
+        const reqd = (dateob.getDate()).slice(-2)+"/"+dateob.getMonth()+"/"+dateob.getFullYear()
+
+        const newMessage = new Message({
+            content : message,
+            time : reqt,
+            date : reqd,
+            to : room,
+            fromid : id,
+            fromrole : role
+        })
+
+        await newMessage.save()
+
+        await socket.brodcast.to(room).emit("receive-room" , message,role)
     })
 
 })
