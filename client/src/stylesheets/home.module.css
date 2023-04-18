@@ -1,49 +1,35 @@
-html {
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	font-family: "Monument Extended", Arial, Helvetica, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
+
+.Home {
+	margin-top: 0;
 }
 
-body {
-	color: white;
-	margin: 0;
-	padding: 0;
-	perspective: 1px;
-	transform-style: preserve-3d;
-	height: 100%;
-	width: 100%;
-	overflow-y: scroll;
-	overflow-x: hidden;
+.parallaxsize {
+	height: 140vh;
 }
 
-header {
-	box-sizing: border-box;
-	min-height: 100vh;
-	position: relative;
-	height: 100vh;
+.bgimg {
+	padding-right: 90rem;
+	margin-top: 0rem;
 }
 
-.parallax-bg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 150%;
-	/* background-image: url("../assets/background.jpg"); */
-	background-size: cover;
-	z-index: -1;
+.power {
+	font-family: "Work Sans", sans-serif;
+	width: 50rem;
+	padding-top: 7.6rem;
+	padding-left: 8.3rem;
+	/* Color of Power #17163e */
+	font-size: 5.625rem;
+	color: #16163f;
+	letter-spacing: -0.02em;
+	line-height: 1.1em;
 }
 
-.parallax-content {
-	position: relative;
-	padding: 50px;
-	color: #fff;
-	text-align: center;
-}
-
-.parallax-container {
-	margin-top: 20rem;
+.toppers {
+	padding-top: 1rem;
+	padding-left: 8.3rem;
+	font-size: 1.5rem;
+	line-height: 1.6em;
+	color: #16163f;
+	letter-spacing: 0.05rem;
 }
