@@ -44,7 +44,7 @@ import jwt_decode from 'jwt-decode'
     e.preventDefault()
     socket.emit("join", roomToJoin)
   }
-  socket.off("receive").on("receive", (message, role) =>{
+  socket.off("receive-room").on("receive-room", (message, role) =>{
     console.log(message, role)
   })
   const getCurrentTime = () => {

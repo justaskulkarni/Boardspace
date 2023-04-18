@@ -123,7 +123,7 @@ io.on("connection", (socket) => {
         
         const dateob = new Date()
         const reqt = dateob.getHours()+':'+dateob.getMinutes()
-        const reqd = (dateob.getDate()).slice(-2)+"/"+dateob.getMonth()+"/"+dateob.getFullYear()
+        const reqd = dateob.getDate() +"/"+dateob.getMonth()+"/"+dateob.getFullYear()
 
         const newMessage = new Message({
             content : message,
@@ -136,7 +136,7 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
 
-        await socket.brodcast.to(room).emit("receive-room" , message,role)
+        await socket.brodcast.to(room).emit("receive-room" ,message,role)
     })
 
 })
