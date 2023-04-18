@@ -15,15 +15,18 @@ import jwt_decode from 'jwt-decode'
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([]);
-  const handleChange1 = (event) => {
+   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
-  }
+  }/*
   const handleChange2 = (event) =>{
     setCurrentRoom(event.target.value)
   }
   const handleChange3 = (event) =>{
     setRoomToJoin(event.target.value)
-  }
+  } */
+  const handleButtonClick = (roomName) => {
+    setCurrentRoom(roomName);
+  };
   const handleSubmit = async(e) =>{
     e.preventDefault()
     /* var decoded = jwt_decode(localStorage.getItem("Token")) 
@@ -32,6 +35,7 @@ import jwt_decode from 'jwt-decode'
     const role = decoded.role
     const userId = decoded.id
     socket.emit("send-message" , currentMessage, time, date, role, currentRoom, userId) */ 
+    console.log("Function call ho raha hai")
     socket.emit("send", currentRoom, currentMessage)
   }
   const handleSubmit2 = async(e) =>{
@@ -132,16 +136,27 @@ import jwt_decode from 'jwt-decode'
          <div className={styles.row}>
              <div className={styles.column + " " + styles.left}>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>General</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room2</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room3</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Room4</span></button></div>
+                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button></div>
+                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button></div>
+                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button></div>
+                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Admins</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Admin1</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Admin2</span></button></div>
              </div>
              <div className={styles.column + " " + styles.right}>
-                <form onSubmit={handleSubmit2}>
+                {currentRoom && 
+                  <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    name="message"
+                    onChange={handleChange1}
+                    placeholder="Type your message here"
+                  />  
+                  <button>Send Message</button>
+                </form>  
+                }
+                {/* <form onSubmit={handleSubmit2}>
                   <input
                     type="text"
                     name="room name"
@@ -164,7 +179,7 @@ import jwt_decode from 'jwt-decode'
                     placeholder="Type the name of the room you want to send this message to"
                   /> 
                   <button>Send Message</button>
-                </form>
+                </form> */}
 
                 {/* {messages.map((message) => (
   <div key={message._id}>
