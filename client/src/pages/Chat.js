@@ -13,6 +13,7 @@ import sendicon from '../assets/send.png'
  const Chat = () => {
 
   const [currentMessage, setCurrentMessage] = useState("")
+  const [currentUserName, setCurrentUserName] = useState("")
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
@@ -27,6 +28,13 @@ import sendicon from '../assets/send.png'
     setRoomToJoin(event.target.value)
   } */
   const handleButtonClick = (roomName) => {
+    if(!currentRoom){
+      socket.emit("join-one", roomName)
+    }
+    else{
+      socket.emit("join-room", currentRoom, roomName)
+    }
+    setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
@@ -42,15 +50,15 @@ import sendicon from '../assets/send.png'
     var decoded = jwt_decode(localStorage.getItem("Token"))
     const role = decoded.role
     const userId = decoded.id
-    socket.emit("send-room", currentRoom, currentMessage, role, userId)
+    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
     setCurrentMessage("")
   }
   const handleSubmit2 = async(e) =>{
     e.preventDefault()
-    socket.emit("join", roomToJoin)
+    socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date) =>{
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date }]);
+  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName) =>{
+    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName }]);
     console.log(message, role, time, date)
   })
 
@@ -59,6 +67,28 @@ import sendicon from '../assets/send.png'
         console.log("im here")
         console.log(roomMessages)
   });
+
+  useEffect(() =>{
+    async function getdetails(){
+    var decoded = jwt_decode(localStorage.getItem("Token"))
+    const role = decoded.role
+    const userId = decoded.id
+    const response = await fetch("http://localhost:6100/api/chat/details", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ role: role, userId: userId})
+    })
+
+    const json = await response.json()    
+    setCurrentUserName(json.name)
+  }
+
+  getdetails()
+}, [])
+
+
     //  const [room, setRoom] = useState("")
     //  const [rooms, setRooms] = useState([]);
     //  const [currentRoom, setCurrentRoom] = useState([]);
@@ -136,15 +166,17 @@ import sendicon from '../assets/send.png'
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Admins</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Admin1</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications}>Admin2</span></button></div>
+                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Admin")}><span className={styles.notifications}>Admin</span></button></div>
              </div>
              <div className={styles.column + " " + styles.right}>
+                {currentRoom &&
+                  <h3>{currentRoom}</h3>
+                }
                 <ul className={styles.chatMessages}>
                   {messages.map((msg, index) => (
                     <li className={styles.chatMessage} key={index}>
                       <div className={styles.tooltip}>
+                        <p className={styles.date}>{msg.senderName}</p>
                         <p className={styles.message}>{msg.message}</p>
                         
                         <p className={styles.time}>{msg.time}</p>
@@ -153,6 +185,7 @@ import sendicon from '../assets/send.png'
                     </li>
                   ))}
                 </ul>
+                
                 {currentRoom &&   
                 <form onSubmit={handleSubmit} className={styles.chatForm}>
                   <input
