@@ -1,71 +1,78 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../stylesheets/home.module.css";
-import '../stylesheets/navbar.css'
+import "../stylesheets/navbar.css";
 import bg from "../assets/bg.png";
-import navbarlogo from '../assets/navbarlogo.png'
+import navbarlogo from "../assets/navbarlogo.png";
 
-import jwt_decode from 'jwt-decode'
+import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 
 function Home() {
-
-	let navigate = useNavigate()
+	let navigate = useNavigate();
 
 	const handleLogout = () => {
-		localStorage.removeItem("Token")
-		navigate("/")
-	}
+		localStorage.removeItem("Token");
+		navigate("/");
+	};
 
 	const returnRole = (reqtoken) => {
 		if (reqtoken) {
-			var decoded = jwt_decode(reqtoken)
-			return (decoded.role)
+			var decoded = jwt_decode(reqtoken);
+			return decoded.role;
+		} else {
+			return null;
 		}
-		else {
-			return (null)
-		}
-	}
+	};
 
 	useEffect(() => {
-		window.onscroll = function(){
-
-			if(document.documentElement.scrollTop > 100)
-			{
-				document.querySelector("#nav").classList.add("temp")
-			}
-			else{
-				if(document.querySelector("#nav").classList.contains("temp"))				
-				{	
-					document.querySelector("#nav").classList.remove("temp")
+		window.onscroll = function () {
+			if (document.documentElement.scrollTop > 100) {
+				document.querySelector("#nav").classList.add("temp");
+			} else {
+				if (document.querySelector("#nav").classList.contains("temp")) {
+					document.querySelector("#nav").classList.remove("temp");
 				}
 			}
+		};
+	});
 
-		}
-	})
-
-
-	var frole = returnRole(localStorage.getItem("Token"))
+	var frole = returnRole(localStorage.getItem("Token"));
 
 	return (
 		<>
 			<div className={styles.Home}>
-				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ "height": "100vh", "width": "100%", "objectFit": "fill" }}>
-
+				<Parallax strength={400} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "140vh", width: "140%", objectFit: "fill" }}>
 					<div className={"outerdiv"} id="nav">
-						<div><Link to="/"><img className={"imgdiv"} src={navbarlogo} alt="" /></Link></div>
+						<div>
+							<Link to="/">
+								<img className={"imgdiv"} src={navbarlogo} alt="" />
+							</Link>
+						</div>
 						<div className={"buttons"}>
-							{(localStorage.getItem("Token") && frole === "Mentor") ?
-								<button className={"tail"} onClick={handleLogout}>Mentor Logout</button>
-								:
-								<button className={"tail"}><Link className={"link1"} to="/login">Mentor</Link></button>
-							}
+							{localStorage.getItem("Token") && frole === "Mentor" ? (
+								<button className={"tail"} onClick={handleLogout}>
+									Mentor Logout
+								</button>
+							) : (
+								<button className={"tail"}>
+									<Link className={"link1"} to="/login">
+										Mentor
+									</Link>
+								</button>
+							)}
 
-							{(localStorage.getItem("Token") && frole === "Student") ?
-								<button className={"tail"} onClick={handleLogout}>Student Logout</button>
-								:
-								<button className={"tail"}><Link className={"link1"} to="/student/login">Student</Link></button>
-							}
+							{localStorage.getItem("Token") && frole === "Student" ? (
+								<button className={"tail"} onClick={handleLogout}>
+									Student Logout
+								</button>
+							) : (
+								<button className={"tail"}>
+									<Link className={"link1"} to="/student/login">
+										Student
+									</Link>
+								</button>
+							)}
 							<button className={"tail"}>Our Team</button>
 						</div>
 					</div>
