@@ -19,15 +19,17 @@ app.use(bodyParser.json())
 const mentorroutes = require('./routes/MentorRoutes')
 const studentroutes = require('./routes/StudentRoutes')
 const adminroutes = require('./routes/AdminRoutes')
+const chatroutes = require('./routes/ChatRoutes')
 
 const Mentor = require('./models/mentor')
-const Student = require('./models/student');
+const Student = require('./models/student')
 const Message = require('./models/message')
 const Admin = require('./models/admin')
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
 app.use('/api/admin/', adminroutes)
+app.use('/api/chat', chatroutes)
 
 const server = require('http').createServer(app)
 const MYPORT = process.env.PORT || 6100
@@ -115,17 +117,17 @@ io.on("connection", (socket) => {
     // })
 
     socket.on("join-room", async(prevroom,room) => {
-        
+        console.log(prevroom, room)
         await socket.leave(prevroom)
         await socket.join(room)
     })
 
     socket.on("join-one", async(room) => {
-        
+        console.log(room)
         await socket.join(room)
     })
 
-    socket.on("send-room", async(room,message,role,id) => {
+    socket.on("send-room", async(room,message,role,id, senderName) => {
         
         const dateob = new Date()
         const reqt = dateob.getHours()+':'+dateob.getMinutes()
@@ -142,8 +144,7 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
 
-        await io.emit("receive-room" ,message, role, reqt, reqd)
-        /* await socket.broadcast.to(room).emit("receive-room" ,message,role,reqd,reqt) */
+        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName) 
     })
 
 })
