@@ -36,12 +36,15 @@
 	font-family: "Work Sans", sans-serif;
 	font-size: 3rem;
 	font-weight: 400;
+	margin: 0;
 }
 
 .newsignup {
+	padding-top: 1rem;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 400;
+	margin: 0;
 }
 
 .signupclick {
