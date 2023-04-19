@@ -9,11 +9,12 @@
 	height: 60rem;
 }
 
-/* .bgimg {
-	margin-left: -35rem;
-	background-size: 60rem 60rem;
-	background-position: right center;
-} */
+.bgimg {
+	padding-right: 40%;
+	/* margin-left: -35rem; */
+	/* background-size: 60rem 60rem; */
+	/* background-position: right center; */
+}
 
 .power {
 	font-family: "Work Sans", sans-serif;
