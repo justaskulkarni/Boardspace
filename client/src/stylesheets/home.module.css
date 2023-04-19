@@ -1,15 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
 
 .Home {
 	margin-top: 0;
 }
 
 .parallaxsize {
-	height: 140vh;
+	height: 60rem;
 }
 
 .bgimg {
-	padding-right: 35rem;
+	padding-right: 40%;
+	/* margin-left: -35rem; */
+	/* background-size: 60rem 60rem; */
+	/* background-position: right center; */
 }
 
 .power {
@@ -27,7 +31,9 @@
 .toppers {
 	padding-top: 1rem;
 	padding-left: 8.3rem;
+	font-family: "Montserrat", sans-serif;
 	font-size: 1.5rem;
+	font-weight: 400;
 	line-height: 1.6em;
 	color: #16163f;
 	letter-spacing: 0.05rem;
