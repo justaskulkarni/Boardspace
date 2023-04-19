@@ -25,29 +25,84 @@
 	border: 0.05rem solid black;
 }
 
-.rightdiv {
-	position: absolute;
-	float: right;
-	right: 1rem;
-	top: 10rem;
+.loginform {
+	width: 20rem;
+	height: 33.125rem;
+	margin-top: 10rem;
+	margin-left: 55rem;
+	/* margin-right: 10rem; */
 }
 
 .login {
 	font-family: "Work Sans", sans-serif;
 	font-size: 3rem;
 	font-weight: 400;
-	margin: 0;
+	margin-bottom: 1.5rem;
+	text-align: center;
 }
 
 .newsignup {
-	padding-top: 1rem;
+	padding-bottom: 2rem;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
-	font-weight: 400;
+	font-weight: 300;
 	margin: 0;
+	text-align: center;
 }
 
 .signupclick {
 	color: #9e3ffd;
 	text-decoration: none;
+}
+
+.forms {
+	height: 8.125rem;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1.125rem;
+	font-weight: 300;
+}
+
+.fields {
+	margin-left: 0rem;
+	margin: 0;
+	margin-bottom: 1.5625rem;
+	outline: none;
+	border-bottom-color: #c5c5cf;
+	border-bottom-width: 1px;
+	/* border-bottom-style: none; */
+}
+
+.fields:hover {
+	border-bottom-color: #16163f;
+}
+
+.fields:focus {
+	border-bottom-color: #9e3ffd;
+}
+
+.forgot {
+	padding-top: 0.8125rem;
+	padding-bottom: 1.125rem;
+	padding-left: 0;
+	padding-right: 0;
+	font-weight: 400;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	background-color: rgba(0, 0, 0, 0);
+	color: #16163f;
+	border: 0;
+	text-decoration: underline;
+}
+
+.loginbutton {
+	height: 3rem;
+	width: 20rem;
+	background-color: #9e3ffd;
+	border: 0;
+}
+
+.logintext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	color: white;
 }

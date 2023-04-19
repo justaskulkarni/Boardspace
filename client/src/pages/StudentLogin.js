@@ -43,24 +43,34 @@ const StudentLogin = () => {
 
 	return (
 		<>
-			<Navbar />
-			<div className={styles.colour1}></div>
-			<div className={styles.rightdiv}>
-				<h3 className={styles.login}>Log In</h3>
-				<form onSubmit={handleSubmit}>
+			<div className={styles.loginpage}>
+				<Navbar />
+				<div className={styles.colour1}></div>
+				<div className={styles.loginform}>
+					<h3 className={styles.login}>Log In</h3>
 					<h6 className={styles.newsignup}>
 						New to this site? <Link className={styles.signupclick}>Sign Up</Link>
 					</h6>
 					<div>
-						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="Email" />
+						<form onSubmit={handleSubmit} className={styles.forms}>
+							<label htmlFor="Email">Email</label>
+							<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} id={styles.emailfield} />
 
-						<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="Password" />
+							<label htmlFor="Password">Password</label>
+							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} id={styles.passwordfield} />
+
+							<div>
+								<button className={styles.forgot}>Forgot password?</button>
+							</div>
+							<div>
+								<button className={styles.loginbutton}>
+									<span className={styles.logintext}>Log In</span>
+								</button>
+							</div>
+						</form>
 					</div>
-
-					<button>Login</button>
-				</form>
-				<button>forgot password?</button>
-				{error && <div className={styles.error}>{error}</div>}
+					{error && <div className={styles.error}>{error}</div>}
+				</div>
 			</div>
 		</>
 	);
