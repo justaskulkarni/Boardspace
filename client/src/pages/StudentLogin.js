@@ -1,90 +1,69 @@
-import Navbar from '../components/Navbar'
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import styles from '../stylesheets/auth.module.css'
+import Navbar from "../components/Navbar";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "../stylesheets/StudentAuth.module.css";
 
 const StudentLogin = () => {
+	const [credentials, setCredentials] = useState({ email: "", password: "" });
+	const [error, setError] = useState(null);
 
-    const [creadentials, setCredentials] = useState({ email: "", password: "" })
-    const [error, setError] = useState(null)
+	let navigate = useNavigate();
 
-    let navigate = useNavigate()
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+		const response = await fetch("http://localhost:6100/api/student/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+		});
 
-        const response = await fetch("http://localhost:6100/api/student/login", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: creadentials.email, password: creadentials.password })
-        })
+		const json = await response.json();
 
-        const json = await response.json()
+		if (json.success) {
+			localStorage.setItem("Token", json.authToken);
+			navigate("/studentin");
+		}
 
-        if (json.success) {
-            localStorage.setItem("Token", json.authToken)
-            navigate("/studentin")
-        }
+		if (json.error) {
+			setError(json.error);
+			setCredentials({
+				email: "",
+				password: "",
+			});
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
+	};
 
-        if (json.error) {
-            setError(json.error)
-            setCredentials({
-                email: "",
-                password: ""
-            });
-            setTimeout(() => {
-                setError(null);
-            }, 4000);
-        }
-    }
+	const onChange = (event) => {
+		setCredentials({ ...credentials, [event.target.name]: event.target.value });
+	};
 
-    const onChange = (event) => {
-        setCredentials({ ...creadentials, [event.target.name]: event.target.value })
-    }
+	return (
+		<>
+			<Navbar />
+			<div className={styles.colour1}></div>
+			<div className={styles.rightdiv}>
+				<h3 className={styles.login}>Log In</h3>
+				<form onSubmit={handleSubmit}>
+					<h6 className={styles.newsignup}>
+						New to this site? <Link className={styles.signupclick}>Sign Up</Link>
+					</h6>
+					<div>
+						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="Email" />
 
-    return (
-        <>
-            <Navbar />
-            <div className={styles.wrapper}>
-            <div className={styles.mostout}>
-                <div className={styles.colour1}></div>
-                <div className={styles.rightdiv}>
-                    <form className={styles.signup} onSubmit={handleSubmit}>
-                        <h3 className={styles.formheader}><span className={styles.loginhead1}>Student Login</span></h3>
+						<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="Password" />
+					</div>
 
-                        <div className="formcontent">
-                            <input
-                                type="email"
-                                value={creadentials.email}
-                                name="email"
-                                onChange={onChange}
-                                placeholder="Email"
-                                className={styles.inputbox}
-                            />
+					<button>Login</button>
+				</form>
+				<button>forgot password?</button>
+				{error && <div className={styles.error}>{error}</div>}
+			</div>
+		</>
+	);
+};
 
-                            <input
-                                type="password"
-                                value={creadentials.password}
-                                name="password"
-                                onChange={onChange}
-                                placeholder="Password"
-                                className={styles.inputbox}
-                            />
-
-                        </div>
-
-                        <div className={styles.buttonscontainer}>
-                        <button className={styles.loginbutton} >Login</button>
-                        <button className={styles.signupbutton}><Link className={styles.lol} to={"/student/signup"}>SignUp</Link></button>
-                        </div>
-                    </form>
-                    <button className={styles.forgotpasswordbutton}>forgot password?</button>
-                    {error && <div className={styles.error}>{error}</div>}
-                </div>
-            </div>
-            </div>
-        </>
-    )
-}
-
-export default StudentLogin
+export default StudentLogin;
