@@ -8,6 +8,7 @@ const router = express.Router()
 const Student = require('../models/student')
 const Mentor = require('../models/mentor')
 const Admin = require('../models/admin')
+const Message = require('../models/message')
 
 router.post('/details', async(req, res) =>{
     console.log(req.body.userId)
@@ -32,6 +33,11 @@ router.post('/details', async(req, res) =>{
         console.log(error)
         res.status(400).json({ error: error.message })    
     }
+})
+
+router.post("/getmessages", async(req, res) =>{
+    let roomMessages = await getMessagesFromRoom(req.body.currentRoom);
+    io.emit('room-messages', roomMessages);    
 })
 
 module.exports = router;
