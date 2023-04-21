@@ -49,7 +49,10 @@ const StudentLogin = () => {
 				<div className={styles.loginform}>
 					<h3 className={styles.login}>Log In</h3>
 					<h6 className={styles.newsignup}>
-						New to this site? <Link className={styles.signupclick}>Sign Up</Link>
+						New to this site?{" "}
+						<Link className={styles.signupclick} to={"/student/signup"}>
+							Sign Up
+						</Link>
 					</h6>
 					<div>
 						<form onSubmit={handleSubmit} className={styles.forms}>
