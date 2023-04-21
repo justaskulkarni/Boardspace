@@ -54,10 +54,10 @@ const StudentLogin = () => {
 					<div>
 						<form onSubmit={handleSubmit} className={styles.forms}>
 							<label htmlFor="Email">Email</label>
-							<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} id={styles.emailfield} />
+							<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
 							<label htmlFor="Password">Password</label>
-							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} id={styles.passwordfield} />
+							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
 							<div>
 								<button className={styles.forgot}>Forgot password?</button>
