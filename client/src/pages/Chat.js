@@ -27,13 +27,16 @@ import sendicon from '../assets/send.png'
   const handleChange3 = (event) =>{
     setRoomToJoin(event.target.value)
   } */
-  const handleButtonClick = (roomName) => {
+  const handleButtonClick = async(roomName) => {
     if(!currentRoom){
       socket.emit("join-one", roomName)
     }
     else{
       socket.emit("join-room", currentRoom, roomName)
     }
+    
+    socket.emit("getpreviouschats", roomName)
+
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
@@ -62,11 +65,12 @@ import sendicon from '../assets/send.png'
     console.log(message, role, time, date)
   })
 
-  socket.off("room-messages").on("room-messages", (roomMessages) => {
-        setMessages(roomMessages);
-        console.log("im here")
-        console.log(roomMessages)
-  });
+    socket.off("room-messages").on("room-messages", (roomMessages) => {
+  /*       setMessages([{message: roomMessages.content, time: roomMessages.time, date: roomMessages.date, roomMessages.fromid, roomMessages.fromrole}]) */
+        roomMessages.forEach((message) => {
+          console.log(message);
+        });
+    }); 
 
   useEffect(() =>{
     async function getdetails(){
