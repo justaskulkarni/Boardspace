@@ -106,3 +106,10 @@
 	font-size: 1rem;
 	color: white;
 }
+
+.signupform {
+	width: 20rem;
+	height: 33.125rem;
+	margin-top: 7rem;
+	margin-left: 55rem;
+}
