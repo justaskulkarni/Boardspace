@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
 import Navbar from "../components/Navbar";
@@ -12,6 +12,7 @@ import sendicon from '../assets/send.png'
 
  const Chat = () => {
 
+  const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [previousRoom, setPreviousRoom] = useState("")
@@ -62,13 +63,14 @@ import sendicon from '../assets/send.png'
   }
   socket.off("receive-room").on("receive-room", (message, role, time, date, senderName) =>{
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName }]);
-    console.log(message, role, time, date)
+    
   })
 
     socket.off("room-messages").on("room-messages", (roomMessages) => {
   /*       setMessages([{message: roomMessages.content, time: roomMessages.time, date: roomMessages.date, roomMessages.fromid, roomMessages.fromrole}]) */
         roomMessages.forEach((message) => {
-          console.log(message);
+          
+          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole}])
         });
     }); 
 
@@ -177,6 +179,7 @@ import sendicon from '../assets/send.png'
                   <h3>{currentRoom}</h3>
                 }
                 <ul className={styles.chatMessages}>
+                  
                   {messages.map((msg, index) => (
                     <li className={styles.chatMessage} key={index}>
                       <div className={styles.tooltip}>
@@ -188,6 +191,7 @@ import sendicon from '../assets/send.png'
                       </div>
                     </li>
                   ))}
+                  
                 </ul>
                 
                 {currentRoom &&   

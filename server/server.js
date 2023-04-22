@@ -70,7 +70,7 @@ async function getMessagesFromRoom(currentRoom){
      {$match: {to: currentRoom}},
      {$lookup: {
        from: "students", 
-       localField: "from",
+       localField: "fromid",
        foreignField: "_id",
        as: "fromStudent"
      }},
@@ -79,47 +79,17 @@ async function getMessagesFromRoom(currentRoom){
    ]);
    return roomMessages;
 }
+   
 
 io.on("connection", (socket) => {
     console.log(socket.id)
 
-    // socket.on("send-message", async(currentMessage, time, date, role, currentRoom, userId) => {
-    //     try{
-    //         console.log(currentMessage, time, date, role, currentRoom, userId)
-    //         const user = await Student.findById(userId);
-
-    //         if (!user) {
-    //             console.log("User not found");
-    //             return;
-    //         }
-    //         const newMessage = new Message({
-    //             content: currentMessage,
-    //             time: time,
-    //             date: date,
-    //             role: role,
-    //             to: currentRoom,
-    //             from: user._id 
-    //         });
-    //         await newMessage.save();
-    //         console.log("Message saved:", newMessage);
-    //         let roomMessages = await getMessagesFromRoom(currentRoom);
-    //         console.log(roomMessages)
-    //         io.emit('room-messages', roomMessages);
-    //     }
-    //     catch(error){
-    //         console.log(error)
-    //     }
-        
-    // })
-
     socket.on("join-room", async(prevroom,room) => {
-        console.log(prevroom, room)
         await socket.leave(prevroom)
         await socket.join(room)
     })
 
     socket.on("join-one", async(room) => {
-        console.log(room)
         await socket.join(room)
     })
 
@@ -145,7 +115,7 @@ io.on("connection", (socket) => {
 
     socket.on("getpreviouschats", async(currentRoom) =>{
         let roomMessages = await getMessagesFromRoom(currentRoom);
-        io.to(room).emit('room-messages', roomMessages); 
+        io.to(currentRoom).emit('room-messages', roomMessages); 
     })
 
 })
