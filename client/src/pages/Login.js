@@ -1,105 +1,98 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from '../stylesheets/auth.module.css'
+import styles from "../stylesheets/MentorAuth.module.css";
 import Navbar from "../components/Navbar";
 
 const Login = () => {
-  const [creadentials, setCredentials] = useState({ email: "", password: "" })
-  const [error, setError] = useState(null)
+	const [credentials, setCredentials] = useState({ email: "", password: "" });
+	const [error, setError] = useState(null);
 
-  let navigate = useNavigate()
+	let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-    const response = await fetch("http://localhost:6100/api/mentor/login", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: creadentials.email, password: creadentials.password })
-    })
+		const response = await fetch("http://localhost:6100/api/mentor/login", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ email: credentials.email, password: credentials.password }),
+		});
 
-    const json = await response.json()
+		const json = await response.json();
 
-    if(json.noverify){
-      navigate("/notaccepted" , {
-        state : {
-          message : json.noverify
-        }
-      })
-    }
+		if (json.noverify) {
+			navigate("/notaccepted", {
+				state: {
+					message: json.noverify,
+				},
+			});
+		}
 
-    if(json.isreject){
-      navigate("/notaccepted" , {
-        state : {
-          message : json.isreject
-        }
-      })
-    }
+		if (json.isreject) {
+			navigate("/notaccepted", {
+				state: {
+					message: json.isreject,
+				},
+			});
+		}
 
-    if (json.success) {
-      localStorage.setItem("Token", json.authToken)
-      navigate("/youin")
-    }
+		if (json.success) {
+			localStorage.setItem("Token", json.authToken);
+			navigate("/youin");
+		}
 
-    if (json.error) {
-      setError(json.error)
-      setCredentials({
-        email: "",
-        password: ""
-      });
-      setTimeout(() => {
-        setError(null);
-      }, 4000);
-    }
+		if (json.error) {
+			setError(json.error);
+			setCredentials({
+				email: "",
+				password: "",
+			});
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
+	};
 
-  }
+	const onChange = (event) => {
+		setCredentials({ ...credentials, [event.target.name]: event.target.value });
+	};
 
-  const onChange = (event) => {
-    setCredentials({ ...creadentials, [event.target.name]: event.target.value })
-  }
+	return (
+		<>
+			<Navbar />
+			<div className={styles.colour1}></div>
+			<div className={styles.loginform}>
+				<h3 className={styles.login}>Mentor Login</h3>
+				<h6 className={styles.newsignup}>
+					New to this site?{" "}
+					<Link className={styles.signupclick} to={"/signup"}>
+						Sign Up
+					</Link>
+				</h6>
+				<div>
+					<form onSubmit={handleSubmit} className={styles.forms}>
+						<label htmlFor="Email">Email</label>
+						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
-  return (
-    <>
-      <Navbar />
-      <div className={styles.wrapper}>
-      <div className={styles.mostout}>
-        <div className={styles.colour1}></div>
-        <div className={styles.rightdiv}>
-          <form className={styles.login} onSubmit={handleSubmit}>
-            <h3 className={styles.formheader}><span className={styles.loginhead}>Log In</span></h3>
-            <div className={styles.formcontent}>
-              <input
-                type="email"
-                value={creadentials.email}
-                name="email"
-                onChange={onChange}
-                placeholder="email"
-                className={styles.inputbox}
-              />
-              <input
-                type="password"
-                value={creadentials.password}
-                name="password"
-                onChange={onChange}
-                placeholder="password"
-                className={styles.inputbox}
-              />
-            </div>
+						<label htmlFor="Password">Password</label>
+						<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
+						<div>
+							<button className={styles.forgot}>Forgot password?</button>
+						</div>
+						<div>
+							<button className={styles.loginbutton}>
+								<span className={styles.logintext}>Log In</span>
+							</button>
+						</div>
+					</form>
+				</div>
+				{/*  */}
+				{/* </div> */}
+				{error && <div className={styles.error}>{error}</div>}
+			</div>
+		</>
+	);
+};
 
-            <div className={styles.buttonscontainer}>
-              <button className={styles.loginbutton}>Login</button>
-              <button className={styles.signupbutton}><Link className={styles.lol} to={"/signup"}>SignUp</Link></button>
-            </div>
-          </form>
-          <button className={styles.forgotpasswordbutton}>forgot password?</button>
-          {error && <div className={styles.error}>{error}</div>}
-
-        </div>
-      </div>
-      </div>
-    </>
-  )
-}
-
-export default Login
+export default Login;

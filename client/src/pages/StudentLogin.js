@@ -49,15 +49,18 @@ const StudentLogin = () => {
 				<div className={styles.loginform}>
 					<h3 className={styles.login}>Log In</h3>
 					<h6 className={styles.newsignup}>
-						New to this site? <Link className={styles.signupclick}>Sign Up</Link>
+						New to this site?{" "}
+						<Link className={styles.signupclick} to={"/student/signup"}>
+							Sign Up
+						</Link>
 					</h6>
 					<div>
 						<form onSubmit={handleSubmit} className={styles.forms}>
 							<label htmlFor="Email">Email</label>
-							<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} id={styles.emailfield} />
+							<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
 							<label htmlFor="Password">Password</label>
-							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} id={styles.passwordfield} />
+							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
 							<div>
 								<button className={styles.forgot}>Forgot password?</button>
