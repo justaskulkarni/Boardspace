@@ -65,7 +65,7 @@ app.get('/getnums' , async (req,res) => {
     
 })
 
-async function getMessagesFromRoom(currentRoom){
+/* async function getMessagesFromRoom(currentRoom){
    let roomMessages = await Message.aggregate([
      {$match: {to: currentRoom}},
      {$lookup: {
@@ -78,8 +78,111 @@ async function getMessagesFromRoom(currentRoom){
      {$project: {fromStudent: 0}} 
    ]);
    return roomMessages;
+} */
+ 
+async function getMessagesFromRoom(currentRoom) {
+  let roomMessages = await Message.aggregate([
+    {
+      $match: { to: currentRoom },
+    },
+    {
+      $lookup: {
+        from: "students",
+        localField: "fromid",
+        foreignField: "_id",
+        as: "fromStudent",
+      },
+    },
+    {
+      $lookup: {
+        from: "mentors",
+        localField: "fromid",
+        foreignField: "_id",
+        as: "fromMentor",
+      },
+    },
+    {
+      $lookup: {
+        from: "admins",
+        localField: "fromid",
+        foreignField: "_id",
+        as: "fromAdmin",
+      },
+    },
+    {
+      $facet: {
+        students: [
+          {
+            $match: {
+              fromrole: "Student",
+            },
+          },
+          {
+            $addFields: {
+              from: {
+                $arrayElemAt: ["$fromStudent.stname", 0],
+              },
+            },
+          },
+          {
+            $project: {
+              fromStudent: 0,
+              fromMentor: 0,
+              fromAdmin: 0,
+            },
+          },
+        ],
+        mentors: [
+          {
+            $match: {
+              fromrole: "Mentor",
+            },
+          },
+          {
+            $addFields: {
+              from: {
+                $arrayElemAt: ["$fromMentor.name", 0],                
+              },
+              toparea: {
+                $arrayElemAt: ["$fromMentor.toparea", 0],                
+              },
+            },
+          },
+          {
+            $project: {
+              fromStudent: 0,
+              fromMentor: 0,
+              fromAdmin: 0,
+            },
+          },
+        ],
+        admins: [
+          {
+            $match: {
+              fromrole: "Admin",
+            },
+          },
+          {
+            $addFields: {
+              from: {
+                $arrayElemAt: ["$fromAdmin.username", 0],
+              },
+            },
+          },
+          {
+            $project: {
+              fromStudent: 0,
+              fromMentor: 0,
+              fromAdmin: 0,
+            },
+          },
+        ],
+      },
+    },
+  ]);
+  return roomMessages;
 }
-   
+
 
 io.on("connection", (socket) => {
     console.log(socket.id)
@@ -115,7 +218,16 @@ io.on("connection", (socket) => {
 
     socket.on("getpreviouschats", async(currentRoom) =>{
         let roomMessages = await getMessagesFromRoom(currentRoom);
-        io.to(currentRoom).emit('room-messages', roomMessages); 
+        const messages = roomMessages.reduce((acc, curr) => acc.concat(curr.students, curr.mentors, curr.admins), []);
+        messages.sort((a, b) => {
+        const dateComparison = a.date.localeCompare(b.date);
+        if (dateComparison === 0) {
+            return a.time.localeCompare(b.time);
+        }
+        return dateComparison;
+        });
+
+        io.to(currentRoom).emit('room-messages', messages); 
     })
 
 })

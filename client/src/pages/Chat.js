@@ -70,7 +70,7 @@ import sendicon from '../assets/send.png'
   /*       setMessages([{message: roomMessages.content, time: roomMessages.time, date: roomMessages.date, roomMessages.fromid, roomMessages.fromrole}]) */
         roomMessages.forEach((message) => {
           
-          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole}])
+          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea}])
         });
     }); 
 
@@ -184,6 +184,9 @@ import sendicon from '../assets/send.png'
                     <li className={styles.chatMessage} key={index}>
                       <div className={styles.tooltip}>
                         <p className={styles.date}>{msg.senderName}</p>
+                        {msg.toparea &&
+                          <p className={styles.date}>{msg.toparea}</p>
+                        }
                         <p className={styles.message}>{msg.message}</p>
                         
                         <p className={styles.time}>{msg.time}</p>
@@ -253,15 +256,3 @@ import sendicon from '../assets/send.png'
  }
 
  export default Chat 
-
-
-/* import React from 'react'
-
-function Chat() {
-  return (
-    <div>Chat</div>
-  )
-}
-
-export default Chat 
- */

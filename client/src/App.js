@@ -40,6 +40,7 @@ function App() {
             <Route path="/notaccepted" element={<Notaccepted />} />
             <Route element={<MentorPrivateRoutes />}>
               <Route path="/youin" element={<Protected />} />
+              <Route path="/chat" element={<Chat />} />
             </Route>
             <Route element={<StudentPrivateRoutes />}>
               <Route path="/studentin" element={<ProtectedStudent />} />

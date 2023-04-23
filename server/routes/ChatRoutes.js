@@ -25,7 +25,7 @@ router.post('/details', async(req, res) =>{
         }
         else{
             const user3 = await Mentor.findById(req.body.userId)
-            console.log(user3.name)   
+            console.log(user3.name, req.body.role)   
             res.json({ name: user3.name })           
         }
     }
@@ -33,11 +33,6 @@ router.post('/details', async(req, res) =>{
         console.log(error)
         res.status(400).json({ error: error.message })    
     }
-})
-
-router.post("/getmessages", async(req, res) =>{
-    let roomMessages = await getMessagesFromRoom(req.body.currentRoom);
-    io.emit('room-messages', roomMessages);    
 })
 
 module.exports = router;
