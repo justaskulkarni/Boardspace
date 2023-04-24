@@ -1,20 +1,23 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
 import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
+import { useParams } from 'react-router-dom'
 
  const SOCKET_URL = "http://localhost:6100";
 
  const socket = io(SOCKET_URL);
 
- const Chat = () => {
+ const AdminChat = () => {
 
-  const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
+  const [ fields, setFields ] = useState("")
+  const adminId = '64257e870ea24575379b7885'
+  const { mentid } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
@@ -22,14 +25,13 @@ import sendicon from '../assets/send.png'
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  const adminId = '64257e870ea24575379b7885'
   function orderIds(id1, id2) {
         if (id1 > id2) {
             return id1 + "-" + id2;
         } else {
             return id2 + "-" + id1;
         }
-  }
+   }
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
@@ -47,37 +49,21 @@ import sendicon from '../assets/send.png'
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
-  const handlePersonalChat = async(adminID) => {
-    var roomId = orderIds(adminID, userId)
-    roomId += 'student-admin'
-    if(!currentRoom){
-      socket.emit("join-one", roomId)
-    }
-    else{
-      socket.emit("join-room", currentRoom, roomId)
-    }
-    
-    socket.emit("getpreviouschats", roomId)
-
-    setMessages([])
-    setPreviousRoom(currentRoom)
-    setCurrentRoom(roomId);
-  };
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
     /* var decoded = jwt_decode(localStorage.getItem("Token"))
     const role = decoded.role
     const userId = decoded.id */
-    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
+    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
     setCurrentMessage("")
   }
   const handleSubmit2 = async(e) =>{
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName) =>{
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName }]);
+  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, toparea) =>{
+    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea }]);
     
   })
 
@@ -103,10 +89,17 @@ import sendicon from '../assets/send.png'
     })
 
     const json = await response.json()    
+    console.log(json)
     setCurrentUserName(json.name)
+    setFields(json.fields)
   }
 
   getdetails()
+  var roomId = orderIds(adminId, mentid)
+  roomId += 'mentor-admin'
+  socket.emit("join-one", roomId)
+  setCurrentRoom(roomId)
+  socket.emit("getpreviouschats", roomId)
 }, [])
 
    return (
@@ -119,7 +112,6 @@ import sendicon from '../assets/send.png'
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handlePersonalChat(adminId)}><span className={styles.notifications}>Admin</span></button></div>
              </div>
              <div className={styles.column + " " + styles.right}>
                 {currentRoom &&
@@ -165,4 +157,4 @@ import sendicon from '../assets/send.png'
    )
  }
 
- export default Chat 
+ export default AdminChat 

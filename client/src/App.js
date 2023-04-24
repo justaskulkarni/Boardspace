@@ -23,6 +23,8 @@ import AdminRejected from "./pages/AdminRejected";
 import AdminAccept from "./pages/AdminAccept";
 import Chat from "./pages/Chat";
 import MentorChat from "./pages/MentorChat";
+import AdminMessages from "./pages/AdminMessages";
+import AdminChat from "./pages/AdminChat";
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
               <Route path="/admin/landing" element={<AdminLand />} />
               <Route path="/admin/rejected/reqs" element={<AdminRejected />} />
               <Route path="/admin/accepted/reqs" element={<AdminAccept />} />
+              <Route path="/admin/messages" element={<AdminMessages />} />
+              <Route path="/admin/chat/:mentid" element={<AdminChat />} />
             </Route>
             <Route path="*" element={<Not404 />} />
           </Routes>

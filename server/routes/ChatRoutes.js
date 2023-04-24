@@ -26,7 +26,7 @@ router.post('/details', async(req, res) =>{
         else{
             const user3 = await Mentor.findById(req.body.userId)
             console.log(user3.name, req.body.role)   
-            res.json({ name: user3.name })           
+            res.json({ name: user3.name, fields: user3.toparea })           
         }
     }
     catch(error){

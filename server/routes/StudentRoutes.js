@@ -85,5 +85,10 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+router.get('/', async(req, res) =>{
+    const students = await Student.find();
+    res.json({students: students})
+})
+
 
 module.exports = router;
