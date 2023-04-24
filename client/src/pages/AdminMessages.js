@@ -83,13 +83,18 @@ const AdminMessages = () => {
     navigate(0)
   }
 
+  const getmessages = () => {
+        navigate("/admin/messages")
+        navigate(0)
+    }
+
   return (
     <>
     <div className="row">
       <div className="column left">
         <div className="imgbox"><img className='imgstyle' src={dashboardlogo} alt="" /></div>
         <div className="smallcardleft"><button className="leftbutton" onClick={gethome}><span className="notifications">Home</span></button></div>
-        <div className="smallcardleft"><button className="leftbutton" ><span className="notifications">Messages</span></button></div>
+        <div className="smallcardleft"><button className="leftbutton" onClick={getmessages}><span className="notifications">Messages</span></button></div>
         <div className="smallcardleft"><button className="leftbutton" onClick={getrejected}><span className="notifications">Rejected</span></button></div>
         <div className="smallcardleft"><button className="leftbutton" onClick={getaccept}><span className="notifications">Accepted</span></button></div>
         {localStorage.getItem("Token") && <button className="logoutbtn" onClick={handleLogout}><span className="welcometext2">Logout</span></button>}
