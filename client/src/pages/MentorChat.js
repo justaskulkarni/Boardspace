@@ -10,7 +10,7 @@ import sendicon from '../assets/send.png'
 
  const socket = io(SOCKET_URL);
 
- const Chat = () => {
+ const MentorChat = () => {
 
   const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
@@ -138,4 +138,4 @@ import sendicon from '../assets/send.png'
    )
  }
 
- export default Chat 
+ export default MentorChat 
