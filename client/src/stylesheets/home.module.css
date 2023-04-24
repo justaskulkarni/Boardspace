@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
 
 .Home {
 	margin-top: 0;
@@ -16,8 +16,15 @@
 	/* background-position: right center; */
 }
 
+.fields::-webkit-outer-spin-button,
+.fields::-webkit-inner-spin-button {
+	-webkit-transform-style: preserve-3d;
+	-webkit-backface-visibility: hidden;
+}
+
 .power {
 	font-family: "Work Sans", sans-serif;
+	font-weight: 700;
 	width: 50rem;
 	padding-top: 9.6rem;
 	padding-left: 8.3rem;
@@ -37,4 +44,69 @@
 	line-height: 1.6em;
 	color: #16163f;
 	letter-spacing: 0.05rem;
+}
+
+.servicessize {
+	height: 47.375rem;
+}
+
+.services {
+	height: 16.125rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.services h2 {
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	font-stretch: 200%;
+	letter-spacing: 0.1rem;
+	color: #9e3ffd;
+	text-align: center;
+	padding-bottom: 1.5rem;
+}
+
+.services h4 {
+	margin: 0;
+	color: #16163f;
+	font-family: "Work Sans", sans-serif;
+	font-size: 2.25rem;
+	font-weight: 600;
+	text-align: center;
+	letter-spacing: -0.0225rem;
+	padding-bottom: 0.5rem;
+	line-height: 3rem;
+}
+
+.servimages {
+	height: 31.25rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.servimage {
+	padding-top: 9rem;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 300;
+	font-size: 0.9rem;
+}
+
+.servimage h3 {
+	text-align: center;
+	font-size: 0.9rem;
+}
+.servimage p {
+	text-align: center;
+	font-size: 1rem;
+	/* margin: 0; */
+	padding: 0.05rem;
+	line-height: 1.5rem;
+}
+
+.servimage img {
+	max-width: 40%;
 }

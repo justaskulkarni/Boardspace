@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../stylesheets/home.module.css";
 import "../stylesheets/navbar.css";
-import bg from "../assets/bg.png";
+import bg from "../assets/Home/bg.png";
+import CommunityDriven from "../assets/Home/CommunityDriven.png";
+import DoubtSolving from "../assets/Home/DoubtSolving.png";
+import LiveSession from "../assets/Home/LiveSession.png";
 import navbarlogo from "../assets/navbarlogo.png";
 
 import jwt_decode from "jwt-decode";
@@ -90,7 +93,51 @@ function Home() {
 						</div>
 					</div>
 				</Parallax>
-				<div className={styles.parallaxsize}></div>
+				<div className={styles.servicessize}>
+					<div className={styles.services}>
+						<h2>SERVICES</h2>
+						<h4>
+							Taking Your Education to
+							<br />
+							the Next Level
+						</h4>
+					</div>
+					<div className={styles.servimages}>
+						<div className={styles.servimage}>
+							<center>
+								<img src={DoubtSolving} alt="" className={styles.servimg} />
+							</center>
+							<h3>Doubt Solving</h3>
+							<p>
+								Board toppers and IITian mentors to
+								<br />
+								solve student doubts 24/7
+							</p>
+						</div>
+						<div className={styles.servimage}>
+							<center>
+								<img src={CommunityDriven} alt="" />
+							</center>
+							<h3>Community Driven</h3>
+							<p>
+								Active community of like-minded
+								<br />
+								students to learn with
+							</p>
+						</div>
+						<div className={styles.servimage}>
+							<center>
+								<img src={LiveSession} alt="" />
+							</center>
+							<h3>Live Session with Toppers</h3>
+							<p>
+								Frequent concept clearing sessions
+								<br />
+								hosted by mentors to help you excel
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</>
 	);
