@@ -1,9 +1,6 @@
-.column {
-    float: left;
-}
-
 .left {
     width: 20%;
+    float : left; 
 }
 
 .right {
@@ -30,14 +27,9 @@
     margin-left: 2vw;
 }
 
-.smallcardleft:first-of-type {
-    margin-top: 10vh;
-}
-
 .leftbutton {
     border: none;
     background-color: white;
-
 }
 
 
