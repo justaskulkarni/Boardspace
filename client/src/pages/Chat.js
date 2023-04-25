@@ -6,11 +6,11 @@ import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 
- const SOCKET_URL = "http://localhost:6100";
+const SOCKET_URL = "http://localhost:6100";
 
- const socket = io(SOCKET_URL);
+const socket = io(SOCKET_URL);
 
- const Chat = () => {
+const Chat = () => {
 
   const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
@@ -24,140 +24,143 @@ import sendicon from '../assets/send.png'
   const userId = decoded.id
   const adminId = '64257e870ea24575379b7885'
   function orderIds(id1, id2) {
-        if (id1 > id2) {
-            return id1 + "-" + id2;
-        } else {
-            return id2 + "-" + id1;
-        }
+    if (id1 > id2) {
+      return id1 + "-" + id2;
+    } else {
+      return id2 + "-" + id1;
+    }
   }
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
-  const handleButtonClick = async(roomName) => {
-    if(!currentRoom){
+  const handleButtonClick = async (roomName) => {
+    if (!currentRoom) {
       socket.emit("join-one", roomName)
     }
-    else{
+    else {
       socket.emit("join-room", currentRoom, roomName)
     }
-    
+
     socket.emit("getpreviouschats", roomName)
 
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
-  const handlePersonalChat = async(adminID) => {
+  const handlePersonalChat = async (adminID) => {
     var roomId = orderIds(adminID, userId)
     roomId += 'student-admin'
-    if(!currentRoom){
+    if (!currentRoom) {
       socket.emit("join-one", roomId)
     }
-    else{
+    else {
       socket.emit("join-room", currentRoom, roomId)
     }
-    
+
     socket.emit("getpreviouschats", roomId)
 
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomId);
   };
-  const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault()
-   
+
     socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
     setCurrentMessage("")
   }
-  const handleSubmit2 = async(e) =>{
+  const handleSubmit2 = async (e) => {
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName) =>{
+  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName) => {
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName }]);
-    
+
   })
 
-    socket.off("room-messages").on("room-messages", (roomMessages) => {
+  socket.off("room-messages").on("room-messages", (roomMessages) => {
 
-        roomMessages.forEach((message) => {
-          
-          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea}])
-        });
-    }); 
+    roomMessages.forEach((message) => {
 
-  useEffect(() =>{
-    async function getdetails(){
-    
-    const response = await fetch("http://localhost:6100/api/chat/details", {
+      setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea }])
+    });
+  });
+
+  useEffect(() => {
+    async function getdetails() {
+
+      const response = await fetch("http://localhost:6100/api/chat/details", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ role: role, userId: userId})
-    })
+        body: JSON.stringify({ role: role, userId: userId })
+      })
 
-    const json = await response.json()    
-    setCurrentUserName(json.name)
-  }
+      const json = await response.json()
+      setCurrentUserName(json.name)
+    }
 
-  getdetails()
-}, [])
+    getdetails()
+  }, [])
+  
+  return (
+    <>
+      <Navbar />
+      <div className={styles.left}>
+        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
+        <div className={styles.smallcardleft}>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
+        </div>
+        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat(adminId)}><span className={styles.notifications2}>Admin</span></button></div>
+      </div>
 
-   return (
-     <>
-         <Navbar />
-             <div className={styles.left}>
-                 <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-                 <div className={styles.smallcardleft}>
-                 <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
-                 <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
-                 <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
-                 <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
-                 </div>
-                 <div><button className={styles.leftbutton} onClick={() => handlePersonalChat(adminId)}><span className={styles.notifications}>Admin</span></button></div>
-             </div>
-             <div className={styles.column + " " + styles.right}>
-                {currentRoom &&
-                  <h3>{currentRoom}</h3>
-                }
-                <ul className={styles.chatMessages}>
-                  
-                  {messages.map((msg, index) => (
-                    <li className={styles.chatMessage} key={index}>
-                      <div className={styles.tooltip}>
-                        <p className={styles.date}>{msg.senderName}</p>
-                        {msg.toparea &&
-                          <p className={styles.date}>{msg.toparea}</p>
-                        }
-                        <p className={styles.message}>{msg.message}</p>
-                        
-                        <p className={styles.time}>{msg.time}</p>
-                        
-                      </div>
-                    </li>
-                  ))}
-                  
-                </ul>
-                
-                {currentRoom &&   
-                <form onSubmit={handleSubmit} className={styles.chatForm}>
-                  <input
-                    type="text"
-                    name="message"
-                    value={currentMessage}
-                    onChange={handleChange1}
-                    placeholder="Type your message here"
-                    className={styles.chatInput}
-                  />
-                  <button type="submit" className={styles.chatButton}>
-                    <img src={sendicon} />
-                  </button>
-                </form>
-                }
-              </div>
-     </>
-   )
- }
+      <div className={styles.right}>
+        {currentRoom &&
+          <h3 className={styles.roomname}>{currentRoom}</h3>
+        }
+        <div className={styles.innerchat}>
+          <ul className={styles.chatMessages}>
 
- export default Chat 
+            {messages.map((msg, index) => (
+              <li className={styles.chatMessage} key={index}>
+                <div className={styles.tooltip}>
+                  <p className={styles.date}>{msg.senderName}</p>
+                  {msg.toparea &&
+                    <p className={styles.date}>{msg.toparea}</p>
+                  }
+                  <p className={styles.message}>{msg.message}</p>
+
+                  <p className={styles.time}>{msg.time}</p>
+
+                </div>
+              </li>
+            ))}x
+          </ul>
+        </div>
+      </div>
+      <div className={styles.outinput}>
+        {currentRoom &&
+          <form onSubmit={handleSubmit} className={styles.chatForm}>
+            <input
+              type="text"
+              name="message"
+              value={currentMessage}
+              onChange={handleChange1}
+              placeholder="Type your message here"
+              className={styles.chatInput}
+            />
+            <button type="submit" className={styles.chatButton}>
+              <img src={sendicon} />
+            </button>
+          </form>
+        }
+      </div>
+    </>
+  )
+}
+
+export default Chat 
