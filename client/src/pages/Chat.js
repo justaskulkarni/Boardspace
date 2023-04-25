@@ -103,7 +103,7 @@ const Chat = () => {
 
     getdetails()
   }, [])
-  
+
   return (
     <>
       <Navbar />
@@ -128,10 +128,12 @@ const Chat = () => {
             {messages.map((msg, index) => (
               <li className={styles.chatMessage} key={index}>
                 <div className={styles.tooltip}>
-                  <p className={styles.date}>{msg.senderName}</p>
-                  {msg.toparea &&
-                    <p className={styles.date}>{msg.toparea}</p>
-                  }
+                  <div className={styles.chathead}>
+                    <p className={styles.date}>{msg.senderName}</p>
+                    {msg.toparea &&
+                      <p className={styles.toparea}>{msg.toparea}</p>
+                    }
+                  </div>
                   <p className={styles.message}>{msg.message}</p>
 
                   <p className={styles.time}>{msg.time}</p>
