@@ -29,6 +29,7 @@
 
 .leftbutton {
     border: none;
+    display:block;
     background-color: white;
 }
 
