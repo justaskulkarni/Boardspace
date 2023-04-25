@@ -86,9 +86,34 @@ router.post('/signup', async (req, res) => {
 })
 
 router.get('/', async(req, res) =>{
-    const students = await Student.find();
-    res.json({students: students})
+    try {
+        Student.find({  }, async (err, data) => {
+            if (err) {
+                throw Error(`${err}`)
+            }
+            else {
+                res.json({ success: true, data: data })
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 })
 
+router.get('/dets/:id', async (req, res) => {
+
+    const { id } = req.params
+
+    try {
+
+        const reqstudent= await Student.findById(id)
+
+        res.json({ success: true, studentdets: reqstudent })
+        
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
 
 module.exports = router;
