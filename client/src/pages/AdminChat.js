@@ -5,7 +5,7 @@ import styles from '../stylesheets/chat.module.css'
 import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 
  const SOCKET_URL = "http://localhost:6100";
 
@@ -13,11 +13,15 @@ import { useParams } from 'react-router-dom'
 
  const AdminChat = () => {
 
+  const location = useLocation();
+  const pathArray = location.pathname.split('/');
+  const role2 = pathArray[1];
+  
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
   const adminId = '64257e870ea24575379b7885'
-  const { mentid } = useParams();
+  const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
@@ -95,8 +99,9 @@ import { useParams } from 'react-router-dom'
   }
 
   getdetails()
-  var roomId = orderIds(adminId, mentid)
-  roomId += 'mentor-admin'
+  var roomId = orderIds(adminId, id)
+    roomId += `${role2}-admin`
+  
   socket.emit("join-one", roomId)
   setCurrentRoom(roomId)
   socket.emit("getpreviouschats", roomId)

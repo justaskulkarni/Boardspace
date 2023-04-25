@@ -8,7 +8,7 @@ const Mentors = ({mentid}) => {
   const navigate = useNavigate();
 
   const handleGoToChat = () => {
-    navigate(`/admin/chat/${mentid}`);
+    navigate(`/mentor/chat/${mentid}`);
   };
   
   const [error, setError] = useState(null)

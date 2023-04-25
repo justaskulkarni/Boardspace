@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Mentors from '../components/Mentors'
+import Students from '../components/Students'
 import '../stylesheets/adminlanding.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 
-const AdminMessages = () => {
+const AdminStudentMessages = () => {
 
-  const [idArray, setIdArray] = useState([])
   const [allmentor, setmentor] = useState(0)
   const [allstudent, setstudent] = useState(0)
   const [studentIdArray, setStudentIdArray] = useState([])
@@ -23,22 +22,6 @@ const AdminMessages = () => {
             setStudentIdArray(studentIdArray)
         }
   }
-
-
-  const getdata = async () => {
-
-        const response = await fetch("http://localhost:6100/api/admin/get/accepted", {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        })
-
-        const json = await response.json()
-        if (json.success) {
-            const newIdArray = json.data.map(item => item._id);
-            setIdArray(newIdArray)
-        }
-            
-    }
   
   const getnums = async() => {
     const response = await fetch("http://localhost:6100/getnums", {
@@ -56,10 +39,9 @@ const AdminMessages = () => {
   }
 
   useEffect(() => {
-    getdata()
     getnums() 
-    /* getall() */ 
-  },[idArray,allmentor,allstudent, studentIdArray])
+    getall() 
+  },[allmentor,allstudent, studentIdArray])
 
   let navigate = useNavigate()
 
@@ -112,9 +94,9 @@ const AdminMessages = () => {
             <span className="welcometext">Welcome back, lets get back to work</span>
           </div>
         
-        <span className="mentorrequests2">Mentors</span>
+        <span className="mentorrequests2">Students</span>
         <div className="cardcontainer">
-          {idArray.map((id) => <Mentors key={id} mentid={id} />)}
+          {studentIdArray.map((id) => <Students key={id} id={id} />)}
         </div>
 
       </div>
@@ -161,4 +143,4 @@ const AdminMessages = () => {
   )
 }
 
-export default AdminMessages
+export default AdminStudentMessages
