@@ -196,7 +196,7 @@ io.on("connection", (socket) => {
         await socket.join(room)
     })
 
-    socket.on("send-room", async(room,message,role,id, senderName) => {
+    socket.on("send-room", async(room,message,role,id, senderName, fields) => {
         
         const dateob = new Date()
         const reqt = dateob.getHours()+':'+dateob.getMinutes()
@@ -213,7 +213,7 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
 
-        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName) 
+        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields) 
     })
 
     socket.on("getpreviouschats", async(currentRoom) =>{

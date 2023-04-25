@@ -1,22 +1,27 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
 import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
+import { useParams, useLocation } from 'react-router-dom'
 
  const SOCKET_URL = "http://localhost:6100";
 
  const socket = io(SOCKET_URL);
 
- const MentorChat = () => {
+ const AdminChat = () => {
 
-  const messagesRef = useRef(null);
+  const location = useLocation();
+  const pathArray = location.pathname.split('/');
+  const role2 = pathArray[1];
+  
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
   const adminId = '64257e870ea24575379b7885'
+  const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
@@ -47,22 +52,6 @@ import sendicon from '../assets/send.png'
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
-  };
-  const handlePersonalChat = async(adminID) => {
-    var roomId = orderIds(adminID, userId)
-    roomId += 'mentor-admin'
-    if(!currentRoom){
-      socket.emit("join-one", roomId)
-    }
-    else{
-      socket.emit("join-room", currentRoom, roomId)
-    }
-    
-    socket.emit("getpreviouschats", roomId)
-
-    setMessages([])
-    setPreviousRoom(currentRoom)
-    setCurrentRoom(roomId);
   };
   const handleSubmit = async(e) =>{
     e.preventDefault()
@@ -110,6 +99,12 @@ import sendicon from '../assets/send.png'
   }
 
   getdetails()
+  var roomId = orderIds(adminId, id)
+    roomId += `${role2}-admin`
+  
+  socket.emit("join-one", roomId)
+  setCurrentRoom(roomId)
+  socket.emit("getpreviouschats", roomId)
 }, [])
 
    return (
@@ -122,7 +117,6 @@ import sendicon from '../assets/send.png'
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button></div>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handlePersonalChat(adminId)}><span className={styles.notifications}>Admin</span></button></div>
              </div>
              <div className={styles.column + " " + styles.right}>
                 {currentRoom &&
@@ -168,4 +162,4 @@ import sendicon from '../assets/send.png'
    )
  }
 
- export default MentorChat 
+ export default AdminChat 
