@@ -73,16 +73,15 @@ const Chat = () => {
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName) => {
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName }]);
-
+  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, fields, id) => {
+    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, id }]);
+    
   })
 
   socket.off("room-messages").on("room-messages", (roomMessages) => {
 
     roomMessages.forEach((message) => {
-
-      setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea }])
+      setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid }])
     });
   });
 
@@ -126,7 +125,8 @@ const Chat = () => {
           <ul className={styles.chatMessages}>
 
             {messages.map((msg, index) => (
-              <li className={styles.chatMessage} key={index}>
+
+              <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
                 <div className={styles.tooltip}>
                   <div className={styles.chathead}>
                     <p className={styles.date}>{msg.senderName}</p>
@@ -135,12 +135,11 @@ const Chat = () => {
                     }
                   </div>
                   <p className={styles.message}>{msg.message}</p>
-
                   <p className={styles.time}>{msg.time}</p>
 
                 </div>
               </li>
-            ))}x
+            ))}
           </ul>
         </div>
       </div>
