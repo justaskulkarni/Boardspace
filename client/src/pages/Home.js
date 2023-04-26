@@ -45,7 +45,7 @@ function Home() {
 	return (
 		<>
 			<div className={styles.Home}>
-				<Parallax strength={700} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "0% 50%" }}>
+				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "0% 50%" }}>
 					<div className={"outerdiv"} id="nav">
 						<div>
 							<Link to="/">

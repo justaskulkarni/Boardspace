@@ -11,7 +11,6 @@
 
 .middle {
     width: 60%;
-    min-height:97vh;
     overflow-y:scroll;
     margin-top: 3vh;
     margin-bottom: 3vh;

@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar'
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import styles from '../stylesheets/auth.module.css'
+import styles from '../stylesheets/AdminAuth.module.css'
 
 const AdminLogin = () => {
 
@@ -45,43 +45,26 @@ const AdminLogin = () => {
     return (
         <>
             <Navbar />
-            <div className={styles.wrapper}>
-            <div className={styles.mostout}>
-                <div className={styles.colour1}></div>
-                <div className={styles.rightdiv}>
-                    <form className={styles.signup} onSubmit={handleSubmit}>
-                        <h3 className={styles.formheader}><span className={styles.loginhead1}>Admin Login</span></h3>
+            <div className={styles.colour1}></div>
+            <div className={styles.loginform}>
+                <h3 className={styles.login}>Admin Login</h3>    
+                <form onSubmit={handleSubmit} className={styles.forms}>
+                    <label htmlFor="Email">Email</label>
+                    <input type="email" value={creadentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
-                        <div className={styles.formcontent}>
-                            <input
-                                type="email"
-                                value={creadentials.email}
-                                name="email"
-                                onChange={onChange}
-                                placeholder="Email"
-                                className={styles.inputbox}
-                            />
+                    <label htmlFor="Password">Password</label>
+                    <input type="password" value={creadentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
-                            <input
-                                type="password"
-                                value={creadentials.password}
-                                name="password"
-                                onChange={onChange}
-                                placeholder="Password"
-                                className={styles.inputbox}
-                            />
-
-                        </div>
-
-                        <div className={styles.buttonscontainer}>
-                        <button className={styles.loginbutton} >Login</button>
-                        <button className={styles.signupbutton}><Link className={styles.lol} to={"/admin/signup"}>signup</Link></button>
-                        </div>
-                    </form>
-                    <button className={styles.forgotpasswordbutton}>forgot password?</button>
-                    {error && <div className={styles.error}>{error}</div>}
-                </div>
-            </div>
+                    <div>
+                        <button className={styles.forgot}>Forgot password?</button>
+                    </div>
+                    <div>
+                        <button className={styles.loginbutton}>
+                            <span className={styles.logintext}>Log In</span>
+                        </button>
+                    </div>
+                </form>
+                {error && <div className={styles.error}>{error}</div>}
             </div>
         </>
     )
