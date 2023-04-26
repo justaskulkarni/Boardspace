@@ -1,36 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+
+
 .left {
     width: 20%;
-    float : left; 
+    height: 100%;
+    position: fixed;
+    margin-top: 5%;
+    background-color:#594f77;
+    height: 80vh;
+    border-radius: 3%;
+    margin-left: 3%;
 }
 
 .right {
-    width: 80%;
-    margin-top: 8rem;
+    margin-top: 5%;
+    margin-left: 20%;
+    background-color: #D9D9D9;
+    width: 74%;
+    padding-left: 3%;
+    overflow-y: hidden;
+    height: 80vh;
+    position: fixed;
+    right: 0;
+    margin-right: 3%;
+    border-radius: 2%;
+}
+
+.innerchat {
+    overflow-y: auto;
+    max-height: 75vh;
+}
+
+.outinput {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 3vh;
+}
+
+.roomname {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .notifications {
-    color: #505887;
+    color: #ffffff;
     font-size: 1.2rem;
     display: block;
+    padding: 0 0 0 0;
+    font-family: 'Poppins', sans-serif; 
 }
 
 .notifications1 {
-    color: #505887;
+    color: #ffffff;
     font-size: 1.7rem;
     display: block;
+    width: 100%;
+    padding: 0 0 0 0;
+    margin-top: 5vh;
+}
+
+.notifications2 {
+    color: #fff;
+    font-size: 1.7rem;
+    display: block;
+    width: 100%;
+    padding: 0 0 0 0;
 }
 
 .smallcardleft {
     display: block;
     margin-top: 3vh;
     margin-bottom: 3vh;
-    margin-left: 2vw;
 }
 
 .leftbutton {
     border: none;
-    display:block;
-    background-color: white;
+    display: block;
+    background-color: transparent;
 }
 
 
@@ -64,23 +114,42 @@
 }
 
 .message {
-    margin: 0;
+    margin:0 0 0 0;
+    padding: 0 0 0 0;
     font-weight: bold;
     word-break: break-word;
     width: 100%;
 }
 
 .role {
-    margin: 4px 0 0;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     font-style: italic;
     color: #888;
 }
 
-.time,
-.date {
-    margin: 4px 0 0;
+.time {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     font-size: 12px;
     color: #aaa;
+    text-align: right;
+}
+.date {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.toparea {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.chathead {
+    display: flex;
+    justify-content: space-between;
 }
 
 .chatMessage:nth-child(even) .tooltip {
@@ -116,20 +185,6 @@
     margin-top: 16px;
 }
 
-.chatInput {
-    flex-grow: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 20px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    outline: none;
-}
-
-.chatInput::placeholder {
-    color: #aaa;
-}
-
 .chatButton {
     margin-left: 12px;
     margin-top: 2rem;
@@ -146,18 +201,19 @@
 }
 
 .chatInput {
-    padding: 12px 20px;
+    margin-left: 30%;
     background-color: #f0f0f0;
     color: #333;
     font-size: 18px;
-    border-radius: 40px;
+    border-radius: 20px;
     border: none;
     outline: none;
-    flex-grow: 1;
+    flex-grow: 0.75;
 }
 
 .chatInput::placeholder {
     color: #aaa;
+    padding-left: 5%;
 }
 
 .chatButton {
@@ -172,4 +228,13 @@
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9e3ffd;
+    border-radius: 5px;
 }

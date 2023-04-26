@@ -77,8 +77,8 @@ import sendicon from '../assets/send.png'
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, toparea) =>{
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea }]);
+  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, toparea, id) =>{
+    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
     
   })
 
@@ -86,7 +86,7 @@ import sendicon from '../assets/send.png'
   /*       setMessages([{message: roomMessages.content, time: roomMessages.time, date: roomMessages.date, roomMessages.fromid, roomMessages.fromrole}]) */
         roomMessages.forEach((message) => {
           
-          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea}])
+          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid}])
         });
     }); 
 
@@ -131,7 +131,7 @@ import sendicon from '../assets/send.png'
                 <ul className={styles.chatMessages}>
                   
                   {messages.map((msg, index) => (
-                    <li className={styles.chatMessage} key={index}>
+                    <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
                       <div className={styles.tooltip}>
                         <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea &&

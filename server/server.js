@@ -212,8 +212,8 @@ io.on("connection", (socket) => {
         })
 
         await newMessage.save()
-
-        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields) 
+      
+        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields, id) 
     })
 
     socket.on("getpreviouschats", async(currentRoom) =>{
@@ -226,7 +226,6 @@ io.on("connection", (socket) => {
         }
         return dateComparison;
         });
-
         io.to(currentRoom).emit('room-messages', messages); 
     })
 
