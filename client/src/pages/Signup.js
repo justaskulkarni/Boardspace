@@ -85,33 +85,31 @@ const Signup = () => {
 	return (
 		<>
 			<Navbar />
-			{/* <div className={styles.wrapper}> */}
-			{/* <div className={styles.mostout}> */}
 			<div className={styles.colour1}></div>
-			<h3 className={styles.login}>Sign Up</h3>
-			<h6 className={styles.newsignup}>
-				Already a Member?{" "}
-				<Link to="/student/login" className={styles.signupclick}>
-					Log In
-				</Link>
-			</h6>
-			{!showOtpDiv && (
-				<form className={styles.signup} onSubmit={handleSubmit1}>
-					<div className={styles.formcontent}>
-						<input type="text" value={credentials.name} name="name" onChange={onChange} placeholder="Name" className={styles.inputbox} />
+			<div className={styles.signupform}>
+				<h3 className={styles.login}>Sign Up</h3>
+				<h6 className={styles.newsignup}>
+					Already a Member?{" "}
+					<Link to="/student/login" className={styles.signupclick}>
+						Log In
+					</Link>
+				</h6>
+				{!showOtpDiv && (
+					<form className={styles.forms} onSubmit={handleSubmit1}>
+						<label htmlFor="Name">Name</label>
+						<input type="text" value={credentials.name} name="name" onChange={onChange} placeholder="" className={styles.fields} />
 
-						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="Email" className={styles.inputbox} />
-					</div>
-					<div className={styles.buttonscontainer}>
-						<button className={styles.loginbutton}>SignUp</button>
-						<button className={styles.signupbutton}>
-							<Link className={styles.lol} to={"/login"}>
-								Login
-							</Link>
-						</button>
-					</div>
-				</form>
-			)}
+						<label htmlFor="Email">Email</label>
+						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
+
+						<div>
+							<button className={styles.loginbutton}>
+								<span className={styles.logintext}>Sign Up</span>
+							</button>
+						</div>
+					</form>
+				)}
+			</div>
 
 			{/*  */}
 
@@ -130,8 +128,6 @@ const Signup = () => {
 						)}
 						{error && <div className={styles.error}>{error}</div>}
 					</div> */}
-			{/* </div> */}
-			{/* </div> */}
 		</>
 	);
 };
