@@ -137,6 +137,64 @@ function Home() {
 							</p>
 						</div>
 					</div>
+					<div className={styles.people}>
+						<div className={styles.data}>
+						<center>
+							<h5>We're Good with Numbers</h5>
+						</center>
+						</div>
+						<div className={styles.numbers}>
+							<div className={styles.rtd}>
+								<p>
+									<h2>36</h2>
+									IITian Mentors
+								</p>
+							</div>
+							<h1>.</h1>
+							<div className={styles.rtd}>
+								<p>
+									<h2>14</h2>
+									Board Toppers
+								</p>
+							</div>
+							<h1>.</h1>
+							<div className={styles.rtd}>	
+								<p>
+									<h2>680</h2>
+									Community Members
+								</p>
+							</div>
+							<h1>.</h1>
+							<div className={styles.rtd}>
+								<p>
+									<h2>8</h2>
+									Grades(5th-12th)
+								</p>
+							</div>
+						</div>
+				
+					</div>
+					<div className={styles.pic}>
+						<div className={styles.finest}>
+							<h3>ABOUT</h3>
+								<h1>Our Community is 
+									<br />
+									the Finest
+								</h1>
+							<p>
+		
+								When you're in secondary school, everything seems obscure. 
+								Due to pressure from all sides, students tend to get lost and can't focus on anything, 
+								be it academics or extracurriculars. We have been in your situation before. 
+								To ensure you don't make the same mistakes we made our solution → boardspace.
+								<br /><br />
+
+
+
+							</p>
+
+						</div>
+					</div>
 				</div>
 			</div>
 		</>
@@ -144,3 +202,4 @@ function Home() {
 }
 
 export default Home;
+
