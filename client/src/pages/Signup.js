@@ -86,15 +86,15 @@ const Signup = () => {
 		<>
 			<Navbar />
 			<div className={styles.colour1}></div>
-			<div className={styles.signupform}>
-				<h3 className={styles.login}>Sign Up</h3>
-				<h6 className={styles.newsignup}>
-					Already a Member?{" "}
-					<Link to="/student/login" className={styles.signupclick}>
-						Log In
-					</Link>
-				</h6>
-				{!showOtpDiv && (
+			{!showOtpDiv && (
+				<div className={styles.signupform}>
+					<h3 className={styles.login}>Sign Up</h3>
+					<h6 className={styles.newsignup}>
+						Already a Member?{" "}
+						<Link to="/student/login" className={styles.signupclick}>
+							Log In
+						</Link>
+					</h6>
 					<form className={styles.forms} onSubmit={handleSubmit1}>
 						<label htmlFor="Name">Name</label>
 						<input type="text" value={credentials.name} name="name" onChange={onChange} placeholder="" className={styles.fields} />
@@ -108,26 +108,28 @@ const Signup = () => {
 							</button>
 						</div>
 					</form>
-				)}
-			</div>
+				</div>
+			)}
 
 			{/*  */}
 
-			{/* {showOtpDiv && (
-							<div>
-								<form className={styles.signup} onSubmit={handleSubmit2}>
-									<h3 className={styles.formheader}>
-										<span className={styles.headertext}>Enter your OTP</span>
-									</h3>
-									<div className={styles.formcontent}>
-										<input type="number" value={credentials.otp} name="otp" onChange={onChange} placeholder="OTP" className={styles.inputbox} />
-									</div>
-									<button className={styles.signupbutton}>Submit OTP</button>
-								</form>
-							</div>
-						)}
-						{error && <div className={styles.error}>{error}</div>}
-					</div> */}
+			<div>
+				{showOtpDiv && (
+					<div className={styles.signupform}>
+						<h3 className={styles.login}>Enter your OTP</h3>
+						{/* <div className={styles.formcontent}> */}
+						<form className={styles.forms} onSubmit={handleSubmit2}>
+							<label htmlFor="otp">Enter OTP</label>
+							<input type="number" value={credentials.otp} name="otp" onChange={onChange} placeholder="" className={styles.fields} />
+							<button className={styles.loginbutton}>
+								<span className={styles.logintext}>Submit OTP</span>{" "}
+							</button>
+						</form>
+						{/* </div> */}
+					</div>
+				)}
+			</div>
+			{error && <div className={styles.error}>{error}</div>}
 		</>
 	);
 };
