@@ -188,10 +188,21 @@ function Home() {
 								be it academics or extracurriculars. We have been in your situation before. 
 								To ensure you don't make the same mistakes we made our solution → boardspace.
 								<br /><br />
-
-
+								At boardspace, we focus on building a platform on which secondary
+								 students (Grades 5-12) can connect with experienced individuals to solve their doubts, 
+								 participate in open discussions, clear their concepts and ask for structured guidance.
+								 <br /><br />
+								 We are willing to help you in all subjects, no matter which board you are from. 
+								 With us, you will be made to interact with board toppers and IITian 
+								 mentors directly in free-form conversation. In addition to impeccable mentorship, 
+								 you will build a lifelong network of qualified students and have a 
+								 reliable support system throughout your academic journey.
 
 							</p>
+
+						</div>
+						<div className={styles.whoosh}>
+							<p>bgImage</p>
 
 						</div>
 					</div>
