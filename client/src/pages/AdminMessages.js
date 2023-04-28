@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Mentors from '../components/Mentors'
-import '../stylesheets/adminlanding.css'
+import '../stylesheets/adminlanding.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 
 const AdminMessages = () => {
