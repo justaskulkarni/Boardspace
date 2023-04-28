@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const Card = ({mentid}) => {
 
   const [error, setError] = useState(null)
-  const [creadentials, setCredentials] = useState({ email: "", mname: "",topper:[]})
+  const [creadentials, setCredentials] = useState({ email: "", mname: "",topper:""})
   const [imags, setImgarr] = useState([])
 
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ const Card = ({mentid}) => {
   
       if(json.success)
       {
-        setCredentials({email:json.mentdets.email, mname:json.mentdets.name, topper:json.mentdets.toparea})
+        setCredentials({email:json.mentdets.email, mname:json.mentdets.name, topper:json.mentdets.toparea.join(" , ")})
         setImgarr(...imags,json.mentdets.idurl)
       }
   
