@@ -1,0 +1,151 @@
+.column {
+    float: left;
+}
+
+.left{
+    width: 20%;
+}
+.right {
+    width: 20%;
+}
+
+.middle {
+    width: 60%;
+    overflow-y:scroll;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.topcontainer{
+    display:flex;
+    justify-content:space-around;
+}
+
+.leftbox{
+    width:50%;
+}
+
+.rightbox{
+    width: 100%;
+}
+
+.analytics{
+    color:#522FAA;
+    font-size: 1.6rem;
+    font-weight: bolder;
+    display:block;
+}
+
+.mentorrequests {
+    color: #505887;
+    font-size: 1.2rem;
+    font-weight:600;
+    display: block;
+}
+
+.mentorrequests2 {
+    color: #505887;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+    margin-top:3vh;
+}
+
+.notifications {
+    color: #505887;
+    font-size: 1.2rem;
+    display: block;
+}
+
+.welcometext{
+    color:#9A9A9A;
+    font-size:1rem;
+}
+
+.welcometext2 {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.searchbox{
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    background-color: #F5F9FD;
+    padding:0.8rem;
+
+    font-size:1rem;
+}
+
+.smallcardleft{
+    display:block;
+    margin-top:3vh;
+    margin-bottom:3vh;
+    margin-left:2vw;
+}
+
+.smallcardleft:first-of-type{
+    margin-top:10vh;
+}
+
+.smallcardright {
+    display: block;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.smallcardright:first-of-type {
+    margin-top: 15vh;
+}
+
+.leftbutton{
+    border:none;
+    background-color: white;
+    
+}
+
+.statscontainer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profilephotobox{
+    height:20vh;
+    width:9vw;
+    margin-top:5vh; 
+    border-radius: 160rem;
+    background-color: #9A9A9A;
+}
+
+.statscontainer{
+    margin-top:5vh;
+}
+
+.detailscontainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgstyle {
+    float: left;
+    margin-top: 0.9rem;
+    height: 7rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.logoutbtn{
+    border:white;
+    border-radius: 1rem;
+    background:white;
+    bottom:0;
+    margin-left: 2vw;
+    
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}

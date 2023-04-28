@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import dashboardlogo from '../assets/navbarlogo.png'
 import RejectCard from '../components/RejectCard'
-import '../stylesheets/adminlanding.css'
+import '../stylesheets/adminlanding.module.css'
 
 const AdminRejected = () => {
 
