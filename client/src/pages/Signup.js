@@ -13,7 +13,7 @@ const Signup = () => {
 	const handleSubmit1 = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch("http://localhost:6100/api/mentor/semisignup", {
+		const response = await fetch("/api/mentor/semisignup", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ email: credentials.email, name: credentials.name }),
@@ -58,7 +58,7 @@ const Signup = () => {
 	const handleSubmit2 = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch("http://localhost:6100/api/mentor/verifyotp", {
+		const response = await fetch("/api/mentor/verifyotp", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ email: credentials.email, otp: credentials.otp }),

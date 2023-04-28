@@ -14,7 +14,7 @@ const AdminSignup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await fetch("http://localhost:6100/api/admin/signup", {
+        const response = await fetch("/api/admin/signup", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: creadentials.email, name: creadentials.name, password: creadentials.password })

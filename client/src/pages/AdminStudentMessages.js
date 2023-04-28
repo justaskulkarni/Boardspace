@@ -11,7 +11,7 @@ const AdminStudentMessages = () => {
   const [studentIdArray, setStudentIdArray] = useState([])
 
   const getall = async () => {
-    const response = await fetch("http://localhost:6100/api/student/allstud", {
+    const response = await fetch("/api/student/allstud", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -24,7 +24,7 @@ const AdminStudentMessages = () => {
   }
 
   const getnums = async () => {
-    const response = await fetch("http://localhost:6100/getnums", {
+    const response = await fetch("/getnums", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

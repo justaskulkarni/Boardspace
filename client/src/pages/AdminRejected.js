@@ -12,7 +12,7 @@ const AdminRejected = () => {
 
   const getdata = async () => {
 
-    const response = await fetch("http://localhost:6100/api/admin/get/rejected", {
+    const response = await fetch("/api/admin/get/rejected", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -25,7 +25,7 @@ const AdminRejected = () => {
   }
 
   const getnums = async () => {
-    const response = await fetch("http://localhost:6100/getnums", {
+    const response = await fetch("/getnums", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

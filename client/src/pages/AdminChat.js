@@ -75,7 +75,7 @@ const AdminChat = () => {
   useEffect(() => {
     async function getdetails() {
 
-      const response = await fetch("http://localhost:6100/api/chat/details", {
+      const response = await fetch("/api/chat/details", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ const AdminChat = () => {
 
     async function getname() {
 
-      const response = await fetch(`http://localhost:6100/api/student/dets/${id}`, {
+      const response = await fetch(`/api/student/dets/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

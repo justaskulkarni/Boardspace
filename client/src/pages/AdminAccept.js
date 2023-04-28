@@ -12,7 +12,7 @@ function AdminAccept() {
 
     const getdata = async () => {
 
-        const response = await fetch("http://localhost:6100/api/admin/get/accepted", {
+        const response = await fetch("/api/admin/get/accepted", {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })
@@ -25,7 +25,7 @@ function AdminAccept() {
     }
 
     const getnums = async () => {
-        const response = await fetch("http://localhost:6100/getnums", {
+        const response = await fetch("/getnums", {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         })

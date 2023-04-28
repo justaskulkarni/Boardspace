@@ -12,7 +12,7 @@ const AdminLand = () => {
 
   const getdata = async () => {
 
-    const response = await fetch("http://localhost:6100/api/admin/getall", {
+    const response = await fetch("/api/admin/getall", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -25,7 +25,7 @@ const AdminLand = () => {
   }
 
   const getnums = async () => {
-    const response = await fetch("http://localhost:6100/getnums", {
+    const response = await fetch("/getnums", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })

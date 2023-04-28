@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 
-const SOCKET_URL = "http://localhost:6100";
+const SOCKET_URL = "";
 
 const socket = io(SOCKET_URL);
 
@@ -81,7 +81,7 @@ const Chat = () => {
   useEffect(() => {
     async function getdetails() {
 
-      const response = await fetch("http://localhost:6100/api/chat/details", {
+      const response = await fetch("/api/chat/details", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
