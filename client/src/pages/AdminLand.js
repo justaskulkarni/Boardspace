@@ -10,7 +10,7 @@ const AdminLand = () => {
   const [allmentor, setmentor] = useState(0)
   const [allstudent, setstudent] = useState(0)
 
-  const getdata = async() => {
+  const getdata = async () => {
 
     const response = await fetch("http://localhost:6100/api/admin/getall", {
       method: 'GET',
@@ -18,14 +18,13 @@ const AdminLand = () => {
     })
 
     const json = await response.json()
-    if(json.success)
-    { 
+    if (json.success) {
       const newIdArray = json.data.map(item => item._id);
       setIdArray(newIdArray)
     }
   }
-  
-  const getnums = async() => {
+
+  const getnums = async () => {
     const response = await fetch("http://localhost:6100/getnums", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -33,8 +32,7 @@ const AdminLand = () => {
 
     const json = await response.json()
 
-    if(json.success)
-    {
+    if (json.success) {
       setstudent(json.stud)
       setmentor(json.mentors)
     }
@@ -42,8 +40,8 @@ const AdminLand = () => {
 
   useEffect(() => {
     getdata()
-    getnums() 
-  },[idArray,allmentor,allstudent])
+    getnums()
+  }, [idArray, allmentor, allstudent])
 
   let navigate = useNavigate()
 
@@ -79,24 +77,25 @@ const AdminLand = () => {
 
   return (
     <>
-    <div className={styles.row}>
       <div className={styles.column + " " + styles.left}>
-        <div className={styles.imgbox}><img className={styles.imgstyle} src={dashboardlogo} alt="" /></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Admin Messages</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button></div>
+        <img className={styles.imgstyle} src={dashboardlogo} alt="" />
+        <div className={styles.smallcardleft}>
+          <button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button>
+          <button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button>
+          <button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button>
+          <button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button>
+          <button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button>
+        </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
       <div className={styles.column + " " + styles.middle}>
-        
-          <div className={styles.leftbox}>
-            <span className={styles.analytics}>Analytics</span>
-            <span className={styles.welcometext}>Welcome back, lets get back to work</span>
-          </div>
-        
-        <span className={styles.mentorrequests2}>Mentor Requests</span>
+
+        <div className={styles.leftbox}>
+          <span className={styles.analytics}>Analytics</span>
+          <span className={styles.welcometext}>Welcome back, lets get back to work</span>
+        </div>
+
+        <span className={styles.mentorrequests2}>Mentor Requests to be accepted : </span>
         <div className={styles.cardcontainer}>
           {idArray.map((id) => <Card key={id} mentid={id} />)}
         </div>
@@ -136,10 +135,9 @@ const AdminLand = () => {
               <span className={styles.welcometext}>messages</span>
             </div>
           </div>
-          </div>
+        </div>
       </div>
-    </div>
-    
+
     </>
   )
 }

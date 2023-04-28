@@ -94,7 +94,7 @@ function AdminAccept() {
                         <span className={styles.analytics}>Analytics</span>
                         <span className={styles.welcometext}>Welcome back, lets get back to work</span>
                     </div>
-                    <span className={styles.mentorrequests2}>Mentor Requests</span>
+                    <span className={styles.mentorrequests2}>Accepted Mentor Requests</span>
                     <div className={styles.cardcontainer}>
                         {idArray.map((id) => <AcceptCard key={id} mentid={id} />)}
                     </div>
