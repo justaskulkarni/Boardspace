@@ -46,7 +46,7 @@ function Home() {
 	return (
 		<>
 			<div className={styles.Home}>
-				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "0% 50%" }}>
+				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right",backgroundAttachment:"fixed" }}>
 					<div className={"outerdiv"} id="nav">
 						<div>
 							<Link to="/">
@@ -175,41 +175,43 @@ function Home() {
 						</div>
 				
 					</div>
+						<Parallax bgImage={bg1} strength={200} bgImageStyle={{ height:"59rem", width:"50%", justifyContent:"flex-end",objectFit:"contain",backgroundPosition:"right",aspectRatio:"auto",left:"75%"}}>
 					<div className={styles.graph}>
 						
 						<div className={styles.finest}>
-							
+								
 							<p>
 							<h3>ABOUT</h3>
 								<h1>Our Community is 
 									<br />
 									the Finest
 								</h1>
-		
-							When you're in secondary school, everything seems obscure. 
-							Due to pressure from all sides, students tend to get lost and can't focus on anything, 
-							be it academics or extracurriculars. We have been in your situation before. 
-							To ensure you don't make the same mistakes we made our solution → boardspace.
+							
+							When you're in secondary school, everything seems <br /> obscure. 
+							Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, 
+							be it academics <br /> or extracurriculars. We <b>have been in your situation <br /> before</b>. 
+							To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
 							<br /><br />
-							At boardspace, we focus on building a platform on which secondary
-							students (Grades 5-12) can connect with experienced individuals to solve their doubts, 
-							participate in open discussions, clear their concepts and ask for structured guidance.
+							At boardspace, we focus on building a platform on which <br /> <b>secondary
+							students (Grades 5-12)</b>  can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
+							participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
 							<br /><br />
-							We are willing to help you in all subjects, no matter which board you are from. 
-							With us, you will be made to interact with board toppers and IITian 
-							mentors directly in free-form conversation. In addition to impeccable mentorship, 
-							you will build a lifelong network of qualified students and have a 
-							reliable support system throughout your academic journey.
+							We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. 
+							With us, you will be made to <br /> interact with <b>board toppers and IITian 
+							mentors </b><br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, 
+							you will build a <b> lifelong <br /> network</b> of qualified students and have a 
+							reliable <br /> support system throughout your academic journey.
+							<br /><br />
+							<b>Have a doubt? Ask a topper!</b>
 
 							</p>
 
 						</div>
-						<Parallax bgImage={bg1} strength={200} bgImageStyle={{ height:"35rem", width:"70rem"}}>
-							<p>handleLogout</p>
-						</Parallax>
-					{/* </div> */}
+			
+		
 
 					</div>
+						</Parallax>
 				
 				<div className={styles.join}>
 					<h2>Join our community</h2>

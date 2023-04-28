@@ -1,8 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 
 .Home {
 	margin-top: 0;
+	font-family: "Poppins", sans-serif;
 }
 
 .parallaxsize {
@@ -146,24 +150,43 @@
 	font-size: 4rem;
 	padding-bottom: 0.3rem;
 }
-/* .grph{
-	background-position: right;
-	height: 70%;
-	width: 45%;
-} */
+
 
 .graph{
 	display: flex;
 	flex-direction: row;
-	justify-content: space-evenly;
-	/* justify-content: baseline; */
+	justify-content: space-between;
+
 }
 .finest{
-	width: 45%;
+	width: 50%;
 	height: 100%;
 	margin: 0;
-	/* margin-bottom: 2rem; */
 	background-color: white;
+	
+	
+}
+.finest p{
+	font-size: 1.1rem;
+	margin-left: 8rem;
+	margin-right: 10rem;
+	/* width: 90%; */
+	font-family: 'Quicksand', sans-serif;
+	line-height: 1.4;
+	text-align: justify;
+	text-justify: inter-word;
+	/* letter-spacing: 0.000015rem; */
+	/* justify-content: space-around; */
+}
+.finest p h3{
+	color: #9e3ffd;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+}
+.finest p h1{
+	color: #16163f;
+	font-family: "Montserrat", sans-serif;
+	font-size: 2.5rem;
 }
 .join{
 	background-color: #101c45;

@@ -1,90 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-.mostout {
-	overflow: hidden;
-}
-.rightdiv {
-	position: absolute;
-	float: right;
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
+.error {
+	color: #cc393d;
+	text-align: center;
+	margin-left: 12rem;
 	width: 60%;
-	font-size: 2rem;
-	display: flex;
-	flex-direction: column;
-	right: 3.5rem;
-	justify-content: flex-start;
-	align-items: center;
-	align-content: center;
-	font-family: "Poppins", sans-serif;
-	margin-top: 9rem;
-}
-
-form {
-	display: block;
-}
-
-.formheader {
-	margin-bottom: 0.4rem;
-	margin-top: 0.5rem;
-	margin-left: 21rem;
-}
-
-.headertext {
-	border-bottom: 0.3rem solid blue;
-	padding-bottom: 0.5rem;
-}
-
-input {
-	margin-left: 16rem;
-	display: block;
-	border: none;
-	border-bottom: 0.1rem solid gray;
-	margin-top: 2rem;
-	font-size: 1.5rem;
-	margin-bottom: 0;
-}
-
-.buttonscontainer {
-	display: inline;
-}
-
-.signupbutton {
-	margin-left: 18rem;
-	margin-top: 2rem;
-	border: none;
-	text-decoration: none;
-	background-color: white;
-	color: blue;
-	font-weight: bolder;
-	font-size: 1.5rem;
-}
-
-.loginbutton {
-	text-decoration: none;
-	margin-top: 0;
-	background-color: blue;
-	border-radius: 1rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	margin-left: 5rem;
-	font-weight: bolder;
-	color: white;
-	font-size: 1.5rem;
-}
-
-.forgotpasswordbutton {
-	display: block;
-	margin-left: 21rem;
-	margin-top: 2rem;
-	font-size: 1rem;
-	border: none;
-	font-weight: bolder;
-	background-color: white;
-	color: blue;
-	font-size: 1.1rem;
-}
-
-.buttontext {
-	color: white;
-	text-decoration: none;
+	height: 5%;
+	font-size: 1.6rem;
+	background-color: #ffeded;
+	border: 0.05rem solid black;
 }
 
 .colour1 {
@@ -98,33 +24,8 @@ input {
 	z-index: -1;
 }
 
-.mostout {
-	display: flex;
-}
-
 .checkboxstyle {
 	display: flex;
-}
-
-label {
-	height: 4.1rem;
-}
-
-p {
-	padding-top: 1.5rem;
-	font-size: 0.8rem;
-	padding-left: 1rem;
-}
-
-.signupbutton2 {
-	margin-left: 18rem;
-	margin-top: 1rem;
-	border: none;
-	text-decoration: none;
-	background-color: white;
-	color: blue;
-	font-weight: bolder;
-	font-size: 1.5rem;
 }
 
 .boxstyle {
@@ -146,21 +47,6 @@ p {
 	object-fit: contain;
 }
 
-.error {
-	color: #cc393d;
-	text-align: center;
-	margin-left: 12rem;
-	width: 60%;
-	height: 5%;
-	font-size: 1.6rem;
-	background-color: #ffeded;
-	border: 0.05rem solid black;
-}
-
-.formcontent {
-	margin-top: 3rem;
-}
-
 .fileinput {
 	display: flex;
 }
@@ -171,8 +57,73 @@ p {
 
 .Category {
 	width: 7.5rem;
+	padding-top: 1.5rem;
+	font-size: 0.8rem;
+	padding-left: 1rem;
 }
 
 .filename {
 	width: 10rem;
+	padding-top: 1.5rem;
+	font-size: 0.8rem;
+	padding-left: 1rem;
+}
+
+.signup {
+	display: block;
+}
+
+.fields {
+	margin-left: 0rem;
+	margin: 0;
+	outline: none;
+	border: none;
+	border-bottom-style: solid;
+	border-bottom-width: 0.7px;
+	border-bottom-color: #c5c5cf;
+	font-size: 1.5rem;
+}
+
+.fields:hover {
+	border-bottom-color: #16163f;
+}
+
+.fields:focus {
+	border-bottom-color: #9e3ffd;
+}
+
+.login {
+	font-family: "Work Sans", sans-serif;
+	font-size: 3rem;
+	font-weight: 400;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	width: 30rem;
+	margin-left: -5.5rem;
+}
+
+.signupform {
+	/* width: 20rem; */
+	height: 33.125rem;
+	margin-top: 7rem;
+	margin-left: 55rem;
+}
+
+.password {
+	font-family: "Montserrat", sans-serif;
+	font-size: 1.125rem;
+	font-weight: 300;
+}
+
+.loginbutton {
+	height: 3rem;
+	width: 20rem;
+	background-color: #9e3ffd;
+	border: 0;
+}
+
+.logintext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	color: white;
 }
