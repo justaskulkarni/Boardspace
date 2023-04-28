@@ -19,7 +19,7 @@ const AdminChat = () => {
   const role2 = pathArray[1];
 
   const [currentMessage, setCurrentMessage] = useState("")
-  const [currentUserName, setCurrentUserName] = useState("")
+  const currentUserName = "Admin"
   const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
@@ -72,22 +72,7 @@ const AdminChat = () => {
   });
 
   useEffect(() => {
-    async function getdetails() {
-
-      const response = await fetch("http://localhost:6100/api/chat/details", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ role: role, userId: userId })
-      })
-
-      const json = await response.json()
-      setCurrentUserName(json.name)
-      
-    }
-
-    getdetails()
+    
     var roomId = id
     roomId += `${role2}-admin`
 
