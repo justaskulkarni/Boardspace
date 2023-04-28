@@ -1,6 +1,6 @@
 .cardstyle{
     width:90%;
-    margin-top:1vh;
+    margin-top:2vh;
 }
 
 .innerdiv{
@@ -8,24 +8,16 @@
     display: flex;
     justify-content: space-between;
     border-radius:1rem;
-    box-shadow:rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow:rgba(188, 198, 209, 0.332) 0px 8px 24px;
 }
 
 .innermost{
     margin-top: 5.5vh;
 }
 
-/* .innermost:first-of-type {
-    width: 200vw;
-} */
-
 .innermost1 {
     width: 60%;
 }
-
-/* .innermost1:first-of-type {
-    width: 200vw;
-} */
 
 .cardcontent{
     font-weight: bolder;
@@ -89,4 +81,33 @@
 .btncontainer {
     display: flex;
     justify-content: space-between;
+}
+
+.popform{
+    background-color: #b4bac0;
+    height: 7rem;
+    width : 24rem;
+    border-radius: 0.5rem;
+}
+
+.popinput {
+    margin-left: 3rem;
+    background-color: transparent;
+    border-bottom-width: 0.5px;
+    border-color: black;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+}
+
+.popinput:focus {
+    outline: none;
+    border-bottom-width: 2.5px;
+}
+
+.popbtn {
+    color: #291755;
+    background-color:whitesmoke;
+    border-radius: 0.2rem;
+    border-width: 1px;
+    margin-left: 2  rem;
 }
