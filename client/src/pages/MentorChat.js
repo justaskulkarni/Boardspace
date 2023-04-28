@@ -121,22 +121,36 @@ import sendicon from '../assets/send.png'
         <div className={styles.innerchat}>
           <ul className={styles.chatMessages}>
 
-            {messages.map((msg, index) => (
-
+            {messages.map((msg, index) => {
+              return(
               <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
-                <div className={styles.tooltip}>
-                  <div className={styles.chathead}>
-                    <p className={styles.date}>{msg.senderName}</p>
-                    {msg.toparea &&
-                      <p className={styles.toparea}>{msg.toparea}</p>
-                    }
+                
+                {userId === msg.id ? (
+                  <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.chathead}>
+                      <p className={styles.date}>{msg.senderName}</p>
+                      {msg.toparea && (
+                        <p className={styles.toparea}>{msg.toparea}</p>
+                      )}
+                    </div>
+                    <p className={styles.message}>{msg.message}</p>
+                    <p className={styles.time}>{msg.time}</p>
                   </div>
-                  <p className={styles.message}>{msg.message}</p>
-                  <p className={styles.time}>{msg.time}</p>
-
-                </div>
+                ) : (
+                  <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.chathead}>
+                      <p className={styles.date}>{msg.senderName}</p>
+                      {msg.toparea && (
+                        <p className={styles.toparea}>{msg.toparea}</p>
+                      )}
+                    </div>
+                    <p className={styles.message}>{msg.message}</p>
+                    <p className={styles.time}>{msg.time}</p>
+                  </div>
+                )}
               </li>
-            ))}
+            )})}
+
           </ul>
         </div>
       </div>
