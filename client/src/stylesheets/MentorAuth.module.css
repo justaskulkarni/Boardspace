@@ -67,9 +67,11 @@
 	margin: 0;
 	margin-bottom: 1.5625rem;
 	outline: none;
+	border: none;
+	border-bottom-style: solid;
+	border-bottom-width: 0.7px;
 	border-bottom-color: #c5c5cf;
-	border-bottom-width: 1px;
-	/* border-bottom-style: none; */
+	font-size: 1.5rem;
 }
 
 .fields:hover {
