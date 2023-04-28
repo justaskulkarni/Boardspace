@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Mentors from '../components/Mentors'
-import '../stylesheets/adminlanding.module.css'
+import styles from '../stylesheets/adminlanding.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 
 const AdminMessages = () => {
@@ -95,62 +95,62 @@ const AdminMessages = () => {
 
   return (
     <>
-    <div className="row">
-      <div className="column left">
-        <div className="imgbox"><img className='imgstyle' src={dashboardlogo} alt="" /></div>
-        <div className="smallcardleft"><button className="leftbutton" onClick={gethome}><span className="notifications">Home</span></button></div>
-        <div className="smallcardleft"><button className="leftbutton" onClick={getmessages}><span className="notifications">Mentor Messages</span></button></div>
-        <div className="smallcardleft"><button className="leftbutton" onClick={getstudentmessages}><span className="notifications">Student Messages</span></button></div>
-        <div className="smallcardleft"><button className="leftbutton" onClick={getrejected}><span className="notifications">Rejected</span></button></div>
-        <div className="smallcardleft"><button className="leftbutton" onClick={getaccept}><span className="notifications">Accepted</span></button></div>
-        {localStorage.getItem("Token") && <button className="logoutbtn" onClick={handleLogout}><span className="welcometext2">Logout</span></button>}
+    <div className={styles.row}>
+      <div className={styles.column + " " + styles.left}>
+        <div className={styles.imgbox}><img className={styles.imgstyle} src={dashboardlogo} alt="" /></div>
+        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button></div>
+        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button></div>
+        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button></div>
+        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button></div>
+        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button></div>
+        {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
-      <div className="column middle">
+      <div className={styles.column + " " + styles.middle}>
         
-          <div className="leftbox">
-            <span className="analytics">Analytics</span>
-            <span className="welcometext">Welcome back, lets get back to work</span>
+          <div className={styles.leftbox}>
+            <span className={styles.analytics}>Analytics</span>
+            <span className={styles.welcometext}>Welcome back, lets get back to work</span>
           </div>
         
-        <span className="mentorrequests2">Mentors</span>
-        <div className="cardcontainer">
+        <span className={styles.mentorrequests2}>Mentors</span>
+        <div className={styles.cardcontainer}>
           {idArray.map((id) => <Mentors key={id} mentid={id} />)}
         </div>
 
       </div>
-      <div className="column right">
-        <div className="detailscontainer">
-          <div className="profilephotobox"></div>
+      <div className={styles.column + " " +  styles.right}>
+        <div className={styles.detailscontainer}>
+          <div className={styles.profilephotobox}></div>
         </div>
-        <div className="detailscontainer">
-          <span className="mentorrequests">Ojas Binayake</span>
+        <div className={styles.detailscontainer}>
+          <span className={styles.mentorrequests}>Ojas Binayake</span>
         </div>
-        <div className="detailscontainer">
-          <span className="welcometext">Admin</span>
+        <div className={styles.detailscontainer}>
+          <span className={styles.welcometext}>Admin</span>
         </div>
-        <div className="statscontainer">
+        <div className={styles.statscontainer}>
           <div>
-            <div className="detailscontainer">
-              <div className="mentorrequests">{allstudent}</div>
+            <div className={styles.detailscontainer}>
+              <div className={styles.mentorrequests}>{allstudent}</div>
             </div>
-            <div className="detailscontainer">
-              <span className="welcometext">students</span>
+            <div className={styles.detailscontainer}>
+              <span className={styles.welcometext}>students</span>
             </div>
           </div>
           <div>
-            <div className="detailscontainer">
-              <div className="mentorrequests">{allmentor}</div>
+            <div className={styles.detailscontainer}>
+              <div className={styles.mentorrequests}>{allmentor}</div>
             </div>
-            <div className="detailscontainer">
-              <span className="welcometext">mentors</span>
+            <div className={styles.detailscontainer}>
+              <span className={styles.welcometext}>mentors</span>
             </div>
           </div>
           <div>
-            <div className="detailscontainer">
-              <div className="mentorrequests">12</div>
+            <div className={styles.detailscontainer}>
+              <div className={styles.mentorrequests}>12</div>
             </div>
-            <div className="detailscontainer">
-              <span className="welcometext">messages</span>
+            <div className={styles.detailscontainer}>
+              <span className={styles.welcometext}>messages</span>
             </div>
           </div>
           </div>
