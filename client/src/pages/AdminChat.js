@@ -161,7 +161,6 @@ const AdminChat = () => {
                 {userId === msg.id ? (
                   <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
                     <div className={styles.chathead}>
-                      <p className={styles.date}>{msg.senderName}</p>
                       {msg.toparea && (
                         <p className={styles.toparea}>{msg.toparea}</p>
                       )}
@@ -172,7 +171,6 @@ const AdminChat = () => {
                 ) : (
                   <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
                     <div className={styles.chathead}>
-                      <p className={styles.date}>{msg.senderName}</p>
                       {msg.toparea && (
                         <p className={styles.toparea}>{msg.toparea}</p>
                       )}

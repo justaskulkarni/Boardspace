@@ -29,6 +29,7 @@
 
 .innerchat {
     overflow-y: auto;
+    overflow-x: hidden;
     max-height: 75vh;
 }
 
@@ -93,7 +94,13 @@
 
 .chatMessage {
     display: flex;
-    margin-bottom: 16px;
+    margin-bottom: 1vh;
+    width: 40%;
+}
+
+.chatMessage:last-of-type {
+    display: flex;
+    margin-bottom: 7vh;
     width: 40%;
 }
 
@@ -101,7 +108,6 @@
     max-width: 100%;
     padding: 12px;
     border-radius: 8px;
-    /* background-color: #e6f2ff; */
     position: relative;
 }
 
@@ -118,7 +124,6 @@
     max-width: 100%;
     padding: 12px;
     border-radius: 8px;
-    /* background-color: #e6f2ff; */
     position: relative;
 }
 
@@ -181,12 +186,10 @@
     bottom: 50%;
     left: auto;
     right: -16px;
-    /* border-left-color: #f8f8f8; */
 }
 
 .chatMessage  .tooltip2 {
     align-self: flex-start;
-    /* background-color: #e6f2ff; */
     left: 0;
     width: 100%;
 } 
@@ -195,7 +198,6 @@
     bottom: 50%;
     right: auto;
     left: -16px;
-    /* border-right-color: #e6f2ff; */
 } 
  
 .chatForm {
