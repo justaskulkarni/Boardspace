@@ -20,7 +20,7 @@ import { useParams, useLocation } from 'react-router-dom'
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
-  const adminId = '64257e870ea24575379b7885'
+  /* const adminId = '64257e870ea24575379b7885' */
   const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
@@ -29,13 +29,13 @@ import { useParams, useLocation } from 'react-router-dom'
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  function orderIds(id1, id2) {
+  /* function orderIds(id1, id2) {
         if (id1 > id2) {
             return id1 + "-" + id2;
         } else {
             return id2 + "-" + id1;
         }
-   }
+   } */
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
@@ -100,7 +100,7 @@ import { useParams, useLocation } from 'react-router-dom'
   }
 
   getdetails()
-  var roomId = orderIds(adminId, id)
+  var roomId = id
     roomId += `${role2}-admin`
   
   socket.emit("join-one", roomId)

@@ -22,14 +22,14 @@ const Chat = () => {
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  const adminId = '64257e870ea24575379b7885'
+  /* const adminId = '64257e870ea24575379b7885'
   function orderIds(id1, id2) {
     if (id1 > id2) {
       return id1 + "-" + id2;
     } else {
       return id2 + "-" + id1;
     }
-  }
+  } */
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
@@ -47,8 +47,8 @@ const Chat = () => {
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
-  const handlePersonalChat = async (adminID) => {
-    var roomId = orderIds(adminID, userId)
+  const handlePersonalChat = async () => {
+    var roomId = userId 
     roomId += 'student-admin'
     if (!currentRoom) {
       socket.emit("join-one", roomId)
@@ -114,7 +114,7 @@ const Chat = () => {
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
         </div>
-        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat(adminId)}><span className={styles.notifications2}>Admin</span></button></div>
+        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin</span></button></div>
       </div>
 
       <div className={styles.right}>
