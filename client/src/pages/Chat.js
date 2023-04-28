@@ -13,6 +13,7 @@ const socket = io(SOCKET_URL);
 const Chat = () => {
 
   const messagesRef = useRef(null);
+  const [notifications, setNotifications] = useState({})
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [previousRoom, setPreviousRoom] = useState("")
@@ -39,6 +40,10 @@ const Chat = () => {
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
+    setNotifications((prevNotifications) => ({
+    ...prevNotifications,
+    [roomName]: 0,
+  }));
   };
   const handlePersonalChat = async () => {
     var roomId = userId 
@@ -78,6 +83,14 @@ const Chat = () => {
     });
   });
 
+  socket.off('notifications').on('notifications', (room) => {
+    setNotifications((prevNotifications) => ({
+      ...prevNotifications,
+      [room]: (prevNotifications[room] || 0) + 1,
+    }));
+    console.log(notifications.Room2)
+  });
+
   useEffect(() => {
     async function getdetails() {
 
@@ -102,12 +115,14 @@ const Chat = () => {
       <div className={styles.left}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 {notifications.Room1}
+</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2  {notifications.Room2}</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3  {notifications.Room3}</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4  {notifications.Room4}</span></button>
         </div>
-        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin</span></button></div>
+        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin {notifications[`${userId}student-admin`]}
+</span></button></div>
       </div>
 
       <div className={styles.right}>
