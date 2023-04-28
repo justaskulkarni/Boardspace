@@ -73,7 +73,7 @@ const Chat = () => {
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, fields, id) => {
+  socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, fields, id) => {
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, id }]);
     
   })

@@ -66,8 +66,9 @@ import { useParams, useLocation } from 'react-router-dom'
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, toparea, id) =>{
+  socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
+    console.log(time, date)
     
   })
 
@@ -109,7 +110,7 @@ import { useParams, useLocation } from 'react-router-dom'
 
    return (
      <>
-         <Navbar />
+         {/* <Navbar />
          <div className={styles.row}>
              <div className={styles.column + " " + styles.left}>
                  <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
@@ -157,7 +158,61 @@ import { useParams, useLocation } from 'react-router-dom'
                 </form>
                 }
               </div>
-         </div>
+         </div> */}
+        <Navbar />
+      <div className={styles.left}>
+        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
+        <div className={styles.smallcardleft}>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
+        </div>
+      </div>
+
+      <div className={styles.right}>
+        {currentRoom &&
+          <h3 className={styles.roomname}>{currentRoom}</h3>
+        }
+        <div className={styles.innerchat}>
+          <ul className={styles.chatMessages}>
+
+            {messages.map((msg, index) => (
+
+              <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
+                <div className={styles.tooltip}>
+                  <div className={styles.chathead}>
+                    <p className={styles.date}>{msg.senderName}</p>
+                    {msg.toparea &&
+                      <p className={styles.toparea}>{msg.toparea}</p>
+                    }
+                  </div>
+                  <p className={styles.message}>{msg.message}</p>
+                  <p className={styles.time}>{msg.time}</p>
+
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className={styles.outinput}>
+        {currentRoom &&
+          <form onSubmit={handleSubmit} className={styles.chatForm}>
+            <input
+              type="text"
+              name="message"
+              value={currentMessage}
+              onChange={handleChange1}
+              placeholder="Type your message here"
+              className={styles.chatInput}
+            />
+            <button type="submit" className={styles.chatButton}>
+              <img src={sendicon} />
+            </button>
+          </form>
+        }
+      </div>
      </>
    )
  }
