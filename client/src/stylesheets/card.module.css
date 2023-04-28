@@ -90,3 +90,32 @@
     display: flex;
     justify-content: space-between;
 }
+
+.popform{
+    background-color: #b4bac0;
+    height: 7rem;
+    width : 24rem;
+    border-radius: 0.5rem;
+}
+
+.popinput {
+    margin-left: 3rem;
+    background-color: transparent;
+    border-bottom-width: 0.5px;
+    border-color: black;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+}
+
+.popinput:focus {
+    outline: none;
+    border-bottom-width: 2.5px;
+}
+
+.popbtn {
+    color: #291755;
+    background-color:whitesmoke;
+    border-radius: 0.2rem;
+    border-width: 1px;
+    margin-left: 2  rem;
+}
