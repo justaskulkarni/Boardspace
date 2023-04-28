@@ -1,260 +1,258 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
 
 .left {
-    width: 20%;
-    height: 100%;
-    position: fixed;
-    margin-top: 5%;
-    background-color:#594f77;
-    height: 80vh;
-    border-radius: 3%;
-    margin-left: 3%;
+	width: 20%;
+	height: 100%;
+	position: fixed;
+	margin-top: 5%;
+	background-color: #594f77;
+	height: 80vh;
+	border-radius: 3%;
+	margin-left: 3%;
 }
 
 .right {
-    margin-top: 5%;
-    margin-left: 20%;
-    background-color: #D9D9D9;
-    width: 74%;
-    padding-left: 3%;
-    overflow-y: hidden;
-    height: 80vh;
-    position: fixed;
-    right: 0;
-    margin-right: 3%;
-    border-radius: 2%;
+	margin-top: 5%;
+	margin-left: 20%;
+	background-color: #d9d9d9;
+	width: 74%;
+	padding-left: 3%;
+	overflow-y: hidden;
+	height: 80vh;
+	position: fixed;
+	right: 0;
+	margin-right: 3%;
+	border-radius: 2%;
 }
 
 .innerchat {
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 75vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 75vh;
 }
 
 .outinput {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 3vh;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 3vh;
 }
 
 .roomname {
-    font-family: "Montserrat", sans-serif;
-    text-align: center;
-    font-size: 1.5rem;
+	font-family: "Montserrat", sans-serif;
+	text-align: center;
+	font-size: 1.5rem;
 }
 
 .notifications {
-    color: #ffffff;
-    font-size: 1.2rem;
-    display: block;
-    padding: 0 0 0 0;
-    font-family: 'Poppins', sans-serif; 
+	color: #ffffff;
+	font-size: 1.2rem;
+	display: block;
+	padding: 0 0 0 0;
+	font-family: "Poppins", sans-serif;
 }
 
-
 .notifications1 {
-    color: #ffffff;
-    font-size: 1.7rem;
-    display: block;
-    width: 100%;
-    padding: 0 0 0 0;
-    margin-top: 5vh;
+	color: #ffffff;
+	font-size: 1.7rem;
+	display: block;
+	width: 100%;
+	padding: 0 0 0 0;
+	margin-top: 5vh;
 }
 
 .notifications2 {
-    color: #fff;
-    font-size: 1.7rem;
-    display: block;
-    width: 100%;
-    padding: 0 0 0 0;
+	color: #fff;
+	font-size: 1.7rem;
+	display: block;
+	width: 100%;
+	padding: 0 0 0 0;
 }
 
 .smallcardleft {
-    display: block;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+	display: block;
+	margin-top: 3vh;
+	margin-bottom: 3vh;
 }
 
 .leftbutton {
-    border: none;
-    display: block;
-    background-color: transparent;
+	border: none;
+	display: block;
+	background-color: transparent;
 }
 
-
 .chatMessages {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 .chatMessage {
-    display: flex;
-    margin-bottom: 1vh;
-    width: 40%;
+	display: flex;
+	margin-bottom: 1vh;
+	width: 40%;
 }
 
 .chatMessage:last-of-type {
-    display: flex;
-    margin-bottom: 7vh;
-    width: 40%;
+	display: flex;
+	margin-bottom: 7vh;
+	width: 40%;
 }
 
 .tooltip1 {
-    max-width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    position: relative;
+	max-width: 100%;
+	padding: 0.75rem;
+	border-radius: 0.5rem;
+	position: relative;
 }
 
 .tooltip1:before {
-    content: "";
-    position: absolute;
-    bottom: 50%;
-    margin-bottom: -8px;
-    border: solid transparent;
-    border-width: 8px;
+	content: "";
+	position: absolute;
+	bottom: 50%;
+	margin-bottom: -0.5rem;
+	border: solid transparent;
+	border-width: 0.5rem;
 }
 
 .tooltip2 {
-    max-width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    position: relative;
+	max-width: 100%;
+	padding: 0.75rem;
+	border-radius: 0.5rem;
+	position: relative;
 }
 
 .tooltip2:before {
-    content: "";
-    position: absolute;
-    bottom: 50%;
-    margin-bottom: -8px;
-    border: solid transparent;
-    border-width: 8px;
+	content: "";
+	position: absolute;
+	bottom: 50%;
+	margin-bottom: -0.5rem;
+	border: solid transparent;
+	border-width: 0.5rem;
 }
 
 .message {
-    margin:0 0 0 0;
-    padding: 0 0 0 0;
-    font-weight: bold;
-    word-break: break-word;
-    width: 100%;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-weight: bold;
+	word-break: break-word;
+	width: 100%;
 }
 
 .role {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    font-style: italic;
-    color: #888;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-style: italic;
+	color: #888;
 }
 
 .time {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    font-size: 12px;
-    color: #aaa;
-    text-align: right;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-size: 0.75rem;
+	color: #aaa;
+	text-align: right;
 }
 .date {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    font-size: 12px;
-    color: #aaa;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-size: 0.75rem;
+	color: #aaa;
 }
 
 .toparea {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
 
 .chathead {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .chatMessage .tooltip1 {
-    align-self: flex-end;
-    /* background-color: #f8f8f8; */
-    right: 0;
-    width: 100%;
+	align-self: flex-end;
+	/* background-color: #f8f8f8; */
+	right: 0;
+	width: 100%;
 }
 
-.chatMessage  .tooltip1:before {
-    bottom: 50%;
-    left: auto;
-    right: -16px;
+.chatMessage .tooltip1:before {
+	bottom: 50%;
+	left: auto;
+	right: -1rem;
 }
 
-.chatMessage  .tooltip2 {
-    align-self: flex-start;
-    left: 0;
-    width: 100%;
-} 
+.chatMessage .tooltip2 {
+	align-self: flex-start;
+	left: 0;
+	width: 100%;
+}
 
-.chatMessage  .tooltip2:before {
-    bottom: 50%;
-    right: auto;
-    left: -16px;
-} 
- 
+.chatMessage .tooltip2:before {
+	bottom: 50%;
+	right: auto;
+	left: -1rem;
+}
+
 .chatForm {
-    display: flex;
-    margin-top: 16px;
+	display: flex;
+	margin-top: 1rem;
 }
 
 .chatButton {
-    margin-left: 12px;
-    margin-top: 2rem;
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 16px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+	margin-left: 0.75rem;
+	margin-top: 2rem;
+	border: none;
+	border-radius: 50%;
+	color: #fff;
+	font-size: 1rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 
 .chatInput {
-    margin-left: 30%;
-    background-color: #f0f0f0;
-    color: #333;
-    font-size: 18px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    flex-grow: 0.75;
+	margin-left: 30%;
+	background-color: #f0f0f0;
+	color: #333;
+	font-size: 1.125rem;
+	border-radius: 1.25rem;
+	border: none;
+	outline: none;
+	flex-grow: 0.75;
+	margin-top: 2.5rem;
 }
 
 .chatInput::placeholder {
-    color: #aaa;
-    padding-left: 5%;
+	color: #aaa;
+	padding-left: 5%;
 }
 
 .chatButton {
-    margin-left: 12px;
-    border: none;
-    color: #fff;
-    font-size: 16px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
+	margin-left: 0.75rem;
+	border: none;
+	color: #fff;
+	font-size: 1rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 ::-webkit-scrollbar {
-    width: 7px;
+	width: 0.4375rem;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #9e3ffd;
-    border-radius: 5px;
+	background-color: #9e3ffd;
+	border-radius: 0.3125rem;
 }
