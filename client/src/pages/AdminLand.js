@@ -95,7 +95,7 @@ const AdminLand = () => {
           <span className={styles.welcometext}>Welcome back, lets get back to work</span>
         </div>
 
-        <span className={styles.mentorrequests2}>Mentor Requests</span>
+        <span className={styles.mentorrequests2}>Mentor Requests to be accepted : </span>
         <div className={styles.cardcontainer}>
           {idArray.map((id) => <Card key={id} mentid={id} />)}
         </div>
