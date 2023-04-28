@@ -20,7 +20,6 @@ import { useParams, useLocation } from 'react-router-dom'
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
-  /* const adminId = '64257e870ea24575379b7885' */
   const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
@@ -29,13 +28,7 @@ import { useParams, useLocation } from 'react-router-dom'
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  /* function orderIds(id1, id2) {
-        if (id1 > id2) {
-            return id1 + "-" + id2;
-        } else {
-            return id2 + "-" + id1;
-        }
-   } */
+  
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
@@ -56,9 +49,6 @@ import { useParams, useLocation } from 'react-router-dom'
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
-    /* var decoded = jwt_decode(localStorage.getItem("Token"))
-    const role = decoded.role
-    const userId = decoded.id */
     socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
     setCurrentMessage("")
   }
@@ -73,7 +63,6 @@ import { useParams, useLocation } from 'react-router-dom'
   })
 
     socket.off("room-messages").on("room-messages", (roomMessages) => {
-  /*       setMessages([{message: roomMessages.content, time: roomMessages.time, date: roomMessages.date, roomMessages.fromid, roomMessages.fromrole}]) */
         roomMessages.forEach((message) => {
           
           setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid}])
@@ -82,9 +71,7 @@ import { useParams, useLocation } from 'react-router-dom'
 
   useEffect(() =>{
     async function getdetails(){
-    /* var decoded = jwt_decode(localStorage.getItem("Token"))
-    const role = decoded.role
-    const userId = decoded.id */
+    
     const response = await fetch("http://localhost:6100/api/chat/details", {
         method: 'POST',
         headers: {
@@ -110,55 +97,7 @@ import { useParams, useLocation } from 'react-router-dom'
 
    return (
      <>
-         {/* <Navbar />
-         <div className={styles.row}>
-             <div className={styles.column + " " + styles.left}>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button></div>
-             </div>
-             <div className={styles.column + " " + styles.right}>
-                {currentRoom &&
-                  <h3>{currentRoom}</h3>
-                }
-                <ul className={styles.chatMessages}>
-                  
-                  {messages.map((msg, index) => (
-                    <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
-                      <div className={styles.tooltip}>
-                        <p className={styles.date}>{msg.senderName}</p>
-                        {msg.toparea &&
-                          <p className={styles.date}>{msg.toparea}</p>
-                        }
-                        <p className={styles.message}>{msg.message}</p>
-                        
-                        <p className={styles.time}>{msg.time}</p>
-                        
-                      </div>
-                    </li>
-                  ))}
-                  
-                </ul>
-                
-                {currentRoom &&   
-                <form onSubmit={handleSubmit} className={styles.chatForm}>
-                  <input
-                    type="text"
-                    name="message"
-                    value={currentMessage}
-                    onChange={handleChange1}
-                    placeholder="Type your message here"
-                    className={styles.chatInput}
-                  />
-                  <button type="submit" className={styles.chatButton}>
-                    <img src={sendicon} />
-                  </button>
-                </form>
-                }
-              </div>
-         </div> */}
+         
         <Navbar />
       <div className={styles.left}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>

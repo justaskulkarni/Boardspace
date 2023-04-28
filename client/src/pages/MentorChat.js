@@ -16,7 +16,6 @@ import sendicon from '../assets/send.png'
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
-  /* const adminId = '64257e870ea24575379b7885' */
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
@@ -24,13 +23,7 @@ import sendicon from '../assets/send.png'
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  /* function orderIds(id1, id2) {
-        if (id1 > id2) {
-            return id1 + "-" + id2;
-        } else {
-            return id2 + "-" + id1;
-        }
-   } */
+  
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
@@ -67,9 +60,6 @@ import sendicon from '../assets/send.png'
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
-    /* var decoded = jwt_decode(localStorage.getItem("Token"))
-    const role = decoded.role
-    const userId = decoded.id */
     socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
     setCurrentMessage("")
   }
@@ -83,7 +73,7 @@ import sendicon from '../assets/send.png'
   })
 
     socket.off("room-messages").on("room-messages", (roomMessages) => {
-  /*       setMessages([{message: roomMessages.content, time: roomMessages.time, date: roomMessages.date, roomMessages.fromid, roomMessages.fromrole}]) */
+  
         roomMessages.forEach((message) => {
           
           setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid}])
@@ -92,9 +82,7 @@ import sendicon from '../assets/send.png'
 
   useEffect(() =>{
     async function getdetails(){
-    /* var decoded = jwt_decode(localStorage.getItem("Token"))
-    const role = decoded.role
-    const userId = decoded.id */
+    
     const response = await fetch("http://localhost:6100/api/chat/details", {
         method: 'POST',
         headers: {

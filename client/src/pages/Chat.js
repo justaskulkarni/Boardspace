@@ -22,14 +22,7 @@ const Chat = () => {
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  /* const adminId = '64257e870ea24575379b7885'
-  function orderIds(id1, id2) {
-    if (id1 > id2) {
-      return id1 + "-" + id2;
-    } else {
-      return id2 + "-" + id1;
-    }
-  } */
+  
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
