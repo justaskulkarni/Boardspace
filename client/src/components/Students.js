@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/card.module.css'
-import styles2 from '../stylesheets/imageslider.module.css'
 import { useNavigate } from 'react-router-dom/dist'
 
 const Students = ({id}) => {

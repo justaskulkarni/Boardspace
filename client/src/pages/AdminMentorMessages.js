@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import Card from '../components/Card'
+import Mentors from '../components/Mentors'
 import styles from '../stylesheets/adminlanding.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 
-const AdminLand = () => {
+const AdminMessages = () => {
 
   const [idArray, setIdArray] = useState([])
   const [allmentor, setmentor] = useState(0)
@@ -12,7 +12,7 @@ const AdminLand = () => {
 
   const getdata = async () => {
 
-    const response = await fetch("http://localhost:6100/api/admin/getall", {
+    const response = await fetch("http://localhost:6100/api/admin/get/accepted", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -22,6 +22,7 @@ const AdminLand = () => {
       const newIdArray = json.data.map(item => item._id);
       setIdArray(newIdArray)
     }
+
   }
 
   const getnums = async () => {
@@ -88,6 +89,7 @@ const AdminLand = () => {
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
+
       <div className={styles.column + " " + styles.middle}>
 
         <div className={styles.leftbox}>
@@ -95,10 +97,11 @@ const AdminLand = () => {
           <span className={styles.welcometext}>Welcome back, lets get back to work</span>
         </div>
 
-        <span className={styles.mentorrequests2}>Mentor Requests to be accepted : </span>
+        <span className={styles.mentorrequests2}>Mentors</span>
         <div className={styles.cardcontainer}>
-          {idArray.map((id) => <Card key={id} mentid={id} />)}
+          {idArray.map((id) => <Mentors key={id} mentid={id} />)}
         </div>
+
       </div>
       <div className={styles.column + " " + styles.right}>
         <div className={styles.detailscontainer}>
@@ -138,8 +141,9 @@ const AdminLand = () => {
         </div>
       </div>
 
+
     </>
   )
 }
 
-export default AdminLand
+export default AdminMessages

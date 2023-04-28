@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import Students from '../components/Students'
 import styles from '../stylesheets/adminlanding.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
@@ -10,20 +10,20 @@ const AdminStudentMessages = () => {
   const [allstudent, setstudent] = useState(0)
   const [studentIdArray, setStudentIdArray] = useState([])
 
-  const getall = async() =>{
-    const response = await fetch("http://localhost:6100/api/student", {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        })
+  const getall = async () => {
+    const response = await fetch("http://localhost:6100/api/student/allstud", {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
 
-        const json = await response.json()
-        if (json.success) {
-            const studentIdArray = json.data.map(item => item._id);
-            setStudentIdArray(studentIdArray)
-        }
+    const json = await response.json()
+    if (json.success) {
+      const studentIdArray = json.data.map(item => item._id);
+      setStudentIdArray(studentIdArray)
+    }
   }
-  
-  const getnums = async() => {
+
+  const getnums = async () => {
     const response = await fetch("http://localhost:6100/getnums", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
@@ -31,17 +31,16 @@ const AdminStudentMessages = () => {
 
     const json = await response.json()
 
-    if(json.success)
-    {
+    if (json.success) {
       setstudent(json.stud)
       setmentor(json.mentors)
     }
   }
 
   useEffect(() => {
-    getnums() 
-    getall() 
-  },[allmentor,allstudent, studentIdArray])
+    getnums()
+    getall()
+  }, [allmentor, allstudent, studentIdArray])
 
   let navigate = useNavigate()
 
@@ -66,35 +65,35 @@ const AdminStudentMessages = () => {
   }
 
   const getmessages = () => {
-        navigate("/admin/messages")
-        navigate(0)
-    }
+    navigate("/admin/messages")
+    navigate(0)
+  }
 
   const getstudentmessages = () => {
     navigate("/admin-student/messages")
     navigate(0)
-  }  
+  }
 
   return (
     <>
-        <div className={styles.column + " " + styles.left}>
-          <img className={styles.imgstyle} src={dashboardlogo} alt="" />
-          <div className={styles.smallcardleft}>
-              <button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button>
-              <button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button>
-              <button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button>
-              <button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button>
-              <button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button>
-          </div>
-          {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
+      <div className={styles.column + " " + styles.left}>
+        <Link to="/"><img className={styles.imgstyle} src={dashboardlogo} alt="" /></Link>
+        <div className={styles.smallcardleft}>
+          <button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button>
+          <button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button>
+          <button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button>
+          <button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button>
+          <button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button>
         </div>
+        {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
+      </div>
       <div className={styles.column + " " + styles.middle}>
-        
-          <div className={styles.leftbox}>
-            <span className={styles.analytics}>Analytics</span>
-            <span className={styles.welcometext}>Welcome back, lets get back to work</span>
-          </div>
-        
+
+        <div className={styles.leftbox}>
+          <span className={styles.analytics}>Analytics</span>
+          <span className={styles.welcometext}>Welcome back, lets get back to work</span>
+        </div>
+
         <span className={styles.mentorrequests2}>Students</span>
         <div className={styles.cardcontainer}>
           {studentIdArray.map((id) => <Students key={id} id={id} />)}
@@ -136,10 +135,10 @@ const AdminStudentMessages = () => {
               <span className={styles.welcometext}>messages</span>
             </div>
           </div>
-          </div>
+        </div>
       </div>
- 
-    
+
+
     </>
   )
 }
