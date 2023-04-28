@@ -7,6 +7,7 @@ import CommunityDriven from "../assets/Home/CommunityDriven.png";
 import DoubtSolving from "../assets/Home/DoubtSolving.png";
 import LiveSession from "../assets/Home/LiveSession.png";
 import navbarlogo from "../assets/navbarlogo.png";
+import bg1 from "../assets/Home/graph.png";
 
 import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
@@ -174,38 +175,46 @@ function Home() {
 						</div>
 				
 					</div>
-					<div className={styles.pic}>
+					<div className={styles.graph}>
+						
 						<div className={styles.finest}>
+							
+							<p>
 							<h3>ABOUT</h3>
 								<h1>Our Community is 
 									<br />
 									the Finest
 								</h1>
-							<p>
 		
-								When you're in secondary school, everything seems obscure. 
-								Due to pressure from all sides, students tend to get lost and can't focus on anything, 
-								be it academics or extracurriculars. We have been in your situation before. 
-								To ensure you don't make the same mistakes we made our solution → boardspace.
-								<br /><br />
-								At boardspace, we focus on building a platform on which secondary
-								 students (Grades 5-12) can connect with experienced individuals to solve their doubts, 
-								 participate in open discussions, clear their concepts and ask for structured guidance.
-								 <br /><br />
-								 We are willing to help you in all subjects, no matter which board you are from. 
-								 With us, you will be made to interact with board toppers and IITian 
-								 mentors directly in free-form conversation. In addition to impeccable mentorship, 
-								 you will build a lifelong network of qualified students and have a 
-								 reliable support system throughout your academic journey.
+							When you're in secondary school, everything seems obscure. 
+							Due to pressure from all sides, students tend to get lost and can't focus on anything, 
+							be it academics or extracurriculars. We have been in your situation before. 
+							To ensure you don't make the same mistakes we made our solution → boardspace.
+							<br /><br />
+							At boardspace, we focus on building a platform on which secondary
+							students (Grades 5-12) can connect with experienced individuals to solve their doubts, 
+							participate in open discussions, clear their concepts and ask for structured guidance.
+							<br /><br />
+							We are willing to help you in all subjects, no matter which board you are from. 
+							With us, you will be made to interact with board toppers and IITian 
+							mentors directly in free-form conversation. In addition to impeccable mentorship, 
+							you will build a lifelong network of qualified students and have a 
+							reliable support system throughout your academic journey.
 
 							</p>
 
 						</div>
-						<div className={styles.whoosh}>
-							<p>bgImage</p>
+						<Parallax bgImage={bg1} strength={200} bgImageStyle={{ height:"35rem", width:"70rem"}}>
+							<p>handleLogout</p>
+						</Parallax>
+					{/* </div> */}
 
-						</div>
 					</div>
+				
+				<div className={styles.join}>
+					<h2>Join our community</h2>
+
+				</div>
 				</div>
 			</div>
 		</>
