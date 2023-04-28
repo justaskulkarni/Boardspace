@@ -19,8 +19,7 @@ const AdminChat = () => {
   const role2 = pathArray[1];
 
   const [currentMessage, setCurrentMessage] = useState("")
-  const [currentUserName, setCurrentUserName] = useState("")
-  const [fields, setFields] = useState("")
+  const currentUserName = "Admin"
   const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
@@ -52,7 +51,7 @@ const AdminChat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
+    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
     setCurrentMessage("")
   }
   const handleSubmit2 = async (e) => {
@@ -73,22 +72,7 @@ const AdminChat = () => {
   });
 
   useEffect(() => {
-    async function getdetails() {
-
-      const response = await fetch("/api/chat/details", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ role: role, userId: userId })
-      })
-
-      const json = await response.json()
-      setCurrentUserName(json.name)
-      setFields(json.fields)
-    }
-
-    getdetails()
+    
     var roomId = id
     roomId += `${role2}-admin`
 
@@ -112,7 +96,8 @@ const AdminChat = () => {
     socket.emit("join-one", roomId)
     setCurrentRoom(roomId)
     socket.emit("getpreviouschats", roomId)
-  }, [])
+    console.log("Inside use Effect")
+  }, [socket])
 
   let navigate = useNavigate()
 

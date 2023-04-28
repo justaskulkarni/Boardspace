@@ -214,117 +214,116 @@ const Signup2 = () => {
 		<>
 			<div>
 				<Navbar />
-				<div className={styles.mostout}>
-					<div className={styles.colour1}></div>
-					<div className={styles.rightdiv}>
-						<form className={styles.signup} onSubmit={handleSubmit2} encType="multipart/form">
-							<h3 className={styles.formheader}>
-								<span className={styles.headertext}>Enter your Details</span>
-							</h3>
-							<div className={styles.formcontent}>
-								<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="password" className={styles.inputbox} />
+				<div className={styles.colour1}></div>
+				<div className={styles.signupform}>
+					<h3 className={styles.login}>Enter your Details </h3>
+					<form onSubmit={handleSubmit2} encType="multipart/form">
+						<div>
+							<label htmlFor="Password" className={styles.password}>
+								Password
+							</label>
+							<br />
+							<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} />
+							<label htmlFor="boardtopper" className={styles.checkboxstyle}>
+								<input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} />
+								<p className={styles.Category}>Board Topper</p>
+								{isBoardTopper.enabled && !isBoardTopper.disable && (
+									<div className={styles.fileinput}>
+										<label htmlFor="boardtop">
+											<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
+											<input type="file" className={styles.filefield} id="boardtop" onChange={onChange3a} />
+										</label>
+										<p className={styles.filename} id="filename3a"></p>
+										{isBoardTopper.file && (
+											<button className={styles.uploadbutton} onClick={handleSubmit3}>
+												<img src={subicon} className={styles.butimgdiv} alt=" "></img>
+											</button>
+										)}
+									</div>
+								)}
+							</label>
+							<label htmlFor="jeetopper" className={styles.checkboxstyle}>
+								<input type="checkbox" defaultChecked={false} value={"JEE Topper"} onChange={onChange4} name="JEE Topper" className={styles.boxstyle} disabled={isJeeTopper.disable} />
+								<p className={styles.Category}>JEE Topper</p>
+								{isJeeTopper.enabled && !isJeeTopper.disable && (
+									<div className={styles.fileinput}>
+										<label htmlFor="jeetop">
+											<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
+											<input type="file" className={styles.filefield} id="jeetop" onChange={onChange4a} />
+										</label>
+										<p className={styles.filename} id="filename4a"></p>
+										{isJeeTopper.file && (
+											<button className={styles.uploadbutton} onClick={handleSubmit4}>
+												<img src={subicon} className={styles.butimgdiv} alt=" "></img>
+											</button>
+										)}
+									</div>
+								)}
+							</label>
+							<label htmlFor="neettopper" className={styles.checkboxstyle}>
+								<input type="checkbox" defaultChecked={false} value={"Neet Topper"} onChange={onChange2} name="Neet Topper" className={styles.boxstyle} disabled={isNeetTopper.disable} />
+								<p className={styles.Category}>NEET Topper</p>
+								{isNeetTopper.enabled && !isNeetTopper.disable && (
+									<div className={styles.fileinput}>
+										<label htmlFor="neettop">
+											<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
+											<input type="file" className={styles.filefield} id="neettop" onChange={onChange2a} />
+										</label>
+										<p className={styles.filename} id="filename2a"></p>
+										{isNeetTopper.file && (
+											<button className={styles.uploadbutton} onClick={handleSubmit5}>
+												<img src={subicon} className={styles.butimgdiv} alt=" "></img>
+											</button>
+										)}
+									</div>
+								)}
+							</label>
+							<label htmlFor="masters" className={styles.checkboxstyle}>
+								<input type="checkbox" defaultChecked={false} value={"Masters"} onChange={onChange5} name="Masters" className={styles.boxstyle} disabled={isMasters.disable} />
+								<p className={styles.Category}>Masters Student</p>
+								{isMasters.enabled && !isMasters.disable && (
+									<div className={styles.fileinput}>
+										<label htmlFor="masttop">
+											<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
+											<input type="file" className={styles.filefield} id="masttop" onChange={onChange5a} />
+										</label>
+										<p className={styles.filename} id="filename5a"></p>
+										{isMasters.file && (
+											<button className={styles.uploadbutton} onClick={handleSubmit6}>
+												<img src={subicon} className={styles.butimgdiv} alt=" "></img>
+											</button>
+										)}
+									</div>
+								)}
+							</label>
+							<label htmlFor="phd" className={styles.checkboxstyle}>
+								<input type="checkbox" defaultChecked={false} value={"PHD"} onChange={onChange6} name="PHD" className={styles.boxstyle} disabled={isPHD.disable} />
+								<p className={styles.Category}>PHD Student</p>
+								{isPHD.enabled && !isPHD.disable && (
+									<div className={styles.fileinput}>
+										<label htmlFor="phdtop">
+											<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
+											<input type="file" className={styles.filefield} id="phdtop" onChange={onChange6a} />
+										</label>
+										<p className={styles.filename} id="filename6a"></p>
+										{isPHD.file && (
+											<button className={styles.uploadbutton} onClick={handleSubmit7}>
+												<img src={subicon} className={styles.butimgdiv} alt=" "></img>
+											</button>
+										)}
+									</div>
+								)}
+							</label>
+						</div>
+						<br />
+						<div>
+							<button className={styles.loginbutton}>
+								<span className={styles.logintext}>Submit</span>
+							</button>
+						</div>
+					</form>
 
-								<label htmlFor="boardtopper" className={styles.checkboxstyle}>
-									<input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} />
-									<p className={styles.Category}>Board Topper</p>
-									{isBoardTopper.enabled && !isBoardTopper.disable && (
-										<div className={styles.fileinput}>
-											<label htmlFor="boardtop">
-												<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
-												<input type="file" className={styles.filefield} id="boardtop" onChange={onChange3a} />
-											</label>
-											<p className={styles.filename} id="filename3a"></p>
-											{isBoardTopper.file && (
-												<button className={styles.uploadbutton} onClick={handleSubmit3}>
-													<img src={subicon} className={styles.butimgdiv} alt=" "></img>
-												</button>
-											)}
-										</div>
-									)}
-								</label>
-
-								<label htmlFor="jeetopper" className={styles.checkboxstyle}>
-									<input type="checkbox" defaultChecked={false} value={"JEE Topper"} onChange={onChange4} name="JEE Topper" className={styles.boxstyle} disabled={isJeeTopper.disable} />
-									<p className={styles.Category}>JEE Topper</p>
-									{isJeeTopper.enabled && !isJeeTopper.disable && (
-										<div className={styles.fileinput}>
-											<label htmlFor="jeetop">
-												<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
-												<input type="file" className={styles.filefield} id="jeetop" onChange={onChange4a} />
-											</label>
-											<p className={styles.filename} id="filename4a"></p>
-											{isJeeTopper.file && (
-												<button className={styles.uploadbutton} onClick={handleSubmit4}>
-													<img src={subicon} className={styles.butimgdiv} alt=" "></img>
-												</button>
-											)}
-										</div>
-									)}
-								</label>
-
-								<label htmlFor="neettopper" className={styles.checkboxstyle}>
-									<input type="checkbox" defaultChecked={false} value={"Neet Topper"} onChange={onChange2} name="Neet Topper" className={styles.boxstyle} disabled={isNeetTopper.disable} />
-									<p className={styles.Category}>NEET Topper</p>
-									{isNeetTopper.enabled && !isNeetTopper.disable && (
-										<div className={styles.fileinput}>
-											<label htmlFor="neettop">
-												<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
-												<input type="file" className={styles.filefield} id="neettop" onChange={onChange2a} />
-											</label>
-											<p className={styles.filename} id="filename2a"></p>
-											{isNeetTopper.file && (
-												<button className={styles.uploadbutton} onClick={handleSubmit5}>
-													<img src={subicon} className={styles.butimgdiv} alt=" "></img>
-												</button>
-											)}
-										</div>
-									)}
-								</label>
-
-								<label htmlFor="masters" className={styles.checkboxstyle}>
-									<input type="checkbox" defaultChecked={false} value={"Masters"} onChange={onChange5} name="Masters" className={styles.boxstyle} disabled={isMasters.disable} />
-									<p className={styles.Category}>Masters Student</p>
-									{isMasters.enabled && !isMasters.disable && (
-										<div className={styles.fileinput}>
-											<label htmlFor="masttop">
-												<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
-												<input type="file" className={styles.filefield} id="masttop" onChange={onChange5a} />
-											</label>
-											<p className={styles.filename} id="filename5a"></p>
-											{isMasters.file && (
-												<button className={styles.uploadbutton} onClick={handleSubmit6}>
-													<img src={subicon} className={styles.butimgdiv} alt=" "></img>
-												</button>
-											)}
-										</div>
-									)}
-								</label>
-
-								<label htmlFor="phd" className={styles.checkboxstyle}>
-									<input type="checkbox" defaultChecked={false} value={"PHD"} onChange={onChange6} name="PHD" className={styles.boxstyle} disabled={isPHD.disable} />
-									<p className={styles.Category}>PHD Student</p>
-									{isPHD.enabled && !isPHD.disable && (
-										<div className={styles.fileinput}>
-											<label htmlFor="phdtop">
-												<img src={uploadicon} className={styles.butimgdiv} alt=" "></img>
-												<input type="file" className={styles.filefield} id="phdtop" onChange={onChange6a} />
-											</label>
-											<p className={styles.filename} id="filename6a"></p>
-											{isPHD.file && (
-												<button className={styles.uploadbutton} onClick={handleSubmit7}>
-													<img src={subicon} className={styles.butimgdiv} alt=" "></img>
-												</button>
-											)}
-										</div>
-									)}
-								</label>
-							</div>
-
-							<button className={styles.signupbutton2}>Submit</button>
-						</form>
-
-						{error && <div className={styles.error}>{error}</div>}
-					</div>
+					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			</div>
 		</>

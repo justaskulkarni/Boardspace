@@ -91,7 +91,7 @@ const Signup = () => {
 					<h3 className={styles.login}>Sign Up</h3>
 					<h6 className={styles.newsignup}>
 						Already a Member?{" "}
-						<Link to="/student/login" className={styles.signupclick}>
+						<Link to="/login" className={styles.signupclick}>
 							Log In
 						</Link>
 					</h6>

@@ -197,8 +197,10 @@ io.on("connection", (socket) => {
         })
 
         await newMessage.save()
-      
+        await socket.broadcast.emit('notifications', room)
+        console.log(room)
         await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields, id) 
+
     })
 
     socket.on("getpreviouschats", async(currentRoom) =>{
