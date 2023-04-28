@@ -85,7 +85,7 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-router.get('/', async(req, res) =>{
+router.get('/allstud', async(req, res) =>{
     try {
         Student.find({  }, async (err, data) => {
             if (err) {
