@@ -95,16 +95,18 @@ const AdminMessages = () => {
 
   return (
     <>
-    <div className={styles.row}>
-      <div className={styles.column + " " + styles.left}>
-        <div className={styles.imgbox}><img className={styles.imgstyle} src={dashboardlogo} alt="" /></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button></div>
-        <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button></div>
-        {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
-      </div>
+        <div className={styles.column + " " + styles.left}>
+          <img className={styles.imgstyle} src={dashboardlogo} alt="" />
+          <div className={styles.smallcardleft}>
+              <button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button>
+              <button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button>
+              <button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button>
+              <button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button>
+              <button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button>
+          </div>
+          {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
+        </div>
+
       <div className={styles.column + " " + styles.middle}>
         
           <div className={styles.leftbox}>
@@ -155,7 +157,7 @@ const AdminMessages = () => {
           </div>
           </div>
       </div>
-    </div>
+ 
     
     </>
   )
