@@ -13,7 +13,7 @@ const StudentSignup = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const response = await fetch("http://localhost:6100/api/student/signup", {
+		const response = await fetch("/api/student/signup", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ email: credentials.email, name: credentials.name, phonenum: credentials.phonenum, password: credentials.password }),

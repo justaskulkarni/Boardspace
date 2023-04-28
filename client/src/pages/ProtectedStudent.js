@@ -30,7 +30,7 @@ const ProtectedStudent = () => {
       data.append('image',temp.file)
       data.append('hello',temp.name)
   
-      const response = await fetch('http://localhost:6100/temp', {
+      const response = await fetch('/temp', {
         method: 'POST',
         body: data
       })

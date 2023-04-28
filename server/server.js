@@ -64,21 +64,6 @@ app.get('/getnums' , async (req,res) => {
     }
     
 })
-
-/* async function getMessagesFromRoom(currentRoom){
-   let roomMessages = await Message.aggregate([
-     {$match: {to: currentRoom}},
-     {$lookup: {
-       from: "students", 
-       localField: "fromid",
-       foreignField: "_id",
-       as: "fromStudent"
-     }},
-     {$addFields: {from: {$arrayElemAt: ["$fromStudent.stname", 0]}}},
-     {$project: {fromStudent: 0}} 
-   ]);
-   return roomMessages;
-} */
  
 async function getMessagesFromRoom(currentRoom) {
   let roomMessages = await Message.aggregate([

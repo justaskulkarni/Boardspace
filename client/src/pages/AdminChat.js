@@ -78,7 +78,7 @@ const AdminChat = () => {
 
     async function getname() {
 
-      const response = await fetch(`http://localhost:6100/api/student/dets/${id}`, {
+      const response = await fetch(`/api/student/dets/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
