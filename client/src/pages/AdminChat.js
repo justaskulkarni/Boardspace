@@ -20,7 +20,6 @@ const AdminChat = () => {
 
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
-  const [fields, setFields] = useState("")
   const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
@@ -52,7 +51,7 @@ const AdminChat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
+    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
     setCurrentMessage("")
   }
   const handleSubmit2 = async (e) => {
@@ -85,7 +84,7 @@ const AdminChat = () => {
 
       const json = await response.json()
       setCurrentUserName(json.name)
-      setFields(json.fields)
+      
     }
 
     getdetails()
@@ -112,7 +111,8 @@ const AdminChat = () => {
     socket.emit("join-one", roomId)
     setCurrentRoom(roomId)
     socket.emit("getpreviouschats", roomId)
-  }, [])
+    console.log("Inside use Effect")
+  }, [socket])
 
   let navigate = useNavigate()
 
