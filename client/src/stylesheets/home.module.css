@@ -139,15 +139,38 @@
 	margin: 0;
 	font-size: 1rem;
 	text-align: center;
-	
+
 }
 .rtd p h2{
 	margin: 0;
 	font-size: 4rem;
 	padding-bottom: 0.3rem;
 }
+/* .grph{
+	background-position: right;
+	height: 70%;
+	width: 45%;
+} */
+
+.graph{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	/* justify-content: baseline; */
+}
 .finest{
 	width: 45%;
 	height: 100%;
 	margin: 0;
+	/* margin-bottom: 2rem; */
+	background-color: white;
+}
+.join{
+	background-color: #101c45;
+	color: white;
+	font-family: "Montserrat", sans-serif;
+	height: 30%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
 }
