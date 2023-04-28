@@ -16,7 +16,7 @@ import sendicon from '../assets/send.png'
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
-  const adminId = '64257e870ea24575379b7885'
+  /* const adminId = '64257e870ea24575379b7885' */
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
@@ -24,13 +24,13 @@ import sendicon from '../assets/send.png'
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
-  function orderIds(id1, id2) {
+  /* function orderIds(id1, id2) {
         if (id1 > id2) {
             return id1 + "-" + id2;
         } else {
             return id2 + "-" + id1;
         }
-   }
+   } */
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
@@ -48,8 +48,8 @@ import sendicon from '../assets/send.png'
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
-  const handlePersonalChat = async(adminID) => {
-    var roomId = orderIds(adminID, userId)
+  const handlePersonalChat = async() => {
+    var roomId = userId
     roomId += 'mentor-admin'
     if(!currentRoom){
       socket.emit("join-one", roomId)
@@ -77,9 +77,9 @@ import sendicon from '../assets/send.png'
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, time, date, senderName, toparea, id) =>{
+  socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
-    
+    console.log(date, time)
   })
 
     socket.off("room-messages").on("room-messages", (roomMessages) => {
@@ -114,56 +114,61 @@ import sendicon from '../assets/send.png'
 
    return (
      <>
-         <Navbar />
-         <div className={styles.row}>
-             <div className={styles.column + " " + styles.left}>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button></div>
-                 <div className={styles.smallcardleft}><button className={styles.leftbutton} onClick={() => handlePersonalChat(adminId)}><span className={styles.notifications}>Admin</span></button></div>
-             </div>
-             <div className={styles.column + " " + styles.right}>
-                {currentRoom &&
-                  <h3>{currentRoom}</h3>
-                }
-                <ul className={styles.chatMessages}>
-                  
-                  {messages.map((msg, index) => (
-                    <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
-                      <div className={styles.tooltip}>
-                        <p className={styles.date}>{msg.senderName}</p>
-                        {msg.toparea &&
-                          <p className={styles.date}>{msg.toparea}</p>
-                        }
-                        <p className={styles.message}>{msg.message}</p>
-                        
-                        <p className={styles.time}>{msg.time}</p>
-                        
-                      </div>
-                    </li>
-                  ))}
-                  
-                </ul>
-                
-                {currentRoom &&   
-                <form onSubmit={handleSubmit} className={styles.chatForm}>
-                  <input
-                    type="text"
-                    name="message"
-                    value={currentMessage}
-                    onChange={handleChange1}
-                    placeholder="Type your message here"
-                    className={styles.chatInput}
-                  />
-                  <button type="submit" className={styles.chatButton}>
-                    <img src={sendicon} />
-                  </button>
-                </form>
-                }
-              </div>
-         </div>
+        <Navbar />
+      <div className={styles.left}>
+        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
+        <div className={styles.smallcardleft}>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
+        </div>
+        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin</span></button></div>
+      </div>
+
+      <div className={styles.right}>
+        {currentRoom &&
+          <h3 className={styles.roomname}>{currentRoom}</h3>
+        }
+        <div className={styles.innerchat}>
+          <ul className={styles.chatMessages}>
+
+            {messages.map((msg, index) => (
+
+              <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
+                <div className={styles.tooltip}>
+                  <div className={styles.chathead}>
+                    <p className={styles.date}>{msg.senderName}</p>
+                    {msg.toparea &&
+                      <p className={styles.toparea}>{msg.toparea}</p>
+                    }
+                  </div>
+                  <p className={styles.message}>{msg.message}</p>
+                  <p className={styles.time}>{msg.time}</p>
+
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className={styles.outinput}>
+        {currentRoom &&
+          <form onSubmit={handleSubmit} className={styles.chatForm}>
+            <input
+              type="text"
+              name="message"
+              value={currentMessage}
+              onChange={handleChange1}
+              placeholder="Type your message here"
+              className={styles.chatInput}
+            />
+            <button type="submit" className={styles.chatButton}>
+              <img src={sendicon} />
+            </button>
+          </form>
+        }
+      </div>
      </>
    )
  }
