@@ -111,10 +111,10 @@ const Card = ({mentid}) => {
                 <button className={styles.verifybutton} onClick={() => getverify()}><img src={verify} className={styles.butimgdiv}></img></button>
                 <Popup trigger=
                 {<button className={styles.verifybutton} ><img src={noverify} className={styles.butimgdiv}></img></button>}
-                position="right center">
-                <form onSubmit={handleSubmit}>
-                  <input type="text" onChange={onentertxt} value={reason} placeholder='Enter your reason'/>
-                  <button>Submit</button>
+                position="centre">
+                <form onSubmit={handleSubmit} className={styles.popform}>
+                  <input type="text" className={styles.popinput} onChange={onentertxt} value={reason} placeholder='Enter your reason'/>
+                  <button className={styles.popbtn}>Submit</button>
                 </form>
                 </Popup>
                 
