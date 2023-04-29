@@ -180,9 +180,7 @@ io.on("connection", (socket) => {
           Notification.deleteMany({ to: room }, (err) => {
             if (err) {
               console.log(err);
-            } else {
-              console.log('Documents deleted');
-            }
+            } 
           });
         }
     })
@@ -193,9 +191,7 @@ io.on("connection", (socket) => {
           Notification.deleteMany({ to: room }, (err) => {
             if (err) {
               console.log(err);
-            } else {
-              console.log('Documents deleted');
-            }
+            } 
           });
         }
     })
