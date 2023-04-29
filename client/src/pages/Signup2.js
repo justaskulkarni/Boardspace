@@ -29,10 +29,10 @@ const Signup2 = () => {
 		setDetails({ ...details, [event.target.name]: event.target.value });
 	};
 
-	const upload = async (exe) => {
+	const upload = async (exe,field) => {
 		let data = new FormData();
 		data.append("image", exe);
-
+		data.append("field",field)
 		const response = await fetch(`/api/mentor/addurl/${details.email}`, {
 			method: "POST",
 			body: data,
@@ -183,31 +183,31 @@ const Signup2 = () => {
 	const handleSubmit3 = async (e) => {
 		e.preventDefault();
 		setBoard({ ...isBoardTopper, disable: true });
-		await upload(boardd.current);
+		await upload(boardd.current, "Board");
 	};
 
 	const handleSubmit4 = async (e) => {
 		e.preventDefault();
 		setJee({ ...isJeeTopper, disable: true });
-		await upload(jeed.current);
+		await upload(jeed.current, "JeeTopper");
 	};
 
 	const handleSubmit5 = async (e) => {
 		e.preventDefault();
 		setNeet({ ...isNeetTopper, disable: true });
-		await upload(neetd.current);
+		await upload(neetd.current, "NeetTopper");
 	};
 
 	const handleSubmit6 = async (e) => {
 		e.preventDefault();
 		setMaster({ ...isMasters, disable: true });
-		await upload(mastd.current);
+		await upload(mastd.current, "Masters");
 	};
 
 	const handleSubmit7 = async (e) => {
 		e.preventDefault();
 		setPHD({ ...isPHD, disable: true });
-		await upload(phdd.current);
+		await upload(phdd.current, "PHD");
 	};
 
 	return (
