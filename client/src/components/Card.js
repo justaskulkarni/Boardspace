@@ -88,12 +88,7 @@ const Card = ({ mentid }) => {
 
 	return (
 		<div className={styles.cardstyle}>
-			<form onSubmit={handleSubmit} className={styles.popform}>
-				<input type="text" className={styles.popinput} onChange={onentertxt} value={reason} placeholder="" />
-				<button className={styles.popsubmit}>Submit</button>
-			</form>
 			<br />
-
 			<div className={styles.statscontainer}>
 				<div className={styles.innerdiv}>
 					<div className={styles.innermost1}>
@@ -117,10 +112,13 @@ const Card = ({ mentid }) => {
 								}
 								position="centre"
 							>
-								<form onSubmit={handleSubmit} className={styles.popform}>
-									<input type="text" className={styles.popinput} onChange={onentertxt} value={reason} placeholder="" />
-									<button className={styles.popsubmit}>Submit</button>
-								</form>
+								<div className={styles.popdiv}>
+									<form onSubmit={handleSubmit} className={styles.popform} id="reasonform">
+										<textarea name="reason" id="reasonform" cols="30" rows="3" placeholder="Enter a reason" className={styles.popinput} onChange={onentertxt} value={reason}></textarea>
+										{/* <input type="text" className={styles.popinput} onChange={onentertxt} value={reason} placeholder="" /> */}
+										<button className={styles.popsubmit}>Submit</button>
+									</form>
+								</div>
 							</Popup>
 						</div>
 					</div>
