@@ -123,17 +123,17 @@ import sendicon from '../assets/send.png'
    return (
      <>
         <Navbar />
-      <div className={styles.left}>
+      <div className={styles.rightmost}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 <span className={styles.notifstyle}>{notifications.Room1 !== 0 ? notifications.Room1 : null}</span>
-</span></button>
+          </span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2 <span className={styles.notifstyle}>{notifications.Room2 !== 0 ? notifications.Room2 : null}</span></span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3 <span className={styles.notifstyle}>{notifications.Room3 !== 0 ? notifications.Room3 : null}</span></span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4 <span className={styles.notifstyle}>{notifications.Room4 !== 0 ? notifications.Room4 : null}</span></span></button>
         </div>
         <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin <span className={styles.notifstyle}>{notifications[`${userId}mentor-admin`] !== 0 ? notifications[`${userId}mentor-admin`] : null}</span>
-</span></button></div>
+        </span></button></div>
       </div>
 
       <div className={styles.right}>
@@ -144,35 +144,35 @@ import sendicon from '../assets/send.png'
           <ul className={styles.chatMessages}>
 
             {messages.map((msg, index) => {
-              return(
-              <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
-                
-                {userId === msg.id ? (
-                  <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
-                    <div className={styles.chathead}>
-                      <p className={styles.date}>{msg.senderName}</p>
-                      {msg.toparea && (
-                        <p className={styles.toparea}>{msg.toparea}</p>
-                      )}
-                    </div>
-                    <p className={styles.message}>{msg.message}</p>
-                    <p className={styles.time}>{msg.time}</p>
-                  </div>
-                ) : (
-                  <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
-                    <div className={styles.chathead}>
-                      <p className={styles.date}>{msg.senderName}</p>
-                      {msg.toparea && (
-                        <p className={styles.toparea}>{msg.toparea}</p>
-                      )}
-                    </div>
-                    <p className={styles.message}>{msg.message}</p>
-                    <p className={styles.time}>{msg.time}</p>
-                  </div>
-                )}
-              </li>
-            )})}
+              return (
+                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
 
+                  {userId === msg.id ? (
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                      <div className={styles.chathead}>
+                        <p className={styles.date}>{msg.senderName}</p>
+                        {msg.toparea && (
+                          <p className={styles.toparea}>{msg.toparea}</p>
+                        )}
+                      </div>
+                      <p className={styles.message}>{msg.message}</p>
+                      <p className={styles.time}>{msg.time}</p>
+                    </div>
+                  ) : (
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                      <div className={styles.chathead}>
+                        <p className={styles.date}>{msg.senderName}</p>
+                        {msg.toparea && (
+                          <p className={styles.toparea}>{msg.toparea}</p>
+                        )}
+                      </div>
+                      <p className={styles.message}>{msg.message}</p>
+                      <p className={styles.time}>{msg.time}</p>
+                    </div>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>

@@ -3,7 +3,7 @@ import styles from '../stylesheets/card.module.css'
 import styles2 from '../stylesheets/imageslider.module.css'
 import { useNavigate } from 'react-router-dom/dist'
 
-const Mentors = ({mentid}) => {
+const Mentors = ({mentid, notifications}) => {
 
   const navigate = useNavigate();
 
@@ -60,6 +60,7 @@ const Mentors = ({mentid}) => {
             <div className={styles.innermost1}>
               <p className={styles.cardcontent}>Name: {creadentials.mname}</p>
               <p className={styles.cardcontent}>Fields: {creadentials.topper} </p>
+              <p className={styles.cardcontent}>Notifications: {notifications}</p>
               <p className={styles.cardcontent}><button onClick={handleGoToChat}>Go to chat</button></p>
             </div>
         </div>

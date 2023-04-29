@@ -9,10 +9,11 @@ const AdminMessages = () => {
   const [idArray, setIdArray] = useState([])
   const [allmentor, setmentor] = useState(0)
   const [allstudent, setstudent] = useState(0)
+  const [notifsArray, setNotifsArray] = useState([])
 
   const getdata = async () => {
 
-    const response = await fetch("/api/admin/get/accepted", {
+    const response = await fetch("/api/admin/get/acceptednotifications", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     })
@@ -21,8 +22,9 @@ const AdminMessages = () => {
     if (json.success) {
       const newIdArray = json.data.map(item => item._id);
       setIdArray(newIdArray)
+      const notificationsArray = json.notifs.map(item => item.notifications);
+      setNotifsArray(notificationsArray)
     }
-
   }
 
   const getnums = async () => {
@@ -99,7 +101,7 @@ const AdminMessages = () => {
 
         <span className={styles.mentorrequests2}>Mentors</span>
         <div className={styles.cardcontainer}>
-          {idArray.map((id) => <Mentors key={id} mentid={id} />)}
+          {idArray.map((id, index) => <Mentors key={id} mentid={id} notifications={notifsArray[index]}/>)}
         </div>
 
       </div>

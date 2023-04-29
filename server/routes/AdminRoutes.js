@@ -6,6 +6,7 @@ const express = require('express');
 
 const Admin = require('../models/admin')
 const Mentor = require('../models/mentor')
+const Notification = require('../models/notification')
 
 const bcrypt = require('bcrypt')
 const validator = require('validator')
@@ -198,6 +199,37 @@ router.post('/mentor/undo/:id', async (req,res) => {
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
+})
+
+const getNotificationsCount = async (mentorId) => {
+  try {
+    const notificationsCount = await Notification.countDocuments({ senderId: mentorId, role: 'Mentor' });
+    return notificationsCount;
+  } catch (error) {
+    console.log(error);
+    return 0;
+  }
+};
+
+router.get('/get/acceptednotifications', async (req, res) => {
+
+    try {
+        Mentor.find({ otpverified: true, isverify: true, isreject: false }, async (err, data) => {
+            if (err) {
+                throw Error(`${err}`)
+            }
+            else {
+                const mentorsWithNotifications = await Promise.all(data.map(async (mentor) => {
+                    const notificationsCount = await getNotificationsCount(mentor._id);
+                    return { ...mentor.toObject(), notifications: notificationsCount };
+                }));
+                res.json({ success: true, data: data, notifs: mentorsWithNotifications });
+                console.log(mentorsWithNotifications)
+            }
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }    
 })
 
 router.get('/get/accepted', async (req, res) => {
