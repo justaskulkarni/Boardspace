@@ -36,10 +36,10 @@ const AdminChat = () => {
   }
   const handleButtonClick = async (roomName) => {
     if (!currentRoom) {
-      socket.emit("join-one", roomName)
+      socket.emit("join-one", roomName, role)
     }
     else {
-      socket.emit("join-room", currentRoom, roomName)
+      socket.emit("join-room", currentRoom, roomName, role)
     }
 
     socket.emit("getpreviouschats", roomName)

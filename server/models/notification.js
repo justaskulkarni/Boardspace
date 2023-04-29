@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 const notificationSchema = new Schema({
 
     senderName : {type : String},
-    senderId : {type : String},
-    to : {type : Schema.Types.ObjectId},
+    senderId : {type : Schema.Types.ObjectId},
+    to : {type : String},
     role : {type : String , enum : ['Admin' , 'Student', 'Mentor']}
 })
 

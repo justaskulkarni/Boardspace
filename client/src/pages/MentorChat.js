@@ -50,10 +50,10 @@ import sendicon from '../assets/send.png'
     var roomId = userId
     roomId += 'mentor-admin'
     if(!currentRoom){
-      socket.emit("join-one", roomId)
+      socket.emit("join-one", roomId, role)
     }
     else{
-      socket.emit("join-room", currentRoom, roomId)
+      socket.emit("join-room", currentRoom, roomId, role)
     }
     
     socket.emit("getpreviouschats", roomId)
@@ -74,7 +74,7 @@ import sendicon from '../assets/send.png'
   }
   const handleSubmit2 = async(e) =>{
     e.preventDefault()
-    socket.emit("join-one", roomToJoin)
+    socket.emit("join-one", roomToJoin, role)
   }
   socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
