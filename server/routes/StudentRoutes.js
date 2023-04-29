@@ -6,6 +6,7 @@ const express = require('express');
 
 
 const Student = require('../models/student')
+const Notification = require('../models/notification')
 
 const bcrypt = require('bcrypt')
 const validator = require('validator')
@@ -85,6 +86,16 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+const getNotificationsCount = async (studentId) => {
+  try {
+    const notificationsCount = await Notification.countDocuments({ senderId: studentId, role: 'Student' });
+    return notificationsCount;
+  } catch (error) {
+    console.log(error);
+    return 0;
+  }
+};
+
 router.get('/allstud', async(req, res) =>{
     try {
         Student.find({  }, async (err, data) => {
@@ -92,7 +103,12 @@ router.get('/allstud', async(req, res) =>{
                 throw Error(`${err}`)
             }
             else {
-                res.json({ success: true, data: data })
+                /* res.json({ success: true, data: data }) */
+                const studentsWithNotifications = await Promise.all(data.map(async (student) => {
+                    const notificationsCount = await getNotificationsCount(student._id);
+                    return { ...student.toObject(), notifications: notificationsCount };
+                }));
+                res.json({ success: true, data: data, notifs: studentsWithNotifications });
             }
         })
     } catch (error) {
