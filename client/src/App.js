@@ -27,6 +27,11 @@ import AdminMentorMessages from "./pages/AdminMentorMessages";
 import AdminChat from "./pages/AdminChat";
 import AdminStudentMessages from "./pages/AdminStudentMessages";
 
+import { io } from "socket.io-client";
+
+const SOCKET_URL = "http://localhost:6100";
+const socket = io(SOCKET_URL);
+
 function App() {
   return (
     <>

@@ -1,16 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { io } from "socket.io-client";
+
 import styles from '../stylesheets/chat.module.css'
-import styles2 from '../stylesheets/navbar.module.css'
-import navbarlogo from '../assets/navbarlogo.png'
+import styles2 from '../stylesheets/adminlanding.module.css'
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
 
-const SOCKET_URL = "http://localhost:6100";
+import dashboardlogo from '../assets/navbarlogo.png'
 
-const socket = io(SOCKET_URL);
+
 
 const AdminChat = () => {
 
@@ -58,21 +57,9 @@ const AdminChat = () => {
     e.preventDefault()
     socket.emit("join-one", roomToJoin)
   }
-  socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) => {
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
-    console.log(time, date)
-
-  })
-
-  socket.off("room-messages").on("room-messages", (roomMessages) => {
-    roomMessages.forEach((message) => {
-
-      setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid }])
-    });
-  });
 
   useEffect(() => {
-    
+
     var roomId = id
     roomId += `${role2}-admin`
 
@@ -97,7 +84,26 @@ const AdminChat = () => {
     setCurrentRoom(roomId)
     socket.emit("getpreviouschats", roomId)
     console.log("Inside use Effect")
-  }, [socket])
+
+    socket.on("room-messages", (roomMessages) => {
+      roomMessages.forEach((message) => {
+
+        setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid }])
+      })
+    })
+
+    socket.on("receive-room", (message, role, date, time, senderName, toparea, id) => {
+      setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
+      console.log(time, date)
+
+    })
+
+    return () => {
+      socket.off("receive-room")
+      socket.off("room-messages")
+    }
+
+  }, [id, role2])
 
   let navigate = useNavigate()
 
@@ -106,31 +112,44 @@ const AdminChat = () => {
     navigate("/")
   }
 
-  const taketolanding = () => {
+  const getrejected = () => {
+    navigate("/admin/rejected/reqs")
+    navigate(0)
+  }
+
+  const gethome = () => {
     navigate("/admin/landing")
+    navigate(0)
+  }
+
+  const getaccept = () => {
+    navigate("/admin/accepted/reqs")
+    navigate(0)
+  }
+
+  const getmessages = () => {
+    navigate("/admin/messages")
+    navigate(0)
+  }
+
+  const getstudentmessages = () => {
+    navigate("/admin-student/messages")
+    navigate(0)
   }
 
   return (
     <>
-
-      <div className={styles2.outerdiv}>
-        <div><Link to="/"><img className={styles2.imgdiv} src={navbarlogo} alt="" /></Link></div>
-        <div className={styles2.buttons}>
-          <button className={styles2.tail} onClick={handleLogout}>Logout</button>
-          <button className={styles2.tail}>Our Team</button>
-          <button className={styles2.tail} onClick={taketolanding}>Home</button>
+    
+      <div className={styles.column + " " + styles.left}>
+        <Link to="/"><img className={styles.imgstyle} src={dashboardlogo} alt="" /></Link>
+        <div className={styles.smallcardleftnew}>
+          <button className={styles.leftbuttonnew} onClick={gethome}><span className={styles.notificationsnew}>Home</span></button>
+          <button className={styles.leftbuttonnew} onClick={getmessages}><span className={styles.notificationsnew}>Mentor Messages</span></button>
+          <button className={styles.leftbuttonnew} onClick={getstudentmessages}><span className={styles.notificationsnew}>Student Messages</span></button>
+          <button className={styles.leftbuttonnew} onClick={getrejected}><span className={styles.notificationsnew}>Rejected</span></button>
+          <button className={styles.leftbuttonnew} onClick={getaccept}><span className={styles.notificationsnew}>Accepted</span></button>
         </div>
-      </div>
-
-
-      <div className={styles.left}>
-        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-        <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
-        </div>
+        {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
 
       <div className={styles.right}>
@@ -140,32 +159,33 @@ const AdminChat = () => {
         <div className={styles.innerchat}>
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
-              return(
-              <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
-                
-                {userId === msg.id ? (
-                  <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
-                    <div className={styles.chathead}>
-                      {msg.toparea && (
-                        <p className={styles.toparea}>{msg.toparea}</p>
-                      )}
+              return (
+                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
+
+                  {userId === msg.id ? (
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                      <div className={styles.chathead}>
+                        {msg.toparea && (
+                          <p className={styles.toparea}>{msg.toparea}</p>
+                        )}
+                      </div>
+                      <p className={styles.message}>{msg.message}</p>
+                      <p className={styles.time}>{msg.time}</p>
                     </div>
-                    <p className={styles.message}>{msg.message}</p>
-                    <p className={styles.time}>{msg.time}</p>
-                  </div>
-                ) : (
-                  <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
-                    <div className={styles.chathead}>
-                      {msg.toparea && (
-                        <p className={styles.toparea}>{msg.toparea}</p>
-                      )}
+                  ) : (
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                      <div className={styles.chathead}>
+                        {msg.toparea && (
+                          <p className={styles.toparea}>{msg.toparea}</p>
+                        )}
+                      </div>
+                      <p className={styles.message}>{msg.message}</p>
+                      <p className={styles.time}>{msg.time}</p>
                     </div>
-                    <p className={styles.message}>{msg.message}</p>
-                    <p className={styles.time}>{msg.time}</p>
-                  </div>
-                )}
-              </li>
-            )})}
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>
@@ -185,6 +205,16 @@ const AdminChat = () => {
             </button>
           </form>
         }
+      </div>
+
+      <div className={styles.rightmost}>
+        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
+        <div className={styles.smallcardleft}>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
+        </div>
       </div>
     </>
   )
