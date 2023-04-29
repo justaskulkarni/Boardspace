@@ -48,8 +48,7 @@ const AdminChat = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    socket.emit("send-room", currentRoom, currentMessage, fromrole, userId, currentUserName)
+    socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
     setCurrentMessage("")
   }
   const handleSubmit2 = async (e) => {
@@ -102,7 +101,7 @@ const AdminChat = (props) => {
     })
 
     socket.on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
-      setMessages(prevMessages => [...prevMessages, { message, fromrole, time, date, senderName, toparea, id }]);
+      setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]);
       console.log(time, date)
 
     })
@@ -169,11 +168,12 @@ const AdminChat = (props) => {
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
-                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg._id ? '60%' : '' }}>
+                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.fromid ? '60%' : '' }}>
 
                   {userId === msg._id ? (
                     <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
+                        {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
@@ -184,6 +184,7 @@ const AdminChat = (props) => {
                   ) : (
                     <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
+                        {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}

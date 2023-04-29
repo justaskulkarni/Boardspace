@@ -9,6 +9,7 @@ const AdminStudentMessages = () => {
   const [allmentor, setmentor] = useState(0)
   const [allstudent, setstudent] = useState(0)
   const [studentIdArray, setStudentIdArray] = useState([])
+  const [notifsArray, setNotifsArray] = useState([])
 
   const getall = async () => {
     const response = await fetch("/api/student/allstud", {
@@ -20,6 +21,8 @@ const AdminStudentMessages = () => {
     if (json.success) {
       const studentIdArray = json.data.map(item => item._id);
       setStudentIdArray(studentIdArray)
+      const notificationsArray = json.notifs.map(item => item.notifications);
+      setNotifsArray(notificationsArray)
     }
   }
 
@@ -96,7 +99,7 @@ const AdminStudentMessages = () => {
 
         <span className={styles.mentorrequests2}>Students</span>
         <div className={styles.cardcontainer}>
-          {studentIdArray.map((id) => <Students key={id} id={id} />)}
+          {studentIdArray.map((id, index) => <Students key={id} id={id} notifications={notifsArray[index]}/>)}
         </div>
 
       </div>
