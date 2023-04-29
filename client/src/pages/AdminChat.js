@@ -25,6 +25,8 @@ const AdminChat = (props) => {
   const [messages, setMessages] = useState([])
   const [name, setname] = useState("")
 
+  const [notifs, setnotifs] = useState([{id : "", count : ""}])
+
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
   const userId = decoded.id
@@ -81,7 +83,25 @@ const AdminChat = (props) => {
     }
   }
 
-  
+  async function getstudnotf() {
+
+    const response = await fetch("/api/chat/student/notif", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const json = await response.json()
+
+    console.log(json.notif) 
+
+    json.notif.forEach((singlenotif) => {
+      setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
+    });
+
+    console.log(notifs) 
+  }
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
@@ -90,13 +110,9 @@ const AdminChat = (props) => {
   useEffect(() => {
 
     getname()
+    getstudnotf()
     
     socket.on("room-messages", (roomMessages) => {
-      // roomMessages.forEach((message) => {
-
-      //   setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, fromrole: message.fromfromrole, toparea: message.toparea, id: message.fromid }])
-      // })
-      console.log(roomMessages)
       setMessages(roomMessages)
     })
 
@@ -219,6 +235,9 @@ const AdminChat = (props) => {
       </div>
 
       <div className={styles.rightmost}>
+        <div>
+
+        </div>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
