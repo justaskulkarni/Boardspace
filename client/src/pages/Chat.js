@@ -6,12 +6,10 @@ import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 
-const SOCKET_URL = "";
 
-const socket = io(SOCKET_URL);
+const Chat = (props) => {
 
-const Chat = () => {
-
+  const { socket } = props;
   const messagesRef = useRef(null);
   const [notifications, setNotifications] = useState({})
   const [currentMessage, setCurrentMessage] = useState("")

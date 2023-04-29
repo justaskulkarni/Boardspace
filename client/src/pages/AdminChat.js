@@ -11,8 +11,9 @@ import dashboardlogo from '../assets/navbarlogo.png'
 
 
 
-const AdminChat = () => {
+const AdminChat = (props) => {
 
+  const {socket} = props
   const location = useLocation();
   const pathArray = location.pathname.split('/');
   const role2 = pathArray[1];

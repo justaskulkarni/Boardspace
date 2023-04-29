@@ -49,11 +49,11 @@ function App() {
             <Route path="/notaccepted" element={<Notaccepted />} />
             <Route element={<MentorPrivateRoutes />}>
               <Route path="/youin" element={<Protected />} />
-              <Route path="/mentor/chat" element={<MentorChat />} />
+              <Route path="/mentor/chat" element={<MentorChat socket = {socket}/>} />
             </Route>
             <Route element={<StudentPrivateRoutes />}>
               <Route path="/studentin" element={<ProtectedStudent />} />
-              <Route path="/student/chat" element={<Chat />} />
+              <Route path="/student/chat" element={<Chat socket = {socket}/>} />
             </Route>
             <Route element={<AdminPrivateRoutes />}>
               <Route path="/admin/landing" element={<AdminLand />} />
@@ -61,8 +61,8 @@ function App() {
               <Route path="/admin/accepted/reqs" element={<AdminAccept />} />
               <Route path="/admin/messages" element={<AdminMentorMessages />} />
               <Route path="/admin-student/messages" element={<AdminStudentMessages />} />
-              <Route path="/mentor/chat/:id" element={<AdminChat />} />
-              <Route path="/student/chat/:id" element={<AdminChat />} />
+              <Route path="/mentor/chat/:id" element={<AdminChat socket = {socket}/>} />
+              <Route path="/student/chat/:id" element={<AdminChat socket = {socket}/>} />
             </Route>
             <Route path="*" element={<Not404 />} />
           </Routes>

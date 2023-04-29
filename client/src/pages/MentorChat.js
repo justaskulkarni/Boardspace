@@ -10,8 +10,9 @@ import sendicon from '../assets/send.png'
 
  const socket = io(SOCKET_URL);
 
- const MentorChat = () => {
+ const MentorChat = (props) => {
 
+  const { socket } = props;
   const messagesRef = useRef(null);
   const [notifications, setNotifications] = useState({})
   const [currentMessage, setCurrentMessage] = useState("")
