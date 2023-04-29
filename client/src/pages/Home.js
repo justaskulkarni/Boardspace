@@ -8,7 +8,6 @@ import DoubtSolving from "../assets/Home/DoubtSolving.png";
 import LiveSession from "../assets/Home/LiveSession.png";
 import navbarlogo from "../assets/navbarlogo.png";
 import bg1 from "../assets/Home/graph.png";
-
 import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 
@@ -175,7 +174,7 @@ function Home() {
 						</div>
 				
 					</div>
-						<Parallax bgImage={bg1} strength={200} bgImageStyle={{ height:"59rem", width:"50%", justifyContent:"flex-end",objectFit:"contain",backgroundPosition:"right",aspectRatio:"auto",left:"75%"}}>
+				<Parallax bgImage={bg1} strength={300} bgImageStyle={{ height:"59rem", width:"50%", backgroundAttachment:"fixed",objectFit:"contain",backgroundPosition:"right",aspectRatio:"auto",left:"75%"}}>
 					<div className={styles.graph}>
 						
 						<div className={styles.finest}>
@@ -206,12 +205,9 @@ function Home() {
 
 							</p>
 
-						</div>
-			
-		
-
+						</div>		
 					</div>
-						</Parallax>
+				</Parallax>
 				
 				<div className={styles.join}>
 					<h2>Join our community</h2>

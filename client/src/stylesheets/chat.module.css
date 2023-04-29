@@ -246,6 +246,10 @@
 	cursor: pointer;
 }
 
+.notifstyle{
+	color: red;
+}
+
 ::-webkit-scrollbar {
 	width: 0.4375rem;
 }
