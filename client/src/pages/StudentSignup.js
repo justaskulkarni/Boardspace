@@ -5,8 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "../stylesheets/StudentAuth.module.css";
 
 const StudentSignup = () => {
-	const [credentials, setCredentials] = useState({ email: "", phonenum: 0, name: "", password: "" });
+	const [credentials, setCredentials] = useState({ email: "", phonenum: null, name: "", password: "" });
 	const [error, setError] = useState(null);
+	const [isLoading, setLoading] = useState(false);
 
 	let navigate = useNavigate();
 
@@ -30,7 +31,7 @@ const StudentSignup = () => {
 			setError(json.error);
 			setCredentials({
 				email: "",
-				phonenum: 0,
+				phonenum: null,
 				name: "",
 				password: "",
 			});
@@ -44,8 +45,28 @@ const StudentSignup = () => {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value });
 	};
 
+	const toggleAnimation = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+	};
+
 	return (
 		<>
+			{isLoading && (
+				<div id="loadingAnim">
+					<div className={styles.dotSpinner}>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+					</div>
+				</div>
+			)}
+
 			<Navbar />
 			<div className={styles.colour1}></div>
 			<div className={styles.signupform}>
@@ -71,7 +92,7 @@ const StudentSignup = () => {
 						<input type="number" value={credentials.phonenum} name="phonenum" onChange={onChange} placeholder="" className={styles.fields} />
 
 						<div>
-							<button className={styles.loginbutton}>
+							<button className={styles.loginbutton} onClick={toggleAnimation}>
 								<span className={styles.logintext}>Sign Up</span>
 							</button>
 						</div>

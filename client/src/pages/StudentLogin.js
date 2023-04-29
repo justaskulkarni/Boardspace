@@ -7,6 +7,8 @@ const StudentLogin = () => {
 	const [credentials, setCredentials] = useState({ email: "", password: "" });
 	const [error, setError] = useState(null);
 
+	const [isLoading, setLoading] = useState(false);
+
 	let navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
@@ -41,10 +43,30 @@ const StudentLogin = () => {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value });
 	};
 
+	const toggleAnimation = async (e) => {
+		e.preventDefault();
+		setLoading(true);
+	};
+
 	return (
 		<>
+			{isLoading && (
+				<div className={styles.loadingAnim}>
+					<div className={styles.dotSpinner}>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+						<div className={styles.dotSpinnerDot}></div>
+					</div>
+				</div>
+			)}
+
+			<Navbar />
 			<div className={styles.loginpage}>
-				<Navbar />
 				<div className={styles.colour1}></div>
 				<div className={styles.loginform}>
 					<h3 className={styles.login}>Log In</h3>
@@ -66,7 +88,7 @@ const StudentLogin = () => {
 								<button className={styles.forgot}>Forgot password?</button>
 							</div>
 							<div>
-								<button className={styles.loginbutton}>
+								<button className={styles.loginbutton} id="submitButton" onClick={toggleAnimation}>
 									<span className={styles.logintext}>Log In</span>
 								</button>
 							</div>
