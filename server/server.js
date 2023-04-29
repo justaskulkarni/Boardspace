@@ -217,7 +217,7 @@ io.on("connection", (socket) => {
 
         await newMessage.save()
         
-        if(room.includes('admin')){
+        if(room.includes('admin') && role !== 'Admin'){
           const newNotification = new Notification({
             senderName : senderName,
             senderId : id,
