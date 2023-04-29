@@ -45,7 +45,7 @@ function Home() {
 	return (
 		<>
 			<div className={styles.Home}>
-				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right",backgroundAttachment:"fixed" }}>
+				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right", backgroundAttachment: "fixed" }}>
 					<div className={"outerdiv"} id="nav">
 						<div>
 							<Link to="/">
@@ -139,11 +139,15 @@ function Home() {
 					</div>
 					<div className={styles.people}>
 						<div className={styles.data}>
-						<center>
-							<h5>We're Good with Numbers</h5>
-						</center>
+							<center>
+								<h5>We're Good with Numbers</h5>
+							</center>
 						</div>
 						<div className={styles.numbers}>
+							<h1></h1>
+							<h1></h1>
+							<h1></h1>
+							<h1></h1>
 							<div className={styles.rtd}>
 								<p>
 									<h2>36</h2>
@@ -158,7 +162,7 @@ function Home() {
 								</p>
 							</div>
 							<h1>.</h1>
-							<div className={styles.rtd}>	
+							<div className={styles.rtd}>
 								<p>
 									<h2>680</h2>
 									Community Members
@@ -171,9 +175,13 @@ function Home() {
 									Grades(5th-12th)
 								</p>
 							</div>
+							<h1></h1>
+							<h1></h1>
+							<h1></h1>
+							<h1></h1>
 						</div>
-				
 					</div>
+<<<<<<< HEAD
 				<div className={styles.lax}>
 				<Parallax bgImage={bg1} strength={350} bgImageStyle={{ height:"59rem", width:"50%", backgroundAttachment:"fixed",objectFit:"contain",backgroundPosition:"right",aspectRatio:"auto",left:"75%"}}>
 					<div className={styles.graph}>
@@ -183,37 +191,62 @@ function Home() {
 							<p>
 							<h3>ABOUT</h3>
 								<h1>Our Community is 
+=======
+					<Parallax bgImage={bg1} strength={300} bgImageStyle={{ height: "59rem", width: "50%", backgroundAttachment: "fixed", objectFit: "contain", backgroundPosition: "right", aspectRatio: "auto", left: "75%" }}>
+						<div className={styles.graph}>
+							<div className={styles.finest}>
+								<p>
+									<h3>ABOUT</h3>
+									<h1>
+										Our Community is
+										<br />
+										the Finest
+									</h1>
+									When you're in secondary school, everything seems <br /> obscure. Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, be it academics <br /> or extracurriculars. We{" "}
+									<b>
+										have been in your situation <br /> before
+									</b>
+									. To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
+>>>>>>> 18a3100bfc67f59e847ed712c76a40c1a216fee4
 									<br />
-									the Finest
-								</h1>
-							
-							When you're in secondary school, everything seems <br /> obscure. 
-							Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, 
-							be it academics <br /> or extracurriculars. We <b>have been in your situation <br /> before</b>. 
-							To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
-							<br /><br />
-							At boardspace, we focus on building a platform on which <br /> <b>secondary
-							students (Grades 5-12)</b>  can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
-							participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
-							<br /><br />
-							We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. 
-							With us, you will be made to <br /> interact with <b>board toppers and IITian 
-							mentors </b><br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, 
-							you will build a <b> lifelong <br /> network</b> of qualified students and have a 
-							reliable <br /> support system throughout your academic journey.
-							<br /><br />
-							<b>Have a doubt? Ask a topper!</b>
+									<br />
+									At boardspace, we focus on building a platform on which <br /> <b>secondary students (Grades 5-12)</b> can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
+									participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
+									<br />
+									<br />
+									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. With us, you will be made to <br /> interact with <b>board toppers and IITian mentors </b>
+									<br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, you will build a{" "}
+									<b>
+										{" "}
+										lifelong <br /> network
+									</b>{" "}
+									of qualified students and have a reliable <br /> support system throughout your academic journey.
+									<br />
+									<br />
+									<b>Have a doubt? Ask a topper!</b>
+								</p>
+							</div>
+						</div>
+					</Parallax>
 
-							</p>
+					<div className={styles.joincommsize}>
+						<div className={styles.join}>
+							<h2>Join our community</h2>
 
-						</div>		
+							<h3>
+								Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
+							</h3>
+						</div>
 					</div>
+<<<<<<< HEAD
 				</Parallax>
 				</div>
 				<div className={styles.join}>
 					<h2>Join our community</h2>
 
 				</div>
+=======
+>>>>>>> 18a3100bfc67f59e847ed712c76a40c1a216fee4
 				</div>
 			</div>
 		</>
@@ -221,4 +254,3 @@ function Home() {
 }
 
 export default Home;
-
