@@ -10,6 +10,7 @@
 	top: 0;
 	background-color: transparent;
 	height: 5.5rem;
+	z-index: 999;
 }
 
 .temp {
