@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import styles from '../stylesheets/chat.module.css'
 import styles2 from '../stylesheets/adminlanding.module.css'
@@ -9,14 +9,12 @@ import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
 
 import dashboardlogo from '../assets/navbarlogo.png'
 
-
-
 const AdminChat = (props) => {
 
-  const {socket} = props
+  const { socket } = props
   const location = useLocation();
   const pathArray = location.pathname.split('/');
-  const role2 = pathArray[1];
+  const fromrole2 = pathArray[1];
 
   const [currentMessage, setCurrentMessage] = useState("")
   const currentUserName = "Admin"
@@ -28,7 +26,7 @@ const AdminChat = (props) => {
   const [name, setname] = useState("")
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
-  const role = decoded.role
+  const fromrole = decoded.fromrole
   const userId = decoded.id
 
   const handleChange1 = (event) => {
@@ -36,10 +34,10 @@ const AdminChat = (props) => {
   }
   const handleButtonClick = async (roomName) => {
     if (!currentRoom) {
-      socket.emit("join-one", roomName, role)
+      socket.emit("join-one", roomName, fromrole)
     }
     else {
-      socket.emit("join-room", currentRoom, roomName, role)
+      socket.emit("join-room", currentRoom, roomName, fromrole)
     }
 
     socket.emit("getpreviouschats", roomName)
@@ -51,7 +49,7 @@ const AdminChat = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
+    socket.emit("send-room", currentRoom, currentMessage, fromrole, userId, currentUserName)
     setCurrentMessage("")
   }
   const handleSubmit2 = async (e) => {
@@ -59,42 +57,52 @@ const AdminChat = (props) => {
     socket.emit("join-one", roomToJoin)
   }
 
-  useEffect(() => {
+  const messagesEndRef = useRef(null);
 
-    var roomId = id
-    roomId += `${role2}-admin`
+  async function getname() {
 
-    async function getname() {
-
-      const response = await fetch(`/api/student/dets/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-      const json = await response.json()
-      if (json.success) {
-        setname(json.studentdets.stname)
+    const response = await fetch(`/api/student/dets/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       }
-    }
-
-    getname()
-
-    socket.emit("join-one", roomId)
-    setCurrentRoom(roomId)
-    socket.emit("getpreviouschats", roomId)
-    console.log("Inside use Effect")
-
-    socket.on("room-messages", (roomMessages) => {
-      roomMessages.forEach((message) => {
-
-        setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid }])
-      })
     })
 
-    socket.on("receive-room", (message, role, date, time, senderName, toparea, id) => {
-      setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
+    const json = await response.json()
+    if (json.success) {
+      setname(json.studentdets.stname)
+      var roomId = id
+      roomId += `${fromrole2}-admin`
+
+      socket.emit("join-one", roomId)
+      setCurrentRoom(roomId)
+      
+      socket.emit("getpreviouschats", roomId)
+      console.log("Inside use Effect")
+    }
+  }
+
+  
+
+  useEffect(() => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+  }, [messagesEndRef.current])
+
+  useEffect(() => {
+
+    getname()
+    
+    socket.on("room-messages", (roomMessages) => {
+      // roomMessages.forEach((message) => {
+
+      //   setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, fromrole: message.fromfromrole, toparea: message.toparea, id: message.fromid }])
+      // })
+      console.log(roomMessages)
+      setMessages(roomMessages)
+    })
+
+    socket.on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
+      setMessages(prevMessages => [...prevMessages, { message, fromrole, time, date, senderName, toparea, id }]);
       console.log(time, date)
 
     })
@@ -104,7 +112,7 @@ const AdminChat = (props) => {
       socket.off("room-messages")
     }
 
-  }, [id, role2])
+  }, [])
 
   let navigate = useNavigate()
 
@@ -140,7 +148,7 @@ const AdminChat = (props) => {
 
   return (
     <>
-    
+
       <div className={styles.column + " " + styles.left}>
         <Link to="/"><img className={styles.imgstyle} src={dashboardlogo} alt="" /></Link>
         <div className={styles.smallcardleftnew}>
@@ -157,36 +165,37 @@ const AdminChat = (props) => {
         {currentRoom &&
           <h3 className={styles.roomname}>{name}</h3>
         }
-        <div className={styles.innerchat}>
+        <div className={styles.innerchat} id="bottomscroll">
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
-                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
+                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg._id ? '60%' : '' }}>
 
-                  {userId === msg.id ? (
-                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                  {userId === msg._id ? (
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
                       </div>
-                      <p className={styles.message}>{msg.message}</p>
+                      <p className={styles.message}>{msg.content}</p>
                       <p className={styles.time}>{msg.time}</p>
                     </div>
                   ) : (
-                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
                       </div>
-                      <p className={styles.message}>{msg.message}</p>
+                      <p className={styles.message}>{msg.content}</p>
                       <p className={styles.time}>{msg.time}</p>
                     </div>
                   )}
                 </li>
               )
             })}
+            <div ref={messagesEndRef} />
           </ul>
         </div>
       </div>
