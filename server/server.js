@@ -177,26 +177,26 @@ io.on("connection", (socket) => {
         await socket.leave(prevroom)
         await socket.join(room)
         if(room.includes('admin')){
-          Notification.findOneAndDelete({ to: room }, (err, doc) => {
+          Notification.deleteMany({ to: room }, (err) => {
             if (err) {
               console.log(err);
             } else {
-              console.log(doc);
+              console.log('Documents deleted');
             }
-            });
+          });
         }
     })
 
     socket.on("join-one", async(room, role) => {
         await socket.join(room)
         if(room.includes('admin')){
-          Notification.findOneAndDelete({ to: room }, (err, doc) => {
+          Notification.deleteMany({ to: room }, (err) => {
             if (err) {
               console.log(err);
             } else {
-              console.log(doc);
+              console.log('Documents deleted');
             }
-            });
+          });
         }
     })
 
