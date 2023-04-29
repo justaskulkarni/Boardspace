@@ -26,6 +26,7 @@ const AdminChat = (props) => {
   const [name, setname] = useState("")
 
   const [notifs, setnotifs] = useState([{id : "", count : ""}])
+  const [notifNames, setNotifNames] = useState({})
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
@@ -59,6 +60,8 @@ const AdminChat = (props) => {
   }
 
   const messagesEndRef = useRef(null);
+
+  
 
   async function getname() {
 
@@ -96,16 +99,21 @@ const AdminChat = (props) => {
 
     console.log(json.notif) 
 
-    json.notif.forEach((singlenotif) => {
+    /* json.notif.forEach((singlenotif) => {
       setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
-    });
+    }); */
+    const updatedNotifs = json.notif.map(singlenotif => ({ id: singlenotif._id, count: singlenotif.count }));
+    updatedNotifs.sort((a, b) => b.count - a.count);
+    setnotifs(updatedNotifs);
 
     console.log(notifs) 
+    
   }
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }, [messagesEndRef.current])
+
 
   useEffect(() => {
 
@@ -127,7 +135,7 @@ const AdminChat = (props) => {
       socket.off("room-messages")
     }
 
-  }, [])
+  }, [notifs])
 
   let navigate = useNavigate()
 
@@ -158,6 +166,12 @@ const AdminChat = (props) => {
 
   const getstudentmessages = () => {
     navigate("/admin-student/messages")
+    navigate(0)
+  }
+
+  const handleNotifButtonClick = (id) => {
+    console.log(id)
+    navigate(`/student/chat/${id}`)
     navigate(0)
   }
 
@@ -238,6 +252,11 @@ const AdminChat = (props) => {
         <div>
 
         </div>
+            {notifs.map((notif) => (
+              <button key={notif.id} className={styles.leftbutton} onClick={() => handleNotifButtonClick(notif.id)}>
+                <span className={styles.notifications}>{notif.id} {notif.count}</span>
+              </button>
+            ))}
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>

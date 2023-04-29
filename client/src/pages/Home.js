@@ -45,6 +45,7 @@ function Home() {
 	return (
 		<>
 			<div className={styles.Home}>
+				<div className={styles.enclose}>
 				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right", backgroundAttachment: "fixed" }}>
 					<div className={"outerdiv"} id="nav">
 						<div>
@@ -93,6 +94,8 @@ function Home() {
 						</div>
 					</div>
 				</Parallax>
+				</div>
+
 				<div className={styles.servicessize}>
 					<div className={styles.services}>
 						<h2>SERVICES</h2>
@@ -175,8 +178,9 @@ function Home() {
 						</div>
 					</div>
 				</div>
+				
 				<div className={styles.lax}>
-					<Parallax bgImage={bg1} strength={350} bgImageStyle={{ height: "59rem", width: "50%", backgroundAttachment: "fixed", objectFit: "contain", backgroundPosition: "right", aspectRatio: "auto", left: "75%" }}>
+					<Parallax bgImage={bg1} strength={350} bgImageStyle={{ height: "60rem", width: "50%", backgroundAttachment: "fixed", objectFit: "contain", backgroundPosition: "right", aspectRatio: "auto", left: "75%" }}>
 						<div className={styles.graph}>
 							<div className={styles.finest}>
 								<p>
@@ -184,21 +188,24 @@ function Home() {
 									<h1>
 										Our Community is
 										<br />
+										the Finest
 									</h1>
-									<br />
-									At boardspace, we focus on building a platform on which <br /> <b>secondary students (Grades 5-12)</b> can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
+									
+									When you're in secondary school, everything seems <br /> obscure. 
+									Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, 
+									be it academics <br /> or extracurriculars. We <b>have been in your situation <br /> before</b>. 
+									To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
+									<br /><br />
+									At boardspace, we focus on building a platform on which <br /> <b>secondary
+									students (Grades 5-12)</b>  can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
 									participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
-									<br />
-									<br />
-									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. With us, you will be made to <br /> interact with <b>board toppers and IITian mentors </b>
-									<br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, you will build a{" "}
-									<b>
-										{" "}
-										lifelong <br /> network
-									</b>{" "}
-									of qualified students and have a reliable <br /> support system throughout your academic journey.
-									<br />
-									<br />
+									<br /><br />
+									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. 
+									With us, you will be made to <br /> interact with <b>board toppers and IITian 
+									mentors </b><br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, 
+									you will build a <b> lifelong <br /> network</b> of qualified students and have a 
+									reliable <br /> support system throughout your academic journey.
+									<br /><br />
 									<b>Have a doubt? Ask a topper!</b>
 								</p>
 							</div>
@@ -208,14 +215,38 @@ function Home() {
 
 				<div className={styles.joincommsize}>
 					<div className={styles.join}>
+						<center>
+						<p>
 						<h2>Join our community</h2>
-
-						<h3>
+						
 							Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
-						</h3>
+						
+						</p>
+						<button className={styles.enter}>
+							Enter Now
+						</button>
+						</center>
+						
+						
 					</div>
 				</div>
+
+				<div className={styles.final}>
+					<Parallax strength={600} bgImage={bg} >
+						<div className={styles.info}>
+						<p>
+							<h4>CONTACT</h4>
+							<h1>Let's Work Together</h1>
+							<a href="info@boardspace.in">info@boardspace.in</a>
+						</p>
+						<span>	© 2023 by boardspace</span>
+						</div>
+								
+					</Parallax>
+				</div>
+
 			</div>
+
 		</>
 	);
 }
