@@ -174,7 +174,8 @@ function Home() {
 						</div>
 				
 					</div>
-				<Parallax bgImage={bg1} strength={300} bgImageStyle={{ height:"59rem", width:"50%", backgroundAttachment:"fixed",objectFit:"contain",backgroundPosition:"right",aspectRatio:"auto",left:"75%"}}>
+				<div className={styles.lax}>
+				<Parallax bgImage={bg1} strength={350} bgImageStyle={{ height:"59rem", width:"50%", backgroundAttachment:"fixed",objectFit:"contain",backgroundPosition:"right",aspectRatio:"auto",left:"75%"}}>
 					<div className={styles.graph}>
 						
 						<div className={styles.finest}>
@@ -208,7 +209,7 @@ function Home() {
 						</div>		
 					</div>
 				</Parallax>
-				
+				</div>
 				<div className={styles.join}>
 					<h2>Join our community</h2>
 
