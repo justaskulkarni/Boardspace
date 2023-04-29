@@ -1,29 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
 
-.left {
-	width: 20%;
+.rightmost {
+	width: 15%;
 	height: 100%;
 	position: fixed;
 	margin-top: 5%;
 	background-color: #594f77;
 	height: 80vh;
 	border-radius: 3%;
-	margin-left: 3%;
+	margin-right: 2%;
+	right: 0;
 }
 
 .right {
 	margin-top: 5%;
-	margin-left: 20%;
 	background-color: #d9d9d9;
-	width: 74%;
-	padding-left: 3%;
+	width: 63%;
 	overflow-y: hidden;
 	height: 80vh;
 	position: fixed;
-	right: 0;
-	margin-right: 3%;
 	border-radius: 2%;
+	margin-left: 17%;
 }
 
 .innerchat {
@@ -259,4 +257,63 @@
 ::-webkit-scrollbar-thumb {
 	background-color: #9e3ffd;
 	border-radius: 0.3125rem;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+    width: 20%;
+    overflow-y: hidden;
+    position: fixed;
+    left: 0;
+}
+
+.imgstyle {
+    float: left;
+    margin-top: 1.3rem;
+    height: 7rem;
+    width: 80%;
+    object-fit: cover;
+}
+
+.smallcardleftnew {
+    display: block;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 2vw;
+}
+
+.leftbuttonnew {
+    border: none;
+    background-color: white;
+    display: block;
+    margin-top: 10%;
+}
+
+.notificationsnew {
+    color: #505887;
+    font-size: 1.2rem;
+    display: block;
+}
+
+.logoutbtn {
+    border: white;
+    border-radius: 1rem;
+    background: white;
+    bottom: 0;
+    margin-left: 2vw;
+    margin-top: 80%;
+}
+
+.welcometext {
+    color: #9a9a9a;
+    font-size: 1rem;
+}
+
+.welcometext2 {
+    color: red;
+    font-size: 1rem;
+    font-weight: bold;
 }
