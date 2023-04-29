@@ -34,13 +34,24 @@ const Card = ({ mentid }) => {
 
 			if (json.success) {
 				setCredentials({ email: json.mentdets.email, mname: json.mentdets.name, topper: json.mentdets.toparea.join(" , ") });
-				setImgarr(...imags, json.mentdets.idurl);
 			}
 
 			if (json.error) {
 				setError(json.error);
 			}
 		};
+
+		const getimages = async () => {
+			const response = await fetch(`http://localhost:6100/api/mentor/images/${mentid}`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+			});
+
+			const json = await response.json();
+
+			
+
+		}
 
 		getdata();
 	}, []);
