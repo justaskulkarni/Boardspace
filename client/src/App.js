@@ -24,7 +24,8 @@ import AdminAccept from "./pages/AdminAccept";
 import Chat from "./pages/Chat";
 import MentorChat from "./pages/MentorChat";
 import AdminMentorMessages from "./pages/AdminMentorMessages";
-import AdminChat from "./pages/AdminChat";
+import AdminStudentChat from "./pages/AdminStudentChat";
+import AdminMentorChat from "./pages/AdminMentorChat"
 import AdminStudentMessages from "./pages/AdminStudentMessages";
 
 import { io } from "socket.io-client";
@@ -61,8 +62,8 @@ function App() {
               <Route path="/admin/accepted/reqs" element={<AdminAccept />} />
               <Route path="/admin/messages" element={<AdminMentorMessages />} />
               <Route path="/admin-student/messages" element={<AdminStudentMessages />} />
-              <Route path="/mentor/chat/:id" element={<AdminChat socket = {socket}/>} />
-              <Route path="/student/chat/:id" element={<AdminChat socket = {socket}/>} />
+              <Route path="/mentor/chat/:id" element={<AdminMentorChat socket = {socket}/>} />
+              <Route path="/student/chat/:id" element={<AdminStudentChat socket = {socket}/>} />
             </Route>
             <Route path="*" element={<Not404 />} />
           </Routes>

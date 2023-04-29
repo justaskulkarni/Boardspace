@@ -128,7 +128,7 @@ router.get('/mentor/dets/:id', async (req, res) => {
         const reqmentor = await Mentor.findById(id)
 
         res.json({ success: true, mentdets: reqmentor })
-
+        console.log(reqmentor.name)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -224,7 +224,7 @@ router.get('/get/acceptednotifications', async (req, res) => {
                     return { ...mentor.toObject(), notifications: notificationsCount };
                 }));
                 res.json({ success: true, data: data, notifs: mentorsWithNotifications });
-                console.log(mentorsWithNotifications)
+                
             }
         })
     } catch (error) {

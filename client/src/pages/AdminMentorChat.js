@@ -9,7 +9,7 @@ import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
 
 import dashboardlogo from '../assets/navbarlogo.png'
 
-const AdminChat = (props) => {
+const AdminMentorChat = (props) => {
 
   const { socket } = props
   const location = useLocation();
@@ -65,7 +65,7 @@ const AdminChat = (props) => {
 
   async function getname() {
 
-    const response = await fetch(`/api/student/dets/${id}`, {
+    const response = await fetch(`/api/admin/mentor/dets/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ const AdminChat = (props) => {
 
     const json = await response.json()
     if (json.success) {
-      setname(json.studentdets.stname)
+      setname(json.mentdets.name)
       var roomId = id
       roomId += `${fromrole2}-admin`
 
@@ -82,13 +82,13 @@ const AdminChat = (props) => {
       setCurrentRoom(roomId)
       
       socket.emit("getpreviouschats", roomId)
-      console.log("Inside use Effect")
+      
     }
   }
 
-  async function getstudnotf() {
+  async function getmentornotf() {
 
-    const response = await fetch("/api/chat/student/notif", {
+    const response = await fetch("/api/chat/mentor/notif", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ const AdminChat = (props) => {
 
     const json = await response.json()
 
-    console.log(json.notif) 
+     
 
     /* json.notif.forEach((singlenotif) => {
       setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
@@ -106,7 +106,7 @@ const AdminChat = (props) => {
     updatedNotifs.sort((a, b) => b.count - a.count);
     setnotifs(updatedNotifs);
 
-    console.log(notifs) 
+     
     
   }
 
@@ -118,7 +118,7 @@ const AdminChat = (props) => {
   useEffect(() => {
 
     getname()
-    getstudnotf()
+    getmentornotf()
     
     socket.on("room-messages", (roomMessages) => {
       setMessages(roomMessages)
@@ -269,4 +269,4 @@ const AdminChat = (props) => {
   )
 }
 
-export default AdminChat 
+export default AdminMentorChat 

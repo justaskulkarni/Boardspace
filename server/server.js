@@ -176,7 +176,7 @@ io.on("connection", (socket) => {
     socket.on("join-room", async(prevroom,room, role) => {
         await socket.leave(prevroom)
         await socket.join(room)
-        if(room.includes('admin')){
+        if(room.includes('admin') && role === 'Admin'){
           Notification.deleteMany({ to: room }, (err) => {
             if (err) {
               console.log(err);
@@ -187,7 +187,7 @@ io.on("connection", (socket) => {
 
     socket.on("join-one", async(room, role) => {
         await socket.join(room)
-        if(room.includes('admin')){
+        if(room.includes('admin') && role === 'Admin'){
           Notification.deleteMany({ to: room }, (err) => {
             if (err) {
               console.log(err);

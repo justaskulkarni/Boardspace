@@ -81,7 +81,7 @@ router.get('/mentor/notif', async (req, res) => {
             if (err) {
                 throw Error(`${err}`);
             }
-            res.send(result)
+            res.send({notif : result})
         });
 
 
