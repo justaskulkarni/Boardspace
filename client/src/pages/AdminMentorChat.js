@@ -35,7 +35,7 @@ const AdminMentorChat = (props) => {
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
-  const handleButtonClick = async (roomName) => {
+  /* const handleButtonClick = async (roomName) => {
     if (!currentRoom) {
       socket.emit("join-one", roomName, fromrole)
     }
@@ -48,16 +48,13 @@ const AdminMentorChat = (props) => {
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
-  };
+  }; */
   const handleSubmit = async (e) => {
     e.preventDefault()
     socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
     setCurrentMessage("")
   }
-  const handleSubmit2 = async (e) => {
-    e.preventDefault()
-    socket.emit("join-one", roomToJoin)
-  }
+  
 
   const messagesEndRef = useRef(null);
 
@@ -78,7 +75,7 @@ const AdminMentorChat = (props) => {
       var roomId = id
       roomId += `${fromrole2}-admin`
 
-      socket.emit("join-one", roomId)
+      socket.emit("join-one", roomId, "Admin")
       setCurrentRoom(roomId)
       
       socket.emit("getpreviouschats", roomId)
@@ -171,7 +168,7 @@ const AdminMentorChat = (props) => {
 
   const handleNotifButtonClick = (id) => {
     console.log(id)
-    navigate(`/student/chat/${id}`)
+    navigate(`/mentor/chat/${id}`)
     navigate(0)
   }
 
@@ -257,13 +254,13 @@ const AdminMentorChat = (props) => {
                 <span className={styles.notifications}>{notif.id} {notif.count}</span>
               </button>
             ))}
-        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
+        {/* <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
-        </div>
+        </div> */}
       </div>
     </>
   )

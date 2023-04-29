@@ -5,29 +5,24 @@ import styles from '../stylesheets/chat.module.css'
 import styles2 from '../stylesheets/adminlanding.module.css'
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
-import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import dashboardlogo from '../assets/navbarlogo.png'
 
-const AdminStudentChat = (props) => {
+const AdminChatRooms = (props) => {
 
   const { socket } = props
-  const location = useLocation();
-  const pathArray = location.pathname.split('/');
-  const fromrole2 = pathArray[1];
+  
 
   const [currentMessage, setCurrentMessage] = useState("")
   const currentUserName = "Admin"
-  const { id } = useParams();
+  
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([])
-  const [name, setname] = useState("")
-
-  const [notifs, setnotifs] = useState([{id : "", count : ""}])
-  const [notifNames, setNotifNames] = useState({})
-
+  
+  
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
   const userId = decoded.id
@@ -36,6 +31,7 @@ const AdminStudentChat = (props) => {
     setCurrentMessage(event.target.value)
   }
   const handleButtonClick = async (roomName) => {
+    console.log(roomName)
     if (!currentRoom) {
       socket.emit("join-one", roomName, fromrole)
     }
@@ -54,88 +50,25 @@ const AdminStudentChat = (props) => {
     socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
     setCurrentMessage("")
   }
-  const handleSubmit2 = async (e) => {
-    e.preventDefault()
-    socket.emit("join-one", roomToJoin)
-  }
-
-  const messagesEndRef = useRef(null);
-
   
-
-  async function getname() {
-
-    const response = await fetch(`/api/student/dets/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    const json = await response.json()
-    if (json.success) {
-      setname(json.studentdets.stname)
-      var roomId = id
-      roomId += `${fromrole2}-admin`
-
-      socket.emit("join-one", roomId, "Admin")
-      setCurrentRoom(roomId)
-      
-      socket.emit("getpreviouschats", roomId)
-      console.log("Inside use Effect")
-    }
-  }
-
-  async function getstudnotf() {
-
-    const response = await fetch("/api/chat/student/notif", {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-
-    const json = await response.json()
-
-    console.log(json.notif) 
-
-    /* json.notif.forEach((singlenotif) => {
-      setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
-    }); */
-    const updatedNotifs = json.notif.map(singlenotif => ({ id: singlenotif._id, count: singlenotif.count }));
-    updatedNotifs.sort((a, b) => b.count - a.count);
-    setnotifs(updatedNotifs);
-
-    console.log(notifs) 
-    
-  }
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }, [messagesEndRef.current])
 
 
-  useEffect(() => {
+  socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, fields, id) => {
+    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, id }]);
 
-    getname()
-    getstudnotf()
-    
-    socket.on("room-messages", (roomMessages) => {
-      setMessages(roomMessages)
-    })
+  })
 
-    socket.on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
-      setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]);
-      console.log(time, date)
+  socket.off("room-messages").on("room-messages", (roomMessages) => {
 
-    })
-
-    return () => {
-      socket.off("receive-room")
-      socket.off("room-messages")
-    }
-
-  }, [notifs])
+    roomMessages.forEach((message) => {
+      setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid }])
+    });
+  });
 
   let navigate = useNavigate()
 
@@ -169,11 +102,6 @@ const AdminStudentChat = (props) => {
     navigate(0)
   }
 
-  const handleNotifButtonClick = (id) => {
-    console.log(id)
-    navigate(`/student/chat/${id}`)
-    navigate(0)
-  }
 
   return (
     <>
@@ -192,34 +120,34 @@ const AdminStudentChat = (props) => {
 
       <div className={styles.right}>
         {currentRoom &&
-          <h3 className={styles.roomname}>{name}</h3>
+          <h3 className={styles.roomname}>{currentRoom}</h3>
         }
         <div className={styles.innerchat} id="bottomscroll">
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
-                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.fromid ? '60%' : '' }}>
+                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
 
-                  {userId === msg._id ? (
-                    <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
+                  {userId === msg.id ? (
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
-                        {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
+                        <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
                       </div>
-                      <p className={styles.message}>{msg.content}</p>
+                      <p className={styles.message}>{msg.message}</p>
                       <p className={styles.time}>{msg.time}</p>
                     </div>
                   ) : (
-                    <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
-                        {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
+                        <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
                       </div>
-                      <p className={styles.message}>{msg.content}</p>
+                      <p className={styles.message}>{msg.message}</p>
                       <p className={styles.time}>{msg.time}</p>
                     </div>
                   )}
@@ -252,11 +180,7 @@ const AdminStudentChat = (props) => {
         <div>
 
         </div>
-            {notifs.map((notif) => (
-              <button key={notif.id} className={styles.leftbutton} onClick={() => handleNotifButtonClick(notif.id)}>
-                <span className={styles.notifications}>{notif.id} {notif.count}</span>
-              </button>
-            ))}
+            
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
@@ -269,4 +193,4 @@ const AdminStudentChat = (props) => {
   )
 }
 
-export default AdminStudentChat 
+export default AdminChatRooms 
