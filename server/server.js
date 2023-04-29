@@ -25,6 +25,7 @@ const Mentor = require('./models/mentor')
 const Student = require('./models/student')
 const Message = require('./models/message')
 const Admin = require('./models/admin')
+const Notification = require('./models/notification')
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
@@ -172,13 +173,31 @@ async function getMessagesFromRoom(currentRoom) {
 io.on("connection", (socket) => {
     console.log(socket.id)
 
-    socket.on("join-room", async(prevroom,room) => {
+    socket.on("join-room", async(prevroom,room, role) => {
         await socket.leave(prevroom)
         await socket.join(room)
+        if(room.includes('admin')){
+          Notification.deleteMany({ to: room }, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('Documents deleted');
+            }
+          });
+        }
     })
 
-    socket.on("join-one", async(room) => {
+    socket.on("join-one", async(room, role) => {
         await socket.join(room)
+        if(room.includes('admin')){
+          Notification.deleteMany({ to: room }, (err) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log('Documents deleted');
+            }
+          });
+        }
     })
 
     socket.on("send-room", async(room,message,role,id, senderName, fields) => {
@@ -197,8 +216,20 @@ io.on("connection", (socket) => {
         })
 
         await newMessage.save()
+        
+        if(room.includes('admin') && role !== 'Admin'){
+          const newNotification = new Notification({
+            senderName : senderName,
+            senderId : id,
+            to : room,
+            role : role
+          })
+          await newNotification.save()
+          console.log(newNotification)
+        }
+
+
         await socket.broadcast.emit('notifications', room)
-        console.log(room)
         await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields, id) 
 
     })

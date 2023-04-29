@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/card.module.css'
 import { useNavigate } from 'react-router-dom/dist'
 
-const Students = ({id}) => {
+const Students = ({id, notifications}) => {
 
   const navigate = useNavigate();
 
@@ -46,6 +46,7 @@ const Students = ({id}) => {
         <div className={styles.innerdiv}>
             <div className={styles.innermost1}>
               <p className={styles.cardcontent}>Name: {creadentials.mname}</p>
+              <p className={styles.cardcontent}>Notifications: {notifications}</p>
               <p className={styles.cardcontent}><button onClick={handleGoToChat}>Go to chat</button></p>
             </div>
         </div>

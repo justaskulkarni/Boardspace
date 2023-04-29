@@ -10,8 +10,9 @@ import sendicon from '../assets/send.png'
 
  const socket = io(SOCKET_URL);
 
- const MentorChat = () => {
+ const MentorChat = (props) => {
 
+  const { socket } = props;
   const messagesRef = useRef(null);
   const [notifications, setNotifications] = useState({})
   const [currentMessage, setCurrentMessage] = useState("")
@@ -50,10 +51,10 @@ import sendicon from '../assets/send.png'
     var roomId = userId
     roomId += 'mentor-admin'
     if(!currentRoom){
-      socket.emit("join-one", roomId)
+      socket.emit("join-one", roomId, role)
     }
     else{
-      socket.emit("join-room", currentRoom, roomId)
+      socket.emit("join-room", currentRoom, roomId, role)
     }
     
     socket.emit("getpreviouschats", roomId)
@@ -74,7 +75,7 @@ import sendicon from '../assets/send.png'
   }
   const handleSubmit2 = async(e) =>{
     e.preventDefault()
-    socket.emit("join-one", roomToJoin)
+    socket.emit("join-one", roomToJoin, role)
   }
   socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
@@ -125,13 +126,13 @@ import sendicon from '../assets/send.png'
       <div className={styles.left}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 {notifications.Room1 !== 0 ? notifications.Room1 : null}
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 <span className={styles.notifstyle}>{notifications.Room1 !== 0 ? notifications.Room1 : null}</span>
 </span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2 {notifications.Room2 !== 0 ? notifications.Room2 : null}</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3 {notifications.Room3 !== 0 ? notifications.Room3 : null}</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4 {notifications.Room4 !== 0 ? notifications.Room4 : null}</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2 <span className={styles.notifstyle}>{notifications.Room2 !== 0 ? notifications.Room2 : null}</span></span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3 <span className={styles.notifstyle}>{notifications.Room3 !== 0 ? notifications.Room3 : null}</span></span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4 <span className={styles.notifstyle}>{notifications.Room4 !== 0 ? notifications.Room4 : null}</span></span></button>
         </div>
-        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin {notifications[`${userId}mentor-admin`] !== 0 ? notifications[`${userId}mentor-admin`] : null}
+        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin <span className={styles.notifstyle}>{notifications[`${userId}mentor-admin`] !== 0 ? notifications[`${userId}mentor-admin`] : null}</span>
 </span></button></div>
       </div>
 
