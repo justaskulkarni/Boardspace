@@ -1,5 +1,13 @@
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+}
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const autoIncrement = require("mongoose-auto-increment-updated" )
+
+var connection = mongoose.createConnection(process.env.MONGO_URL)
+autoIncrement.initialize(connection)
 
 const postSchema = new Schema({
 
@@ -8,19 +16,9 @@ const postSchema = new Schema({
     imgurl: {type: String},
     caption: {type: String},
     solved: {type: Boolean, default: false}, 
-    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
+    comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
+    tag : {type :String, enum : ['JEE', 'Neet', 'Boards','PHD', 'Masters']}
 })
 
-postSchema.pre('save', async function(next) {
-  try {
-    if (this.isNew) {
-      const count = await Post.countDocuments({});
-      this.hashtag = count + 1;
-    }
-    return next();
-  } catch (err) {
-    return next(err);
-  }
-});
-
+postSchema.plugin(autoIncrement.plugin, {model : 'Post', field: 'hashtag'})
 module.exports = mongoose.model('Post', postSchema)
