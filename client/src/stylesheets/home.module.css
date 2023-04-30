@@ -2,12 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 .Home {
 	margin-top: 0;
@@ -139,7 +137,6 @@
 	justify-content: center;
 	margin: 0;
 	padding-top: 3.5rem;
-
 }
 .rtd p {
 	margin: 0;
@@ -158,7 +155,6 @@
 .lax {
 	height: 54.6rem;
 	width: 100%;
-	 
 }
 .graph {
 	display: flex;
@@ -182,7 +178,6 @@
 	text-align: justify;
 	text-justify: inter-word;
 	width: 100%;
-
 }
 .finest p h3 {
 	color: #9e3ffd;
@@ -196,7 +191,7 @@
 	font-size: 2.5rem;
 }
 
-.joincommsize{
+.joincommsize {
 	width: 100%;
 	height: 28rem;
 	/* padding-top: 2rem; */
@@ -212,21 +207,21 @@
 	/* align-items: center; */
 	justify-content: center;
 }
-.join p h2{
+.join p h2 {
 	padding-top: 4rem;
 	padding-bottom: 0.2rem;
 	font-size: 2rem;
-	font-family: 'Noto Sans', sans-serif;
+	font-family: "Noto Sans", sans-serif;
 	letter-spacing: 0.1rem;
 }
-.join p{
+.join p {
 	font-size: 1.5rem;
 	padding-left: 1rem;
 	font-family: "Quicksand", sans-serif;
 	padding-bottom: 3rem;
 }
 
-.ent{
+.ent {
 	background-color: #5f5bcd;
 	color: white;
 	padding: 1.2rem 1rem 1.2rem 1rem;
@@ -238,33 +233,32 @@
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
 }
-.ent :hover{
+.ent :hover {
 	background-color: #9e3ffd;
 }
 
-.final{
+.final {
 	height: 25rem;
 	width: 100%;
 }
-.info{
+.info {
 	margin-left: 10rem;
 }
-.info p h4{
+.info p h4 {
 	color: #9e3ffd;
 	padding-top: 4rem;
 	font-family: "Montserrat", sans-serif;
 	letter-spacing: 0.1rem;
-
 }
-.info p h1{
-	font-family: 'Open Sans', sans-serif;
+.info p h1 {
+	font-family: "Open Sans", sans-serif;
 }
-.info a{
+.info a {
 	text-decoration: none;
-	color: gray;
+	color: rgb(0, 0, 0);
 }
 
-.icons{
+.icons {
 	padding-top: 1.5rem;
 	padding-bottom: 1.5rem;
 	/* margin: 0; */
