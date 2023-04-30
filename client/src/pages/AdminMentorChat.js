@@ -25,7 +25,7 @@ const AdminMentorChat = (props) => {
   const [messages, setMessages] = useState([])
   const [name, setname] = useState("")
 
-  const [notifs, setnotifs] = useState([{id : "", count : ""}])
+  const [notifs, setnotifs] = useState([{id : "", count : "", mname:""}])
   const [notifNames, setNotifNames] = useState({})
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
@@ -108,16 +108,11 @@ const AdminMentorChat = (props) => {
 
     const json = await response.json()
 
-     
 
-    /* json.notif.forEach((singlenotif) => {
-      setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
-    }); */
-    const updatedNotifs = json.notif.map(singlenotif => ({ id: getname2(singlenotif._id), count: singlenotif.count }));
-    console.log(updatedNotifs)
+    const updatedNotifs = await Promise.all(json.notif.map(async (singlenotif) => ({ id: singlenotif._id , count: singlenotif.count, mname:await getname2(singlenotif._id) })))
     updatedNotifs.sort((a, b) => b.count - a.count);
     setnotifs(updatedNotifs);
-
+    console.log(notifs)
   }
 
   useEffect(() => {
@@ -271,7 +266,7 @@ const AdminMentorChat = (props) => {
         </div>
             {notifs.map((notif) => (
               <button key={notif.id} className={styles.leftbutton} onClick={() => handleNotifButtonClick(notif.id)}>
-                <span className={styles.notifications}>{notif.id} {notif.count}</span>
+                <span className={styles.notifications}>{notif.mname} {notif.count}</span>
               </button>
             ))}
         {/* <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
