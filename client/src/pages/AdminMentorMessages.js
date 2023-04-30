@@ -78,6 +78,11 @@ const AdminMessages = () => {
     navigate(0)
   }
 
+  const getchatrooms = () => {
+        navigate("/admin/chatrooms")
+        navigate(0)
+    }
+
   return (
     <>
       <div className={styles.column + " " + styles.left}>
@@ -86,6 +91,7 @@ const AdminMessages = () => {
           <button className={styles.leftbutton} onClick={gethome}><span className={styles.notifications}>Home</span></button>
           <button className={styles.leftbutton} onClick={getmessages}><span className={styles.notifications}>Mentor Messages</span></button>
           <button className={styles.leftbutton} onClick={getstudentmessages}><span className={styles.notifications}>Student Messages</span></button>
+          <button className={styles.leftbutton} onClick={getchatrooms}><span className={styles.notifications}>Chat Rooms</span></button>
           <button className={styles.leftbutton} onClick={getrejected}><span className={styles.notifications}>Rejected</span></button>
           <button className={styles.leftbutton} onClick={getaccept}><span className={styles.notifications}>Accepted</span></button>
         </div>

@@ -142,6 +142,7 @@ const AdminStudentChat = (props) => {
   const handleLogout = () => {
     localStorage.removeItem("Token")
     navigate("/")
+    navigate(0)
   }
 
   const getrejected = () => {
@@ -175,6 +176,11 @@ const AdminStudentChat = (props) => {
     navigate(0)
   }
 
+  const getchatrooms = () => {
+        navigate("/admin/chatrooms")
+        navigate(0)
+    }
+
   return (
     <>
 
@@ -184,6 +190,7 @@ const AdminStudentChat = (props) => {
           <button className={styles.leftbuttonnew} onClick={gethome}><span className={styles.notificationsnew}>Home</span></button>
           <button className={styles.leftbuttonnew} onClick={getmessages}><span className={styles.notificationsnew}>Mentor Messages</span></button>
           <button className={styles.leftbuttonnew} onClick={getstudentmessages}><span className={styles.notificationsnew}>Student Messages</span></button>
+          <button className={styles.leftbuttonnew} onClick={getchatrooms}><span className={styles.notificationsnew}>Chat Rooms</span></button>
           <button className={styles.leftbuttonnew} onClick={getrejected}><span className={styles.notificationsnew}>Rejected</span></button>
           <button className={styles.leftbuttonnew} onClick={getaccept}><span className={styles.notificationsnew}>Accepted</span></button>
         </div>
@@ -209,7 +216,7 @@ const AdminStudentChat = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   ) : (
                     <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
@@ -220,7 +227,7 @@ const AdminStudentChat = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   )}
                 </li>
