@@ -110,14 +110,13 @@ const Signup = () => {
 							</button>
 						</div>
 					</form>
+					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			)}
-			{/*  */}
 			<div>
 				{showOtpDiv && (
 					<div className={styles.signupform}>
 						<h3 className={styles.login}>Enter your OTP</h3>
-						{/* <div className={styles.formcontent}> */}
 						<form className={styles.forms} onSubmit={handleSubmit2}>
 							<label htmlFor="otp">Enter OTP</label>
 							<input type="number" value={credentials.otp} name="otp" onChange={onChange} placeholder="" className={styles.fields} />
@@ -125,11 +124,14 @@ const Signup = () => {
 								<span className={styles.logintext}>Submit OTP</span>{" "}
 							</button>
 						</form>
-						{/* </div> */}
+						{error && (
+							<div className={styles.error} style={{ marginTop: "1rem" }}>
+								{error}
+							</div>
+						)}
 					</div>
 				)}
 			</div>
-			{error && <div className={styles.error}>{error}</div>}
 		</>
 	);
 };

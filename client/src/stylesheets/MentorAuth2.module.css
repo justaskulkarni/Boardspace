@@ -2,17 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 
-.error {
-	color: #cc393d;
-	text-align: center;
-	margin-left: 12rem;
-	width: 60%;
-	height: 5%;
-	font-size: 1.6rem;
-	background-color: #ffeded;
-	border: 0.05rem solid black;
-}
-
 .colour1 {
 	height: 80rem;
 	width: 55rem;
@@ -100,17 +89,20 @@
 	font-family: "Work Sans", sans-serif;
 	font-size: 3rem;
 	font-weight: 400;
-	margin-bottom: 1.5rem;
+	margin-bottom: 0.8rem;
 	text-align: center;
 	width: 30rem;
 	margin-left: -5.5rem;
 }
 
 .signupform {
-	/* width: 20rem; */
+	position: fixed;
+	width: 20rem;
 	height: 33.125rem;
-	margin-top: -38rem;
-	margin-left: 55rem;
+	margin-top: 1.5%;
+	margin-left: 68%;
+	left: 0;
+	top: 0;
 }
 
 .password {
@@ -130,4 +122,25 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1rem;
 	color: white;
+}
+
+.error {
+	height: 1.5rem;
+	width: 17.5rem;
+	background-color: #f8d7da;
+	border-radius: 0.5rem;
+	color: #721c24;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	text-align: center;
+	margin-top: 0.5rem;
+	margin-bottom: 0.8rem;
+	font-weight: 500;
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: #fac1c7;
 }

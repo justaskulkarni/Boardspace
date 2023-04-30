@@ -8,7 +8,7 @@ import DoubtSolving from "../assets/Home/DoubtSolving.png";
 import LiveSession from "../assets/Home/LiveSession.png";
 import navbarlogo from "../assets/navbarlogo.png";
 import bg1 from "../assets/Home/graph.png";
-import bg2 from "../assets/Home/Footer.png";
+import footerbg from "../assets/Home/Footer.png";
 import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 import { FaLinkedin } from "react-icons/fa";
@@ -57,33 +57,59 @@ function Home() {
 								</Link>
 							</div>
 							<div className={"buttons"}>
-								{!localStorage.getItem("Token") &&
+								{!localStorage.getItem("Token") && (
 									<React.Fragment>
-										<button className={"tail"}><Link className={"link1"} to="/login">Mentor</Link></button>
-										<button className={"tail"}><Link className={"link1"} to="/student/login">Student</Link></button>
+										<button className={"tail"}>
+											<Link className={"link1"} to="/login">
+												Mentor
+											</Link>
+										</button>
+										<button className={"tail"}>
+											<Link className={"link1"} to="/student/login">
+												Student
+											</Link>
+										</button>
 									</React.Fragment>
-								}
+								)}
 
-								{localStorage.getItem("Token") && frole === "Mentor" &&
+								{localStorage.getItem("Token") && frole === "Mentor" && (
 									<React.Fragment>
-										<button className={"tail"} onClick={handleLogout}>Logout</button>
-										<button className={"tail"}><Link className={"link1"} to="/mentor/chat">Go To Dashboard</Link></button>
+										<button className={"tail"} onClick={handleLogout}>
+											Logout
+										</button>
+										<button className={"tail"}>
+											<Link className={"link1"} to="/mentor/chat">
+												Go To Dashboard
+											</Link>
+										</button>
 									</React.Fragment>
-								}
+								)}
 
-								{localStorage.getItem("Token") && frole === "Student" &&
+								{localStorage.getItem("Token") && frole === "Student" && (
 									<React.Fragment>
-										<button className={"tail"} onClick={handleLogout}>Logout</button>
-										<button className={"tail"}><Link className={"link1"} to="/student/chat">Go To Dashboard</Link></button>
+										<button className={"tail"} onClick={handleLogout}>
+											Logout
+										</button>
+										<button className={"tail"}>
+											<Link className={"link1"} to="/student/chat">
+												Go To Dashboard
+											</Link>
+										</button>
 									</React.Fragment>
-								}
+								)}
 
-								{localStorage.getItem("Token") && frole === "Admin" &&
+								{localStorage.getItem("Token") && frole === "Admin" && (
 									<React.Fragment>
-										<button className={"tail"} onClick={handleLogout}>Logout</button>
-										<button className={"tail"}><Link className={"link1"} to="/admin/landing">Go To Dashboard</Link></button>
+										<button className={"tail"} onClick={handleLogout}>
+											Logout
+										</button>
+										<button className={"tail"}>
+											<Link className={"link1"} to="/admin/landing">
+												Go To Dashboard
+											</Link>
+										</button>
 									</React.Fragment>
-								}
+								)}
 
 								<button className={"tail"}>Our Team</button>
 							</div>
@@ -198,22 +224,26 @@ function Home() {
 										<br />
 										the Finest
 									</h1>
-
-									When you're in secondary school, everything seems <br /> obscure.
-									Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything,
-									be it academics <br /> or extracurriculars. We <b>have been in your situation <br /> before</b>.
-									To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
-									<br /><br />
-									At boardspace, we focus on building a platform on which <br /> <b>secondary
-										students (Grades 5-12)</b>  can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
+									When you're in secondary school, everything seems <br /> obscure. Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, be it academics <br /> or extracurriculars. We{" "}
+									<b>
+										have been in your situation <br /> before
+									</b>
+									. To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
+									<br />
+									<br />
+									At boardspace, we focus on building a platform on which <br /> <b>secondary students (Grades 5-12)</b> can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
 									participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
-									<br /><br />
-									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from.
-									With us, you will be made to <br /> interact with <b>board toppers and IITian
-										mentors </b><br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship,
-									you will build a <b> lifelong <br /> network</b> of qualified students and have a
-									reliable <br /> support system throughout your academic journey.
-									<br /><br />
+									<br />
+									<br />
+									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. With us, you will be made to <br /> interact with <b>board toppers and IITian mentors </b>
+									<br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, you will build a{" "}
+									<b>
+										{" "}
+										lifelong <br /> network
+									</b>{" "}
+									of qualified students and have a reliable <br /> support system throughout your academic journey.
+									<br />
+									<br />
 									<b>Have a doubt? Ask a topper!</b>
 								</p>
 							</div>
@@ -226,34 +256,32 @@ function Home() {
 						<center>
 							<p>
 								<h2>Join our community</h2>
-
 								Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
-
 							</p>
-							<button className={styles.ent}>
-								Enter Now
-							</button>
+							<button className={styles.ent}>Enter Now</button>
 						</center>
 					</div>
 				</div>
 
 				<div className={styles.final}>
-					<Parallax strength={600} bgImage={bg2} bgImageStyle={{ backgroundAttachment: "fixed", objectFit: "contain", aspectRatio: "auto"}} >
+					<Parallax strength={600} bgImage={footerbg} bgImageStyle={{ backgroundAttachment: "fixed", objectFit: "contain", aspectRatio: "auto", width: "70%" }}>
 						<div className={styles.info}>
 							<p>
 								<h4>CONTACT</h4>
 								<h1>Let's Work Together</h1>
-								<a href="info@boardspace.in">info@boardspace.in</a>
+								<Link to={"mailto:info@boardspace.in"}>info@boardspace.in</Link>
 								<div className={styles.icons}>
-									<FaLinkedin/> {"  "}
-									<FaDiscord/>
+									<Link to={"https://www.linkedin.com/company/boards-pace/"}>
+										<FaLinkedin /> {"  "}
+									</Link>
+									<Link to={"https://discord.gg/V3nWJABdaQ"}>
+										<FaDiscord /> {"  "}
+									</Link>
 								</div>
-								 
 							</p>
 							<center>
-							<span>	© 2023 by boardspace</span>
+								<span> © 2023 by boardspace</span>
 							</center>
-							
 						</div>
 					</Parallax>
 				</div>

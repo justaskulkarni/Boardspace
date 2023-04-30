@@ -142,8 +142,8 @@ router.post('/semisignup', async (req, res) => {
                 .request({
                     Messages: [{
                         From: {
-                            Email: "bahetisid06@gmail.com",
-                            Name: "Siddhant"
+                            Email: "info@boardspace.in",
+                            Name: "Boardspace"
                         },
                         To: [{
                             Email: req.body.email,

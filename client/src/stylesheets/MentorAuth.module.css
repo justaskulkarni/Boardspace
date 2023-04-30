@@ -17,24 +17,24 @@
 	overflow-y: hidden;
 }
 
-.error {
-	color: #cc393d;
-	text-align: center;
-	margin-top: 3rem;
-	margin-right: 4rem;
-	width: 35%;
-	height: 5%;
-	font-size: 1.6rem;
-	background-color: #ffeded;
-	border: 0.05rem solid black;
-}
-
 .loginform {
+	position: fixed;
 	width: 20rem;
 	height: 33.125rem;
-	margin-top: -37rem;
-	margin-left: 55rem;
-	/* margin-right: 10rem; */
+	margin-top: 5%;
+	margin-left: 65%;
+	left: 0;
+	top: 0;
+}
+
+.signupform {
+	position: fixed;
+	width: 20rem;
+	height: 33.125rem;
+	margin-top: 5%;
+	margin-left: 65%;
+	left: 0;
+	top: 0;
 }
 
 .login {
@@ -119,9 +119,22 @@
 	color: white;
 }
 
-.signupform {
-	width: 20rem;
-	height: 33.125rem;
-	margin-top: -37rem;
-	margin-left: 55rem;
+.error {
+	height: 1.5rem;
+	width: 17.5rem;
+	background-color: #f8d7da;
+	border-radius: 0.5rem;
+	color: #721c24;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	text-align: center;
+	margin-top: 6rem;
+	font-weight: 500;
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: #fac1c7;
 }

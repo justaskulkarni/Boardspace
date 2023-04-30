@@ -17,35 +17,36 @@
 	overflow-y: hidden;
 }
 
-.error {
-	color: #cc393d;
-	text-align: center;
-	margin-top: 3rem;
-	margin-right: 4rem;
-	width: 35%;
-	height: 5%;
-	font-size: 1.6rem;
-	background-color: #ffeded;
-	border: 0.05rem solid black;
-}
-
 .loginform {
+	position: fixed;
 	width: 20rem;
 	height: 33.125rem;
-	margin-top: -37rem;
-	margin-left: 55rem;
+	margin-top: 5%;
+	margin-left: 65%;
+	left: 0;
+	top: 0;
+}
+
+.signupform {
+	position: fixed;
+	width: 20rem;
+	height: 33.125rem;
+	margin-top: 2%;
+	margin-left: 65%;
+	left: 0;
+	top: 0;
 }
 
 .login {
 	font-family: "Work Sans", sans-serif;
 	font-size: 3rem;
 	font-weight: 400;
-	margin-bottom: 1.5rem;
+	margin-bottom: 0.8rem;
 	text-align: center;
 }
 
 .newsignup {
-	padding-bottom: 2rem;
+	padding-bottom: 1.5rem;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 300;
@@ -68,7 +69,7 @@
 .fields {
 	margin-left: 0rem;
 	margin: 0;
-	margin-bottom: 1.5625rem;
+	margin-bottom: 1.5rem;
 	outline: none;
 	border: none;
 	border-bottom-style: solid;
@@ -116,13 +117,6 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 1rem;
 	color: white;
-}
-
-.signupform {
-	width: 20rem;
-	height: 33.125rem;
-	margin-top: -37rem;
-	margin-left: 55rem;
 }
 
 /* Loading Animation */
@@ -240,4 +234,24 @@
 		transform: scale(1);
 		opacity: 1;
 	}
+}
+
+.error {
+	height: 1.5rem;
+	width: 17.5rem;
+	background-color: #f8d7da;
+	border-radius: 0.5rem;
+	color: #721c24;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	text-align: center;
+	margin-top: 8.5rem;
+	font-weight: 500;
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: #fac1c7;
 }
