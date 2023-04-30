@@ -19,14 +19,12 @@ const AdminStudentChat = (props) => {
   const [currentMessage, setCurrentMessage] = useState("")
   const currentUserName = "Admin"
   const { id } = useParams();
-  const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
-  const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([])
   const [name, setname] = useState("")
 
-  const [notifs, setnotifs] = useState([{id : "", count : ""}])
-  const [notifNames, setNotifNames] = useState({})
+  const [notifs, setnotifs] = useState([{id : "", count : "", mname:""}])
+  
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
@@ -35,29 +33,13 @@ const AdminStudentChat = (props) => {
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
-  const handleButtonClick = async (roomName) => {
-    if (!currentRoom) {
-      socket.emit("join-one", roomName, fromrole)
-    }
-    else {
-      socket.emit("join-room", currentRoom, roomName, fromrole)
-    }
-
-    socket.emit("getpreviouschats", roomName)
-
-    setMessages([])
-    setPreviousRoom(currentRoom)
-    setCurrentRoom(roomName);
-  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
     setCurrentMessage("")
   }
-  const handleSubmit2 = async (e) => {
-    e.preventDefault()
-    socket.emit("join-one", roomToJoin)
-  }
+  
 
   const messagesEndRef = useRef(null);
 
@@ -82,8 +64,22 @@ const AdminStudentChat = (props) => {
       setCurrentRoom(roomId)
       
       socket.emit("getpreviouschats", roomId)
-      console.log("Inside use Effect")
+      
     }
+  }
+
+  async function getname2(givenid){
+
+    const response = await fetch(`/api/student/dets/${givenid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const json = await response.json()
+
+    return json.studentdets.stname
   }
 
   async function getstudnotf() {
@@ -99,10 +95,7 @@ const AdminStudentChat = (props) => {
 
     console.log(json.notif) 
 
-    /* json.notif.forEach((singlenotif) => {
-      setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
-    }); */
-    const updatedNotifs = json.notif.map(singlenotif => ({ id: singlenotif._id, count: singlenotif.count }));
+    const updatedNotifs = await Promise.all(json.notif.map(async (singlenotif) => ({ id: singlenotif._id , count: singlenotif.count, mname:await getname2(singlenotif._id) })))
     updatedNotifs.sort((a, b) => b.count - a.count);
     setnotifs(updatedNotifs);
 
@@ -256,21 +249,11 @@ const AdminStudentChat = (props) => {
       </div>
 
       <div className={styles.rightmost}>
-        <div>
-
-        </div>
             {notifs.map((notif) => (
               <button key={notif.id} className={styles.leftbutton} onClick={() => handleNotifButtonClick(notif.id)}>
-                <span className={styles.notifications}>{notif.id} {notif.count}</span>
+                <span className={styles.notifications}>{notif.mname} {notif.count}</span>
               </button>
             ))}
-        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
-        <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4</span></button>
-        </div>
       </div>
     </>
   )
