@@ -14,7 +14,6 @@ import Signup2 from "./pages/Signup2";
 import StudentLogin from "./pages/StudentLogin";
 import AdminLogin from "./pages/AdminLogin";
 import StudentSignup from "./pages/StudentSignup";
-import AdminSignup from "./pages/AdminSignup";
 import PostPostStudent from "./pages/PostPostStudent";
 import AdminLand from "./pages/AdminLand";
 import Notaccepted from "./pages/Notaccepted";
@@ -25,7 +24,7 @@ import Chat from "./pages/Chat";
 import MentorChat from "./pages/MentorChat";
 import AdminMentorMessages from "./pages/AdminMentorMessages";
 import AdminStudentChat from "./pages/AdminStudentChat";
-import AdminMentorChat from "./pages/AdminMentorChat"
+import AdminMentorChat from "./pages/AdminMentorChat";
 import AdminStudentMessages from "./pages/AdminStudentMessages";
 import AdminChatRooms from "./pages/AdminChatRooms";
 
@@ -47,7 +46,6 @@ function App() {
             <Route path="/student/signup" element={<StudentSignup />} />
             <Route path="/complete_details" element={<Signup2 />} />
             <Route path="/admin/login/boardspace" element={<AdminLogin />} />
-            <Route path="/admin/signup/boardspace" element={<AdminSignup />} />
             <Route path="/notaccepted" element={<Notaccepted />} />
             <Route element={<MentorPrivateRoutes />}>
               <Route path="/youin" element={<Protected />} />

@@ -71,7 +71,7 @@ const StudentLogin = () => {
 					<div className={styles.colour1}></div>
 				</div>
 				<div className={styles.loginform}>
-					<h3 className={styles.login}>Log In</h3>
+					<h3 className={styles.login}>Login</h3>
 					<h6 className={styles.newsignup}>
 						New to this site?{" "}
 						<Link className={styles.signupclick} to={"/student/signup"}>

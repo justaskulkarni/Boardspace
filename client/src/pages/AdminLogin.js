@@ -65,9 +65,11 @@ const AdminLogin = () => {
 			)} */}
 
 			<Navbar />
-			<div className={styles.colour1}></div>
+			<div className={styles.colordiv}>
+				<div className={styles.colour1}></div>
+			</div>
 			<div className={styles.loginform}>
-				<h3 className={styles.login}>Admin Login</h3>
+				<h3 className={styles.login}>Login</h3>
 				<form onSubmit={handleSubmit} className={styles.forms}>
 					<label htmlFor="Email">Email</label>
 					<input type="email" value={creadentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />

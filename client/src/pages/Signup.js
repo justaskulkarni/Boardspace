@@ -84,8 +84,10 @@ const Signup = () => {
 
 	return (
 		<>
-			<Navbar />
-			<div className={styles.colour1}></div>
+			<Navbar />{" "}
+			<div className={styles.colordiv}>
+				<div className={styles.colour1}></div>
+			</div>
 			{!showOtpDiv && (
 				<div className={styles.signupform}>
 					<h3 className={styles.login}>Sign Up</h3>
@@ -110,9 +112,7 @@ const Signup = () => {
 					</form>
 				</div>
 			)}
-
 			{/*  */}
-
 			<div>
 				{showOtpDiv && (
 					<div className={styles.signupform}>

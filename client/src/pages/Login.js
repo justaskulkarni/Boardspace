@@ -60,9 +60,11 @@ const Login = () => {
 	return (
 		<>
 			<Navbar />
-			<div className={styles.colour1}></div>
+			<div className={styles.colordiv}>
+				<div className={styles.colour1}></div>
+			</div>
 			<div className={styles.loginform}>
-				<h3 className={styles.login}>Mentor Login</h3>
+				<h3 className={styles.login}>Login</h3>
 				<h6 className={styles.newsignup}>
 					New to this site?{" "}
 					<Link className={styles.signupclick} to={"/signup"}>
@@ -87,8 +89,6 @@ const Login = () => {
 						</div>
 					</form>
 				</div>
-				{/*  */}
-				{/* </div> */}
 				{error && <div className={styles.error}>{error}</div>}
 			</div>
 		</>
