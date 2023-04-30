@@ -29,8 +29,6 @@ router.post('/create', upload.single('image'), async (req, res) => {
 
     try {
 
-    console.log(req.file)
-        
         const newpost = new Post({
             doubtaskedby : req.body.sid,
             caption : req.body.caption,
@@ -39,8 +37,7 @@ router.post('/create', upload.single('image'), async (req, res) => {
 
         await newpost.save()
         const string = newpost.id
-        console.log(string)
-
+        
         const params = {
             Bucket : process.env.BUCKET_NAME,
             Content : req.file.mimetype,
@@ -53,11 +50,7 @@ router.post('/create', upload.single('image'), async (req, res) => {
         await s3.send(command)
 
         const reqpost = await Post.findById(newpost.id)
-        const count = await Post.countDocuments({});
-
-        reqpost.hashtag = count + 1
         reqpost.imgurl = reqpost.id
-
         await reqpost.save()
 
         res.json({success : true})  

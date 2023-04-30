@@ -1,5 +1,13 @@
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+}
+
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const autoIncrement = require("mongoose-auto-increment-updated" )
+
+var connection = mongoose.createConnection(process.env.MONGO_URL)
+autoIncrement.initialize(connection)
 
 const postSchema = new Schema({
 
@@ -12,5 +20,5 @@ const postSchema = new Schema({
     tag : {type :String, enum : ['JEE', 'Neet', 'Boards','PHD', 'Masters']}
 })
 
-
+postSchema.plugin(autoIncrement.plugin, {model : 'Post', field: 'hashtag'})
 module.exports = mongoose.model('Post', postSchema)
