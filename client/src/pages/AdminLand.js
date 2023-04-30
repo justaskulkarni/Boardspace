@@ -1,74 +1,72 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import Card from '../components/Card'
-import styles from '../stylesheets/adminlanding.module.css'
-import dashboardlogo from '../assets/navbarlogo.png'
+import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import Card from "../components/Card";
+import styles from "../stylesheets/adminlanding.module.css";
+import dashboardlogo from "../assets/navbarlogo.png";
 
 const AdminLand = () => {
+	const [idArray, setIdArray] = useState([]);
+	const [allmentor, setmentor] = useState(0);
+	const [allstudent, setstudent] = useState(0);
 
-  const [idArray, setIdArray] = useState([])
-  const [allmentor, setmentor] = useState(0)
-  const [allstudent, setstudent] = useState(0)
+	const getdata = async () => {
+		const response = await fetch("/api/admin/getall", {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		});
 
-  const getdata = async () => {
+		const json = await response.json();
+		if (json.success) {
+			const newIdArray = json.data.map((item) => item._id);
+			setIdArray(newIdArray);
+		}
+	};
 
-    const response = await fetch("/api/admin/getall", {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    })
+	const getnums = async () => {
+		const response = await fetch("/getnums", {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		});
 
-    const json = await response.json()
-    if (json.success) {
-      const newIdArray = json.data.map(item => item._id);
-      setIdArray(newIdArray)
-    }
-  }
+		const json = await response.json();
 
-  const getnums = async () => {
-    const response = await fetch("/getnums", {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    })
+		if (json.success) {
+			setstudent(json.stud);
+			setmentor(json.mentors);
+		}
+	};
 
-    const json = await response.json()
+	useEffect(() => {
+		getdata();
+		getnums();
+	}, [idArray, allmentor, allstudent]);
 
-    if (json.success) {
-      setstudent(json.stud)
-      setmentor(json.mentors)
-    }
-  }
+	let navigate = useNavigate();
 
-  useEffect(() => {
-    getdata()
-    getnums()
-  }, [idArray, allmentor, allstudent])
+	const handleLogout = () => {
+		localStorage.removeItem("Token");
+		navigate("/");
+	};
 
-  let navigate = useNavigate()
+	const getrejected = () => {
+		navigate("/admin/rejected/reqs");
+		navigate(0);
+	};
 
-  const handleLogout = () => {
-    localStorage.removeItem("Token")
-    navigate("/")
-  }
+	const gethome = () => {
+		navigate("/admin/landing");
+		navigate(0);
+	};
 
-  const getrejected = () => {
-    navigate("/admin/rejected/reqs")
-    navigate(0)
-  }
+	const getaccept = () => {
+		navigate("/admin/accepted/reqs");
+		navigate(0);
+	};
 
-  const gethome = () => {
-    navigate("/admin/landing")
-    navigate(0)
-  }
-
-  const getaccept = () => {
-    navigate("/admin/accepted/reqs")
-    navigate(0)
-  }
-
-  const getmessages = () => {
-    navigate("/admin/messages")
-    navigate(0)
-  }
+	const getmessages = () => {
+		navigate("/admin/messages");
+		navigate(0);
+	};
 
   const getstudentmessages = () => {
     navigate("/admin-student/messages")
@@ -147,5 +145,6 @@ const AdminLand = () => {
     </>
   )
 }
+
 
 export default AdminLand
