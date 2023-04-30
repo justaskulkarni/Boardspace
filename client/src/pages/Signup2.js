@@ -219,6 +219,8 @@ const Signup2 = () => {
 				</div>
 				<div className={styles.signupform}>
 					<h3 className={styles.login}>Enter your Details </h3>
+
+					{error && <div className={styles.error}>{error}</div>}
 					<form onSubmit={handleSubmit2} encType="multipart/form">
 						<div>
 							<label htmlFor="Password" className={styles.password}>
@@ -324,8 +326,6 @@ const Signup2 = () => {
 							</button>
 						</div>
 					</form>
-
-					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			</div>
 		</>
