@@ -67,7 +67,9 @@ const StudentLogin = () => {
 
 			<Navbar />
 			<div className={styles.loginpage}>
-				<div className={styles.colour1}></div>
+				<div className={styles.colordiv}>
+					<div className={styles.colour1}></div>
+				</div>
 				<div className={styles.loginform}>
 					<h3 className={styles.login}>Log In</h3>
 					<h6 className={styles.newsignup}>

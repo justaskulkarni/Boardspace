@@ -68,7 +68,9 @@ const StudentSignup = () => {
 			)} */}
 
 			<Navbar />
-			<div className={styles.colour1}></div>
+			<div className={styles.colordiv}>
+				<div className={styles.colour1}></div>
+			</div>
 			<div className={styles.signupform}>
 				<h3 className={styles.login}>Sign Up</h3>
 				<h6 className={styles.newsignup}>
