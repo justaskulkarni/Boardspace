@@ -35,9 +35,9 @@ const StudentSignup = () => {
 				name: "",
 				password: "",
 			});
-			setTimeout(() => {
-				setError(null);
-			}, 4000);
+			// setTimeout(() => {
+			// 	setError(null);
+			// }, 4000);
 		}
 	};
 
@@ -100,7 +100,11 @@ const StudentSignup = () => {
 						</div>
 					</form>
 				</div>
-				{error && <div className={styles.error}>{error}</div>}
+				{error && (
+					<div className={styles.error} style={{ marginTop: "14.5rem" }}>
+						{error}
+					</div>
+				)}
 			</div>
 		</>
 	);
