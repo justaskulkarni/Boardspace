@@ -202,8 +202,10 @@ io.on("connection", (socket) => {
     socket.on("send-room", async(room,message,role,id, senderName, fields) => {
         
         const dateob = new Date()
-        const reqt = dateob.getHours()+':'+dateob.getMinutes()
-        const reqd = dateob.getDate() +"/"+dateob.getMonth()+"/"+dateob.getFullYear()
+        const reqt = dateob.getHours()+':'+dateob.getMinutes()+':'+dateob.getSeconds()
+        const reqt2 = dateob.getHours()+':'+dateob.getMinutes()
+        const reqd = dateob.getDate() +"/"+(dateob.getMonth() + 1)+"/"+dateob.getFullYear()
+        
 
         const newMessage = new Message({
             content : message,
@@ -224,12 +226,12 @@ io.on("connection", (socket) => {
             role : role
           })
           await newNotification.save()
-          console.log(newNotification)
+          
         }
 
 
         await socket.broadcast.emit('notifications', room)
-        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields, id) 
+        await io.to(room).emit("receive-room" ,message,role,reqd,reqt2, senderName, fields, id) 
 
     })
 
@@ -243,6 +245,7 @@ io.on("connection", (socket) => {
         }
         return dateComparison;
         });
+        
         io.to(currentRoom).emit('room-messages', messages); 
     })
 

@@ -69,25 +69,13 @@ const Chat = (props) => {
     socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName)
     setCurrentMessage("")
   }
-  const handleSubmit2 = async (e) => {
-    e.preventDefault()
-    socket.emit("join-one", roomToJoin)
-  }
-  /* socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, fields, id) => {
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, id }]); 
-    setMessages(prevMessages => [...prevMessages, { content: message, fromrole: role, time: time, date: date, from : senderName, toparea, fromid: id }]);
-  }) */
+  
+  
   socket.off("receive-room").on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
       setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]); 
-      /* setMessages( [ { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]);
- */
     })
 
   socket.off("room-messages").on("room-messages", (roomMessages) => {
-
-    /* roomMessages.forEach((message) => {
-      setMessages(prevMessages => [...prevMessages, { message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid }])
-    }); */
     setMessages(roomMessages)
   });
 
@@ -154,7 +142,7 @@ const Chat = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   ) : (
                     <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
@@ -165,7 +153,7 @@ const Chat = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   )}
                 </li>

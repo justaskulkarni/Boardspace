@@ -102,6 +102,11 @@ const AdminChatRooms = (props) => {
     navigate(0)
   }
 
+  const getchatrooms = () => {
+        navigate("/admin/chatrooms")
+        navigate(0)
+  }
+
 
   return (
     <>
@@ -112,6 +117,7 @@ const AdminChatRooms = (props) => {
           <button className={styles.leftbuttonnew} onClick={gethome}><span className={styles.notificationsnew}>Home</span></button>
           <button className={styles.leftbuttonnew} onClick={getmessages}><span className={styles.notificationsnew}>Mentor Messages</span></button>
           <button className={styles.leftbuttonnew} onClick={getstudentmessages}><span className={styles.notificationsnew}>Student Messages</span></button>
+          <button className={styles.leftbuttonnew} onClick={getchatrooms}><span className={styles.notificationsnew}>Chat Rooms</span></button>
           <button className={styles.leftbuttonnew} onClick={getrejected}><span className={styles.notificationsnew}>Rejected</span></button>
           <button className={styles.leftbuttonnew} onClick={getaccept}><span className={styles.notificationsnew}>Accepted</span></button>
         </div>

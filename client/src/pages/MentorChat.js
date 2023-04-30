@@ -77,7 +77,7 @@ import sendicon from '../assets/send.png'
     e.preventDefault()
     socket.emit("join-one", roomToJoin, role)
   }
-  socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
+  /* socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
     setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
     console.log(date, time)
   })
@@ -88,7 +88,15 @@ import sendicon from '../assets/send.png'
           
           setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid}])
         });
-    }); 
+    }); */ 
+
+    socket.off("receive-room").on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
+      setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]); 
+    })
+
+  socket.off("room-messages").on("room-messages", (roomMessages) => {
+    setMessages(roomMessages)
+  });
 
     socket.off('notifications').on('notifications', (room) => {
     console.log(room)
@@ -145,29 +153,29 @@ import sendicon from '../assets/send.png'
 
             {messages.map((msg, index) => {
               return (
-                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
+                <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.fromid ? '60%' : '' }}>
 
                   {userId === msg.id ? (
-                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
-                        <p className={styles.date}>{msg.senderName}</p>
+                        <p className={styles.date}>{msg.from}</p>
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
                       </div>
-                      <p className={styles.message}>{msg.message}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.message}>{msg.content}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 1).join(':')}</p>
                     </div>
                   ) : (
-                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
-                        <p className={styles.date}>{msg.senderName}</p>
+                        <p className={styles.date}>{msg.from}</p>
                         {msg.toparea && (
                           <p className={styles.toparea}>{msg.toparea}</p>
                         )}
                       </div>
-                      <p className={styles.message}>{msg.message}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.message}>{msg.content}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   )}
                 </li>
