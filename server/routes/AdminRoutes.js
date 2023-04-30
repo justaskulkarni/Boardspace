@@ -128,7 +128,6 @@ router.get('/mentor/dets/:id', async (req, res) => {
         const reqmentor = await Mentor.findById(id)
 
         res.json({ success: true, mentdets: reqmentor })
-        console.log(reqmentor.name)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -206,7 +205,6 @@ const getNotificationsCount = async (mentorId) => {
     const notificationsCount = await Notification.countDocuments({ senderId: mentorId, role: 'Mentor' });
     return notificationsCount;
   } catch (error) {
-    console.log(error);
     return 0;
   }
 };

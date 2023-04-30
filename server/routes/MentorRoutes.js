@@ -27,19 +27,6 @@ const s3 = new S3Client({
     region : process.env.BUCKET_REGION
 })
 
-// const cloudinary = require('cloudinary').v2
-
-// cloudinary.config({
-//     cloud_name : process.env.CLOUD_C_NAME,
-//     api_key : process.env.CLOUD_KEY,
-//     api_secret : process.env.CLOUD_SECRET
-// })
-
-// const uploader = multer({
-//     storage : multer.diskStorage({}),
-//     limits : {fileSize : 500000}
-// })
-
 const storage = multer.memoryStorage()
 const upload = multer({storage : storage})
 
@@ -240,23 +227,10 @@ router.post('/signup', async (req, res) => {
 router.post('/addurl/:email', upload.single('image'), async(req,res) =>{
 
     try {
-        console.log("hi")
-        // const rurl = await cloudinary.uploader.upload(req.file.path)
-        // console.log(rurl.secure_url)
-        // const {email} = req.params
-
-        // const reqm = await Mentor.findOne({email : email})
         
-        // reqm.idurl.push(rurl.secure_url)
-        // await reqm.save()
-
-        // res.json({success:true})
-
         const {email} = req.params
 
         const reqm = await Mentor.findOne({email : email})
-
-        const extension = req.file.originalname.split(".")
 
         const string = reqm._id + "_" + req.body.field
 
@@ -274,9 +248,6 @@ router.post('/addurl/:email', upload.single('image'), async(req,res) =>{
         reqm.idurl.push(string)
         await reqm.save()
 
-        console.log(reqm)
-
-
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
@@ -293,8 +264,6 @@ router.post('/images/:id', async(req,res) => {
 
         for(const imagename of reqm.idurl)
         {
-            console.log(imagename)
-
             const getObjectParams = {
                 Bucket : process.env.BUCKET_NAME,
                 Key : imagename,
@@ -306,7 +275,6 @@ router.post('/images/:id', async(req,res) => {
             imagesurl.push(url)
         }
 
-        console.log(imagesurl)
         res.json({urls : imagesurl})
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -314,3 +282,36 @@ router.post('/images/:id', async(req,res) => {
 })
 
 module.exports = router;
+
+
+// const cloudinary = require('cloudinary').v2
+
+// cloudinary.config({
+//     cloud_name : process.env.CLOUD_C_NAME,
+//     api_key : process.env.CLOUD_KEY,
+//     api_secret : process.env.CLOUD_SECRET
+// })
+
+// const uploader = multer({
+//     storage : multer.diskStorage({}),
+//     limits : {fileSize : 500000}
+// })
+
+// const rurl = await cloudinary.uploader.upload(req.file.path)
+        // console.log(rurl.secure_url)
+        // const {email} = req.params
+
+        // const reqm = await Mentor.findOne({email : email})
+        
+        // reqm.idurl.push(rurl.secure_url)
+        // await reqm.save()
+
+        // res.json({success:true})
+        
+
+// app.post('/temp', uploader.single('image'), async(req,res) => {
+    
+//     const haha = await cloudinary.uploader.upload(req.file.path)
+
+//     console.log(haha.secure_url)
+// })

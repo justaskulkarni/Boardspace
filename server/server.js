@@ -171,7 +171,6 @@ async function getMessagesFromRoom(currentRoom) {
 
 
 io.on("connection", (socket) => {
-    console.log(socket.id)
 
     socket.on("join-room", async(prevroom,room, role) => {
         await socket.leave(prevroom)
@@ -250,35 +249,6 @@ io.on("connection", (socket) => {
     })
 
 })
-
-// app.post('/temp', uploader.single('image'), async(req,res) => {
-    
-//     const haha = await cloudinary.uploader.upload(req.file.path)
-
-//     console.log(haha.secure_url)
-// })
-
-// app.get('/temp' , async (req,res) => {
-
-//     // const newMessage = new Message({
-//     //     content : "Hey",
-//     //     fromid : "64257e870ea24575379b7885",
-//     //     fromrole : "Admin"
-//     // })
-
-//     // await newMessage.save()
-
-//     const reqmessage = await Message.findById('643e5ddc24c587d5c9d85efc')
-
-//     if(reqmessage.fromrole === "Admin")
-//     {
-//         const dets = await Admin.findById(reqmessage.fromid)
-//         res.send(dets)
-//         return
-//     }
-
-//     res.send("jhala")
-// })
 
 server.listen(MYPORT, () => {
     console.log(`Ready to serve you master on ${MYPORT}`)

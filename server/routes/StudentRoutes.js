@@ -14,8 +14,8 @@ const jwt = require('jsonwebtoken')
 
 const router = express.Router()
 
-const createToken = (id,role) => {
-    return jwt.sign({ id,role }, process.env.SECRET , {
+const createToken = (id, role) => {
+    return jwt.sign({ id, role }, process.env.SECRET, {
         expiresIn: 3 * 24 * 60 * 60
     });
 }
@@ -57,7 +57,7 @@ router.post('/signup', async (req, res) => {
             throw Error('All fields must be filled')
         }
 
-        if(!validator.isEmail(req.body.email)){
+        if (!validator.isEmail(req.body.email)) {
             throw Error('Enter a valid number')
         }
 
@@ -70,15 +70,15 @@ router.post('/signup', async (req, res) => {
         const hashp = await bcrypt.hash(pass, salt);
 
         const newStud = new Student({
-            email : req.body.email,
-            password : hashp,
-            phonenum : req.body.phonenum,
-            stname : req.body.name
+            email: req.body.email,
+            password: hashp,
+            phonenum: req.body.phonenum,
+            stname: req.body.name
         })
 
         await newStud.save()
 
-        const token = createToken(newStud._id,"Student")
+        const token = createToken(newStud._id, "Student")
         res.json({ success: true, authToken: token })
 
     } catch (error) {
@@ -87,23 +87,22 @@ router.post('/signup', async (req, res) => {
 })
 
 const getNotificationsCount = async (studentId) => {
-  try {
-    const notificationsCount = await Notification.countDocuments({ senderId: studentId, role: 'Student' });
-    return notificationsCount;
-  } catch (error) {
-    console.log(error);
-    return 0;
-  }
+    try {
+        const notificationsCount = await Notification.countDocuments({ senderId: studentId, role: 'Student' });
+        return notificationsCount;
+    } catch (error) {
+        return 0;
+    }
 };
 
-router.get('/allstud', async(req, res) =>{
+router.get('/allstud', async (req, res) => {
     try {
-        Student.find({  }, async (err, data) => {
+        Student.find({}, async (err, data) => {
             if (err) {
                 throw Error(`${err}`)
             }
             else {
-                /* res.json({ success: true, data: data }) */
+
                 const studentsWithNotifications = await Promise.all(data.map(async (student) => {
                     const notificationsCount = await getNotificationsCount(student._id);
                     return { ...student.toObject(), notifications: notificationsCount };
@@ -122,10 +121,10 @@ router.get('/dets/:id', async (req, res) => {
 
     try {
 
-        const reqstudent= await Student.findById(id)
+        const reqstudent = await Student.findById(id)
 
         res.json({ success: true, studentdets: reqstudent })
-        
+
 
     } catch (error) {
         res.status(400).json({ error: error.message })
