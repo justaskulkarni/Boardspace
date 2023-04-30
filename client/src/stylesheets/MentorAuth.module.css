@@ -3,14 +3,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 
 .colour1 {
-	position: absolute;
 	height: 80rem;
 	width: 55rem;
 	background-color: #9e3ffd;
 	transform: rotate(15.59deg);
-	left: -12rem;
-	top: -17rem;
+	margin-left: -12rem;
+	margin-top: -17rem;
+}
+
+.colordiv {
 	z-index: -1;
+	height: 100vh;
+	overflow-y: hidden;
 }
 
 .error {
@@ -28,7 +32,7 @@
 .loginform {
 	width: 20rem;
 	height: 33.125rem;
-	margin-top: 10rem;
+	margin-top: -37rem;
 	margin-left: 55rem;
 	/* margin-right: 10rem; */
 }
@@ -118,6 +122,6 @@
 .signupform {
 	width: 20rem;
 	height: 33.125rem;
-	margin-top: 10rem;
+	margin-top: -37rem;
 	margin-left: 55rem;
 }

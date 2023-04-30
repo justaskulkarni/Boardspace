@@ -15,13 +15,17 @@
 
 .colour1 {
 	height: 80rem;
-	position: absolute;
 	width: 55rem;
 	background-color: #9e3ffd;
 	transform: rotate(15.59deg);
-	left: -12rem;
-	top: -17rem;
+	margin-left: -12rem;
+	margin-top: -17rem;
+}
+
+.colordiv {
 	z-index: -1;
+	height: 100vh;
+	overflow-y: hidden;
 }
 
 .checkboxstyle {
@@ -105,7 +109,7 @@
 .signupform {
 	/* width: 20rem; */
 	height: 33.125rem;
-	margin-top: 7rem;
+	margin-top: -38rem;
 	margin-left: 55rem;
 }
 

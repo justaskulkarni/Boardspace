@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import uploadicon from "../assets/upload.png";
 import subicon from "../assets/submitdoc.png";
-import styles from "../stylesheets/signup2.module.css";
+import styles from "../stylesheets/MentorAuth2.module.css";
 
 const Signup2 = () => {
 	const location = useLocation();
@@ -29,10 +29,10 @@ const Signup2 = () => {
 		setDetails({ ...details, [event.target.name]: event.target.value });
 	};
 
-	const upload = async (exe,field) => {
+	const upload = async (exe, field) => {
 		let data = new FormData();
 		data.append("image", exe);
-		data.append("field",field)
+		data.append("field", field);
 		const response = await fetch(`/api/mentor/addurl/${details.email}`, {
 			method: "POST",
 			body: data,
@@ -214,7 +214,9 @@ const Signup2 = () => {
 		<>
 			<div>
 				<Navbar />
-				<div className={styles.colour1}></div>
+				<div className={styles.colordiv}>
+					<div className={styles.colour1}></div>
+				</div>
 				<div className={styles.signupform}>
 					<h3 className={styles.login}>Enter your Details </h3>
 					<form onSubmit={handleSubmit2} encType="multipart/form">
