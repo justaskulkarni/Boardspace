@@ -1,8 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-var autoIncrement = require('mongoose-auto-increment')
-const DB_URL = process.env.MONGO_URL
-var connection = mongoose.createConnection(DB_URL)
 
 const postSchema = new Schema({
 
@@ -14,5 +11,16 @@ const postSchema = new Schema({
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 })
 
-postSchema.plugin(autoIncrement.plugin, { model: 'Post', field: 'hashtag' })
+postSchema.pre('save', async function(next) {
+  try {
+    if (this.isNew) {
+      const count = await Post.countDocuments({});
+      this.hashtag = count + 1;
+    }
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = mongoose.model('Post', postSchema)

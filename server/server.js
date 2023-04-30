@@ -26,6 +26,8 @@ const Student = require('./models/student')
 const Message = require('./models/message')
 const Admin = require('./models/admin')
 const Notification = require('./models/notification')
+const Post = require('./models/post')
+const Comment = require('./models/comment')
 
 app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)

@@ -36,3 +36,16 @@
     height: 40vh;
     width : 100%;
 }
+
+.postbutton {
+    height: 3rem;
+    width: 20rem;
+    background-color: #9e3ffd;
+    border: 0;
+}
+
+.posttext {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: white;
+}

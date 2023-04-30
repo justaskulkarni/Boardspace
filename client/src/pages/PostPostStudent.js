@@ -63,6 +63,11 @@ const PostPostStudent = () => {
             <input type='text' />
           
         </div>
+
+        <button className={styles2.postbutton}>
+						<span className={styles2.posttext}>Post Doubt</span>
+				</button>
+
       </div>
 
       <div className={styles.rightmost}>
