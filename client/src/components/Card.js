@@ -48,11 +48,11 @@ const Card = ({ mentid }) => {
 			});
 
 			const json = await response.json();
-
-			
+			console.log(json.urls)
+			setImgarr(json.urls)
 
 		}
-
+		getimages()
 		getdata();
 	}, []);
 
