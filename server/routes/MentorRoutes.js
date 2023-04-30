@@ -151,12 +151,15 @@ router.post('/semisignup', async (req, res) => {
                         }],
                         Subject: "Welcome to boardspace",
                         HTMLPart: `
-            <div>
-                <h1>Welcome ${req.body.name}</h1>
-                <h3>This is your otp</h3>
-                <h3>${genotp}</h3>
-            </div>
-            `,
+                        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #DDBBFF;">
+                         <div style="width: 80%; margin: 0 auto; text-align: center; padding-top: 50px;">
+                        <h1 style="font-size: 36px; margin-bottom: 20px;">Welcome to Boardspace</h1>
+                        <p style="font-size: 24px; margin-bottom: 10px;">Dear ${req.body.name} ,</p>
+                        <p style="font-size: 24px; margin-bottom: 10px; color : black;">Thank you for signing up</p>
+                        <p style="font-size: 20px;">Here is your OTP: <strong>${genotp}</strong></p>
+                        </div>
+                        </body>
+                        `,
                         TextPart: `Dear ${req.body.name} your otp is : ${genotp} `
                     }]
                 })
@@ -307,7 +310,7 @@ module.exports = router;
         // await reqm.save()
 
         // res.json({success:true})
-        
+
 
 // app.post('/temp', uploader.single('image'), async(req,res) => {
     

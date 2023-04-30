@@ -46,54 +46,59 @@ function Home() {
 		<>
 			<div className={styles.Home}>
 				<div className={styles.enclose}>
-				<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right", backgroundAttachment: "fixed" }}>
-					<div className={"outerdiv"} id="nav">
-						<div>
-							<Link to="/">
-								<img className={"imgdiv"} src={navbarlogo} alt="" />
-							</Link>
-						</div>
-						<div className={"buttons"}>
-							{localStorage.getItem("Token") && frole === "Mentor" ? (
-								<button className={"tail"} onClick={handleLogout}>
-									Mentor Logout
-								</button>
-							) : (
-								<button className={"tail"}>
-									<Link className={"link1"} to="/login">
-										Mentor
-									</Link>
-								</button>
-							)}
+					<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right", backgroundAttachment: "fixed" }}>
+						<div className={"outerdiv"} id="nav">
+							<div>
+								<Link to="/">
+									<img className={"imgdiv"} src={navbarlogo} alt="" />
+								</Link>
+							</div>
+							<div className={"buttons"}>
+								{!localStorage.getItem("Token") &&
+									<React.Fragment>
+										<button className={"tail"}><Link className={"link1"} to="/login">Mentor</Link></button>
+										<button className={"tail"}><Link className={"link1"} to="/student/login">Student</Link></button>
+									</React.Fragment>
+								}
 
-							{localStorage.getItem("Token") && frole === "Student" ? (
-								<button className={"tail"} onClick={handleLogout}>
-									Student Logout
-								</button>
-							) : (
-								<button className={"tail"}>
-									<Link className={"link1"} to="/student/login">
-										Student
-									</Link>
-								</button>
-							)}
-							<button className={"tail"}>Our Team</button>
-						</div>
-					</div>
+								{localStorage.getItem("Token") && frole === "Mentor" &&
+									<React.Fragment>
+										<button className={"tail"} onClick={handleLogout}>Logout</button>
+										<button className={"tail"}><Link className={"link1"} to="/mentor/chat">Go To Dashboard</Link></button>
+									</React.Fragment>
+								}
 
-					<div className={styles.parallaxsize}>
-						<div className={styles.power}>
-							The Power
-							<br />
-							of Good Guidance
+								{localStorage.getItem("Token") && frole === "Student" &&
+									<React.Fragment>
+										<button className={"tail"} onClick={handleLogout}>Logout</button>
+										<button className={"tail"}><Link className={"link1"} to="/student/chat">Go To Dashboard</Link></button>
+									</React.Fragment>
+								}
+
+								{localStorage.getItem("Token") && frole === "Admin" &&
+									<React.Fragment>
+										<button className={"tail"} onClick={handleLogout}>Logout</button>
+										<button className={"tail"}><Link className={"link1"} to="/admin/landing">Go To Dashboard</Link></button>
+									</React.Fragment>
+								}
+
+								<button className={"tail"}>Our Team</button>
+							</div>
 						</div>
-						<div className={styles.toppers}>
-							For Toppers by
-							<br />
-							Toppers.
+
+						<div className={styles.parallaxsize}>
+							<div className={styles.power}>
+								The Power
+								<br />
+								of Good Guidance
+							</div>
+							<div className={styles.toppers}>
+								For Toppers by
+								<br />
+								Toppers.
+							</div>
 						</div>
-					</div>
-				</Parallax>
+					</Parallax>
 				</div>
 
 				<div className={styles.servicessize}>
@@ -178,7 +183,7 @@ function Home() {
 						</div>
 					</div>
 				</div>
-				
+
 				<div className={styles.lax}>
 					<Parallax bgImage={bg1} strength={350} bgImageStyle={{ height: "60rem", width: "50%", backgroundAttachment: "fixed", objectFit: "contain", backgroundPosition: "right", aspectRatio: "auto", left: "75%" }}>
 						<div className={styles.graph}>
@@ -190,20 +195,20 @@ function Home() {
 										<br />
 										the Finest
 									</h1>
-									
-									When you're in secondary school, everything seems <br /> obscure. 
-									Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, 
-									be it academics <br /> or extracurriculars. We <b>have been in your situation <br /> before</b>. 
+
+									When you're in secondary school, everything seems <br /> obscure.
+									Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything,
+									be it academics <br /> or extracurriculars. We <b>have been in your situation <br /> before</b>.
 									To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
 									<br /><br />
 									At boardspace, we focus on building a platform on which <br /> <b>secondary
-									students (Grades 5-12)</b>  can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
+										students (Grades 5-12)</b>  can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
 									participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
 									<br /><br />
-									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. 
-									With us, you will be made to <br /> interact with <b>board toppers and IITian 
-									mentors </b><br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, 
-									you will build a <b> lifelong <br /> network</b> of qualified students and have a 
+									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from.
+									With us, you will be made to <br /> interact with <b>board toppers and IITian
+										mentors </b><br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship,
+									you will build a <b> lifelong <br /> network</b> of qualified students and have a
 									reliable <br /> support system throughout your academic journey.
 									<br /><br />
 									<b>Have a doubt? Ask a topper!</b>
@@ -216,37 +221,32 @@ function Home() {
 				<div className={styles.joincommsize}>
 					<div className={styles.join}>
 						<center>
-						<p>
-						<h2>Join our community</h2>
-						
-							Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
-						
-						</p>
-						<button className={styles.enter}>
-							Enter Now
-						</button>
+							<p>
+								<h2>Join our community</h2>
+
+								Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
+
+							</p>
+							<button className={styles.enter}>
+								Enter Now
+							</button>
 						</center>
-						
-						
 					</div>
 				</div>
 
 				<div className={styles.final}>
 					<Parallax strength={600} bgImage={bg} >
 						<div className={styles.info}>
-						<p>
-							<h4>CONTACT</h4>
-							<h1>Let's Work Together</h1>
-							<a href="info@boardspace.in">info@boardspace.in</a>
-						</p>
-						<span>	© 2023 by boardspace</span>
+							<p>
+								<h4>CONTACT</h4>
+								<h1>Let's Work Together</h1>
+								<a href="info@boardspace.in">info@boardspace.in</a>
+							</p>
+							<span>	© 2023 by boardspace</span>
 						</div>
-								
 					</Parallax>
 				</div>
-
 			</div>
-
 		</>
 	);
 }

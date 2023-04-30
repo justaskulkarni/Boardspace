@@ -39,7 +39,6 @@ const Navbar = () => {
           <>
           <button className={styles.tail}><Link className={styles.link1} to="/login">Mentor</Link></button>
           <button className={styles.tail}><Link className={styles.link1} to="/student/login">Student</Link></button>
-          <button className={styles.tail}><Link className={styles.link1} to="/" />Go To Dashboard</button>
           </>
         }
 
