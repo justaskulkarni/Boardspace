@@ -21,12 +21,11 @@ const AdminMentorChat = (props) => {
   const { id } = useParams();
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
-  const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([])
   const [name, setname] = useState("")
 
   const [notifs, setnotifs] = useState([{id : "", count : "", mname:""}])
-  const [notifNames, setNotifNames] = useState({})
+  
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
@@ -35,20 +34,7 @@ const AdminMentorChat = (props) => {
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
-  /* const handleButtonClick = async (roomName) => {
-    if (!currentRoom) {
-      socket.emit("join-one", roomName, fromrole)
-    }
-    else {
-      socket.emit("join-room", currentRoom, roomName, fromrole)
-    }
-
-    socket.emit("getpreviouschats", roomName)
-
-    setMessages([])
-    setPreviousRoom(currentRoom)
-    setCurrentRoom(roomName);
-  }; */
+  
   const handleSubmit = async (e) => {
     e.preventDefault()
     socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
