@@ -83,6 +83,20 @@ const AdminMentorChat = (props) => {
     }
   }
 
+  async function getname2(givenid){
+
+    const response = await fetch(`/api/admin/mentor/dets/${givenid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const json = await response.json()
+
+    return json.mentdets.name
+  }
+
   async function getmentornotf() {
 
     const response = await fetch("/api/chat/mentor/notif", {
@@ -99,12 +113,11 @@ const AdminMentorChat = (props) => {
     /* json.notif.forEach((singlenotif) => {
       setnotifs((prevNotifs) => [...prevNotifs, {id: singlenotif._id, count: singlenotif.count}]);
     }); */
-    const updatedNotifs = json.notif.map(singlenotif => ({ id: singlenotif._id, count: singlenotif.count }));
+    const updatedNotifs = json.notif.map(singlenotif => ({ id: getname2(singlenotif._id), count: singlenotif.count }));
+    console.log(updatedNotifs)
     updatedNotifs.sort((a, b) => b.count - a.count);
     setnotifs(updatedNotifs);
 
-     
-    
   }
 
   useEffect(() => {
