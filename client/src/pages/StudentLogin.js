@@ -50,7 +50,7 @@ const StudentLogin = () => {
 
 	return (
 		<>
-			{isLoading && (
+			{/* {isLoading && (
 				<div className={styles.loadingAnim}>
 					<div className={styles.dotSpinner}>
 						<div className={styles.dotSpinnerDot}></div>
@@ -63,7 +63,7 @@ const StudentLogin = () => {
 						<div className={styles.dotSpinnerDot}></div>
 					</div>
 				</div>
-			)}
+			)} */}
 
 			<Navbar />
 			<div className={styles.loginpage}>
@@ -88,7 +88,7 @@ const StudentLogin = () => {
 								<button className={styles.forgot}>Forgot password?</button>
 							</div>
 							<div>
-								<button className={styles.loginbutton} id="submitButton" onClick={toggleAnimation}>
+								<button className={styles.loginbutton} id="submitButton">
 									<span className={styles.logintext}>Log In</span>
 								</button>
 							</div>

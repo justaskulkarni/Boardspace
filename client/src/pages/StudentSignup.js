@@ -52,7 +52,7 @@ const StudentSignup = () => {
 
 	return (
 		<>
-			{isLoading && (
+			{/* {isLoading && (
 				<div id="loadingAnim">
 					<div className={styles.dotSpinner}>
 						<div className={styles.dotSpinnerDot}></div>
@@ -65,7 +65,7 @@ const StudentSignup = () => {
 						<div className={styles.dotSpinnerDot}></div>
 					</div>
 				</div>
-			)}
+			)} */}
 
 			<Navbar />
 			<div className={styles.colour1}></div>
@@ -92,7 +92,7 @@ const StudentSignup = () => {
 						<input type="number" value={credentials.phonenum} name="phonenum" onChange={onChange} placeholder="" className={styles.fields} />
 
 						<div>
-							<button className={styles.loginbutton} onClick={toggleAnimation}>
+							<button className={styles.loginbutton}>
 								<span className={styles.logintext}>Sign Up</span>
 							</button>
 						</div>

@@ -49,7 +49,7 @@ const AdminLogin = () => {
 
 	return (
 		<>
-			{isLoading && (
+			{/* {isLoading && (
 				<div id="loadingAnim">
 					<div className={styles.dotSpinner}>
 						<div className={styles.dotSpinnerDot}></div>
@@ -62,7 +62,7 @@ const AdminLogin = () => {
 						<div className={styles.dotSpinnerDot}></div>
 					</div>
 				</div>
-			)}
+			)} */}
 
 			<Navbar />
 			<div className={styles.colour1}></div>
