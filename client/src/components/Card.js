@@ -48,11 +48,10 @@ const Card = ({ mentid }) => {
 			});
 
 			const json = await response.json();
-			console.log(json.urls)
-			setImgarr(json.urls)
-
-		}
-		getimages()
+			console.log(json.urls);
+			setImgarr(json.urls);
+		};
+		getimages();
 		getdata();
 	}, []);
 
@@ -123,10 +122,10 @@ const Card = ({ mentid }) => {
 								}
 								position="centre"
 							>
+								<div class={styles.poptriangle}></div>
 								<div className={styles.popdiv}>
 									<form onSubmit={handleSubmit} className={styles.popform} id="reasonform">
 										<textarea name="reason" id="reasonform" cols="30" rows="3" placeholder="Enter a reason" className={styles.popinput} onChange={onentertxt} value={reason}></textarea>
-										{/* <input type="text" className={styles.popinput} onChange={onentertxt} value={reason} placeholder="" /> */}
 										<button className={styles.popsubmit}>Submit</button>
 									</form>
 								</div>

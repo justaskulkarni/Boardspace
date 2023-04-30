@@ -14,7 +14,6 @@ import sendicon from '../assets/send.png'
 
   const { socket } = props;
   const messagesRef = useRef(null);
-  const [notifications, setNotifications] = useState({})
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
@@ -42,10 +41,7 @@ import sendicon from '../assets/send.png'
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
-    setNotifications((prevNotifications) => ({
-    ...prevNotifications,
-    [roomName]: 0,
-  }));
+    
   };
   const handlePersonalChat = async() => {
     var roomId = userId
@@ -62,10 +58,7 @@ import sendicon from '../assets/send.png'
     setMessages([])
     setPreviousRoom(currentRoom)
     setCurrentRoom(roomId);
-    setNotifications((prevNotifications) => ({
-    ...prevNotifications,
-    [roomId]: 0,
-  }));
+    
   };
   const handleSubmit = async(e) =>{
     e.preventDefault()
@@ -73,22 +66,7 @@ import sendicon from '../assets/send.png'
     socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
     setCurrentMessage("")
   }
-  const handleSubmit2 = async(e) =>{
-    e.preventDefault()
-    socket.emit("join-one", roomToJoin, role)
-  }
-  /* socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, toparea, id) =>{
-    setMessages(prevMessages => [...prevMessages, { message, role, time, date, senderName, toparea, id }]);
-    console.log(date, time)
-  })
-
-    socket.off("room-messages").on("room-messages", (roomMessages) => {
-  
-        roomMessages.forEach((message) => {
-          
-          setMessages(prevMessages => [...prevMessages, {message: message.content, time: message.time, date: message.date, senderName: message.from, role: message.fromrole, toparea: message.toparea, id: message.fromid}])
-        });
-    }); */ 
+   
 
     socket.off("receive-room").on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
       setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]); 
@@ -98,15 +76,7 @@ import sendicon from '../assets/send.png'
     setMessages(roomMessages)
   });
 
-    socket.off('notifications').on('notifications', (room) => {
-    console.log(room)
-    if(room !== currentRoom){
-      setNotifications((prevNotifications) => ({
-        ...prevNotifications,
-        [room]: (prevNotifications[room] || 0) + 1,
-      }));
-    }
-  });
+    
 
   useEffect(() =>{
     async function getdetails(){
@@ -134,19 +104,18 @@ import sendicon from '../assets/send.png'
       <div className={styles.rightmost}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 <span className={styles.notifstyle}>{notifications.Room1 !== 0 ? notifications.Room1 : null}</span>
-          </span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2 <span className={styles.notifstyle}>{notifications.Room2 !== 0 ? notifications.Room2 : null}</span></span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3 <span className={styles.notifstyle}>{notifications.Room3 !== 0 ? notifications.Room3 : null}</span></span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4 <span className={styles.notifstyle}>{notifications.Room4 !== 0 ? notifications.Room4 : null}</span></span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("JEE DOUBTS")}><span className={styles.notifications}>JEE Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}>NEET Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}>ICSE Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}>CBSE Doubts</span></button>
         </div>
-        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin <span className={styles.notifstyle}>{notifications[`${userId}mentor-admin`] !== 0 ? notifications[`${userId}mentor-admin`] : null}</span>
+        <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin 
         </span></button></div>
       </div>
 
       <div className={styles.right}>
         {currentRoom &&
-          <h3 className={styles.roomname}>{currentRoom}</h3>
+          <h3 className={styles.roomname}>{currentRoom.includes("admin") ? "Admin Chat" : currentRoom}</h3>
         }
         <div className={styles.innerchat}>
           <ul className={styles.chatMessages}>
