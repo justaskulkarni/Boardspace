@@ -3,17 +3,77 @@ import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 import { useNavigate, Link } from "react-router-dom";
 import imageupload from '../assets/imageupload.png'
+import jwt_decode from "jwt-decode";
 
 import styles2 from '../stylesheets/postpost.module.css'
+import { useRef } from 'react';
 
 const PostPostStudent = () => {
 
   const [image, setImage] = useState(null)
+  const [selectedOption, setSelectedOption] = useState('')
+  const [inputText, setInputText] = useState('')
+  const [error, setError] = useState(null);
+  const ufile = useRef(null)
 
   const onImageChange = (event) => {
+    ufile.current = event.target.files[0]
     if (event.target.files && event.target.files[0]) {
       setImage(URL.createObjectURL(event.target.files[0]))
     }
+  }
+
+  const returnid = (reqtoken) => {
+		if (reqtoken) {
+			var decoded = jwt_decode(reqtoken);
+			return decoded.id;
+		} else {
+			return null;
+		}
+	}
+
+  var fid = returnid(localStorage.getItem("Token"));
+
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value);
+  }
+
+  const handleTextChange = (e) => {
+    setInputText(e.target.value);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log("hey")
+    console.log(ufile.current)
+    console.log(inputText)
+    console.log(selectedOption)
+
+    let data = new FormData()
+    data.append("image", ufile.current)
+    data.append("caption", inputText)
+    data.append("tag", selectedOption)
+    data.append("sid",fid)
+
+    const response = await fetch(`/api/post/create`, {
+			method: "POST",
+			body: data,
+		});
+
+		const json = await response.json();
+
+		if (json.error) {
+			setError(json.error);
+		}
+
+    if(json.success)
+    {
+      setImage(null)
+      setInputText('')
+      setSelectedOption('')
+      ufile.current = null
+    }
+
   }
 
   let navigate = useNavigate()
@@ -43,37 +103,65 @@ const PostPostStudent = () => {
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
-
-      <div className={styles.right}>
-        <h3 className={styles.roomname}>Post a doubt</h3>
-        <label className={styles2.inputlabel}>
-          <p className={styles2.text}>Upload image of the doubt : </p>
-          <img src={imageupload} className={styles2.inputimg} />
-          <input type="file" onChange={onImageChange} className={styles2.imginput} />
-        </label>
-        {image &&
+      <form onSubmit={handleSubmit}  encType="multipart/form">
+        <div className={styles.right}>
+          <h3 className={styles.roomname}>Post a doubt</h3>
+          <label className={styles2.inputlabel}>
+            <p className={styles2.text}>Upload image of the doubt : </p>
+            <img src={imageupload} className={styles2.inputimg} />
+            <input type="file" onChange={onImageChange} className={styles2.imginput} />
+          </label>
+          {image &&
+            <div className={styles2.previewdiv}>
+              <p className={styles2.text}>Image Preview : </p>
+              <div className={styles2.imgdiv}>
+                <img alt="preview image" src={image} className={styles2.previmg} />
+              </div>
+            </div>}
           <div className={styles2.previewdiv}>
-            <p className={styles2.text}>Image Preview : </p>
-            <div className={styles2.imgdiv}>
-              <img alt="preview image" src={image} className={styles2.previmg} />
-            </div>
-          </div>}
-        <div className={styles2.previewdiv}>
-          <label className={styles2.text}>Caption :</label>
-            <input type='text' />
-          
+            <label className={styles2.text}>Caption :</label>
+            <input type='text' value={inputText} onChange={handleTextChange} />
+
+          </div>
+
+          <button className={styles2.postbutton} type="submit">
+            <span className={styles2.posttext}>Post Doubt</span>
+            {error && <div>{error}</div>}
+          </button>
+
         </div>
 
-        <button className={styles2.postbutton}>
-						<span className={styles2.posttext}>Post Doubt</span>
-				</button>
+        <div className={styles.rightmost}>
+          <fieldset>
+            <legend>Select an tag:</legend>
+            <label>
+              <input type="radio" value="JEE" checked={selectedOption === 'JEE'} onChange={handleOptionChange} />
+              JEE
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="Neet" checked={selectedOption === 'Neet'} onChange={handleOptionChange} />
+              Neet
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="Boards" checked={selectedOption === 'Boards'} onChange={handleOptionChange} />
+              Board
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="PHD" checked={selectedOption === 'PHD'} onChange={handleOptionChange} />
+              PHD
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="Masters" checked={selectedOption === 'Masters'} onChange={handleOptionChange} />
+              Masters
+            </label>
+          </fieldset>
 
-      </div>
-
-      <div className={styles.rightmost}>
-        <button className={styles.leftbutton}><span className={styles.notifications}>ID 1</span></button>
-      </div>
-
+        </div>
+      </form>
     </React.Fragment>
   )
 }

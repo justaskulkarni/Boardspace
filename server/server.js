@@ -20,6 +20,7 @@ const mentorroutes = require('./routes/MentorRoutes')
 const studentroutes = require('./routes/StudentRoutes')
 const adminroutes = require('./routes/AdminRoutes')
 const chatroutes = require('./routes/ChatRoutes')
+const postroutes = require('./routes/PostRoutes')
 
 const Mentor = require('./models/mentor')
 const Student = require('./models/student')
@@ -33,6 +34,7 @@ app.use('/api/mentor/', mentorroutes)
 app.use('/api/student/', studentroutes)
 app.use('/api/admin/', adminroutes)
 app.use('/api/chat', chatroutes)
+app.use('/api/post', postroutes)
 
 const server = require('http').createServer(app)
 const MYPORT = process.env.PORT || 6100
