@@ -27,7 +27,7 @@ const Post = require('../models/post')
 
 router.post('/create', upload.single('image'), async (req, res) => {
 
-    // try {
+    try {
 
     console.log(req.file)
         
@@ -38,7 +38,8 @@ router.post('/create', upload.single('image'), async (req, res) => {
         })
 
         await newpost.save()
-        const string = newpost._id
+        const string = newpost.id
+        console.log(string)
 
         const params = {
             Bucket : process.env.BUCKET_NAME,
@@ -51,19 +52,19 @@ router.post('/create', upload.single('image'), async (req, res) => {
         const command = new PutObjectCommand(params)
         await s3.send(command)
 
-        const reqpost = await Post.findById(newpost._id)
+        const reqpost = await Post.findById(newpost.id)
         const count = await Post.countDocuments({});
 
         reqpost.hashtag = count + 1
-        reqpost.imgurl = reqpost._id
+        reqpost.imgurl = reqpost.id
 
         await reqpost.save()
 
         res.json({success : true})  
 
-    // } catch (error) {
-    //     res.status(400).json({ error: error.message })
-    // }
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
 })
 
 module.exports = router;
