@@ -15,7 +15,7 @@ import StudentLogin from "./pages/StudentLogin";
 import AdminLogin from "./pages/AdminLogin";
 import StudentSignup from "./pages/StudentSignup";
 import AdminSignup from "./pages/AdminSignup";
-import ProtectedStudent from "./pages/ProtectedStudent";
+import PostPostStudent from "./pages/PostPostStudent";
 import AdminLand from "./pages/AdminLand";
 import Notaccepted from "./pages/Notaccepted";
 import Not404 from "./pages/404";
@@ -54,7 +54,7 @@ function App() {
               <Route path="/mentor/chat" element={<MentorChat socket = {socket}/>} />
             </Route>
             <Route element={<StudentPrivateRoutes />}>
-              <Route path="/studentin" element={<ProtectedStudent />} />
+              <Route path="/student/post" element={<PostPostStudent />} />
               <Route path="/student/chat" element={<Chat socket = {socket}/>} />
             </Route>
             <Route element={<AdminPrivateRoutes />}>

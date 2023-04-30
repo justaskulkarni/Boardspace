@@ -24,7 +24,7 @@ const StudentSignup = () => {
 
 		if (json.success) {
 			localStorage.setItem("Token", json.authToken);
-			navigate("/studentin");
+			navigate("/student/chat");
 		}
 
 		if (json.error) {

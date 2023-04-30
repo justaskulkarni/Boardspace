@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 import styles from '../stylesheets/chat.module.css'
-import styles2 from '../stylesheets/adminlanding.module.css'
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom'

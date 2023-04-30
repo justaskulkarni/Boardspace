@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.imginput {
+    display: none;
+}
+
+.inputlabel {
+    margin-top: 2rem;
+    display: flex;
+}
+
+.text{
+    font-family: "Montserrat", sans-serif;
+	font-size: 1.125rem;
+	font-weight: 500;
+    padding-left: 4%;
+}
+
+.inputimg {
+    margin-left: 3%;
+}
+
+.previewdiv{
+    display: flex;
+}
+
+.imgdiv {
+    margin-top: 3%;
+    margin-left: 5%;
+    height: 40vh;
+    width : 50%;
+}
+
+.previmg {
+    object-fit: contain;
+    height: 40vh;
+    width : 100%;
+}
