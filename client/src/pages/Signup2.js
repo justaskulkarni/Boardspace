@@ -210,9 +210,23 @@ const Signup2 = () => {
 		await upload(phdd.current, "PHD");
 	};
 
+	// Show/hide Password
+	// const togglePassword = document.querySelector("#togglePassword");
+	// const password = document.querySelector("#id_password");
+
+	// togglePassword.addEventListener("click", function (e) {
+	// 	// toggle the type attribute
+	// 	const type = password.getAttribute("type") === "password" ? "text" : "password";
+	// 	password.setAttribute("type", type);
+	// 	// toggle the eye slash icon
+	// 	this.classList.toggle("fa-eye-slash");
+	// });
+
 	return (
 		<>
 			<div>
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+
 				<Navbar />
 				<div className={styles.colordiv}>
 					<div className={styles.colour1}></div>
@@ -227,7 +241,9 @@ const Signup2 = () => {
 								Password
 							</label>
 							<br />
-							<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} />
+							<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
+							<i class="far fa-eye" id="togglePassword" style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+
 							<label htmlFor="boardtopper" className={styles.checkboxstyle}>
 								<input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} />
 								<p className={styles.Category}>Board Topper</p>
