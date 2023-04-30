@@ -226,7 +226,7 @@
 	padding-bottom: 3rem;
 }
 
-.enter{
+.ent{
 	background-color: #5f5bcd;
 	color: white;
 	padding: 1.2rem 1rem 1.2rem 1rem;
@@ -238,9 +238,12 @@
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
 }
+.ent :hover{
+	background-color: #9e3ffd;
+}
 
 .final{
-	height: 20rem;
+	height: 25rem;
 	width: 100%;
 }
 .info{
@@ -248,7 +251,7 @@
 }
 .info p h4{
 	color: #9e3ffd;
-	padding-top: 2rem;
+	padding-top: 4rem;
 	font-family: "Montserrat", sans-serif;
 	letter-spacing: 0.1rem;
 
@@ -259,4 +262,15 @@
 .info a{
 	text-decoration: none;
 	color: gray;
+}
+
+.icons{
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	/* margin: 0; */
+	/* display: flex;
+	flex-direction: row;
+	justify-content: space-evenly; */
+	font-size: 1.5rem;
+	width: 6rem;
 }

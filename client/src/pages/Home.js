@@ -8,8 +8,11 @@ import DoubtSolving from "../assets/Home/DoubtSolving.png";
 import LiveSession from "../assets/Home/LiveSession.png";
 import navbarlogo from "../assets/navbarlogo.png";
 import bg1 from "../assets/Home/graph.png";
+import bg2 from "../assets/Home/Footer.png";
 import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
+import { FaLinkedin } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
 
 function Home() {
 	let navigate = useNavigate();
@@ -227,7 +230,7 @@ function Home() {
 								Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
 
 							</p>
-							<button className={styles.enter}>
+							<button className={styles.ent}>
 								Enter Now
 							</button>
 						</center>
@@ -235,14 +238,22 @@ function Home() {
 				</div>
 
 				<div className={styles.final}>
-					<Parallax strength={600} bgImage={bg} >
+					<Parallax strength={600} bgImage={bg2} bgImageStyle={{ backgroundAttachment: "fixed", objectFit: "contain", aspectRatio: "auto"}} >
 						<div className={styles.info}>
 							<p>
 								<h4>CONTACT</h4>
 								<h1>Let's Work Together</h1>
 								<a href="info@boardspace.in">info@boardspace.in</a>
+								<div className={styles.icons}>
+									<FaLinkedin/> {"  "}
+									<FaDiscord/>
+								</div>
+								 
 							</p>
+							<center>
 							<span>	© 2023 by boardspace</span>
+							</center>
+							
 						</div>
 					</Parallax>
 				</div>

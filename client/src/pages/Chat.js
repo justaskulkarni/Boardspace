@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
-import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
+import { useNavigate ,Link } from "react-router-dom";
 
+import dashboardlogo from '../assets/navbarlogo.png'
 
 const Chat = (props) => {
 
@@ -106,14 +106,38 @@ const Chat = (props) => {
     getdetails()
   }, [])
 
+  let navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem("Token")
+    navigate("/")
+    navigate(0)
+  }
+
+  const gotopost = () => {
+    navigate("/student/post")
+  }
+
+  const gotochat = () => {
+    navigate("/student/chat")
+  }
+
   return (
     <>
-      <Navbar />
+      <div className={styles.column + " " + styles.left}>
+        <Link to="/"><img className={styles.imgstyle} src={dashboardlogo} alt="" /></Link>
+        <div className={styles.smallcardleftnew}>
+          <button className={styles.leftbuttonnew} onClick={gotochat}><span className={styles.notificationsnew}>Chat</span></button>
+          <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
+          <button className={styles.leftbuttonnew} ><span className={styles.notificationsnew}>View Doubt</span></button>
+        </div>
+        {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
+      </div>
+
       <div className={styles.rightmost}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 <span className={styles.notifstyle}>{notifications.Room1 !== 0 ? notifications.Room1 : null}</span>
-          </span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("Room1")}><span className={styles.notifications}>Room1 <span className={styles.notifstyle}>{notifications.Room1 !== 0 ? notifications.Room1 : null}</span></span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room2")}><span className={styles.notifications}>Room2 <span className={styles.notifstyle}>{notifications.Room2 !== 0 ? notifications.Room2 : null}</span></span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room3")}><span className={styles.notifications}>Room3 <span className={styles.notifstyle}>{notifications.Room3 !== 0 ? notifications.Room3 : null}</span></span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("Room4")}><span className={styles.notifications}>Room4 <span className={styles.notifstyle}>{notifications.Room4 !== 0 ? notifications.Room4 : null}</span></span></button>
