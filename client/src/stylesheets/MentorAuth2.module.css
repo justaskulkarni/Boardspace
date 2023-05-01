@@ -19,6 +19,7 @@
 
 .checkboxstyle {
 	display: flex;
+	padding-bottom: 0.5rem;
 }
 
 .boxstyle {
@@ -29,15 +30,16 @@
 	border: none;
 	border-radius: 0.75rem;
 	background-color: rgb(255, 255, 255);
-	right: -7vw;
+	/* right: -7vw; */
 	position: relative;
 }
 
 .butimgdiv {
 	height: 2rem;
 	width: 2rem;
-	margin-top: 2rem;
-	object-fit: contain;
+	margin-top: 0.7rem;
+	/* margin-left: -1rem; */
+	/* object-fit: contain; */
 }
 
 .fileinput {
@@ -49,17 +51,19 @@
 }
 
 .Category {
-	width: 7.5rem;
-	padding-top: 1.5rem;
+	width: 6.5rem;
+	padding-top: 0.35rem;
 	font-size: 0.8rem;
 	padding-left: 1rem;
 }
 
 .filename {
-	width: 10rem;
-	padding-top: 1.5rem;
+	width: 9rem;
+	padding-top: 0.35rem;
 	font-size: 0.8rem;
 	padding-left: 1rem;
+	white-space: nowrap;
+	overflow-x: hidden;
 }
 
 .signup {
@@ -97,7 +101,7 @@
 
 .signupform {
 	position: fixed;
-	width: 20rem;
+	/* width: 20rem; */
 	height: 33.125rem;
 	margin-top: 1.5%;
 	margin-left: 68%;
@@ -116,6 +120,7 @@
 	width: 20rem;
 	background-color: #9e3ffd;
 	border: 0;
+	margin-top: -2rem;
 }
 
 .logintext {
