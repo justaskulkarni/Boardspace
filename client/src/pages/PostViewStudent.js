@@ -98,7 +98,7 @@ const PostViewStudent = () => {
 
             <div className={styles2.space}>
                 <div className={styles2.hdtxt}>
-                    <h3>All Doubts</h3>
+                    <p className={styles.roomname}>All Doubts</p>
                 </div>
                 {error && <div>{error}</div>}
                 <div className={styles2.box}>
@@ -106,9 +106,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>JEE Doubts</b> </div>
                         <div className={styles2.bxcont}>
                         {jeepost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -117,9 +117,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>CBSE</b> </div>
                         <div className={styles2.bxcont}>
                             {cbsepost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -128,9 +128,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>Neet</b> </div>
                         <div className={styles2.bxcont}>
                         {neetpost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -139,9 +139,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>SSC</b> </div>
                         <div className={styles2.bxcont}>
                         {sscpost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -150,9 +150,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>HSC</b> </div>
                         <div className={styles2.bxcont}>
                         {hscpost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -161,9 +161,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>ICSE</b> </div>
                         <div className={styles2.bxcont}>
                         {icsepost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -172,9 +172,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>IGCSE</b> </div>
                         <div className={styles2.bxcont}>
                         {igcsepost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -183,9 +183,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>IB</b> </div>
                         <div className={styles2.bxcont}>
                         {ibpost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>
@@ -194,9 +194,9 @@ const PostViewStudent = () => {
                         <div className={styles2.intxt}> <b>ISC</b> </div>
                         <div className={styles2.bxcont}>
                         {iscpost.map((elem) => {
-                                return <div>
+                                return <div className={styles2.hashdiv}>
                                     <p>{elem.caption}</p>
-                                    <button onClick={() => navigatepost(elem.hashtag)}>{elem.hashtag}</button>
+                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
                                 </div>
                             })}
                         </div>

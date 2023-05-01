@@ -113,13 +113,16 @@ const PostPostStudent = () => {
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
       <form onSubmit={handleSubmit}  encType="multipart/form">
+        
         <div className={styles.right}>
           <h3 className={styles.roomname}>Post a doubt</h3>
+          
           <label className={styles2.inputlabel}>
             <p className={styles2.text}>Upload image of the doubt : </p>
-            <img src={imageupload} className={styles2.inputimg} />
+            <img src={imageupload} style = {{height : "3rem", width : "auto"}} className={styles2.inputimg} />
             <input type="file" onChange={onImageChange} className={styles2.imginput} />
           </label>
+          
           {image &&
             <div className={styles2.previewdiv}>
               <p className={styles2.text}>Image Preview : </p>
@@ -127,65 +130,66 @@ const PostPostStudent = () => {
                 <img alt="preview image" src={image} className={styles2.previmg} />
               </div>
             </div>}
+          
           <div className={styles2.previewdiv}>
             <label className={styles2.text}>Caption :</label>
-            <input type='text' value={inputText} onChange={handleTextChange} />
-
+            <input type='text' value={inputText} onChange={handleTextChange} className={styles2.capin} />
           </div>
 
-          <button className={styles2.postbutton} type="submit">
-            <span className={styles2.posttext}>Post Doubt</span>
-            {error && <div>{error}</div>}
-          </button>
+          {error && <div>{error}</div>}
 
         </div>
 
+          <button className={styles2.postbutton} type="submit">
+            <span className={styles2.posttext}>Post Doubt</span>
+          </button>
+
         <div className={styles.rightmost}>
-          <fieldset>
-            <legend>Select an tag:</legend>
+          <fieldset className={styles2.set}>
+            <legend className={styles2.leg}>Select a tag:</legend>
             <label>
-              <input type="radio" value="JEE" checked={selectedOption === 'JEE'} onChange={handleOptionChange} />
-              JEE
+              <input type="radio" value="JEE" checked={selectedOption === 'JEE'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+               <b> JEE</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="Neet" checked={selectedOption === 'Neet'} onChange={handleOptionChange} />
-              Neet
+              <input type="radio" value="Neet" checked={selectedOption === 'Neet'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> NEET</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="ICSE" checked={selectedOption === 'ICSE'} onChange={handleOptionChange} />
-              ICSE
+              <input type="radio" value="ICSE" checked={selectedOption === 'ICSE'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> ICSE</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="SSC" checked={selectedOption === 'SSC'} onChange={handleOptionChange} />
-              SSC
+              <input type="radio" value="SSC" checked={selectedOption === 'SSC'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> SSC</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="IGCSE" checked={selectedOption === 'IGCSE'} onChange={handleOptionChange} />
-              IGCSE
+              <input type="radio" value="IGCSE" checked={selectedOption === 'IGCSE'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> IGCSE</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="CBSE" checked={selectedOption === 'CBSE'} onChange={handleOptionChange} />
-              CBSE
+              <input type="radio" value="CBSE" checked={selectedOption === 'CBSE'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> CBSE</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="ISC" checked={selectedOption === 'ISC'} onChange={handleOptionChange} />
-              ISC
+              <input type="radio" value="ISC" checked={selectedOption === 'ISC'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> ISC</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="IB" checked={selectedOption === 'IB'} onChange={handleOptionChange} />
-              IB
+              <input type="radio" value="IB" checked={selectedOption === 'IB'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> IB</b>
             </label>
             <br />
             <label>
-              <input type="radio" value="HSC" checked={selectedOption === 'HSC'} onChange={handleOptionChange} />
-              HSC
+              <input type="radio" value="HSC" checked={selectedOption === 'HSC'} onChange={handleOptionChange} style={{marginTop : "2rem"}} />
+              <b> HSC</b>
             </label>
           </fieldset>
         </div>
