@@ -53,11 +53,11 @@ const AdminChatRooms = (props) => {
     setCurrentMessage("")
   }
   
-  const messagesEndRef = useRef(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
-  }, [messagesEndRef.current])
+    chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
+  }, [messages]);
 
 
   socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, fields, id) => {
@@ -130,7 +130,7 @@ const AdminChatRooms = (props) => {
         {currentRoom &&
           <h3 className={styles.roomname}>{currentRoom}</h3>
         }
-        <div className={styles.innerchat} id="bottomscroll">
+        <div className={styles.innerchat} ref={chatRef}>
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
@@ -162,7 +162,6 @@ const AdminChatRooms = (props) => {
                 </li>
               )
             })}
-            <div ref={messagesEndRef} />
           </ul>
         </div>
       </div>

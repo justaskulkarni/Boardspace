@@ -77,7 +77,11 @@ import sendicon from '../assets/send.png'
     setMessages(roomMessages)
   });
 
-    
+  const chatRef = useRef(null);
+
+  useEffect(() => {
+    chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
+  }, [messages]);    
 
   useEffect(() =>{
     async function getdetails(){
@@ -123,7 +127,7 @@ import sendicon from '../assets/send.png'
         {currentRoom &&
           <h3 className={styles.roomname}>{currentRoom.includes("admin") ? "Admin Chat" : currentRoom}</h3>
         }
-        <div className={styles.innerchat}>
+        <div className={styles.innerchat} ref={chatRef}>
           <ul className={styles.chatMessages}>
 
             {messages.map((msg, index) => {
