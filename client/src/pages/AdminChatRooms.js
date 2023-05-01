@@ -2,27 +2,28 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 import styles from '../stylesheets/chat.module.css'
-import styles2 from '../stylesheets/adminlanding.module.css'
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import dashboardlogo from '../assets/navbarlogo.png'
 
+import roomlogo from '../assets/roomarrow.png'
+
 const AdminChatRooms = (props) => {
 
   const { socket } = props
-  
+
 
   const [currentMessage, setCurrentMessage] = useState("")
   const currentUserName = "Admin"
-  
+
   const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([])
-  
-  
+
+
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
   const userId = decoded.id
@@ -47,12 +48,12 @@ const AdminChatRooms = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if(currentMessage.trim() !== ""){
+    if (currentMessage.trim() !== "") {
       socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
     }
     setCurrentMessage("")
   }
-  
+
   const chatRef = useRef(null);
 
   useEffect(() => {
@@ -105,8 +106,8 @@ const AdminChatRooms = (props) => {
   }
 
   const getchatrooms = () => {
-        navigate("/admin/chatrooms")
-        navigate(0)
+    navigate("/admin/chatrooms")
+    navigate(0)
   }
 
 
@@ -137,7 +138,7 @@ const AdminChatRooms = (props) => {
                 <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.id ? '60%' : '' }}>
 
                   {userId === msg.id ? (
-                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.role === 'Student' ? '#dcefff' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#dcffec' : '' }}>
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea && (
@@ -145,10 +146,13 @@ const AdminChatRooms = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.message}</p>
-                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      <div className={styles.flextime}>
+                        <p className={styles.time2}>{msg.date}</p>
+                        <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      </div>
                     </div>
                   ) : (
-                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#dcefff' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#dcffec' : '' }}>
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea && (
@@ -156,7 +160,10 @@ const AdminChatRooms = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.message}</p>
-                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      <div className={styles.flextime}>
+                        <p className={styles.time2}>{msg.date}</p>
+                        <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      </div>
                     </div>
                   )}
                 </li>
@@ -187,18 +194,18 @@ const AdminChatRooms = (props) => {
         <div>
 
         </div>
-            
-        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
+
+        <div><button className={styles.leftbutton} ><span className={styles.notifications1}>CHAT ROOMS</span></button></div>
         <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("JEE DOUBTS")}><span className={styles.notifications}>JEE Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}>NEET Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}>ICSE Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}>CBSE Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}><span className={styles.notifications}>SSC Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}><span className={styles.notifications}>IGCSE Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}><span className={styles.notifications}>ISC Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}><span className={styles.notifications}>IB Doubts</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}><span className={styles.notifications}>HSC Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("JEE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "25%", width: "25%" }} /> JEE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} /> NEET</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} /> ICSE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "21%", width: "21%" }} /> CBSE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "24%", width: "24%" }} /> SSC</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "20%", width: "20%" }} /> IGCSE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "25%", width: "25%" }} /> ISC</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "30%", width: "30%" }} /> IB</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} /> HSC</span></button>
         </div>
       </div>
     </>

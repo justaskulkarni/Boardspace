@@ -127,6 +127,7 @@
 	height: 7rem;
 	width: 80%;
 	object-fit: cover;
+	width: 100%;
 }
 
 .logoutbtn {

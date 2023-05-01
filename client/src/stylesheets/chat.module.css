@@ -6,9 +6,9 @@
 	height: 100%;
 	position: fixed;
 	margin-top: 5%;
-	background-color: #594f77;
+	background-color: #a689e1;
 	height: 80vh;
-	border-radius: 3%;
+	border-radius: 0 3% 3% 0;
 	margin-right: 2%;
 	right: 0;
 }
@@ -20,8 +20,23 @@
 	overflow-y: hidden;
 	height: 80vh;
 	position: fixed;
-	border-radius: 2%;
+	border-radius: 2% 0 0 2%;
 	margin-left: 17%;
+}
+
+.column {
+    float: left;
+}
+
+.left {
+    width: 17%;
+    overflow-y: hidden;
+    position: fixed;
+    left: 0;
+}
+
+.leftbuttonraunak {
+	width: 100%;
 }
 
 .innerchat {
@@ -45,20 +60,24 @@
 }
 
 .notifications {
-	color: #ffffff;
+	color: black;
 	font-size: 1.2rem;
 	display: block;
 	padding: 0 0 0 0;
 	font-family: "Poppins", sans-serif;
+	font-weight: bold;
+	padding-bottom: 20%;
 }
 
 .notifications1 {
-	color: #ffffff;
+	color: black;
 	font-size: 1.7rem;
 	display: block;
 	width: 100%;
 	padding: 0 0 0 0;
 	margin-top: 5vh;
+	font-weight: bold;
+	margin-left: 7%;
 }
 
 .notifications2 {
@@ -104,6 +123,7 @@
 	padding: 0.75rem;
 	border-radius: 0.5rem;
 	position: relative;
+	margin-right: 1.5%;
 }
 
 .tooltip1:before {
@@ -120,6 +140,7 @@
 	padding: 0.75rem;
 	border-radius: 0.5rem;
 	position: relative;
+	margin-left: 1.5%;
 }
 
 .tooltip2:before {
@@ -153,6 +174,21 @@
 	color: #aaa;
 	text-align: right;
 }
+
+.time2 {
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	font-size: 0.75rem;
+	color: #aaa;
+	text-align: left;
+}
+
+.flextime {
+	margin-top: 0.1rem;
+	display: flex;
+	justify-content: space-between;
+}
+
 .date {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
@@ -163,6 +199,8 @@
 .toparea {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
+	font-size: 0.75rem;
+	color: black;
 }
 
 .chathead {
@@ -259,23 +297,13 @@
 	border-radius: 0.3125rem;
 }
 
-.column {
-    float: left;
-}
-
-.left {
-    width: 20%;
-    overflow-y: hidden;
-    position: fixed;
-    left: 0;
-}
-
 .imgstyle {
     float: left;
     margin-top: 1.3rem;
     height: 7rem;
-    width: 80%;
+    width: 100%;
     object-fit: cover;
+	margin-bottom: 15%;
 }
 
 .smallcardleftnew {
@@ -289,7 +317,7 @@
     border: none;
     background-color: white;
     display: block;
-    margin-top: 10%;
+    margin-top: 20%;
 }
 
 .notificationsnew {
