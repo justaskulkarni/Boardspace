@@ -104,9 +104,11 @@ const AdminStudentChat = (props) => {
     
   }
 
+  const chatRef = useRef(null);
+
   useEffect(() => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
-  }, [messagesEndRef.current])
+    chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
+  }, [messages]);
 
 
   useEffect(() => {
@@ -195,7 +197,7 @@ const AdminStudentChat = (props) => {
         {currentRoom &&
           <h3 className={styles.roomname}>{name}</h3>
         }
-        <div className={styles.innerchat} id="bottomscroll">
+        <div className={styles.innerchat} ref={chatRef}>
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
@@ -205,9 +207,7 @@ const AdminStudentChat = (props) => {
                     <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
                         {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
-                        {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
-                        )}
+                        
                       </div>
                       <p className={styles.message}>{msg.content}</p>
                       <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
@@ -216,9 +216,7 @@ const AdminStudentChat = (props) => {
                     <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
                         {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
-                        {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
-                        )}
+                        
                       </div>
                       <p className={styles.message}>{msg.content}</p>
                       <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
