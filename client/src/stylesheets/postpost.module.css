@@ -57,3 +57,43 @@
     background-color: aqua;
     margin-top: 17%;
 }
+.space {
+	margin-top: 5%;
+	background-color: #d9d9d9;
+	width: 77%;
+	height: 80vh;
+	position: fixed;
+	border-radius: 2%;
+	margin-left: 17%;
+}
+.hdtxt{
+    position: center;
+}
+
+.box{
+    max-height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+
+}
+.boxes{
+    height: 34vh;
+    width:44vh;
+    max-height: 35vh;
+    background-color: #BFACE2;
+    margin: 1rem 2rem 2rem 2rem;
+    border-radius: 1.5vh;
+    /* overflow-y: auto; */
+}
+.intxt{
+    margin: 0.5vh 0 1vh 0 ;
+}
+
+.bxcont{
+    overflow-y: auto;
+    height: 29vh;
+    max-height: 30vh;
+    margin: 0 1vh 0 1vh;
+    /* padding: 0 1vh 0vh 1vh; */
+}
