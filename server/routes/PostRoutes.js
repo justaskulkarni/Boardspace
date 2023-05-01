@@ -60,12 +60,32 @@ router.post('/create', upload.single('image'), async (req, res) => {
     }
 })
 
-router.get('/getpost', async(req, res) =>{
+router.get('getpost/:hashtag', async(req, res) =>{
     try {
-        const hashtag = req.body.hashtag;
-        const reqpostt = await Post.find({hashtag: hashtag})
-        res.json({ success: true, postdets: reqpost })
+        const {hashtag} = req.params;
+        const reqpost = await Post.findOne({hashtag: hashtag})
+        res.json({ success: true, reqpost})
     } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+})
+
+router.get('/getallpostsofstudent/:id', async(req, res) =>{
+    try{
+        const {studentid} = req.params;
+        const [jeeposts, neetposts, icseposts, igcseposts, cbseposts, iscposts, ibposts, hscposts] = await Promise.all([
+            Post.find({ doubtaskedby: studentid, tag: 'JEE' }),
+            Post.find({ doubtaskedby: studentid, tag: 'Neet' }),
+            Post.find({ doubtaskedby: studentid, tag: 'ICSE' }),
+            Post.find({ doubtaskedby: studentid, tag: 'IGCSE' }),
+            Post.find({ doubtaskedby: studentid, tag: 'CBSE' }),
+            Post.find({ doubtaskedby: studentid, tag: 'ISC' }),
+            Post.find({ doubtaskedby: studentid, tag: 'IB' }),
+            Post.find({ doubtaskedby: studentid, tag: 'HSC' })
+        ]);
+        res.json({ success: true, jeeposts, neetposts, icseposts, igcseposts, cbseposts, iscposts, ibposts, hscposts })
+    }
+    catch(error){
         res.status(400).json({error: error.message})
     }
 })
