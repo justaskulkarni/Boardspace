@@ -224,11 +224,9 @@ io.on("connection", (socket) => {
 
     socket.on("send-room", async(room,message,role,id, senderName, fields) => {
         
-        const dateob = new Date()
-        const reqt = dateob.getHours()+':'+dateob.getMinutes()+':'+dateob.getSeconds()
-        const reqt2 = dateob.getHours()+':'+dateob.getMinutes()
-        const reqd = dateob.getDate() +"/"+(dateob.getMonth() + 1)+"/"+dateob.getFullYear()
-        
+        const dateob = new Date();
+        const reqt = `${dateob.getHours().toString().padStart(2, '0')}:${dateob.getMinutes().toString().padStart(2, '0')}:${dateob.getSeconds().toString().padStart(2, '0')}`;
+        const reqd = `${dateob.getDate().toString().padStart(2, '0')}/${(dateob.getMonth() + 1).toString().padStart(2, '0')}/${dateob.getFullYear()}`;
 
         const newMessage = new Message({
             content : message,
@@ -254,7 +252,7 @@ io.on("connection", (socket) => {
 
 
         await socket.broadcast.emit('notifications', room)
-        await io.to(room).emit("receive-room" ,message,role,reqd,reqt2, senderName, fields, id) 
+        await io.to(room).emit("receive-room" ,message,role,reqd,reqt, senderName, fields, id) 
 
     })
 
@@ -262,13 +260,10 @@ io.on("connection", (socket) => {
         let roomMessages = await getMessagesFromRoom(currentRoom);
         const messages = roomMessages.reduce((acc, curr) => acc.concat(curr.students, curr.mentors, curr.admins), []);
         messages.sort((a, b) => {
-        const dateComparison = a.date.localeCompare(b.date);
-        if (dateComparison === 0) {
-            return a.time.localeCompare(b.time);
-        }
-        return dateComparison;
+          const dateA = new Date(a.date.split('/').reverse().join('-') + 'T' + a.time + 'Z');
+          const dateB = new Date(b.date.split('/').reverse().join('-') + 'T' + b.time + 'Z');
+          return dateA - dateB;
         });
-        
         io.to(currentRoom).emit('room-messages', messages); 
     })
 

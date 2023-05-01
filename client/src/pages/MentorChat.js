@@ -62,8 +62,9 @@ import sendicon from '../assets/send.png'
   };
   const handleSubmit = async(e) =>{
     e.preventDefault()
-    
-    socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
+    if(currentMessage.trim() !== ""){
+      socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
+    }
     setCurrentMessage("")
   }
    
@@ -108,6 +109,11 @@ import sendicon from '../assets/send.png'
           <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}>NEET Doubts</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}>ICSE Doubts</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}>CBSE Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}><span className={styles.notifications}>SSC Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}><span className={styles.notifications}>IGCSE Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}><span className={styles.notifications}>ISC Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}><span className={styles.notifications}>IB Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}><span className={styles.notifications}>HSC Doubts</span></button>
         </div>
         <div><button className={styles.leftbutton} onClick={() => handlePersonalChat()}><span className={styles.notifications2}>Admin 
         </span></button></div>
