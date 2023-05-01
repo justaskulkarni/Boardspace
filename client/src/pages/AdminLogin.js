@@ -6,12 +6,15 @@ import styles from "../stylesheets/AdminAuth.module.css";
 const AdminLogin = () => {
 	const [creadentials, setCredentials] = useState({ email: "", password: "" });
 	const [error, setError] = useState(null);
-	const [isLoading, setLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	let navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// show loading sign
+		setIsLoading(true);
 
 		const response = await fetch("/api/admin/login", {
 			method: "POST",
@@ -22,11 +25,13 @@ const AdminLogin = () => {
 		const json = await response.json();
 
 		if (json.success) {
+			setIsLoading(false);
 			localStorage.setItem("Token", json.authToken);
 			navigate("/admin/landing");
 		}
 
 		if (json.error) {
+			setIsLoading(false);
 			setError(json.error);
 			setCredentials({
 				email: "",
@@ -35,6 +40,9 @@ const AdminLogin = () => {
 			setTimeout(() => {
 				setError(null);
 			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -42,34 +50,14 @@ const AdminLogin = () => {
 		setCredentials({ ...creadentials, [event.target.name]: event.target.value });
 	};
 
-	const toggleAnimation = async (e) => {
-		e.preventDefault();
-		setLoading(true);
-	};
-
 	return (
 		<>
-			{/* {isLoading && (
-				<div id="loadingAnim">
-					<div className={styles.dotSpinner}>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-					</div>
-				</div>
-			)} */}
-
 			<Navbar />
 			<div className={styles.colordiv}>
 				<div className={styles.colour1}></div>
 			</div>
 			<div className={styles.loginform}>
-				<h3 className={styles.login}>Login</h3>
+				<h3 className={styles.login}>Admin Login</h3>
 				<form onSubmit={handleSubmit} className={styles.forms}>
 					<label htmlFor="Email">Email</label>
 					<input type="email" value={creadentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
@@ -81,9 +69,24 @@ const AdminLogin = () => {
 						<button className={styles.forgot}>Forgot password?</button>
 					</div>
 					<div>
-						<button className={styles.loginbutton}>
-							<span className={styles.logintext}>Log In</span>
-						</button>
+						{isLoading ? (
+							<div className={styles.loadingAnim}>
+								<div className={styles.dotSpinner}>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+									<div className={styles.dotSpinnerDot}></div>
+								</div>
+							</div>
+						) : (
+							<button className={styles.loginbutton} id="submitButton">
+								<span className={styles.logintext}>Log In</span>
+							</button>
+						)}
 					</div>
 				</form>
 				{error && <div className={styles.error}>{error}</div>}

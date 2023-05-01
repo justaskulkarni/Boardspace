@@ -17,7 +17,12 @@ const postSchema = new Schema({
     caption: {type: String},
     solved: {type: Boolean, default: false}, 
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
-    tag : {type :String, enum : ['JEE', 'Neet', 'ICSE', 'SSC','IGCSE', 'CBSE', 'ISC', 'IB', 'HSC']}
+    tag : {
+      type :String, 
+      enum : {
+        values : ['JEE', 'Neet', 'ICSE', 'SSC','IGCSE', 'CBSE', 'ISC', 'IB', 'HSC'],
+        message : 'Please enter a valid tag'
+      }}
 })
 
 postSchema.plugin(autoIncrement.plugin, {model : 'Post', field: 'hashtag'})

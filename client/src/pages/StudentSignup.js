@@ -7,12 +7,15 @@ import styles from "../stylesheets/StudentAuth.module.css";
 const StudentSignup = () => {
 	const [credentials, setCredentials] = useState({ email: "", phonenum: null, name: "", password: "" });
 	const [error, setError] = useState(null);
-	const [isLoading, setLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	let navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// show loading sign
+		setIsLoading(true);
 
 		const response = await fetch("/api/student/signup", {
 			method: "POST",
@@ -23,11 +26,13 @@ const StudentSignup = () => {
 		const json = await response.json();
 
 		if (json.success) {
+			setIsLoading(false);
 			localStorage.setItem("Token", json.authToken);
 			navigate("/student/chat");
 		}
 
 		if (json.error) {
+			setIsLoading(false);
 			setError(json.error);
 			setCredentials({
 				email: "",
@@ -35,9 +40,12 @@ const StudentSignup = () => {
 				name: "",
 				password: "",
 			});
-			// setTimeout(() => {
-			// 	setError(null);
-			// }, 4000);
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -45,28 +53,8 @@ const StudentSignup = () => {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value });
 	};
 
-	const toggleAnimation = async (e) => {
-		e.preventDefault();
-		setLoading(true);
-	};
-
 	return (
 		<>
-			{/* {isLoading && (
-				<div id="loadingAnim">
-					<div className={styles.dotSpinner}>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-					</div>
-				</div>
-			)} */}
-
 			<Navbar />
 			<div className={styles.colordiv}>
 				<div className={styles.colour1}></div>
@@ -94,9 +82,24 @@ const StudentSignup = () => {
 						<input type="number" value={credentials.phonenum} name="phonenum" onChange={onChange} placeholder="" className={styles.fields} />
 
 						<div>
-							<button className={styles.loginbutton}>
-								<span className={styles.logintext}>Sign Up</span>
-							</button>
+							{isLoading ? (
+								<div className={styles.loadingAnim}>
+									<div className={styles.dotSpinner}>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+									</div>
+								</div>
+							) : (
+								<button className={styles.loginbutton} id="submitButton">
+									<span className={styles.logintext}>Sign Up</span>
+								</button>
+							)}
 						</div>
 					</form>
 				</div>

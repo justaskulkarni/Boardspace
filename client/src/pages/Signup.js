@@ -7,11 +7,15 @@ const Signup = () => {
 	const [credentials, setCredentials] = useState({ email: "", otp: "", name: "" });
 	const [error, setError] = useState(null);
 	const [showOtpDiv, setShowOtpDiv] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	let navigate = useNavigate();
 
 	const handleSubmit1 = async (e) => {
 		e.preventDefault();
+
+		// show loading sign
+		setIsLoading(true);
 
 		const response = await fetch("/api/mentor/semisignup", {
 			method: "POST",
@@ -22,6 +26,7 @@ const Signup = () => {
 		const json = await response.json();
 
 		if (json.noverify) {
+			setIsLoading(false);
 			navigate("/notaccepted", {
 				state: {
 					message: json.noverify,
@@ -30,15 +35,18 @@ const Signup = () => {
 		}
 
 		if (json.isOtpVerified) {
+			setIsLoading(false);
 			localStorage.setItem("Token", json.authToken);
 			navigate("/youin");
 		}
 
 		if (json.success) {
+			setIsLoading(false);
 			setShowOtpDiv(true);
 		}
 
 		if (json.error) {
+			setIsLoading(false);
 			setError(json.error);
 			setCredentials({
 				email: "",
@@ -48,6 +56,9 @@ const Signup = () => {
 			setTimeout(() => {
 				setError(null);
 			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -58,6 +69,9 @@ const Signup = () => {
 	const handleSubmit2 = async (e) => {
 		e.preventDefault();
 
+		// show loading sign
+		setIsLoading(true);
+
 		const response = await fetch("/api/mentor/verifyotp", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
@@ -67,6 +81,7 @@ const Signup = () => {
 		const json = await response.json();
 
 		if (json.success) {
+			setIsLoading(false);
 			navigate("/complete_details", {
 				state: {
 					email: credentials.email,
@@ -75,10 +90,14 @@ const Signup = () => {
 		}
 
 		if (json.error) {
+			setIsLoading(false);
 			setError(json.error);
 			setTimeout(() => {
 				setError(null);
 			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -105,9 +124,24 @@ const Signup = () => {
 						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
 						<div>
-							<button className={styles.loginbutton}>
-								<span className={styles.logintext}>Sign Up</span>
-							</button>
+							{isLoading ? (
+								<div className={styles.loadingAnim}>
+									<div className={styles.dotSpinner}>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+									</div>
+								</div>
+							) : (
+								<button className={styles.loginbutton} id="submitButton">
+									<span className={styles.logintext}>Sign Up</span>
+								</button>
+							)}
 						</div>
 					</form>
 					{error && <div className={styles.error}>{error}</div>}
@@ -120,9 +154,26 @@ const Signup = () => {
 						<form className={styles.forms} onSubmit={handleSubmit2}>
 							<label htmlFor="otp">Enter OTP</label>
 							<input type="number" value={credentials.otp} name="otp" onChange={onChange} placeholder="" className={styles.fields} />
-							<button className={styles.loginbutton}>
-								<span className={styles.logintext}>Submit OTP</span>{" "}
-							</button>
+							<div>
+								{isLoading ? (
+									<div className={styles.loadingAnim}>
+										<div className={styles.dotSpinner}>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+										</div>
+									</div>
+								) : (
+									<button className={styles.loginbutton} id="submitButton">
+										<span className={styles.logintext}>Log In</span>
+									</button>
+								)}
+							</div>
 						</form>
 						{error && (
 							<div className={styles.error} style={{ marginTop: "1rem" }}>

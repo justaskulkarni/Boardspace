@@ -6,13 +6,15 @@ import styles from "../stylesheets/StudentAuth.module.css";
 const StudentLogin = () => {
 	const [credentials, setCredentials] = useState({ email: "", password: "" });
 	const [error, setError] = useState(null);
-
-	const [isLoading, setLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	let navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// show loading sign
+		setIsLoading(true);
 
 		const response = await fetch("/api/student/login", {
 			method: "POST",
@@ -23,11 +25,13 @@ const StudentLogin = () => {
 		const json = await response.json();
 
 		if (json.success) {
+			setIsLoading(false);
 			localStorage.setItem("Token", json.authToken);
 			navigate("/student/chat");
 		}
 
 		if (json.error) {
+			setIsLoading(false);
 			setError(json.error);
 			setCredentials({
 				email: "",
@@ -36,6 +40,9 @@ const StudentLogin = () => {
 			setTimeout(() => {
 				setError(null);
 			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -43,28 +50,8 @@ const StudentLogin = () => {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value });
 	};
 
-	const toggleAnimation = async (e) => {
-		e.preventDefault();
-		setLoading(true);
-	};
-
 	return (
 		<>
-			{/* {isLoading && (
-				<div className={styles.loadingAnim}>
-					<div className={styles.dotSpinner}>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-						<div className={styles.dotSpinnerDot}></div>
-					</div>
-				</div>
-			)} */}
-
 			<Navbar />
 			<div className={styles.loginpage}>
 				<div className={styles.colordiv}>
@@ -90,9 +77,24 @@ const StudentLogin = () => {
 								<button className={styles.forgot}>Forgot password?</button>
 							</div>
 							<div>
-								<button className={styles.loginbutton} id="submitButton">
-									<span className={styles.logintext}>Log In</span>
-								</button>
+								{isLoading ? (
+									<div className={styles.loadingAnim}>
+										<div className={styles.dotSpinner}>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+											<div className={styles.dotSpinnerDot}></div>
+										</div>
+									</div>
+								) : (
+									<button className={styles.loginbutton} id="submitButton">
+										<span className={styles.logintext}>Log In</span>
+									</button>
+								)}
 							</div>
 						</form>
 					</div>
