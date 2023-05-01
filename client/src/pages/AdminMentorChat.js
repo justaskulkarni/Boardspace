@@ -36,7 +36,9 @@ const AdminMentorChat = (props) => {
   
   const handleSubmit = async (e) => {
     e.preventDefault()
-    socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
+    if(currentMessage.trim() !== ""){
+      socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
+    }
     setCurrentMessage("")
   }
   
