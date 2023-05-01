@@ -84,17 +84,17 @@ router.get('/getallpost/student/:id', async(req, res) =>{
     try{
         const {id} = req.params;
         const [jeeposts, neetposts, icseposts, sscposts, igcseposts, cbseposts, iscposts, ibposts, hscposts] = await Promise.all([
-            Post.find({ doubtaskedby: id, tag: 'JEE' }),
-            Post.find({ doubtaskedby: id, tag: 'Neet' }),
-            Post.find({ doubtaskedby: id, tag: 'ICSE' }),
-            Post.find({ doubtaskedby: id, tag: 'SSC' }),
-            Post.find({ doubtaskedby: id, tag: 'IGCSE' }),
-            Post.find({ doubtaskedby: id, tag: 'CBSE' }),
-            Post.find({ doubtaskedby: id, tag: 'ISC' }),
-            Post.find({ doubtaskedby: id, tag: 'IB' }),
-            Post.find({ doubtaskedby: id, tag: 'HSC' })
+            Post.find({ doubtaskedby: id, tag: 'JEE' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'Neet' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'ICSE' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'SSC' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'IGCSE' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'CBSE' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'ISC' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'IB' }).sort({ solved: 1 }),
+            Post.find({ doubtaskedby: id, tag: 'HSC' }).sort({ solved: 1 }),
         ]);
-        res.json({ success: true, jeep : jeeposts, neetp : neetposts, icsep : icseposts, sscp : sscposts, igcsep : igcseposts, cbsep : cbseposts, iscposts : iscposts, ibposts : ibposts, hscp : hscposts })
+        res.json({ success: true, jeep : jeeposts, neetp : neetposts, icsep : icseposts, sscp : sscposts, igcsep : igcseposts, cbsep : cbseposts, iscp : iscposts, ibp : ibposts, hscp : hscposts })
     }
     catch(error){
         res.status(400).json({error: error.message})

@@ -74,6 +74,9 @@ const PostPostStudent = () => {
       setInputText('')
       setSelectedOption('')
       ufile.current = null
+
+      navigate("/student/view")
+
     }
 
   }
