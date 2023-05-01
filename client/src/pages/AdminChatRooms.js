@@ -47,15 +47,17 @@ const AdminChatRooms = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault()
-    socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
+    if(currentMessage.trim() !== ""){
+      socket.emit("send-room", currentRoom, currentMessage, "Admin", userId, currentUserName)
+    }
     setCurrentMessage("")
   }
   
-  const messagesEndRef = useRef(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
-  }, [messagesEndRef.current])
+    chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
+  }, [messages]);
 
 
   socket.off("receive-room").on("receive-room", (message, role, date, time, senderName, fields, id) => {
@@ -128,7 +130,7 @@ const AdminChatRooms = (props) => {
         {currentRoom &&
           <h3 className={styles.roomname}>{currentRoom}</h3>
         }
-        <div className={styles.innerchat} id="bottomscroll">
+        <div className={styles.innerchat} ref={chatRef}>
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
@@ -143,7 +145,7 @@ const AdminChatRooms = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.message}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   ) : (
                     <div className={styles.tooltip2} style={{ backgroundColor: msg.role === 'Student' ? '#F0F8FF' : msg.role === 'Admin' ? '#FFE4E1' : msg.role === 'Mentor' ? '#ADD8E6' : '' }}>
@@ -154,13 +156,12 @@ const AdminChatRooms = (props) => {
                         )}
                       </div>
                       <p className={styles.message}>{msg.message}</p>
-                      <p className={styles.time}>{msg.time}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   )}
                 </li>
               )
             })}
-            <div ref={messagesEndRef} />
           </ul>
         </div>
       </div>
@@ -193,6 +194,11 @@ const AdminChatRooms = (props) => {
           <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}>NEET Doubts</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}>ICSE Doubts</span></button>
           <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}>CBSE Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}><span className={styles.notifications}>SSC Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}><span className={styles.notifications}>IGCSE Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}><span className={styles.notifications}>ISC Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}><span className={styles.notifications}>IB Doubts</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}><span className={styles.notifications}>HSC Doubts</span></button>
         </div>
       </div>
     </>
