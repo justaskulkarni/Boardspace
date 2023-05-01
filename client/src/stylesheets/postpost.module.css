@@ -81,8 +81,9 @@
     height: 34vh;
     width:44vh;
     max-height: 35vh;
-    background-color: #9e3ffd;
+    background-color: #BFACE2;
     margin: 1rem 2rem 2rem 2rem;
+    border-radius: 1.5vh;
     /* overflow-y: auto; */
 }
 .intxt{
