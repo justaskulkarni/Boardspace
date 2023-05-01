@@ -123,7 +123,7 @@ const Notaccepted = () => {
                 </Link>
               </button>
             )}
-            <button className={styles.button1}>Our Team</button>
+            {/* <button className={styles.button1}>Our Team</button> */}
           </div>
         </div>
 

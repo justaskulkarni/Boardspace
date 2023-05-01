@@ -143,7 +143,7 @@ function Home() {
 									</React.Fragment>
 								)}
 
-								<button className={"tail"}>Our Team</button>
+								{/* <button className={"tail"}>Our Team</button> */}
 							</div>
 						</div>
 

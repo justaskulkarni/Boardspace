@@ -42,7 +42,7 @@ const Navbar = () => {
           </>
         }
 
-        <button className={styles.tail}>Our Team</button>
+        {/* <button className={styles.tail}>Our Team</button> */}
       </div>
     </div>
   )

@@ -74,7 +74,7 @@ router.get('/getpost/:hashtag', async(req, res) =>{
         const command = new GetObjectCommand(getObjectParams)
         const url = await getSignedUrl(s3, command, {expiresIn : 3600})
 
-        res.json({ success: true, rpost : reqpost, imgurl : url})
+        res.json({ success: true, rpost : reqpost, imgurl : url, postid : reqpost.imgurl})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
