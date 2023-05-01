@@ -28,6 +28,7 @@ import AdminMentorChat from "./pages/AdminMentorChat";
 import AdminStudentMessages from "./pages/AdminStudentMessages";
 import AdminChatRooms from "./pages/AdminChatRooms";
 import PostViewStudent from "./pages/PostViewStudent"
+import PostGoToViewStudent from "./pages/PostGoToViewStudent"
 
 import { io } from "socket.io-client";
 
@@ -55,7 +56,7 @@ function App() {
             <Route element={<StudentPrivateRoutes />}>
               <Route path="/student/post" element={<PostPostStudent />} />
               <Route path="/student/chat" element={<Chat socket = {socket}/>} />
-              <Route path="/student/view/:findhashtag" element={<PostViewStudent />} />
+              <Route path="/student/view/:findhashtag" element={<PostGoToViewStudent />} />
               <Route path="/student/view" element={<PostViewStudent />} />
             </Route>
             <Route element={<AdminPrivateRoutes />}>
