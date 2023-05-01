@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../stylesheets/home.module.css";
 import "../stylesheets/navbar.css";
@@ -15,6 +15,12 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
 
 function Home() {
+
+	const [jeetoppers, setjeetoppers] = useState(0);
+	const [boardtoppers, setboardtoppers] = useState(0);
+	const [communitymembers, setcommunitymembers] = useState(0);
+	const [neettoppers, setneettoppers] = useState(0);
+
 	let navigate = useNavigate();
 
 	const handleLogout = () => {
@@ -30,6 +36,26 @@ function Home() {
 			return null;
 		}
 	};
+
+	const getnums = async () => {
+		const response = await fetch("/gethomepagenums", {
+			method: "GET",
+			headers: { "Content-Type": "application/json" },
+		});
+
+		const json = await response.json();
+
+		if (json.success) {
+			setjeetoppers(json.jeetoppers)
+			setboardtoppers(json.boardtoppers)
+			setcommunitymembers(json.communitymembers)
+			setneettoppers(json.neettoppers)
+		}
+	};
+
+	useEffect(() => {
+		getnums();
+	}, [jeetoppers, boardtoppers, communitymembers, neettoppers]);
 
 	useEffect(() => {
 		window.onscroll = function () {
@@ -185,28 +211,28 @@ function Home() {
 					<div className={styles.numbers}>
 						<div className={styles.rtd}>
 							<p>
-								<h2>36</h2>
+								<h2>{jeetoppers}</h2>
 								IITian Mentors
 							</p>
 						</div>
 						<h1>.</h1>
 						<div className={styles.rtd}>
 							<p>
-								<h2>14</h2>
+								<h2>{boardtoppers}</h2>
 								Board Toppers
 							</p>
 						</div>
 						<h1>.</h1>
 						<div className={styles.rtd}>
 							<p>
-								<h2>680</h2>
+								<h2>{communitymembers}</h2>
 								Community Members
 							</p>
 						</div>
 						<h1>.</h1>
 						<div className={styles.rtd}>
 							<p>
-								<h2>8</h2>
+								<h2>{neettoppers}</h2>
 								Neet Mentors
 							</p>
 						</div>

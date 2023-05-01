@@ -60,6 +60,16 @@ router.post('/create', upload.single('image'), async (req, res) => {
     }
 })
 
+router.get('/getpost', async(req, res) =>{
+    try {
+        const hashtag = req.body.hashtag;
+        const reqpostt = await Post.find({hashtag: hashtag})
+        res.json({ success: true, postdets: reqpost })
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+})
+
 module.exports = router;
 
 // postSchema.pre('save', async function(next) {

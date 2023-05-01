@@ -69,6 +69,26 @@ app.get('/getnums' , async (req,res) => {
     }
     
 })
+
+app.get('/gethomepagenums', async(req, res) =>{
+  try {
+        
+        const jeetoppers = await Mentor.countDocuments({
+          toparea: { $in: ['JEE Topper'] }
+        });
+        const boardtoppers = await Mentor.countDocuments({
+          toparea: { $in: ['Board Topper'] }
+        });
+        const communitymembers = await Student.count({})
+        const neettoppers = await Mentor.countDocuments({
+          toparea: { $in: ['Neet Topper'] }
+        });
+        res.json({success : true, jeetoppers : jeetoppers, boardtoppers : boardtoppers, communitymembers: communitymembers, neettoppers: neettoppers})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
  
 async function getMessagesFromRoom(currentRoom) {
   let roomMessages = await Message.aggregate([
