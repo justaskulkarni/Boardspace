@@ -6,11 +6,15 @@ import Navbar from "../components/Navbar";
 const Login = () => {
 	const [credentials, setCredentials] = useState({ email: "", password: "" });
 	const [error, setError] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	let navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// show loading sign
+		setIsLoading(true);
 
 		const response = await fetch("/api/mentor/login", {
 			method: "POST",
@@ -21,6 +25,7 @@ const Login = () => {
 		const json = await response.json();
 
 		if (json.noverify) {
+			setIsLoading(false);
 			navigate("/notaccepted", {
 				state: {
 					message: json.noverify,
@@ -29,6 +34,7 @@ const Login = () => {
 		}
 
 		if (json.isreject) {
+			setIsLoading(false);
 			navigate("/notaccepted", {
 				state: {
 					message: json.isreject,
@@ -37,6 +43,7 @@ const Login = () => {
 		}
 
 		if (json.success) {
+			setIsLoading(false);
 			localStorage.setItem("Token", json.authToken);
 			navigate("/youin");
 		}
@@ -50,6 +57,9 @@ const Login = () => {
 			setTimeout(() => {
 				setError(null);
 			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -83,9 +93,24 @@ const Login = () => {
 							<button className={styles.forgot}>Forgot password?</button>
 						</div>
 						<div>
-							<button className={styles.loginbutton}>
-								<span className={styles.logintext}>Log In</span>
-							</button>
+							{isLoading ? (
+								<div className={styles.loadingAnim}>
+									<div className={styles.dotSpinner}>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+									</div>
+								</div>
+							) : (
+								<button className={styles.loginbutton} id="submitButton">
+									<span className={styles.logintext}>Log In</span>
+								</button>
+							)}
 						</div>
 					</form>
 				</div>

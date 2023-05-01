@@ -12,6 +12,7 @@ const Signup2 = () => {
 	const [error, setError] = useState(null);
 	const topper = [];
 	const [details, setDetails] = useState({ password: "", email: location.state.email });
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [isNeetTopper, setNeet] = useState({ enabled: false, file: false, disable: false });
 	const [isJeeTopper, setJee] = useState({ enabled: false, file: false, disable: false });
@@ -41,7 +42,14 @@ const Signup2 = () => {
 		const json = await response.json();
 
 		if (json.error) {
+			setIsLoading(false);
 			setError(json.error);
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 		}
 	};
 
@@ -127,6 +135,9 @@ const Signup2 = () => {
 	const handleSubmit2 = async (e) => {
 		e.preventDefault();
 
+		// show loading sign
+		setIsLoading(true);
+
 		if (isBoardTopper.enabled) {
 			topper.push("Board Topper");
 		}
@@ -149,6 +160,12 @@ const Signup2 = () => {
 
 		if (topper.length === 0) {
 			setError("Select atleast one field");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 			return error;
 		}
 
@@ -164,6 +181,7 @@ const Signup2 = () => {
 			const json = await response.json();
 
 			if (json.success) {
+				setIsLoading(false);
 				navigate("/notaccepted", {
 					state: {
 						message: json.mssg,
@@ -172,10 +190,23 @@ const Signup2 = () => {
 			}
 
 			if (json.error) {
+				setIsLoading(false);
 				setError(json.error);
+				setTimeout(() => {
+					setError(null);
+				}, 4000);
+				setTimeout(() => {
+					setIsLoading(false);
+				}, 500);
 			}
 		} else {
 			setError("Kindly upload all the documents");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 			return error;
 		}
 	};
@@ -337,9 +368,24 @@ const Signup2 = () => {
 						</div>
 						<br />
 						<div>
-							<button className={styles.loginbutton}>
-								<span className={styles.logintext}>Submit</span>
-							</button>
+							{isLoading ? (
+								<div className={styles.loadingAnim}>
+									<div className={styles.dotSpinner}>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+										<div className={styles.dotSpinnerDot}></div>
+									</div>
+								</div>
+							) : (
+								<button className={styles.loginbutton} id="submitButton">
+									<span className={styles.logintext}>Log In</span>
+								</button>
+							)}
 						</div>
 					</form>
 				</div>
