@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.imginput {
+    display: none;
+}
+
+.inputlabel {
+    margin-top: 2rem;
+    display: flex;
+}
+
+.text{
+    font-family: "Montserrat", sans-serif;
+	font-size: 1.125rem;
+	font-weight: 500;
+    padding-left: 4%;
+}
+
+.inputimg {
+    margin-left: 3%;
+}
+
+.previewdiv{
+    display: flex;
+}
+
+.imgdiv {
+    margin-top: 3%;
+    margin-left: 5%;
+    height: 40vh;
+    width : 50%;
+}
+
+.previmg {
+    object-fit: contain;
+    height: 40vh;
+    width : 100%;
+}
+
+.postbutton {
+    height: 3rem;
+    width: 20rem;
+    background-color: #9e3ffd;
+    border: 0;
+}
+
+.posttext {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: white;
+}
+
+.poster {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.enttxt{
+    height: 5vh;
+    width: 40%;
+    position: fixed;
+    top: 82vh;
+    margin: 0 2vh 2vh 4vh;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    padding-left: 1rem;
+}
+.incomment{
+    background-color: rgba(rgba(238, 232, 232, 0.466));
+    border-radius: 2vh;
+    width: 64vh;
+    height: 4vh;
+    text-align: center;
+    font-size: 1rem;
+    color: black;
+    outline: none;
+	border: 0px;
+	word-wrap: break-word;
+	word-break: break-all;
+	resize: none;
+	border-bottom-style: solid;
+	border-bottom-width: 0.04rem;
+}
+
+.right {
+	margin-top: 5%;
+	background-color: #d9d9d9;
+	width: 66%;
+	overflow-y: hidden;
+	height: 80vh;
+	position: fixed;
+	border-radius: 2%;
+	margin-left: 17%;
+}
+
+.roomname {
+	font-family: "Montserrat", sans-serif;
+	text-align: left;
+	font-size: 1.5rem;
+    /* background-color: white; */
+    padding-left: 8vh;
+}
+.dispimg p{
+    text-align: left;
+    padding-left: 4vh;
+}
+.dispdiv{
+    object-fit: cover;
+    height: 50vh;
+    width: 50vh;
+    background-color: #bca7e8;
+    position: center;                                   
+    margin: 8vh 0 5vh 12vh;
+}
+
+.rightmost {
+	width: 45%;
+	height: 100%;
+	position: fixed;
+	margin-top: 5%;
+	background-color: #a689e1;
+	height: 80vh;
+	border-radius: 3%;
+	margin-right: 2%;
+	right: 0;
+}
+/* .dispimg{
+    position: fixed;
+} */
+.uploadbutton {
+	border: none;
+	border-radius: 0.75rem;
+	background-color: #a689e1;
+	position: relative;
+    margin-left: 1rem;
+}
+
+.butimgdiv {
+	height: 2rem;
+	margin-bottom: 0.4vh;
+}
