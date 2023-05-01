@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
 
 .imginput {
     display: none;
@@ -7,6 +8,7 @@
 .inputlabel {
     margin-top: 2rem;
     display: flex;
+    margin-left: 33%;
 }
 
 .text{
@@ -22,11 +24,25 @@
 
 .previewdiv{
     display: flex;
+    margin-left: 33%;
+}
+
+.capin {
+    margin-left: 1rem;
+	margin-bottom: 1.5625rem;
+	outline: none;
+	border: none;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: black;
+    background-color: transparent;
+	font-size: 1.25rem;
+    padding-left: 1rem;
 }
 
 .imgdiv {
-    margin-top: 3%;
-    margin-left: 5%;
+    margin-top: 6%;
+    margin-left: -21%;
     height: 40vh;
     width : 50%;
 }
@@ -42,6 +58,9 @@
     width: 20rem;
     background-color: #9e3ffd;
     border: 0;
+    margin-left: 39%;
+    position: fixed;
+    margin-top: 40%;
 }
 
 .posttext {
@@ -86,7 +105,10 @@
     border-radius: 1.5vh;
 }
 .intxt{
-    margin: 0.5vh 0 1vh 0 ;
+    font-family: "Montserrat", sans-serif;
+	text-align: center;
+	font-size: 1rem;
+    margin-top: 0.5rem;
 }
 
 .bxcont{
@@ -94,4 +116,37 @@
     height: 29vh;
     max-height: 30vh;
     margin: 0 1vh 0 1vh;
+}
+
+.set {
+    border-color: transparent;
+    margin-top: 10%;
+}
+
+.set legend{
+    color: black;
+	font-size: 1.5rem;
+	display: block;
+	width: 100%;
+	padding: 0 0 0 0;
+	font-weight: bold;
+	margin-left: 7%;
+    font-family: "Poppins", sans-serif;
+}
+
+.aplebtn {
+	margin: 0 0 0 0;
+    margin-left: 45%;
+    margin-bottom: 2%;
+    background-color: transparent;
+    border: 1px solid black;
+    color: black;   
+}
+
+.hashdiv {
+    margin-top: 3%;
+    background-color: rgba(0 ,0, 0, 0.1);
+    border-radius: 5%;
+    padding-left: 3%;
+    padding-top: 0.05%;
 }
