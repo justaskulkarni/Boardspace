@@ -60,7 +60,7 @@ router.post('/create', upload.single('image'), async (req, res) => {
     }
 })
 
-router.get('getpost/:hashtag', async(req, res) =>{
+router.get('/getpost/:hashtag', async(req, res) =>{
     try {
         const {hashtag} = req.params;
         const reqpost = await Post.findOne({hashtag: hashtag})
@@ -72,18 +72,19 @@ router.get('getpost/:hashtag', async(req, res) =>{
 
 router.get('/getallpostsofstudent/:id', async(req, res) =>{
     try{
-        const {studentid} = req.params;
-        const [jeeposts, neetposts, icseposts, igcseposts, cbseposts, iscposts, ibposts, hscposts] = await Promise.all([
-            Post.find({ doubtaskedby: studentid, tag: 'JEE' }),
-            Post.find({ doubtaskedby: studentid, tag: 'Neet' }),
-            Post.find({ doubtaskedby: studentid, tag: 'ICSE' }),
-            Post.find({ doubtaskedby: studentid, tag: 'IGCSE' }),
-            Post.find({ doubtaskedby: studentid, tag: 'CBSE' }),
-            Post.find({ doubtaskedby: studentid, tag: 'ISC' }),
-            Post.find({ doubtaskedby: studentid, tag: 'IB' }),
-            Post.find({ doubtaskedby: studentid, tag: 'HSC' })
+        const {id} = req.params;
+        const [jeeposts, neetposts, icseposts, sscposts, igcseposts, cbseposts, iscposts, ibposts, hscposts] = await Promise.all([
+            Post.find({ doubtaskedby: id, tag: 'JEE' }),
+            Post.find({ doubtaskedby: id, tag: 'Neet' }),
+            Post.find({ doubtaskedby: id, tag: 'ICSE' }),
+            Post.find({ doubtaskedby: id, tag: 'SSC' }),
+            Post.find({ doubtaskedby: id, tag: 'IGCSE' }),
+            Post.find({ doubtaskedby: id, tag: 'CBSE' }),
+            Post.find({ doubtaskedby: id, tag: 'ISC' }),
+            Post.find({ doubtaskedby: id, tag: 'IB' }),
+            Post.find({ doubtaskedby: id, tag: 'HSC' })
         ]);
-        res.json({ success: true, jeeposts, neetposts, icseposts, igcseposts, cbseposts, iscposts, ibposts, hscposts })
+        res.json({ success: true, jeeposts, neetposts, icseposts, sscposts, igcseposts, cbseposts, iscposts, ibposts, hscposts })
     }
     catch(error){
         res.status(400).json({error: error.message})
