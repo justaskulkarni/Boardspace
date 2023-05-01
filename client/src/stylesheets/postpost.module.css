@@ -49,3 +49,11 @@
     font-size: 1rem;
     color: white;
 }
+
+.innercomment {
+	overflow-y: auto;
+	overflow-x: hidden;
+	max-height: 43%;
+    background-color: aqua;
+    margin-top: 17%;
+}

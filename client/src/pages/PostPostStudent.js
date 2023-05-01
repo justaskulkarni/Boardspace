@@ -92,6 +92,10 @@ const PostPostStudent = () => {
     navigate("/student/chat")
   }
 
+  const viewdoubt = () => {
+    navigate("/student/view")
+  }
+
   return (
     <React.Fragment>
       <div className={styles.column + " " + styles.left}>
@@ -99,7 +103,7 @@ const PostPostStudent = () => {
         <div className={styles.smallcardleftnew}>
           <button className={styles.leftbuttonnew} onClick={gotochat}><span className={styles.notificationsnew}>Chat</span></button>
           <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
-          <button className={styles.leftbuttonnew} ><span className={styles.notificationsnew}>View Doubt</span></button>
+          <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>

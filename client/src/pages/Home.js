@@ -207,7 +207,7 @@ function Home() {
 						<div className={styles.rtd}>
 							<p>
 								<h2>8</h2>
-								Grades(5th-12th)
+								Neet Mentors
 							</p>
 						</div>
 					</div>
