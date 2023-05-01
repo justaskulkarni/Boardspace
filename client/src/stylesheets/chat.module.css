@@ -67,7 +67,7 @@
 	padding: 0 0 0 0;
 	font-family: "Poppins", sans-serif;
 	font-weight: bold;
-	padding-bottom: 18%;
+	padding-bottom: 12%;
 }
 
 .notifications1 {
@@ -346,4 +346,11 @@
     font-weight: bold;
 	letter-spacing: 0.1rem;
 	font-family: "Poppins", sans-serif;
+}
+
+.smallcardleftnew2 {
+	display: block;
+	margin-top: 25vh;
+	margin-bottom: 3vh;
+	margin-left: 2vw;
 }

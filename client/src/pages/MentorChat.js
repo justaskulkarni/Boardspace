@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 import roomlogo from '../assets/roomarrow.png'
+import { useNavigate } from "react-router-dom";
 
  const SOCKET_URL = "";
 
@@ -13,6 +14,7 @@ import roomlogo from '../assets/roomarrow.png'
 
  const MentorChat = (props) => {
 
+  const navigate = useNavigate()
   const { socket } = props;
   const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
@@ -25,6 +27,12 @@ import roomlogo from '../assets/roomarrow.png'
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
+
+  const handleLogout = () => {
+    localStorage.removeItem("Token")
+    navigate("/")
+    navigate(0)
+  }
   
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
@@ -107,6 +115,15 @@ import roomlogo from '../assets/roomarrow.png'
    return (
      <>
         <Navbar />
+
+      <div className={styles.column + " " + styles.left}>
+        <div className={styles.smallcardleftnew2}>
+          <div><button className={styles.leftbuttonnew} onClick={() => handlePersonalChat()}><span className={styles.notificationsnew}>Admin Chat
+          </span></button></div>
+          <button className={styles.leftbuttonnew} ><span className={styles.notificationsnew}>View Doubts</span></button>
+        </div>
+      </div>
+
       <div className={styles.rightmost}>
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>Chat Rooms</span></button></div>
         <div className={styles.smallcardleft}>

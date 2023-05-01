@@ -102,11 +102,7 @@ const AdminMentorChat = (props) => {
     console.log(notifs)
   }
 
-  const chatRef = useRef(null);
-
-  useEffect(() => {
-    chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
-  }, [messages]);
+  
 
 
   useEffect(() => {
@@ -195,29 +191,35 @@ const AdminMentorChat = (props) => {
         {currentRoom &&
           <h3 className={styles.roomname}>{name}</h3>
         }
-        <div className={styles.innerchat} ref={chatRef}>
+        <div className={styles.innerchat}>
           <ul className={styles.chatMessages}>
             {messages.map((msg, index) => {
               return (
                 <li className={styles.chatMessage} key={index} style={{ marginLeft: userId === msg.fromid ? '60%' : '' }}>
 
                   {userId === msg._id ? (
-                    <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip1} style={{ backgroundColor: msg.fromrole === 'Student' ? '#dcefff' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#dcffec' : '' }}>
                       <div className={styles.chathead}>
                         {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
                         
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      <div className={styles.flextime}>
+                        <p className={styles.time2}>{msg.date}</p>
+                        <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      </div>
                     </div>
                   ) : (
-                    <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
+                    <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#dcefff' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#dcffec' : '' }}>
                       <div className={styles.chathead}>
                         {!currentRoom.includes("admin") && <p className={styles.date}>{msg.from}</p>}
                         
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      <div className={styles.flextime}>
+                        <p className={styles.time2}>{msg.date}</p>
+                        <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
+                      </div>
                     </div>
                   )}
                 </li>
