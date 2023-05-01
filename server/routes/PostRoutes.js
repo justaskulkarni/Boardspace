@@ -64,13 +64,23 @@ router.get('/getpost/:hashtag', async(req, res) =>{
     try {
         const {hashtag} = req.params;
         const reqpost = await Post.findOne({hashtag: hashtag})
-        res.json({ success: true, reqpost})
+
+        const getObjectParams = {
+            Bucket : process.env.BUCKET_NAME,
+            Key : reqpost.id,
+            ContentType : 'image/jpeg',
+        }
+
+        const command = new GetObjectCommand(getObjectParams)
+        const url = await getSignedUrl(s3, command, {expiresIn : 3600})
+
+        res.json({ success: true, rpost : reqpost, imgurl : url})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
 })
 
-router.get('/getallpostsofstudent/:id', async(req, res) =>{
+router.get('/getallpost/student/:id', async(req, res) =>{
     try{
         const {id} = req.params;
         const [jeeposts, neetposts, icseposts, sscposts, igcseposts, cbseposts, iscposts, ibposts, hscposts] = await Promise.all([
@@ -84,7 +94,7 @@ router.get('/getallpostsofstudent/:id', async(req, res) =>{
             Post.find({ doubtaskedby: id, tag: 'IB' }),
             Post.find({ doubtaskedby: id, tag: 'HSC' })
         ]);
-        res.json({ success: true, jeeposts, neetposts, icseposts, sscposts, igcseposts, cbseposts, iscposts, ibposts, hscposts })
+        res.json({ success: true, jeep : jeeposts, neetp : neetposts, icsep : icseposts, sscp : sscposts, igcsep : igcseposts, cbsep : cbseposts, iscposts : iscposts, ibposts : ibposts, hscp : hscposts })
     }
     catch(error){
         res.status(400).json({error: error.message})

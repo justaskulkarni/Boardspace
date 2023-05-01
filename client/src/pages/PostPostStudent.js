@@ -44,10 +44,12 @@ const PostPostStudent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("hey")
-    console.log(ufile.current)
-    console.log(inputText)
-    console.log(selectedOption)
+    
+    if(selectedOption === '')
+    {
+      setError("Please choose a tag")
+      return error
+    }
 
     let data = new FormData()
     data.append("image", ufile.current)
@@ -149,21 +151,40 @@ const PostPostStudent = () => {
             </label>
             <br />
             <label>
-              <input type="radio" value="Boards" checked={selectedOption === 'Boards'} onChange={handleOptionChange} />
-              Board
+              <input type="radio" value="ICSE" checked={selectedOption === 'ICSE'} onChange={handleOptionChange} />
+              ICSE
             </label>
             <br />
             <label>
-              <input type="radio" value="PHD" checked={selectedOption === 'PHD'} onChange={handleOptionChange} />
-              PHD
+              <input type="radio" value="SSC" checked={selectedOption === 'SSC'} onChange={handleOptionChange} />
+              SSC
             </label>
             <br />
             <label>
-              <input type="radio" value="Masters" checked={selectedOption === 'Masters'} onChange={handleOptionChange} />
-              Masters
+              <input type="radio" value="IGCSE" checked={selectedOption === 'IGCSE'} onChange={handleOptionChange} />
+              IGCSE
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="CBSE" checked={selectedOption === 'CBSE'} onChange={handleOptionChange} />
+              CBSE
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="ISC" checked={selectedOption === 'ISC'} onChange={handleOptionChange} />
+              ISC
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="IB" checked={selectedOption === 'IB'} onChange={handleOptionChange} />
+              IB
+            </label>
+            <br />
+            <label>
+              <input type="radio" value="HSC" checked={selectedOption === 'HSC'} onChange={handleOptionChange} />
+              HSC
             </label>
           </fieldset>
-
         </div>
       </form>
     </React.Fragment>
