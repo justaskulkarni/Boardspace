@@ -162,7 +162,7 @@ const Chat = (props) => {
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.from}</p>
                         {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
+                          <p className={styles.toparea}>{msg.toparea.join(', ')}</p>
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
@@ -173,7 +173,7 @@ const Chat = (props) => {
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.from}</p>
                         {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
+                          <p className={styles.toparea}>{msg.toparea.join(', ')}</p>
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>

@@ -141,7 +141,7 @@ const AdminChatRooms = (props) => {
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
+                          <p className={styles.toparea}>{msg.toparea.join(', ')}</p>
                         )}
                       </div>
                       <p className={styles.message}>{msg.message}</p>
@@ -152,7 +152,7 @@ const AdminChatRooms = (props) => {
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.senderName}</p>
                         {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
+                          <p className={styles.toparea}>{msg.toparea.join(', ')}</p>
                         )}
                       </div>
                       <p className={styles.message}>{msg.message}</p>

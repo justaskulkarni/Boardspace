@@ -139,18 +139,18 @@ import sendicon from '../assets/send.png'
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.from}</p>
                         {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
+                          <p className={styles.toparea}>{msg.toparea.join(', ')}</p>
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
-                      <p className={styles.time}>{msg.time.split(':').slice(0, 1).join(':')}</p>
+                      <p className={styles.time}>{msg.time.split(':').slice(0, 2).join(':')}</p>
                     </div>
                   ) : (
                     <div className={styles.tooltip2} style={{ backgroundColor: msg.fromrole === 'Student' ? '#F0F8FF' : msg.fromrole === 'Admin' ? '#FFE4E1' : msg.fromrole === 'Mentor' ? '#ADD8E6' : '' }}>
                       <div className={styles.chathead}>
                         <p className={styles.date}>{msg.from}</p>
                         {msg.toparea && (
-                          <p className={styles.toparea}>{msg.toparea}</p>
+                          <p className={styles.toparea}>{msg.toparea.join(', ')}</p>
                         )}
                       </div>
                       <p className={styles.message}>{msg.content}</p>
