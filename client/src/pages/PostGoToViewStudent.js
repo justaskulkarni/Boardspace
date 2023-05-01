@@ -82,11 +82,11 @@ const PostGoToViewStudent = () => {
         <div className={styles.right}> 
           <h3 className={styles2.roomname}>#{findhashtag}</h3>
             <div className={styles2.dispimg}>
-                    <p className={styles2.text}>Caption :</p>
+                    <p className={styles2.txt}>Caption :</p>
                     <br />
-                    <p className={styles2.caption}>{postdet.caption}</p>
+                    <p className={styles2.caption} style={{fontSize:17,marginLeft:"2vh"}}>{postdet.caption}</p>
                     <div className={styles2.something}>
-                        <p className={styles2.text}>Image :</p>
+                        <p className={styles2.txt}>Image :</p>
                         <div className={styles2.dispdiv}>
                             <img src={imgurl} className={styles2.previmg} />
                         </div>
@@ -96,10 +96,69 @@ const PostGoToViewStudent = () => {
             </div>
 
             <div className={styles2.rightmost}>
+                <div className={styles2.nums}><b>Comments</b></div>
                 <div className={styles2.poster}>
-
                     {userId === postdet.owner &&
-                        <div className={styles2.enttxt}>
+                        <div className={styles2.entertxt  }>
+                          {/* <div className={styles2.nums}><b>#comment no</b></div> */}
+                          <div className={styles.contrast}>
+                              <div className={styles2.comm}>
+                                <div className={styles2.inner}>
+                                  <p> <b>Name</b></p>
+                                  <p>Tags</p>
+                                </div>
+                                <div className={styles2.commcon}>
+                                  <p>Content</p>
+                                </div>
+                              </div>
+
+                              <div className={styles2.comm}>
+                                <div className={styles2.inner}>
+                                  <p> <b>Name</b></p>
+                                  <p>Tags</p>
+                                </div>
+                                <div className={styles2.commcon}>
+                                  <p>Content</p>
+                                </div>
+                              </div>
+                              <div className={styles2.comm}>
+                                <div className={styles2.inner}>
+                                  <p> <b>Name</b></p>
+                                  <p>Tags</p>
+                                </div>
+                                <div className={styles2.commcon}>
+                                  <p>Content</p>
+                                </div>
+                              </div>
+                              <div className={styles2.comm}>
+                                <div className={styles2.inner}>
+                                  <p> <b>Name</b></p>
+                                  <p>Tags</p>
+                                </div>
+                                <div className={styles2.commcon}>
+                                  <p>Content</p>
+                                </div>
+                              </div>
+                              <div className={styles2.comm}>
+                                <div className={styles2.inner}>
+                                  <p> <b>Name</b></p>
+                                  <p>Tags</p>
+                                </div>
+                                <div className={styles2.commcon}>
+                                  <p>Content</p>
+                                </div>
+                              </div>
+                              <div className={styles2.comm}>
+                                <div className={styles2.inner}>
+                                  <p> <b>Name</b></p>
+                                  <p>Tags</p>
+                                </div>
+                                <div className={styles2.commcon}>
+                                  <p>Content</p>
+                                </div>
+                              </div>
+                          </div>
+                          
                             <form action="">
                                 <textarea className={styles2.incomment} placeholder="Comment something" />
                                 <button className={styles2.uploadbutton} >
