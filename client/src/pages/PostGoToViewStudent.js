@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 import { useNavigate, Link, useParams } from "react-router-dom";
@@ -7,14 +7,39 @@ import jwt_decode from "jwt-decode";
 
 import styles2 from '../stylesheets/postpost.module.css'
 
-const PostViewStudent = () => {
+const PostGoToViewStudent = () => {
+    
+    const {findhashtag} = useParams
+
+    const [postdet , setpostdet] = useState({hastag : "", caption : "", imgurl : ""})
+    const [imgurl , setimgurl] = useState(null)
+
+    useEffect(() => {
+      
+        async function getpost(){
+            const response = await fetch(`/api/post/getpost/${findhashtag}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+              })
+
+              const json = await response.json()
+
+              if(json.success)
+              {
+
+              }
+        } 
+        
+
+      
+    }, [findhashtag])
+    
 
     let navigate = useNavigate()
 
-    const navigatepost = (hashtag) => {
-        navigate(`/student/view/${hashtag}`)
-    }
-
+    
     const handleLogout = () => {
         localStorage.removeItem("Token")
         navigate("/")
@@ -46,14 +71,25 @@ const PostViewStudent = () => {
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
     
-        <div className={styles.right}>
-        
-        
+        <div className={styles.right}> 
+                <h3 className={styles.roomname}>#{findhashtag}</h3>
+                <div>
+                    <p>Caption :</p>
+                    <div>
+                        img to come here
+                    </div>
+                </div>
+
+                <div className={styles2.innercomment}>
+                    <div>
+                        temp comment
+                    </div>
+                </div>
+
         </div>
 
         <div className={styles.rightmost}>
           
-        <button className={styles.leftbutton} onClick={() => navigatepost("temp")}><span className={styles.notifications}>Temp</span></button>
 
         </div>
         </React.Fragment>
@@ -61,4 +97,4 @@ const PostViewStudent = () => {
     )
 }
 
-export default PostViewStudent
+export default PostGoToViewStudent
