@@ -71,7 +71,16 @@
 	color: #9e3ffd;
 	text-align: center;
 	padding-bottom: 1.5rem;
+	animation-name: scroller;
+	animation-duration: 1s;
+	
 }
+@keyframes scroller {
+	
+	from {transform: translate(0 ,50%);}
+	to{ }
+}
+
 
 .services h4 {
 	margin: 0;
@@ -83,6 +92,9 @@
 	letter-spacing: -0.0225rem;
 	padding-bottom: 0.5rem;
 	line-height: 3rem;
+	animation-name: scroller;
+	animation-delay: 0.2s;
+	animation-duration: 1s;
 }
 
 .servimages {
@@ -97,11 +109,17 @@
 	font-family: "Montserrat", sans-serif;
 	font-weight: 300;
 	font-size: 0.9rem;
+	animation-name: scroller;
+	animation-delay: 0.4s;
+	animation-duration: 1s;
 }
 
 .servimage h3 {
 	text-align: center;
 	font-size: 0.9rem;
+	animation-name: scroller;
+	animation-delay: 0.6s;
+	animation-duration: 1s;
 }
 .servimage p {
 	text-align: center;
@@ -109,6 +127,8 @@
 	/* margin: 0; */
 	padding: 0.05rem;
 	line-height: 1.5rem;
+	animation-name: scroller;
+	animation-delay: 0.8s;
 }
 
 .servimage img {
