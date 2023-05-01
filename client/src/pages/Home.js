@@ -13,6 +13,8 @@ import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 import { FaLinkedin } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
+// import Aos from "aos";
+// import "aos/dist/aos.css"; 
 
 function Home() {
 
