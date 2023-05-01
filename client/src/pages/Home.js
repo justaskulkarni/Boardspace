@@ -13,11 +13,10 @@ import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 import { FaLinkedin } from "react-icons/fa";
 import { FaDiscord } from "react-icons/fa";
-// import Aos from "aos";
-// import "aos/dist/aos.css"; 
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Home() {
-
 	const [jeetoppers, setjeetoppers] = useState(0);
 	const [boardtoppers, setboardtoppers] = useState(0);
 	const [communitymembers, setcommunitymembers] = useState(0);
@@ -48,10 +47,10 @@ function Home() {
 		const json = await response.json();
 
 		if (json.success) {
-			setjeetoppers(json.jeetoppers)
-			setboardtoppers(json.boardtoppers)
-			setcommunitymembers(json.communitymembers)
-			setneettoppers(json.neettoppers)
+			setjeetoppers(json.jeetoppers);
+			setboardtoppers(json.boardtoppers);
+			setcommunitymembers(json.communitymembers);
+			setneettoppers(json.neettoppers);
 		}
 	};
 
@@ -72,6 +71,11 @@ function Home() {
 	});
 
 	var frole = returnRole(localStorage.getItem("Token"));
+
+	// Animations
+	useEffect(() => {
+		Aos.init({ duration: 2000, once: true });
+	}, []);
 
 	return (
 		<>
@@ -160,15 +164,15 @@ function Home() {
 
 				<div className={styles.servicessize}>
 					<div className={styles.services}>
-						<h2>SERVICES</h2>
-						<h4>
+						<h2 data-aos="fade-up">SERVICES</h2>
+						<h4 data-aos="fade-up">
 							Taking Your Education to
 							<br />
 							the Next Level
 						</h4>
 					</div>
 					<div className={styles.servimages}>
-						<div className={styles.servimage}>
+						<div data-aos="fade-up" className={styles.servimage}>
 							<center>
 								<img src={DoubtSolving} alt="" className={styles.servimg} />
 							</center>
@@ -179,7 +183,7 @@ function Home() {
 								solve student doubts 24/7
 							</p>
 						</div>
-						<div className={styles.servimage}>
+						<div data-aos="fade-up" className={styles.servimage}>
 							<center>
 								<img src={CommunityDriven} alt="" />
 							</center>
@@ -190,7 +194,7 @@ function Home() {
 								students to learn with
 							</p>
 						</div>
-						<div className={styles.servimage}>
+						<div data-aos="fade-up" className={styles.servimage}>
 							<center>
 								<img src={LiveSession} alt="" />
 							</center>
@@ -207,32 +211,40 @@ function Home() {
 				<div className={styles.people}>
 					<div className={styles.data}>
 						<center>
-							<h5>We're Good with Numbers</h5>
+							<h5 data-aos="fade-up" data-aos-duration="2000">
+								We're Good with Numbers
+							</h5>
 						</center>
 					</div>
-					<div className={styles.numbers}>
-						<div className={styles.rtd}>
+					<div className={styles.numbers} data-aos-duration="2000">
+						<div data-aos="fade-up" data-aos-duration="2000" className={styles.rtd}>
 							<p>
 								<h2>{jeetoppers}</h2>
 								IITian Mentors
 							</p>
 						</div>
-						<h1>.</h1>
-						<div className={styles.rtd}>
+						<h1 data-aos="fade-up" data-aos-duration="2000">
+							.
+						</h1>
+						<div data-aos="fade-up" data-aos-duration="2000" className={styles.rtd}>
 							<p>
 								<h2>{boardtoppers}</h2>
 								Board Toppers
 							</p>
 						</div>
-						<h1>.</h1>
-						<div className={styles.rtd}>
+						<h1 data-aos="fade-up" data-aos-duration="2000">
+							.
+						</h1>
+						<div data-aos="fade-up" data-aos-duration="2000" className={styles.rtd}>
 							<p>
 								<h2>{communitymembers}</h2>
 								Community Members
 							</p>
 						</div>
-						<h1>.</h1>
-						<div className={styles.rtd}>
+						<h1 data-aos="fade-up" data-aos-duration="2000">
+							.
+						</h1>
+						<div data-aos="fade-up" data-aos-duration="2000" className={styles.rtd}>
 							<p>
 								<h2>{neettoppers}</h2>
 								Neet Mentors
@@ -246,33 +258,37 @@ function Home() {
 						<div className={styles.graph}>
 							<div className={styles.finest}>
 								<p>
-									<h3>ABOUT</h3>
-									<h1>
+									<h3 data-aos="fade-up" data-aos-duration="2000">
+										ABOUT
+									</h3>
+									<h1 data-aos="fade-up" data-aos-duration="2000">
 										Our Community is
 										<br />
 										the Finest
 									</h1>
-									When you're in secondary school, everything seems <br /> obscure. Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, be it academics <br /> or extracurriculars. We{" "}
-									<b>
-										have been in your situation <br /> before
-									</b>
-									. To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
-									<br />
-									<br />
-									At boardspace, we focus on building a platform on which <br /> <b>secondary students (Grades 5-12)</b> can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
-									participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
-									<br />
-									<br />
-									We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. With us, you will be made to <br /> interact with <b>board toppers and IITian mentors </b>
-									<br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, you will build a{" "}
-									<b>
-										{" "}
-										lifelong <br /> network
-									</b>{" "}
-									of qualified students and have a reliable <br /> support system throughout your academic journey.
-									<br />
-									<br />
-									<b>Have a doubt? Ask a topper!</b>
+									<div data-aos="fade-left" data-aos-duration="2500">
+										When you're in secondary school, everything seems <br /> obscure. Due to <b>pressure from all sides</b> , students tend <br /> to get lost and can't focus on anything, be it academics <br /> or extracurriculars. We{" "}
+										<b>
+											have been in your situation <br /> before
+										</b>
+										. To ensure you don't make the same mistakes we <br /> made our solution → <b>boardspace</b>.
+										<br />
+										<br />
+										At boardspace, we focus on building a platform on which <br /> <b>secondary students (Grades 5-12)</b> can connect with <br /> experienced individuals to <b> solve their doubts</b>, <br />
+										participate in open discussions, clear their concepts and <br /> ask for <b> structured guidance</b>.
+										<br />
+										<br />
+										We are willing to <b> help you in all subjects</b>, no matter <br /> which board you are from. With us, you will be made to <br /> interact with <b>board toppers and IITian mentors </b>
+										<br /> directly in <b>free-form conversation.</b> In addition to <br /> impeccable mentorship, you will build a{" "}
+										<b>
+											{" "}
+											lifelong <br /> network
+										</b>{" "}
+										of qualified students and have a reliable <br /> support system throughout your academic journey.
+										<br />
+										<br />
+										<b>Have a doubt? Ask a topper!</b>
+									</div>
 								</p>
 							</div>
 						</div>
@@ -283,10 +299,18 @@ function Home() {
 					<div className={styles.join}>
 						<center>
 							<p>
-								<h2>Join our community</h2>
-								Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
+								<h2 data-aos="fade-left" data-aos-duration="2000">
+									Join our community
+								</h2>
+								<div data-aos="fade-left" data-aos-duration="2000">
+									Get early access to our community of dedicated mentors and <br /> doubt solvers for free!
+								</div>
 							</p>
-							<button className={styles.ent}>Enter Now</button>
+							<Link to={"/student/signup"}>
+								<button data-aos="fade-left" data-aos-duration="2000" className={styles.ent}>
+									Enter Now
+								</button>
+							</Link>
 						</center>
 					</div>
 				</div>
@@ -295,10 +319,18 @@ function Home() {
 					<Parallax strength={600} bgImage={footerbg} bgImageStyle={{ backgroundAttachment: "fixed", objectFit: "contain", aspectRatio: "auto", width: "70%" }}>
 						<div className={styles.info}>
 							<p>
-								<h4>CONTACT</h4>
-								<h1>Let's Work Together</h1>
-								<Link to={"mailto:info@boardspace.in"}>info@boardspace.in</Link>
-								<div className={styles.icons}>
+								<h4 data-aos="fade-left" data-aos-duration="2000">
+									CONTACT
+								</h4>
+								<h1 data-aos="fade-left" data-aos-duration="2000">
+									Let's Work Together
+								</h1>
+								<Link to={"mailto:info@boardspace.in"}>
+									<p data-aos="fade-left" data-aos-duration="2000">
+										info@boardspace.in
+									</p>
+								</Link>
+								<div className={styles.icons} data-aos="fade-left" data-aos-duration="2000">
 									<Link to={"https://www.linkedin.com/company/boards-pace/"}>
 										<FaLinkedin /> {"  "}
 									</Link>

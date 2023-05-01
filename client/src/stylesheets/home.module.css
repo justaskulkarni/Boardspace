@@ -73,14 +73,14 @@
 	padding-bottom: 1.5rem;
 	animation-name: scroller;
 	animation-duration: 1s;
-	
 }
 @keyframes scroller {
-	
-	from {transform: translate(0 ,50%);}
-	to{ }
+	from {
+		transform: translate(0, 50%);
+	}
+	to {
+	}
 }
-
 
 .services h4 {
 	margin: 0;
@@ -252,6 +252,7 @@
 	font-size: 1.5rem;
 	font-family: "Roboto", sans-serif;
 	font-weight: 500;
+	cursor: pointer;
 }
 .ent :hover {
 	background-color: #9e3ffd;
