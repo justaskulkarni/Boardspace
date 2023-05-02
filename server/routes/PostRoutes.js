@@ -101,6 +101,27 @@ router.get('/getallpost/student/:id', async(req, res) =>{
     }
 })
 
+router.get('/getallpost/mentor', async(req, res) =>{
+    try{
+        
+        const [jeeposts, neetposts, icseposts, sscposts, igcseposts, cbseposts, iscposts, ibposts, hscposts] = await Promise.all([
+            Post.find({ tag: 'JEE' }).sort({ solved: 1 }),
+            Post.find({ tag: 'Neet' }).sort({ solved: 1 }),
+            Post.find({ tag: 'ICSE' }).sort({ solved: 1 }),
+            Post.find({ tag: 'SSC' }).sort({ solved: 1 }),
+            Post.find({ tag: 'IGCSE' }).sort({ solved: 1 }),
+            Post.find({ tag: 'CBSE' }).sort({ solved: 1 }),
+            Post.find({ tag: 'ISC' }).sort({ solved: 1 }),
+            Post.find({ tag: 'IB' }).sort({ solved: 1 }),
+            Post.find({ tag: 'HSC' }).sort({ solved: 1 }),
+        ]);
+        res.json({ success: true, jeep : jeeposts, neetp : neetposts, icsep : icseposts, sscp : sscposts, igcsep : igcseposts, cbsep : cbseposts, iscp : iscposts, ibp : ibposts, hscp : hscposts })
+    }
+    catch(error){
+        res.status(400).json({error: error.message})
+    }
+})
+
 module.exports = router;
 
 // postSchema.pre('save', async function(next) {

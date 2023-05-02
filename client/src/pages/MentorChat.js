@@ -33,6 +33,10 @@ import { useNavigate } from "react-router-dom";
     navigate("/")
     navigate(0)
   }
+
+  const viewdoubt = () => {
+        navigate("/mentor/view")
+    }
   
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
@@ -120,7 +124,7 @@ import { useNavigate } from "react-router-dom";
         <div className={styles.smallcardleftnew2}>
           <div><button className={styles.leftbuttonnew} onClick={() => handlePersonalChat()}><span className={styles.notificationsnew}>Admin Chat
           </span></button></div>
-          <button className={styles.leftbuttonnew} ><span className={styles.notificationsnew}>View Doubts</span></button>
+          <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
         </div>
       </div>
 
