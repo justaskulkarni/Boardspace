@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+
+.section {
+	margin-top: 8rem;
+}
+
+.section h2 {
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	font-stretch: 200%;
+	letter-spacing: 0.1rem;
+	color: #9e3ffd;
+	text-align: center;
+	padding-bottom: 1.5rem;
+	animation-name: scroller;
+	animation-duration: 1s;
+}
+
+.section h4 {
+	margin: 0;
+	color: #16163f;
+	font-family: "Work Sans", sans-serif;
+	font-size: 2.25rem;
+	font-weight: 600;
+	text-align: center;
+	letter-spacing: -0.0225rem;
+	margin-bottom: 2rem;
+	line-height: 3rem;
+	animation-delay: 0.2s;
+	animation-duration: 1s;
+}
+
+.cardssection {
+	display: flex;
+	justify-content: center;
+	column-gap: 4rem;
+}
+
+.cards {
+	width: 25.1875rem;
+	height: 51.5625rem;
+	border: 0.0463rem;
+	border-style: solid;
+	border-color: #16163f;
+}
+
+.image {
+	height: 21.3125rem;
+	object-fit: contain;
+	margin-bottom: 2rem;
+}
+
+.belowimage {
+	padding-left: 2rem;
+	padding-right: 2rem;
+	/* display: block; */
+}
+
+.designation {
+	display: block;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+	/* line-height: 2.5rem; */
+}
+
+.name {
+	display: block;
+	font-family: "Work Sans", sans-serif;
+	font-size: 1.25rem;
+	font-weight: 600;
+	/* margin-top: 1rem; */
+	margin-bottom: 2rem;
+}
+
+.description {
+	display: block;
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 1.5rem;
+}
+
+.arrowdown {
+	width: 0;
+	height: 0;
+	border-left: 0.7rem solid transparent;
+	border-right: 0.7rem solid transparent;
+	border-top: 0.7rem solid #16163f;
+	margin-left: 3rem;
+}

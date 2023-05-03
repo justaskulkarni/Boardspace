@@ -74,6 +74,7 @@
 	animation-name: scroller;
 	animation-duration: 1s;
 }
+
 @keyframes scroller {
 	from {
 		transform: translate(0, 50%);
