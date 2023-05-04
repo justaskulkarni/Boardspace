@@ -119,7 +119,7 @@ const PostPostStudent = () => {
           
           <label className={styles2.inputlabel}>
             <p className={styles2.text}>Upload image of the doubt : </p>
-            <img src={imageupload} style = {{height : "3rem", width : "auto"}} className={styles2.inputimg} />
+            <img src={imageupload} style = {{height : "3rem", width : "auto"}} className={styles2.inputimg} alt=' ' />
             <input type="file" onChange={onImageChange} className={styles2.imginput} />
           </label>
           
@@ -127,7 +127,7 @@ const PostPostStudent = () => {
             <div className={styles2.previewdiv}>
               <p className={styles2.text}>Image Preview : </p>
               <div className={styles2.imgdiv}>
-                <img alt="preview image" src={image} className={styles2.previmg} />
+                <img alt='preview' src={image} className={styles2.previmg} />
               </div>
             </div>}
           

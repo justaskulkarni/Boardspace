@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 import { useNavigate, Link, useParams } from "react-router-dom";
-import imageupload from '../assets/imageupload.png'
 import jwt_decode from "jwt-decode";
 import subicon from "../assets/send.png";
 import styles2 from '../stylesheets/gotoview.module.css'
@@ -150,7 +149,7 @@ const PostGoToViewStudent = () => {
           <div className={styles2.something}>
             <p className={styles2.txt}>Image :</p>
             <div className={styles2.dispdiv}>
-              <img src={imgurl} className={styles2.previmg} />
+              <img src={imgurl} className={styles2.previmg} alt=''/>
             </div>
           </div>
         </div>

@@ -34,12 +34,6 @@ const Signup = () => {
 			});
 		}
 
-		if (json.isOtpVerified) {
-			setIsLoading(false);
-			localStorage.setItem("Token", json.authToken);
-			navigate("/youin");
-		}
-
 		if (json.success) {
 			setIsLoading(false);
 			setShowOtpDiv(true);

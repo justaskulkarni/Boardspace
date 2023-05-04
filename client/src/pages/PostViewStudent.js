@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import styles2 from '../stylesheets/postpost.module.css'

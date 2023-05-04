@@ -12,7 +12,7 @@ import footerbg from "../assets/Home/Footer.png";
 import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 import { FaLinkedin } from "react-icons/fa";
-import { FaDiscord } from "react-icons/fa";
+// import { FaDiscord } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -143,7 +143,11 @@ function Home() {
 									</React.Fragment>
 								)}
 
-								{/* <button className={"tail"}>Our Team</button> */}
+								<button className={"tail"}>
+									<Link className={"link1"} to="/ourteam">
+										Our Team
+									</Link>
+								</button>
 							</div>
 						</div>
 

@@ -55,15 +55,15 @@ router.post('/login', async (req, res) => {
         }
 
         if (!reqmentor.otpverified) {
-            res.json({ noverify: "Kindly complete the signup proceddure before loggin in" })
+            res.json({ noverify: "Please complete the signup process before attempting to log in." })
         }
 
         if (!reqmentor.isverify) {
-            res.json({ noverify: "Tumhi verify nahi jhale ahe balak thoda time ruka" })
+            res.json({ noverify: "Your verification is currently pending. Please allow for some time for the verification process to be completed." })
         }
 
         if (reqmentor.isreject) {
-            res.json({ reject: "Tumcha request delete jhala ahe bethu ya kadhi tari" })
+            res.json({ reject: "Unfortunately, we must inform you that your signup request has been rejected. For further details, please contact us at info@boardspace.in" })
         }
 
         const match = await bcrypt.compare(req.body.password, reqmentor.password)
@@ -105,14 +105,13 @@ router.post('/semisignup', async (req, res) => {
         if (mexist) {
             if (mexist.otpverified) {
                 if (mexist.isverify) {
-                    const token = createToken(mexist._id, "Mentor")
-                    res.json({ isOtpVerified: true, authToken: token })
+                    throw Error("We are pleased to inform you that your email has been verified. Kindly proceed to sign in directly.")
                 }
                 else if (mexist.isreject) {
-                    res.json({ noverify: "Your request is rejected contact admin" })
+                    res.json({ noverify: "Unfortunately, we must inform you that your signup request has been rejected. For further details, please contact us at info@boardspace.in" })
                 }
                 else if (!mexist.isverify) {
-                    res.json({ noverify: "Have patience we have got everything" })
+                    res.json({ noverify: "Your verification is currently pending. Please allow for some time for the verification process to be completed." })
                 }
             }
             else {
@@ -176,7 +175,7 @@ router.post('/verifyotp', async (req, res) => {
         const reqm = await Mentor.findOne({ email: req.body.email })
 
         if (!req.body.otp) {
-            throw Error('Enter a OTP')
+            throw Error('Field cannot be left blank')
         }
 
         const matchotp = await bcrypt.compare(req.body.otp, reqm.otp)
@@ -187,7 +186,7 @@ router.post('/verifyotp', async (req, res) => {
             res.json({ success: true })
         }
         else {
-            throw Error('Enter a valid OTP')
+            throw Error('Incorrect OTP')
         }
 
     } catch (error) {
@@ -220,7 +219,7 @@ router.post('/signup', async (req, res) => {
 
         await umentor.save()
 
-        res.json({ success: true, mssg: "You have succesfully completed eveyrhting kindly wait till we verify you ohk" })
+        res.json({ success: true, mssg: "Your verification is currently pending. Please allow for some time for the verification process to be completed." })
 
     } catch (error) {
         res.status(400).json({ error: error.message })
