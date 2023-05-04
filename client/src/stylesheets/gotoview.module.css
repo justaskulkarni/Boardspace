@@ -87,7 +87,7 @@
 .comm{
     background-color: rgba(242, 242, 242, 0.252);
     height: 15vh;
-    width: 75vh;
+    width: 90%;
     border-radius: 2vh;
     margin: 1vh 4vh 1vh 2vh;
 }
@@ -116,17 +116,15 @@
     font-family: "Poppins", sans-serif ;
     margin-left: 3vh;
 }
-.incomment{
+.sub {
     background-color: #f3f0f0;
-    border-radius: 2vh;
-    width: 64vh;
-    height: 4vh;
+    border-radius: 1.5rem;
+    width: 32%;
+    height: 4%;
     text-align: center;
-    margin: 0.5vh 2vh 2vh 4vh;
+    margin: 0.2% 2% 2% 5%;
     font-size: 1.5rem;
-    /* padding-left: 1rem; */
     top: 82vh;
-    padding-top: 1.5vh;
     font-size: 1rem;
     color: black;
     outline: none;
@@ -136,9 +134,22 @@
 	resize: none;
 	border-bottom-style: solid;
 	border-bottom-width: 0.04rem;
-    position: fixed; 
+    position: fixed;  
 }
 
+.buts{
+    font-size: 3rem;
+    /* background-color: #9e3ffd; */
+    margin: 1.8% 2% 2% 81.5%;
+    /* outline: none; */
+    /* border-radius: 0.5rem; */
+    /* padding: 1rem; */
+    /* width: 10%; */
+    /* height: 2rem; */
+    /* border: 0.01rem solid black; */
+    top: 82vh;
+    /* left: 90vh; */
+}
 
 .right {
 	margin-top: 5%;
@@ -192,9 +203,9 @@
 	background-color: #a689e1;
 	position: relative;
     margin-left: 1rem;
-    position: fixed;
-    top: 83vh;
-    left: 186vh;
+    margin: 1.8% 2% 2% 84%;
+    /* top: 83vh; */
+    /* left: 186vh; */
 }
 
 .butimgdiv {
