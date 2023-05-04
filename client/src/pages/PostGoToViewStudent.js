@@ -172,8 +172,10 @@ const PostGoToViewStudent = () => {
         </div>
         {userId === postdet.owner &&
           <form onSubmit={handleSubmit}>
-            <input className={styles.incomment} placeholder='Comment something' onChange={handleinput} value={newcomm}/>
-            <button>Submit</button>
+            <input className={styles2.sub} placeholder='Comment something' onChange={handleinput} value={newcomm}/>
+            <button className={styles2.uploadbutton}> 
+             <img src={subicon} className={styles2.butimgdiv} alt="" />
+            </button> 
           </form>
         }
       </div>
