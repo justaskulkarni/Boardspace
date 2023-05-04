@@ -334,9 +334,6 @@ function Home() {
 									<Link to={"https://www.linkedin.com/company/boards-pace/"}>
 										<FaLinkedin /> {"  "}
 									</Link>
-									<Link to={"https://discord.gg/V3nWJABdaQ"}>
-										<FaDiscord /> {"  "}
-									</Link>
 								</div>
 							</p>
 							<center>
