@@ -72,7 +72,9 @@ const PostGoToViewStudent = () => {
       getcomments()
     }
     
-  }, [comments])
+    console.log(comments)
+
+  })
 
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -151,10 +153,7 @@ const PostGoToViewStudent = () => {
       <div className={styles2.rightmost}>
         <div className={styles2.nums}><b>Comments</b></div>
         <div className={styles2.poster}>
-
           <div className={styles2.entertxt}>
-            {/* <div className={styles2.nums}><b>#comment no</b></div> */}
-
 
             <div className={styles.contrast}>
               <div className={styles2.comm}>
@@ -167,7 +166,7 @@ const PostGoToViewStudent = () => {
                 </div>
               </div>
             </div>
-
+          
           </div>
         </div>
         {userId === postdet.owner &&

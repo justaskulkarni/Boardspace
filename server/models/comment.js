@@ -7,6 +7,6 @@ const commentSchema = new Schema({
     commentedbyrole: {type : String , enum : ['Admin' , 'Student', 'Mentor']}, 
     content: {type: String},
     postid: {type: Schema.Types.ObjectId, ref: 'Post'}
-})
+}, {timestamps : true})
 
 module.exports = mongoose.model('Comment', commentSchema)

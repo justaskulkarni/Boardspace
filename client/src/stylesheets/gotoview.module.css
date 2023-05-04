@@ -91,28 +91,18 @@
     border-radius: 2vh;
     margin: 1vh 4vh 1vh 2vh;
 }
-/* .comm h4{
-    font-size: 1rem;
-    margin-left: 3vh;
-    padding-top: 1vh;
-    text-align: center;
-} */
-/* .comm p{
-    margin: 1vh 1vh 1vh 1vh
-} */
+
 .inner{
     display: flex;
     flex-direction: row ;
     justify-content: space-around;
-    width: 100%;
-    /* margin: 0; */
+    width: 100%;  
 }
 .inner p{
     margin: 0;
     font-family: "Poppins", sans-serif ;
 }
 .commcon p{
-    /* margin: 0; */
     font-family: "Poppins", sans-serif ;
     margin-left: 3vh;
 }
@@ -139,16 +129,8 @@
 
 .buts{
     font-size: 3rem;
-    /* background-color: #9e3ffd; */
     margin: 1.8% 2% 2% 81.5%;
-    /* outline: none; */
-    /* border-radius: 0.5rem; */
-    /* padding: 1rem; */
-    /* width: 10%; */
-    /* height: 2rem; */
-    /* border: 0.01rem solid black; */
     top: 82vh;
-    /* left: 90vh; */
 }
 
 .right {
@@ -166,7 +148,6 @@
 	font-family: "Montserrat", sans-serif;
 	text-align: left;
 	font-size: 1.5rem;
-    /* background-color: white; */
     padding-left: 24%;
 }
 
@@ -194,18 +175,13 @@
 	margin-right: 2%;
 	right: 0;
 }
-/* .dispimg{
-    position: fixed;
-} */
+
 .uploadbutton {
 	border: none;
 	border-radius: 0.75rem;
 	background-color: #a689e1;
 	position: relative;
-    margin-left: 1rem;
-    margin: 1.8% 2% 2% 84%;
-    /* top: 83vh; */
-    /* left: 186vh; */
+    margin: 1.8% 0% 2% 84%;
 }
 
 .butimgdiv {
@@ -231,5 +207,4 @@
     flex-direction: column;
     max-height: 60vh;
     max-width: 30vh;
-    background-color: aqua;
 }

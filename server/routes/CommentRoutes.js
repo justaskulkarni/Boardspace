@@ -10,18 +10,24 @@ const Comment = require('../models/comment')
 
 router.get('/getall/:id', async(req, res) =>{
     const {id} = req.params;
-    try {
-        Comment.find({ postid: id }, async (err, data) => {
-            if (err) {
-                throw Error(`${err}`)
-            }
-            else {
-                res.json({ success: true, data: data })
-            }
-        })
-    } catch (error) {
-        res.status(400).json({ error: error.message })
+    if(id)
+    {
+        try {
+            Comment.find({ postid: id })
+                .sort({createdAt : 'asc'})
+                .exec ( (err, data) => {
+                if (err) {
+                    throw Error(`${err}`)
+                }
+                else if(data.length != 0){
+                    res.json({ success: true, data: data })
+                }
+            })
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
     }
+    
 })
 
 router.post('/create/:id', async(req,res) => {

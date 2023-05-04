@@ -55,7 +55,6 @@ const PostViewStudent = () => {
 
     useEffect(() => {  
         getalldoubts()
-        console.log(cbsepost)
     },[userId, jeepost,neetpost,cbsepost,sscpost,icsepost,iscpost,ibpost,hscpost,igcsepost])
 
 
