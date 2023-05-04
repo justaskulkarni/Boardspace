@@ -8,7 +8,7 @@
 .section h2 {
 	margin: 0;
 	font-family: "Montserrat", sans-serif;
-	font-size: 1rem;
+	font-size: 3rem;
 	font-weight: 600;
 	font-stretch: 200%;
 	letter-spacing: 0.1rem;
@@ -19,7 +19,7 @@
 	animation-duration: 1s;
 }
 
-.section h4 {
+.heading {
 	margin: 0;
 	color: #16163f;
 	font-family: "Work Sans", sans-serif;
@@ -41,7 +41,6 @@
 
 .cards {
 	width: 25.1875rem;
-	height: 51.5625rem;
 	border: 0.0463rem;
 	border-style: solid;
 	border-color: #16163f;
@@ -81,7 +80,7 @@
 	display: block;
 	font-family: "Montserrat", sans-serif;
 	font-weight: 400;
-	font-size: 15px;
+	font-size: 0.9063rem;
 	line-height: 1.5rem;
 }
 
@@ -92,4 +91,84 @@
 	border-right: 0.7rem solid transparent;
 	border-top: 0.7rem solid #16163f;
 	margin-left: 3rem;
+}
+
+.icons {
+	display: block;
+	margin-top: 4rem;
+	padding-bottom: 2.25rem;
+	color: black;
+	height: 1.5625rem;
+	width: 1.5625rem;
+	object-fit: contain;
+}
+
+.devsection {
+	display: flex;
+	justify-content: center;
+	column-gap: 3rem;
+	height: 40rem;
+}
+
+.devcards {
+	width: 17.5rem;
+	border: 0.0463rem;
+	border-style: solid;
+	border-color: #16163f;
+	overflow-x: hidden;
+	/* Isko unhide karke image center karde */
+}
+
+.devcards img {
+	object-fit: contain;
+	/* align-items: center; */
+	/* margin: auto; */
+}
+
+.imagediv {
+	/* display: block; */
+}
+
+.devicons {
+	display: inline-block;
+	margin-top: 4rem;
+	margin-bottom: 1rem;
+	margin-right: 0.5rem;
+	color: black;
+}
+
+.final {
+	height: 25rem;
+	width: 100%;
+}
+
+.info {
+	margin-left: 10rem;
+}
+
+.info p h4 {
+	color: #9e3ffd;
+	padding-top: 4rem;
+	font-family: "Montserrat", sans-serif;
+	letter-spacing: 0.1rem;
+}
+
+.info p h1 {
+	font-family: "Open Sans", sans-serif;
+}
+
+.info a {
+	text-decoration: none;
+	color: rgb(0, 0, 0);
+}
+
+.footericons {
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
+	font-size: 1.5rem;
+	width: 6rem;
+}
+
+.emptydiv {
+	height: 20%;
 }
