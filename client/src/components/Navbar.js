@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import jwt_decode from 'jwt-decode'
 
 import navbarlogo from '../assets/navbarlogo.png'
 import styles from '../stylesheets/navbar.module.css'
-
-
 
 const Navbar = () => {
 
@@ -16,18 +13,6 @@ const Navbar = () => {
     navigate("/")
   }
 
-  const returnRole = (reqtoken) => {
-    if (reqtoken) {
-      var decoded = jwt_decode(reqtoken)
-      return (decoded.role)
-    }
-    else {
-      return (null)
-    }
-  }
-
-  var frole = returnRole(localStorage.getItem("Token"))
-
   return (
 
     <div className={styles.outerdiv}>
@@ -37,12 +22,15 @@ const Navbar = () => {
           <button className={styles.tail} onClick={handleLogout}>Logout</button>
           :
           <>
-          <button className={styles.tail}><Link className={styles.link1} to="/login">Mentor</Link></button>
-          <button className={styles.tail}><Link className={styles.link1} to="/student/login">Student</Link></button>
+            <button className={styles.tail}><Link className={styles.link1} to="/login">Mentor</Link></button>
+            <button className={styles.tail}><Link className={styles.link1} to="/student/login">Student</Link></button>
           </>
         }
-
-        {/* <button className={styles.tail}>Our Team</button> */}
+        <button className={"tail"}>
+          <Link className={"link1"} to="/ourteam">
+            Our Team
+          </Link>
+        </button>
       </div>
     </div>
   )

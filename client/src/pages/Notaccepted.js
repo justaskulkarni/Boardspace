@@ -92,62 +92,66 @@ const Notaccepted = () => {
         />
       </head>
 
-      
-        <div className={styles.outerdiv}>
-          <div>
-            <Link to="/">
-              <img className={styles.imgdiv} src={navbarlogo} alt="" />
-            </Link>
-          </div>
-          <div className={styles.buttons}>
-            {localStorage.getItem("Token") && frole === "Mentor" ? (
-              <button className={styles.button1} onClick={handleLogout}>
-                Mentor Logout
-              </button>
-            ) : (
-              <button className={styles.button1}>
-                <Link className={styles.link1} to="/login">
-                  Mentor
-                </Link>
-              </button>
-            )}
 
-            {localStorage.getItem("Token") && frole === "Student" ? (
-              <button className={styles.button1} onClick={handleLogout}>
-                Student Logout
-              </button>
-            ) : (
-              <button className={styles.button1}>
-                <Link className={styles.link1} to="/student/login">
-                  Student
-                </Link>
-              </button>
-            )}
-            {/* <button className={styles.button1}>Our Team</button> */}
-          </div>
+      <div className={styles.outerdiv}>
+        <div>
+          <Link to="/">
+            <img className={styles.imgdiv} src={navbarlogo} alt="" />
+          </Link>
         </div>
+        <div className={styles.buttons}>
+          {localStorage.getItem("Token") && frole === "Mentor" ? (
+            <button className={styles.button1} onClick={handleLogout}>
+              Mentor Logout
+            </button>
+          ) : (
+            <button className={styles.button1}>
+              <Link className={styles.link1} to="/login">
+                Mentor
+              </Link>
+            </button>
+          )}
 
-        <div className={styles.message}>You are not authorized.</div>
-        {location.state && (
-          <div className={styles.message2}>{location.state.message}</div>
-        )}
-        <div className={styles.container}>
-          <div className={styles.neon}>Access Denied</div>
-          <div className={styles.entiredoor}>
-            <div style={doorframe}>
-              <div className={styles.door} style={door_css}>
-                <div style={rectangle}></div>
-                <div className={styles.handle}></div>
-                <div style={window_css}>
-                  <div className={styles.eye}></div>
-                  <div className={styles.eye} style={{ left: "65px" }}></div>
-                  <div style={leaf_css}></div>
-                </div>
+          {localStorage.getItem("Token") && frole === "Student" ? (
+            <button className={styles.button1} onClick={handleLogout}>
+              Student Logout
+            </button>
+          ) : (
+            <button className={styles.button1}>
+              <Link className={styles.link1} to="/student/login">
+                Student
+              </Link>
+            </button>
+          )}
+          <button className={styles.button1}>
+            <Link className={styles.link1} to="/ourteam">
+              Our Team
+            </Link>
+          </button>
+        </div>
+      </div>
+
+      <div className={styles.message}>You are not authorized.</div>
+      {location.state && (
+        <div className={styles.message2}>{location.state.message}</div>
+      )}
+      <div className={styles.container}>
+        <div className={styles.neon}>Access Denied</div>
+        <div className={styles.entiredoor}>
+          <div style={doorframe}>
+            <div className={styles.door} style={door_css}>
+              <div style={rectangle}></div>
+              <div className={styles.handle}></div>
+              <div style={window_css}>
+                <div className={styles.eye}></div>
+                <div className={styles.eye} style={{ left: "65px" }}></div>
+                <div style={leaf_css}></div>
               </div>
             </div>
           </div>
         </div>
-      
+      </div>
+
     </>
   );
 };

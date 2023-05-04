@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { Link, useNavigate } from "react-router-dom";
 import "../stylesheets/navbar.css";
 import footerbg from "../assets/Home/Footer.png";
 
@@ -16,18 +15,60 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { Parallax } from "react-parallax";
 import { FaLinkedin } from "react-icons/fa";
-import { FaDiscord } from "react-icons/fa";
+// import { FaDiscord } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
+
+import navbarlogo from '../assets/navbarlogo.png'
+import styles2 from '../stylesheets/navbar.module.css'
+import "../stylesheets/navbar.css";
 
 const OurTeam = () => {
 	// Animations
 	useEffect(() => {
 		Aos.init({ duration: 2000, once: true });
 	}, []);
+
+	useEffect(() => {
+		window.onscroll = function () {
+			if (document.documentElement.scrollTop > 60) {
+				document.querySelector("#nav").classList.add("temp");
+			} else {
+				if (document.querySelector("#nav").classList.contains("temp")) {
+					document.querySelector("#nav").classList.remove("temp");
+				}
+			}
+		};
+	});
+
+	let navigate = useNavigate();
+
+	const handleLogout = () => {
+		localStorage.removeItem("Token");
+		navigate("/");
+	};
+
 	return (
 		<>
-			<Navbar />
+			<div className={styles2.outerdiv} id="nav">
+				<div><Link to="/"><img className={styles2.imgdiv} src={navbarlogo} alt="" /></Link></div>
+				<div className={styles2.buttons}>
+					{(localStorage.getItem("Token")) ?
+						<button className={styles2.tail} onClick={handleLogout}>Logout</button>
+						:
+						<>
+							<button className={styles2.tail}><Link className={styles2.link1} to="/login">Mentor</Link></button>
+							<button className={styles2.tail}><Link className={styles2.link1} to="/student/login">Student</Link></button>
+						</>
+					}
+					<button className={styles2.tail}>
+						<Link className={styles2.link1} to="/ourteam">
+							Our Team
+						</Link>
+					</button>
+				</div>
+			</div>
+
 			<div className={styles.section}>
 				<h2>OUR TEAM</h2>
 				<h4 className={styles.heading}>

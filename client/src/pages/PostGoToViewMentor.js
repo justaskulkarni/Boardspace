@@ -2,17 +2,12 @@ import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 import { useNavigate, Link, useParams } from "react-router-dom";
-import imageupload from '../assets/imageupload.png'
-import jwt_decode from "jwt-decode";
 import subicon from "../assets/send.png";
 import styles2 from '../stylesheets/gotoview.module.css'
 
 const PostGoToViewMentor = () => {
 
     const { findhashtag } = useParams()
-
-    var decoded = jwt_decode(localStorage.getItem("Token"))
-    const userId = decoded.id
 
     const [postdet, setpostdet] = useState({ hastag: "", caption: "", pid: "", owner: "" })
     const [imgurl, setimgurl] = useState(null)
@@ -83,7 +78,7 @@ const PostGoToViewMentor = () => {
                     <div className={styles2.something}>
                         <p className={styles2.txt}>Image :</p>
                         <div className={styles2.dispdiv}>
-                            <img src={imgurl} className={styles2.previmg} />
+                            <img src={imgurl} className={styles2.previmg} alt=''/>
                         </div>
                     </div>
                 </div>
@@ -95,7 +90,7 @@ const PostGoToViewMentor = () => {
                 <div className={styles2.poster}>
                     
                         <div className={styles2.entertxt  }>
-                          {/* <div className={styles2.nums}><b>#comment no</b></div> */}
+                          
                           <div className={styles.contrast}>
                               <div className={styles2.comm}>
                                 <div className={styles2.inner}>

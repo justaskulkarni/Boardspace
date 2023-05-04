@@ -9,7 +9,6 @@ import AdminPrivateRoutes from "./utils/AdminPrivateRoutes";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/Home";
-import Protected from "./pages/Protected";
 import Signup2 from "./pages/Signup2";
 import StudentLogin from "./pages/StudentLogin";
 import AdminLogin from "./pages/AdminLogin";
@@ -54,7 +53,6 @@ function App() {
 						<Route path="/notaccepted" element={<Notaccepted />} />
 						<Route path="/ourteam" element={<OurTeam />} />
 						<Route element={<MentorPrivateRoutes />}>
-							<Route path="/youin" element={<Protected />} />
 							<Route path="/mentor/chat" element={<MentorChat socket={socket} />} />
 							<Route path="/mentor/view/:findhashtag" element={<PostGoToViewMentor />} />
 							<Route path="/mentor/view" element={<PostViewMentor />} />

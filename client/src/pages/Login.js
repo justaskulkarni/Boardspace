@@ -45,7 +45,7 @@ const Login = () => {
 		if (json.success) {
 			setIsLoading(false);
 			localStorage.setItem("Token", json.authToken);
-			navigate("/youin");
+			navigate("/mentor/chat");
 		}
 
 		if (json.error) {
