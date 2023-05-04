@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
 import { useNavigate, Link, useParams } from "react-router-dom";
@@ -19,6 +19,7 @@ const PostGoToViewStudent = () => {
   const [error, seterror] = useState(null)
   const [comments , setcomments] = useState(null)
   const [newcomm , setnewcomm] = useState("")
+  const [arr, setArr] = useState([{}])
 
   useEffect(() => {
 
@@ -44,6 +45,13 @@ const PostGoToViewStudent = () => {
     
     getpost()
   }, [])
+
+    const commentsRef = useRef(null);
+
+  useEffect(() => {
+    commentsRef.current.scrollTo(0, commentsRef.current.scrollHeight);
+  }, [arr]); 
+  
 
   useEffect(() => {
 
@@ -72,8 +80,7 @@ const PostGoToViewStudent = () => {
       getcomments()
     }
     
-    console.log(comments)
-
+    setArr(comments)
   })
 
   const handleSubmit = async(e) => {
@@ -152,21 +159,27 @@ const PostGoToViewStudent = () => {
 
       <div className={styles2.rightmost}>
         <div className={styles2.nums}><b>Comments</b></div>
-        <div className={styles2.poster}>
-          <div className={styles2.entertxt}>
+        <div className={styles2.poster} ref={commentsRef}>
+          <div className={styles2.entertxt} >
 
-            <div className={styles.contrast}>
-              <div className={styles2.comm}>
-                <div className={styles2.inner}>
-                  <p> <b>Name</b></p>
-                  <p>Tags</p>
+            {arr && (
+              <div>
+                {arr.map((comment) =>(
+                  <div className={styles.contrast}>
+                    <div className={styles2.comm}>
+                      <div className={styles2.inner}>
+                        <p> <b>Name</b></p>
+                        <p>Tags</p>
+                      </div>
+                      <div className={styles2.commcon}>
+                        <p>Content: {comment.content}</p>
+                      </div>
+                  </div>
                 </div>
-                <div className={styles2.commcon}>
-                  <p>Content</p>
-                </div>
+                ))}
               </div>
-            </div>
-          
+            )}
+      
           </div>
         </div>
         {userId === postdet.owner &&
