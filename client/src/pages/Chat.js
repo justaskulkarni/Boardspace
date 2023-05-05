@@ -11,12 +11,9 @@ import dashboardlogo from '../assets/navbarlogo.png'
 const Chat = (props) => {
 
   const { socket } = props;
-  const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
-  const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
-  const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([]);
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
@@ -36,7 +33,6 @@ const Chat = (props) => {
     socket.emit("getpreviouschats", roomName)
 
     setMessages([])
-    setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
     
   };
@@ -53,7 +49,6 @@ const Chat = (props) => {
     socket.emit("getpreviouschats", roomId)
 
     setMessages([])
-    setPreviousRoom(currentRoom)
     setCurrentRoom(roomId);
     
   };
@@ -109,6 +104,7 @@ const Chat = (props) => {
   const gotopost = () => {
     navigate("/student/post")
   }
+
 
   const gotochat = () => {
     navigate("/student/chat")

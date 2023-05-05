@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { io } from "socket.io-client";
 import styles from '../stylesheets/chat.module.css'
 import Navbar from "../components/Navbar";
 import jwt_decode from 'jwt-decode'
@@ -8,21 +7,15 @@ import sendicon from '../assets/send.png'
 import roomlogo from '../assets/roomarrow.png'
 import { useNavigate } from "react-router-dom";
 
- const SOCKET_URL = "";
-
- const socket = io(SOCKET_URL);
 
  const MentorChat = (props) => {
 
   const navigate = useNavigate()
   const { socket } = props;
-  const messagesRef = useRef(null);
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
   const [ fields, setFields ] = useState("")
-  const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
-  const [roomToJoin, setRoomToJoin] = useState("")
   const [messages, setMessages] = useState([]);
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
@@ -52,7 +45,6 @@ import { useNavigate } from "react-router-dom";
     socket.emit("getpreviouschats", roomName)
 
     setMessages([])
-    setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
     
   };
@@ -69,7 +61,6 @@ import { useNavigate } from "react-router-dom";
     socket.emit("getpreviouschats", roomId)
 
     setMessages([])
-    setPreviousRoom(currentRoom)
     setCurrentRoom(roomId);
     
   };

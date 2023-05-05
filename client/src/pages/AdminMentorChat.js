@@ -18,7 +18,6 @@ const AdminMentorChat = (props) => {
   const [currentMessage, setCurrentMessage] = useState("")
   const currentUserName = "Admin"
   const { id } = useParams();
-  const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [messages, setMessages] = useState([])
   const [name, setname] = useState("")
@@ -27,7 +26,7 @@ const AdminMentorChat = (props) => {
   
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
-  const fromrole = decoded.fromrole
+  
   const userId = decoded.id
 
   const handleChange1 = (event) => {

@@ -26,7 +26,7 @@ const AdminStudentChat = (props) => {
   
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
-  const fromrole = decoded.fromrole
+  
   const userId = decoded.id
 
   const handleChange1 = (event) => {

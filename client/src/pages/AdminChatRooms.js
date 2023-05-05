@@ -13,14 +13,10 @@ import roomlogo from '../assets/roomarrow.png'
 const AdminChatRooms = (props) => {
 
   const { socket } = props
-
-
   const [currentMessage, setCurrentMessage] = useState("")
   const currentUserName = "Admin"
-
-  const [previousRoom, setPreviousRoom] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
-  const [roomToJoin, setRoomToJoin] = useState("")
+  
   const [messages, setMessages] = useState([])
 
 
@@ -43,7 +39,6 @@ const AdminChatRooms = (props) => {
     socket.emit("getpreviouschats", roomName)
 
     setMessages([])
-    setPreviousRoom(currentRoom)
     setCurrentRoom(roomName);
   };
   const handleSubmit = async (e) => {
