@@ -74,7 +74,7 @@ router.get('/getpost/:hashtag', async(req, res) =>{
         const command = new GetObjectCommand(getObjectParams)
         const url = await getSignedUrl(s3, command, {expiresIn : 3600})
 
-        res.json({ success: true, rpost : reqpost, imgurl : url, postid : reqpost.imgurl})
+        res.json({ success: true, rpost : reqpost, imgurl : url, postid : reqpost.imgurl, solv : reqpost.solved})
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -118,6 +118,22 @@ router.get('/getallpost/mentor', async(req, res) =>{
         res.json({ success: true, jeep : jeeposts, neetp : neetposts, icsep : icseposts, sscp : sscposts, igcsep : igcseposts, cbsep : cbseposts, iscp : iscposts, ibp : ibposts, hscp : hscposts })
     }
     catch(error){
+        res.status(400).json({error: error.message})
+    }
+})
+
+router.get('/changsolv/:hash' , async(req,res) => {
+    try {
+        
+        const {hash} = req.params
+
+        const reqp = await Post.findOne({hashtag : hash})
+        reqp.solved = !reqp.solved
+        await reqp.save()
+
+        res.json({success : true})
+
+    } catch (error) {
         res.status(400).json({error: error.message})
     }
 })

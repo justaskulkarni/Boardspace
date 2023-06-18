@@ -12,7 +12,6 @@ import footerbg from "../assets/Home/Footer.png";
 import jwt_decode from "jwt-decode";
 import { Parallax } from "react-parallax";
 import { FaLinkedin } from "react-icons/fa";
-// import { FaDiscord } from "react-icons/fa";
 import Aos from "aos";
 import "aos/dist/aos.css";
 
@@ -84,70 +83,38 @@ function Home() {
 					<Parallax strength={600} bgImage={bg} bgClassName={styles.bgimg} bgImageStyle={{ height: "60rem", width: "140%", objectFit: "cover", backgroundPosition: "right", backgroundAttachment: "fixed" }}>
 						<div className={"outerdiv"} id="nav">
 							<div>
-								<Link to="/">
-									<img className={"imgdiv"} src={navbarlogo} alt="" />
-								</Link>
+								<Link to="/"><img className={"imgdiv"} src={navbarlogo} alt="" /></Link>
 							</div>
 							<div className={"buttons"}>
 								{!localStorage.getItem("Token") && (
 									<React.Fragment>
-										<button className={"tail"}>
-											<Link className={"link1"} to="/login">
-												Mentor
-											</Link>
-										</button>
-										<button className={"tail"}>
-											<Link className={"link1"} to="/student/login">
-												Student
-											</Link>
-										</button>
+										<button className={"tail"}><Link className={"link1"} to="/login">Mentor</Link></button>
+										<button className={"tail"}><Link className={"link1"} to="/student/login">Student</Link></button>
 									</React.Fragment>
 								)}
 
 								{localStorage.getItem("Token") && frole === "Mentor" && (
 									<React.Fragment>
-										<button className={"tail"} onClick={handleLogout}>
-											Logout
-										</button>
-										<button className={"tail"}>
-											<Link className={"link1"} to="/mentor/chat">
-												Go To Dashboard
-											</Link>
-										</button>
+										<button className={"tail"} onClick={handleLogout}>Logout</button>
+										<button className={"tail"}><Link className={"link1"} to="/mentor/chat">Go To Dashboard</Link></button>
 									</React.Fragment>
 								)}
 
 								{localStorage.getItem("Token") && frole === "Student" && (
 									<React.Fragment>
-										<button className={"tail"} onClick={handleLogout}>
-											Logout
-										</button>
-										<button className={"tail"}>
-											<Link className={"link1"} to="/student/chat">
-												Go To Dashboard
-											</Link>
-										</button>
+										<button className={"tail"} onClick={handleLogout}>Logout</button>
+										<button className={"tail"}><Link className={"link1"} to="/student/chat">Go To Dashboard</Link></button>
 									</React.Fragment>
 								)}
 
 								{localStorage.getItem("Token") && frole === "Admin" && (
 									<React.Fragment>
-										<button className={"tail"} onClick={handleLogout}>
-											Logout
-										</button>
-										<button className={"tail"}>
-											<Link className={"link1"} to="/admin/landing">
-												Go To Dashboard
-											</Link>
-										</button>
+										<button className={"tail"} onClick={handleLogout}>Logout</button>
+										<button className={"tail"}><Link className={"link1"} to="/admin/landing">Go To Dashboard</Link></button>
 									</React.Fragment>
 								)}
 
-								<button className={"tail"}>
-									<Link className={"link1"} to="/ourteam">
-										Our Team
-									</Link>
-								</button>
+								<button className={"tail"}><Link className={"link1"} to="/ourteam">Our Team</Link></button>
 							</div>
 						</div>
 

@@ -16,9 +16,11 @@ const PostGoToViewStudent = () => {
   const [postdet, setpostdet] = useState({ hastag: "", caption: "", pid: "", owner: "" })
   const [imgurl, setimgurl] = useState(null)
   const [error, seterror] = useState(null)
-  const [comments , setcomments] = useState(null)
-  const [newcomm , setnewcomm] = useState("")
+  const [comments, setcomments] = useState(null)
+  const [newcomm, setnewcomm] = useState("")
   const [arr, setArr] = useState([{}])
+
+  const [checked, setChecked] = useState(false)
 
   useEffect(() => {
 
@@ -39,18 +41,19 @@ const PostGoToViewStudent = () => {
       if (json.success) {
         setimgurl(json.imgurl)
         setpostdet({ hashtag: json.rpost.hashtag, caption: json.rpost.caption, pid: json.postid, owner: json.rpost.doubtaskedby })
+        setChecked(json.solv)
       }
     }
-    
+
     getpost()
   }, [])
 
-    const commentsRef = useRef(null);
+  const commentsRef = useRef(null);
 
   useEffect(() => {
     commentsRef.current.scrollTo(0, commentsRef.current.scrollHeight);
-  }, [arr]); 
-  
+  }, [arr]);
+
 
   useEffect(() => {
 
@@ -68,38 +71,56 @@ const PostGoToViewStudent = () => {
         seterror(json.error)
       }
 
-      if(json.success)
-      {
+      if (json.success) {
         setcomments(json.data)
       }
     }
 
-    if(postdet.pid)
-    {
+    if (postdet.pid) {
       getcomments()
     }
-    
+
     setArr(comments)
   })
 
-  const handleSubmit = async(e) => {
+  const toggleButton = async (e) => {
+    var checkbox = document.getElementById("toggle");
+    setChecked(!checked)
+    //kd loader daal idr
+    const response = await fetch(`/api/post/changsolv/${findhashtag}`, {
+      method : 'GET',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+    })
+
+    const json = await response.json()
+    
+    if(json.error)
+    {
+      seterror(json.error)
+    }
+
+    //idr if(json.success){loader band}
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const response = await fetch(`/api/comment/create/${postdet.pid}`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body : JSON.stringify({ ownerid : userId, orole : 'Student', cont : newcomm }),
+      body: JSON.stringify({ ownerid: userId, orole: 'Student', cont: newcomm }),
     })
 
     const json = await response.json()
 
-      if (json.error) {
-        seterror(json.error)
-      }
+    if (json.error) {
+      seterror(json.error)
+    }
 
-      if(json.success)
-      {
-        setnewcomm("")
-      }
+    if (json.success) {
+      setnewcomm("")
+    }
   }
 
   const handleinput = (e) => {
@@ -136,6 +157,9 @@ const PostGoToViewStudent = () => {
           <button className={styles.leftbuttonnew} onClick={gotochat}><span className={styles.notificationsnew}>Chat</span></button>
           <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
+          <form>
+
+          </form>
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
@@ -149,7 +173,7 @@ const PostGoToViewStudent = () => {
           <div className={styles2.something}>
             <p className={styles2.txt}>Image :</p>
             <div className={styles2.dispdiv}>
-              <img src={imgurl} className={styles2.previmg} alt=''/>
+              <img src={imgurl} className={styles2.previmg} alt='' />
             </div>
           </div>
         </div>
@@ -157,13 +181,25 @@ const PostGoToViewStudent = () => {
       </div>
 
       <div className={styles2.rightmost}>
-        <div className={styles2.nums}><b>Comments</b></div>
+        <div className={styles2.headingcomm}>
+          <div className={styles2.nums2}>
+            <b className={styles2.nums}>Comments</b>
+          </div>
+          <div className={styles2.toggleSwitch}>
+            <p className={styles2.solv}>Solved ?</p>
+            <label htmlFor="toggle" className={styles2.togglebutton}>
+              <input type="checkbox" id="toggle" onChange={toggleButton} checked={checked} />
+              <span className={styles2.togglebuttonSlider} style={{ left: checked ? "30px" : "4px" , backgroundColor: checked ? "#7fff7f" : "#ff7f7f"}}></span>
+            </label>
+          </div>
+        </div>
+
         <div className={styles2.poster} ref={commentsRef}>
           <div className={styles2.entertxt} >
 
             {arr && (
               <div>
-                {arr.map((comment) =>(
+                {arr.map((comment) => (
                   <div className={styles.contrast}>
                     <div className={styles2.comm}>
                       <div className={styles2.inner}>
@@ -173,24 +209,24 @@ const PostGoToViewStudent = () => {
                       <div className={styles2.commcon}>
                         <p>Content: {comment.content}</p>
                       </div>
+                    </div>
                   </div>
-                </div>
                 ))}
               </div>
             )}
-      
+
           </div>
         </div>
+
         {userId === postdet.owner &&
           <form onSubmit={handleSubmit}>
-            <input className={styles2.sub} placeholder='Comment something' onChange={handleinput} value={newcomm}/>
-            <button className={styles2.uploadbutton}> 
-             <img src={subicon} className={styles2.butimgdiv} alt="" />
-            </button> 
+            <input className={styles2.sub} placeholder='Comment something' onChange={handleinput} value={newcomm} />
+            <button className={styles2.uploadbutton}>
+              <img src={subicon} className={styles2.butimgdiv} alt="" />
+            </button>
           </form>
         }
       </div>
-
     </React.Fragment>
   )
 }

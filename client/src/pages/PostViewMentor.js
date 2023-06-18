@@ -63,6 +63,7 @@ const PostViewMentor = () => {
 
     const navigatepost = (hashtag) => {
         navigate(`/mentor/view/${hashtag}`)
+        navigate(0)
     }
 
     const handleLogout = () => {

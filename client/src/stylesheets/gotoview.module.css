@@ -12,13 +12,14 @@
     display: flex;
 }
 
-.txt{
+.txt {
     font-family: "Poppins", sans-serif;
-	font-size: 1.125rem;
-	font-weight: 500;
+    font-size: 1.125rem;
+    font-weight: 500;
     padding-left: 4%;
 }
-.caption{
+
+.caption {
     font-family: "Montserrat", sans-serif;
     font-size: 1.5rem;
     padding-left: 5%;
@@ -28,7 +29,7 @@
     margin-left: 3%;
 }
 
-.previewdiv{
+.previewdiv {
     display: flex;
 }
 
@@ -36,13 +37,13 @@
     margin-top: 3%;
     margin-left: 5%;
     height: 40vh;
-    width : 50%;
+    width: 50%;
 }
 
 .previmg {
     object-fit: contain;
     height: 40vh;
-    width : 100%;
+    width: 100%;
 }
 
 .postbutton {
@@ -59,32 +60,37 @@
 }
 
 .poster {
-	/* overflow-y: auto; */
-	overflow-x: hidden;
+    /* overflow-y: auto; */
+    overflow-x: hidden;
 }
-.entertxt{
+
+.entertxt {
     height: 62vh;
     margin-left: 8vh;
     max-height: 80vh;
 }
-.nums{
+
+.nums {
     overflow: hidden;
-    margin-top: 2vh;
-    text-align: center;
-    margin-bottom: 2vh;
+    margin-left: 55%;
     font-family: "Poppins", sans-serif;
-    font-size: 1rem;
-    /* color: #d9d9d9; */
-    /* background-color: #d9d9d9; */
-    /* position: fixed; */
+    font-size: 1.5rem;
 }
-.contrast{
+
+.nums2 {
+    width: 55%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.contrast {
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
 }
-.comm{
+
+.comm {
     background-color: rgba(242, 242, 242, 0.252);
     height: 15vh;
     width: 90%;
@@ -92,119 +98,172 @@
     margin: 1vh 4vh 1vh 2vh;
 }
 
-.inner{
+.inner {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
     justify-content: space-around;
-    width: 100%;  
+    width: 100%;
 }
-.inner p{
+
+.inner p {
     margin: 0;
-    font-family: "Poppins", sans-serif ;
+    font-family: "Poppins", sans-serif;
 }
-.commcon p{
-    font-family: "Poppins", sans-serif ;
+
+.commcon p {
+    font-family: "Poppins", sans-serif;
     margin-left: 3vh;
 }
+
 .sub {
     background-color: #f3f0f0;
     border-radius: 1.5rem;
-    width: 32%;
+    width: 34%;
     height: 4%;
     text-align: center;
-    margin: 0.2% 2% 2% 5%;
+    margin: 1% 2% 1% 5%;
     font-size: 1.5rem;
     top: 82vh;
     font-size: 1rem;
     color: black;
     outline: none;
-	border: 0px;
-	word-wrap: break-word;
-	word-break: break-all;
-	resize: none;
-	border-bottom-style: solid;
-	border-bottom-width: 0.04rem;
-    position: fixed;  
+    border: 0px;
+    word-wrap: break-word;
+    word-break: break-all;
+    resize: none;
+    border-bottom-style: solid;
+    border-bottom-width: 0.04rem;
+    position: fixed;
 }
 
-.buts{
+.buts {
     font-size: 3rem;
     margin: 1.8% 2% 2% 81.5%;
     top: 82vh;
 }
 
 .right {
-	margin-top: 5%;
-	background-color: #d9d9d9;
-	width: 66%;
-	overflow-y: hidden;
-	height: 80vh;
-	position: fixed;
-	border-radius: 2%;
-	margin-left: 17%;
+    margin-top: 5%;
+    background-color: #d9d9d9;
+    width: 66%;
+    overflow-y: hidden;
+    height: 80vh;
+    position: fixed;
+    border-radius: 2%;
+    margin-left: 17%;
 }
 
 .roomname {
-	font-family: "Montserrat", sans-serif;
-	text-align: left;
-	font-size: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+    text-align: left;
+    font-size: 1.5rem;
     padding-left: 24%;
 }
 
 
-.dispimg p{
+.dispimg p {
     text-align: left;
     padding-left: 4vh;
 }
-.dispdiv{
+
+.dispdiv {
     object-fit: contain;
     height: 60%;
     width: 47%;
-    position: center;                                   
+    position: center;
     margin: 0.5% 0 5vh 4%;
 }
 
 .rightmost {
-	width: 45%;
-	height: 100%;
-	position: fixed;
-	margin-top: 5%;
-	background-color: #a689e1;
-	height: 80vh;
-	border-radius: 3%;
-	margin-right: 2%;
-	right: 0;
+    width: 45%;
+    height: 100%;
+    position: fixed;
+    margin-top: 5%;
+    background-color: #a689e1;
+    height: 80vh;
+    border-radius: 3%;
+    margin-right: 2%;
+    right: 0;
 }
 
 .uploadbutton {
-	border: none;
-	border-radius: 0.75rem;
-	background-color: #a689e1;
-	position: relative;
-    margin: 1.8% 0% 2% 84%;
+    border: none;
+    border-radius: 0.75rem;
+    background-color: #a689e1;
+    position: relative;
+    margin: 1.8% 0% 2% 88%;
 }
 
 .butimgdiv {
-	height: 2rem;
-	margin-bottom: 0.4vh;
+    height: 2rem;
+    margin-bottom: 0.4vh;
 }
 
 .something {
-    margin-top: auto    ;
+    margin-top: auto;
 }
 
 .caption {
     padding: 0 0 0 0;
-    margin : -3% 0 0 0;
+    margin: -3% 0 0 0;
     font-family: "Montserrat", sans-serif;
-	font-size: 0.75rem;
-	font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 500;
 }
-.enclose{
+
+.enclose {
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     max-height: 60vh;
     max-width: 30vh;
+}
+
+.headingcomm {
+    display: flex;
+    justify-content: space-around;
+}
+
+.togglebutton {
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: #cccccc;
+    border-radius: 17px;
+    position: relative;
+    cursor: pointer;
+}
+
+.togglebutton::after {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    top: 4px;
+    transition: transform 0.3s ease;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+.togglebuttonSlider {
+    position: absolute;
+    top: 4px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    transition: left 0.3s ease;
+}
+
+.toggleSwitch {
+    margin-top: 2vh;
+    display: flex;
+}
+
+.solv {
+    margin-top: 0.8vh;
+    padding-right: 1vh;
 }

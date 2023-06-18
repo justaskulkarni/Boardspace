@@ -77,9 +77,7 @@ const Login = () => {
 				<h3 className={styles.login}>Login</h3>
 				<h6 className={styles.newsignup}>
 					New to this site?{" "}
-					<Link className={styles.signupclick} to={"/signup"}>
-						Sign Up
-					</Link>
+					<Link className={styles.signupclick} to={"/signup"}>Sign Up</Link>
 				</h6>
 				<div>
 					<form onSubmit={handleSubmit} className={styles.forms}>
