@@ -6,6 +6,8 @@ import jwt_decode from "jwt-decode";
 import subicon from "../assets/send.png";
 import styles2 from '../stylesheets/gotoview.module.css'
 
+import searchicon from '../assets/search.png'
+
 const PostGoToViewStudent = () => {
 
   const { findhashtag } = useParams()
@@ -21,6 +23,8 @@ const PostGoToViewStudent = () => {
   const [arr, setArr] = useState([{}])
 
   const [checked, setChecked] = useState(false)
+
+  const [gohash , setgohash] = useState("")
 
   useEffect(() => {
 
@@ -106,7 +110,7 @@ const PostGoToViewStudent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch(`/api/comment/create/${postdet.pid}`, {
+    const response = await fetch(`/api/comment/create/me/${postdet.pid}`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ownerid: userId, orole: 'Student', cont: newcomm }),
@@ -128,7 +132,18 @@ const PostGoToViewStudent = () => {
     setnewcomm(e.target.value)
   }
 
+  const hello = (e) => {
+    e.preventDefault()
+    setgohash(e.target.value)
+  }
+
   let navigate = useNavigate()
+
+  const srch = (e) => {
+    e.preventDefault()
+    navigate(`/student/view/${gohash}`)
+    navigate(0)
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("Token")
@@ -158,7 +173,8 @@ const PostGoToViewStudent = () => {
           <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
           <form>
-
+            <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles2.sidform}></input>
+            <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch}/></button>
           </form>
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
@@ -181,18 +197,26 @@ const PostGoToViewStudent = () => {
       </div>
 
       <div className={styles2.rightmost}>
-        <div className={styles2.headingcomm}>
-          <div className={styles2.nums2}>
-            <b className={styles2.nums}>Comments</b>
-          </div>
-          <div className={styles2.toggleSwitch}>
+        
+          {userId === postdet.owner ?
+            <div className={styles2.headingcomm}>
+            <div className={styles2.nums2}>
+              <b className={styles2.nums}>Comments</b>
+            </div>
+            <div className={styles2.toggleSwitch}>
             <p className={styles2.solv}>Solved ?</p>
             <label htmlFor="toggle" className={styles2.togglebutton}>
               <input type="checkbox" id="toggle" onChange={toggleButton} checked={checked} />
               <span className={styles2.togglebuttonSlider} style={{ left: checked ? "30px" : "4px" , backgroundColor: checked ? "#7fff7f" : "#ff7f7f"}}></span>
             </label>
           </div>
-        </div>
+          </div>
+          :
+            <div className={styles2.nums3}>
+              <b>Comments</b>
+            </div>
+          }
+        
 
         <div className={styles2.poster} ref={commentsRef}>
           <div className={styles2.entertxt} >
@@ -202,9 +226,14 @@ const PostGoToViewStudent = () => {
                 {arr.map((comment) => (
                   <div className={styles.contrast}>
                     <div className={styles2.comm}>
-                      <div className={styles2.inner}>
-                        <p> <b>Name</b></p>
-                        <p>Tags</p>
+                      <div>
+                        {comment.commentedbyme ? 
+                        <div className={styles2.inner2}><p><b>Me</b></p></div> 
+                        : 
+                        <div className={styles2.inner}> 
+                          <p> <b>Name</b></p>
+                          <p>Tags</p> 
+                        </div>}
                       </div>
                       <div className={styles2.commcon}>
                         <p>Content: {comment.content}</p>

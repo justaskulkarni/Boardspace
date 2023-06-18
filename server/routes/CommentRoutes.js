@@ -15,6 +15,7 @@ router.get('/getall/:id', async(req, res) =>{
         try {
             Comment.find({ postid: id })
                 .sort({createdAt : 'asc'})
+                .populate('commentedby')
                 .exec ( (err, data) => {
                 if (err) {
                     throw Error(`${err}`)
@@ -30,14 +31,13 @@ router.get('/getall/:id', async(req, res) =>{
     
 })
 
-router.post('/create/:id', async(req,res) => {
+router.post('/create/me/:id', async(req,res) => {
     const {id} = req.params
 
     try {
         
         const comm = new Comment({
-          commentedby : req.body.ownerid,
-          commentedbyrole : req.body.orole,
+          commentedbyme : true,
           content : req.body.cont,
           postid : id  
         })
@@ -45,7 +45,6 @@ router.post('/create/:id', async(req,res) => {
         await comm.save()
 
         res.json({success : true})
-
 
     } catch (error) {
         res.status(400).json({ error: error.message })
