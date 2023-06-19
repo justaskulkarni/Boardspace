@@ -45,6 +45,15 @@
 	text-align: center;
 }
 
+.login2 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 2.25rem;
+	font-weight: 500;
+	margin-bottom: 13%;
+	margin-top: 35%;
+	text-align: center;
+}
+
 .newsignup {
 	padding-bottom: 2rem;
 	font-family: "Montserrat", sans-serif;
@@ -61,6 +70,13 @@
 
 .forms {
 	height: 8.125rem;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1.125rem;
+	font-weight: 300;
+}
+
+.forms2 {
+	height: 6rem;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 300;

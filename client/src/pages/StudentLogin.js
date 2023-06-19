@@ -48,7 +48,7 @@ const StudentLogin = () => {
 
 	const forgotp = (e) => {
 		e.preventDefault()
-		navigate("/forgotpassword")
+		navigate("/student/forgotpassword")
 	}
 
 	const onChange = (event) => {
