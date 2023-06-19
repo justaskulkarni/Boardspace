@@ -15,8 +15,6 @@ const StudentPrivateRoutes = () => {
 
     var frole = returnRole(localStorage.getItem("Token"))
 
-    console.log(frole)
-
     return (
         (localStorage.getItem("Token") && frole === "Student") ? <Outlet /> : <Navigate to="/student/login" />
     )

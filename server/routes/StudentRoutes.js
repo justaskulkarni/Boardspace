@@ -76,7 +76,7 @@ router.post('/signup', async (req, res) => {
             throw Error('Enter a valid number')
         }
 
-        if (!validator.isStrongPassword(req.body.password)) {
+        if (!validator.isStrongPassword(req.body.password,{minLength : 8, minUppercase : 0, minSymbols:0})) {
             throw Error('Password not strong enough')
         }
 
@@ -211,6 +211,33 @@ router.post('/enterproc' , async(req,res) => {
 
         const token = createToken3(req.body.email,process.env.UPDATE_KEY)
         res.json({success : true , granttoken : token})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/changepass' , async(req,res) =>{
+
+    try {   
+    
+        if (!validator.isStrongPassword(req.body.pass,{minLength : 8, minUppercase : 0, minSymbols:0})) {
+            throw Error('Password not strong enough')
+        }
+
+        if (!req.body.pass) {
+            throw Error('Kindly enter an password')
+        }
+
+        const reqstud = await Student.findOne({ email: req.body.email })
+
+        const salt = await bcrypt.genSalt(12)
+        const hashp = await bcrypt.hash(req.body.pass, salt)
+
+        reqstud.password = hashp
+        await reqstud.save()
+
+        res.json({success : true})  
 
     } catch (error) {
         res.status(400).json({ error: error.message })

@@ -14,6 +14,7 @@ const ForgotPass = () => {
     const [showOtpDiv, setShowOtpDiv] = useState(false);
     const [sendotp, setsendotp] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoading2, setIsLoading2] = useState(false);
 
     let navigate = useNavigate();
 
@@ -45,9 +46,6 @@ const ForgotPass = () => {
             setTimeout(() => {
                 setError(null);
             }, 4000);
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 500);
         }
     };
 
@@ -65,7 +63,7 @@ const ForgotPass = () => {
         e.preventDefault();
 
         // show loading sign
-        setIsLoading(true);
+        setIsLoading2(true);
 
         var decoded = jwt_decode(localStorage.getItem("Otp"));
 
@@ -80,43 +78,34 @@ const ForgotPass = () => {
             const json = await response.json();
 
             if (json.success) {
-                setIsLoading(false);
+                setIsLoading2(false);
                 localStorage.setItem("UpdateToken", json.granttoken)
+                localStorage.removeItem("Otp")
                 navigate("/student/updatepass")
             }
 
             if (json.error) {
 
-                setIsLoading(false);
+                setIsLoading2(false);
                 setError(json.error);
                 setTimeout(() => {
                     setError(null);
                 }, 4000);
-                setTimeout(() => {
-                    setIsLoading(false);
-                }, 500);
-
             }
         }
         else {
 
-            setIsLoading(false);
+            setIsLoading2(false);
             setError("Otp invalid");
             setTimeout(() => {
                 setError(null);
-            }, 4000);
-            setTimeout(() => {
-                setIsLoading(false);
-            }, 500);
-            
+            }, 4000); 
             localStorage.removeItem("Otp")
             setsendotp(true)
             setShowOtpDiv(false)
         }
 
-    };
-
-
+    }
 
     return (
         <React.Fragment>
@@ -163,7 +152,7 @@ const ForgotPass = () => {
                         <label htmlFor="otp">Enter OTP</label>
                         <input type="number" name="otp" onChange={onChange2} placeholder="" className={styles.fields} />
                         <div>
-                            {isLoading ? (
+                            {isLoading2 ? (
                                 <div className={styles.loadingAnim}>
                                     <div className={styles.dotSpinner}>
                                         <div className={styles.dotSpinnerDot}></div>
