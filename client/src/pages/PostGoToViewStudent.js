@@ -234,7 +234,7 @@ const PostGoToViewStudent = () => {
             <div className={styles2.toggleSwitch}>
             <p className={styles2.solv}>Solved ?</p>
             <label htmlFor="toggle" className={styles2.togglebutton}>
-              <input type="checkbox" id="toggle" onChange={toggleButton} checked={checked} />
+              <input type="checkbox" id="toggle" onChange={toggleButton} checked={checked} className={styles2.hidehim}/>
               <span className={styles2.togglebuttonSlider} style={{ left: checked ? "30px" : "4px" , backgroundColor: checked ? "#7fff7f" : "#ff7f7f"}}></span>
             </label>
           </div>

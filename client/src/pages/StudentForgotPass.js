@@ -4,13 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import styles from "../stylesheets/MentorAuth.module.css";
 
+import jwt_decode from 'jwt-decode'
+
 const ForgotPass = () => {
 
     const [credentials, setCredentials] = useState("");
-    const [otp, setotp] = useState("");
+    const [enotp, setotp] = useState("");
     const [error, setError] = useState(null);
     const [showOtpDiv, setShowOtpDiv] = useState(false);
-    const [sendotp , setsendotp] = useState(true);
+    const [sendotp, setsendotp] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
     let navigate = useNavigate();
@@ -65,33 +67,53 @@ const ForgotPass = () => {
         // show loading sign
         setIsLoading(true);
 
-        const response = await fetch("/api/mentor/verifyotp", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: credentials.email, otp: credentials.otp }),
-        });
+        var decoded = jwt_decode(localStorage.getItem("Otp"));
 
-        const json = await response.json();
+        if (decoded.otp === enotp) {
 
-        if (json.success) {
-            setIsLoading(false);
-            navigate("/complete_details", {
-                state: {
-                    email: credentials.email,
-                },
+            const response = await fetch("/api/student/enterproc", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: credentials}),
             });
-        }
 
-        if (json.error) {
+            const json = await response.json();
+
+            if (json.success) {
+                setIsLoading(false);
+                localStorage.setItem("UpdateToken", json.granttoken)
+                navigate("/student/updatepass")
+            }
+
+            if (json.error) {
+
+                setIsLoading(false);
+                setError(json.error);
+                setTimeout(() => {
+                    setError(null);
+                }, 4000);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 500);
+
+            }
+        }
+        else {
+
             setIsLoading(false);
-            setError(json.error);
+            setError("Otp invalid");
             setTimeout(() => {
                 setError(null);
             }, 4000);
             setTimeout(() => {
                 setIsLoading(false);
             }, 500);
+            
+            localStorage.removeItem("Otp")
+            setsendotp(true)
+            setShowOtpDiv(false)
         }
+
     };
 
 
@@ -127,7 +149,7 @@ const ForgotPass = () => {
                                 </div>
                             </div>
                         )}
-                        { !isLoading && sendotp && (
+                        {!isLoading && sendotp && (
                             <button className={styles.loginbutton} id="submitButton">
                                 <span className={styles.logintext}>Send OTP</span>
                             </button>

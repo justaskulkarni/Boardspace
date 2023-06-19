@@ -27,6 +27,12 @@ const createToken2 = (otp) => {
     });
 }
 
+const createToken3 = (email , note) => {
+    return jwt.sign({email , note}, process.env.SECRET, {
+        expiresIn: 10 * 60
+    });
+}
+
 const mailjet = new Mailjet.apiConnect(process.env.MJ_PUBLIC, process.env.MJ_SECRET)
 
 router.post('/login', async (req, res) => {
@@ -187,6 +193,24 @@ router.post('/forgotp', async (req, res) => {
         else {
             throw Error("Kindly enter a valid email")
         }
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/enterproc' , async(req,res) => {
+
+    try {
+        const reqstud = await Student.findOne({ email: req.body.email })
+
+        if(!reqstud)
+        {
+            throw Error("Invalid email")
+        }
+
+        const token = createToken3(req.body.email,process.env.UPDATE_KEY)
+        res.json({success : true , granttoken : token})
 
     } catch (error) {
         res.status(400).json({ error: error.message })

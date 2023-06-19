@@ -32,6 +32,7 @@ import PostViewMentor from "./pages/PostViewMentor";
 import PostGoToViewMentor from "./pages/PostGoToViewMentor";
 import OurTeam from "./pages/OurTeam";
 import StudentForgotPass from "./pages/StudentForgotPass";
+import { StudentUpdatePass } from "./pages/StudentUpdatePass";
 
 import { io } from "socket.io-client";
 

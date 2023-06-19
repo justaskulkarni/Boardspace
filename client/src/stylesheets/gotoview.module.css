@@ -258,7 +258,7 @@
     transition: transform 0.3s ease;
 }
 
-input[type="checkbox"] {
+.hidehim{
     display: none;
 }
 
