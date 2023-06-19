@@ -155,6 +155,28 @@
 	border-color: #fac1c7;
 }
 
+.success {
+	height: 1.5rem;
+	width: 17.5rem;
+	background-color: #d4edda;
+	border-radius: 0.5rem;
+	/* color: #721c24; */
+	color: #155724;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	text-align: center;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	font-weight: 500;
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: #c3e6cb;
+}
+
 /* Loading Animation */
 
 .dotSpinner {
