@@ -5,6 +5,8 @@ import { useNavigate, Link} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import styles2 from '../stylesheets/postpost.module.css'
+import styles3 from '../stylesheets/gotoview.module.css'
+import searchicon from '../assets/search.png'
 
 const PostViewStudent = () => {
 
@@ -21,7 +23,8 @@ const PostViewStudent = () => {
     const [ibpost, setibpost] = useState([])
     const [hscpost, sethscpost] = useState([])
     const [neetpost, setneetpost] = useState([])
-
+    const [searchError, setSearchError] = useState(null)
+    const [gohash, setgohash] = useState("")
 
     const getalldoubts = async() => {
 
@@ -57,8 +60,41 @@ const PostViewStudent = () => {
         getalldoubts()
     },[userId, jeepost,neetpost,cbsepost,sscpost,icsepost,iscpost,ibpost,hscpost,igcsepost])
 
+    const hello = (e) => {
+        e.preventDefault()
+        setgohash(e.target.value)
+    }
 
     let navigate = useNavigate()
+
+    const srch = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await fetch(`/api/post/isValid/${gohash}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+
+            const json = await response.json()
+
+            if (json.success) {
+                navigate(`/student/view/${gohash}`)
+                navigate(0)
+            }
+            else {
+                setSearchError("Hashtag invalid")
+
+                setTimeout(() => {
+                    setSearchError(null);
+                }, 4000);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
 
     const navigatepost = (hashtag) => {
         navigate(`/student/view/${hashtag}`)
@@ -91,6 +127,13 @@ const PostViewStudent = () => {
                     <button className={styles.leftbuttonnew} onClick={gotochat}><span className={styles.notificationsnew}>Chat</span></button>
                     <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
                     <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
+                    <form>
+                        <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles3.sidform}></input>
+                        <button className={styles3.formbutton}><img src={searchicon} className={styles3.srchimg} onClick={srch} /></button>
+                    </form>
+                    {searchError &&
+                        <button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
+                    }
                 </div>
                 {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
             </div>
