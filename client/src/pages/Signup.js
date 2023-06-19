@@ -47,9 +47,9 @@ const Signup = () => {
 				otp: "",
 				name: "",
 			});
-			setTimeout(() => {
-				setError(null);
-			}, 4000);
+			// setTimeout(() => {
+			// 	setError(null);
+			// }, 4000);
 			setTimeout(() => {
 				setIsLoading(false);
 			}, 500);
@@ -137,8 +137,8 @@ const Signup = () => {
 								</button>
 							)}
 						</div>
+						{error && <div className={styles.error}>{error}</div>}
 					</form>
-					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			)}
 			<div>
