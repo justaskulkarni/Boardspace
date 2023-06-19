@@ -22,8 +22,10 @@ const PostGoToViewMentor = () => {
   const [arr, setArr] = useState([{}])
   const [checked, setChecked] = useState(false)
   const [gohash , setgohash] = useState("")
+  const [fetchedComments, setFetchedComments] = useState(false);
 
   const commentsRef = useRef(null);
+  
 
   useEffect(() => {
     commentsRef.current.scrollTo(0, commentsRef.current.scrollHeight);
@@ -77,11 +79,13 @@ const PostGoToViewMentor = () => {
       }
     }
 
-    if (postdet.pid) {
+    if (postdet.pid && !fetchedComments) {
       getcomments()
+      setFetchedComments(true)
     }
 
     setArr(comments)
+    
   })
 
   const handleSubmit = async (e) => {
@@ -100,6 +104,7 @@ const PostGoToViewMentor = () => {
 
     if (json.success) {
       setnewcomm("")
+      navigate(0)
     }
   }
 

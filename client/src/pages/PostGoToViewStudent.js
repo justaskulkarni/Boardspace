@@ -21,7 +21,7 @@ const PostGoToViewStudent = () => {
   const [comments, setcomments] = useState(null)
   const [newcomm, setnewcomm] = useState("")
   const [arr, setArr] = useState([{}])
-
+  const [fetchedComments, setFetchedComments] = useState(false);
   const [checked, setChecked] = useState(false)
 
   const [gohash , setgohash] = useState("")
@@ -80,8 +80,9 @@ const PostGoToViewStudent = () => {
       }
     }
 
-    if (postdet.pid) {
+    if (postdet.pid && !fetchedComments) {
       getcomments()
+      setFetchedComments(true)
     }
 
     setArr(comments)
@@ -121,9 +122,10 @@ const PostGoToViewStudent = () => {
     if (json.error) {
       seterror(json.error)
     }
-
+    
     if (json.success) {
       setnewcomm("")
+      navigate(0)
     }
   }
 
