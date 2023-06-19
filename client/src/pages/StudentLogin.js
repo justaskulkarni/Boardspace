@@ -46,6 +46,11 @@ const StudentLogin = () => {
 		}
 	};
 
+	const forgotp = (e) => {
+		e.preventDefault()
+		navigate("/forgotpassword")
+	}
+
 	const onChange = (event) => {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value });
 	};
@@ -74,7 +79,7 @@ const StudentLogin = () => {
 							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
 							<div>
-								<button className={styles.forgot}>Forgot password?</button>
+								<button className={styles.forgot} onClick={forgotp}>Forgot password?</button>
 							</div>
 							<div>
 								{isLoading ? (

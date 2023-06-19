@@ -31,6 +31,7 @@ import PostGoToViewStudent from "./pages/PostGoToViewStudent";
 import PostViewMentor from "./pages/PostViewMentor";
 import PostGoToViewMentor from "./pages/PostGoToViewMentor";
 import OurTeam from "./pages/OurTeam";
+import ForgotPass from "./pages/ForgotPass";
 
 import { io } from "socket.io-client";
 
@@ -52,6 +53,7 @@ function App() {
 						<Route path="/admin/login/boardspace" element={<AdminLogin />} />
 						<Route path="/notaccepted" element={<Notaccepted />} />
 						<Route path="/ourteam" element={<OurTeam />} />
+						<Route path="/forgotpassword" element={<ForgotPass />}/>
 						<Route element={<MentorPrivateRoutes />}>
 							<Route path="/mentor/chat" element={<MentorChat socket={socket} />} />
 							<Route path="/mentor/view/:findhashtag" element={<PostGoToViewMentor />} />
