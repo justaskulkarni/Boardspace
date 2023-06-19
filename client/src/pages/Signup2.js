@@ -259,7 +259,6 @@ const Signup2 = () => {
 				<div className={styles.signupform}>
 					<h3 className={styles.login}>Enter your Details </h3>
 
-					{error && <div className={styles.error}>{error}</div>}
 					<form onSubmit={handleSubmit2} encType="multipart/form">
 						<div>
 							<label htmlFor="Password" className={styles.password}>
@@ -272,9 +271,9 @@ const Signup2 = () => {
 										<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
 										<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
 									</div>
-									<div className={styles.popdiv}>
+									<div className={styles.passpopdiv}>
 										<div class={styles.arrowup}></div>
-										<div className={styles.poptext}>
+										<div className={styles.passpoptext}>
 											<strong>Password must contain :</strong>
 											<br />• atleast 8 characters
 											<br />• atleast 1 number
@@ -287,9 +286,9 @@ const Signup2 = () => {
 										<input type="text" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
 										<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
 									</div>
-									<div className={styles.popdiv}>
+									<div className={styles.passpopdiv}>
 										<div class={styles.arrowup}></div>
-										<div className={styles.poptext}>
+										<div className={styles.passpoptext}>
 											<strong>Password must contain :</strong>
 											<br />• atleast 8 characters
 											<br />• atleast 1 number
@@ -411,6 +410,7 @@ const Signup2 = () => {
 							)}
 						</div>
 					</form>
+					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			</div>
 		</>
