@@ -23,7 +23,7 @@ const PostGoToViewStudent = () => {
   const [arr, setArr] = useState([{}])
   const [fetchedComments, setFetchedComments] = useState(false);
   const [checked, setChecked] = useState(false)
-
+  const [searchError, setSearchError] = useState(null)
   const [gohash , setgohash] = useState("")
 
   useEffect(() => {
@@ -141,10 +141,33 @@ const PostGoToViewStudent = () => {
 
   let navigate = useNavigate()
 
-  const srch = (e) => {
+  const srch = async (e) => {
     e.preventDefault()
-    navigate(`/student/view/${gohash}`)
-    navigate(0)
+    try {
+      const response = await fetch(`/api/post/isValid/${gohash}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+
+      const json = await response.json()
+      
+      if (json.success) {
+        navigate(`/student/view/${gohash}`)
+        navigate(0)
+      }
+      else{
+        setSearchError("Hashtag invalid")
+        
+        setTimeout(() => {
+          setSearchError(null);
+        }, 4000);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   const handleLogout = () => {
@@ -178,6 +201,9 @@ const PostGoToViewStudent = () => {
             <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles2.sidform}></input>
             <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch}/></button>
           </form>
+          {searchError &&
+            <button className={styles2.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
+          }
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
@@ -225,8 +251,8 @@ const PostGoToViewStudent = () => {
 
             {arr && (
               <div>
-                {arr.map((comment) => (
-                  <div className={styles.contrast}>
+                {arr.map((comment, idx) => (
+                  <div key = {idx} className={styles.contrast}>
                     <div className={styles2.comm}>
                       <div>
                         {comment.commentedbyme ? 

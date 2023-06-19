@@ -138,6 +138,21 @@ router.get('/changsolv/:hash' , async(req,res) => {
     }
 })
 
+router.get('/isValid/:hash', async(req, res) =>{
+    try {
+        const {hash} = req.params;
+        const reqp = await Post.findOne({hashtag: hash})
+        if(reqp){
+            res.json({success : true})
+        }
+        else{
+            res.json({success : false})
+        }
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+})
+
 module.exports = router;
 
 // postSchema.pre('save', async function(next) {

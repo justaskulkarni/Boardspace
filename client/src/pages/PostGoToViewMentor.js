@@ -17,15 +17,15 @@ const PostGoToViewMentor = () => {
   const [postdet, setpostdet] = useState({ hastag: "", caption: "", pid: "", owner: "" })
   const [imgurl, setimgurl] = useState(null)
   const [error, seterror] = useState(null)
+  const [searchError, setSearchError] = useState(null)
   const [comments, setcomments] = useState(null)
   const [newcomm, setnewcomm] = useState("")
   const [arr, setArr] = useState([{}])
   const [checked, setChecked] = useState(false)
-  const [gohash , setgohash] = useState("")
+  const [gohash, setgohash] = useState("")
   const [fetchedComments, setFetchedComments] = useState(false);
 
   const commentsRef = useRef(null);
-  
 
   useEffect(() => {
     commentsRef.current.scrollTo(0, commentsRef.current.scrollHeight);
@@ -85,7 +85,7 @@ const PostGoToViewMentor = () => {
     }
 
     setArr(comments)
-    
+
   })
 
   const handleSubmit = async (e) => {
@@ -120,10 +120,32 @@ const PostGoToViewMentor = () => {
 
   let navigate = useNavigate()
 
-  const srch = (e) => {
+  const srch = async (e) => {
     e.preventDefault()
-    navigate(`/mentor/view/${gohash}`)
-    navigate(0)
+    try {
+      const response = await fetch(`/api/post/isValid/${gohash}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+
+      const json = await response.json()
+
+      if (json.success) {
+        navigate(`/mentor/view/${gohash}`)
+        navigate(0)
+      }
+      else {
+        setSearchError("Hashtag invalid")
+        setTimeout(() => {
+          setSearchError(null);
+        }, 4000);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   const handleLogout = () => {
@@ -150,8 +172,11 @@ const PostGoToViewMentor = () => {
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
           <form>
             <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles2.sidform}></input>
-            <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch}/></button>
+            <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch} /></button>
           </form>
+          {searchError &&
+            <button className={styles2.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
+          }
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
@@ -181,12 +206,11 @@ const PostGoToViewMentor = () => {
           <div className={styles2.toggleSwitch}>
             <p className={styles2.solv}>Solved ?</p>
             <label htmlFor="toggle" className={styles2.togglebutton}>
-              <input type="checkbox" id="toggle" checked={checked} />
+              <input type="checkbox" id="toggle" />
               <span className={styles2.togglebuttonSlider} style={{ left: checked ? "30px" : "4px", backgroundColor: checked ? "#7fff7f" : "#ff7f7f" }}></span>
             </label>
           </div>
         </div>
-        
 
         <div className={styles2.poster} ref={commentsRef}>
 
@@ -194,8 +218,8 @@ const PostGoToViewMentor = () => {
 
             {arr && (
               <div>
-                {arr.map((comment) => (
-                  <div className={styles.contrast}>
+                {arr.map((comment, idx) => (
+                  <div key={idx} className={styles.contrast}>
                     <div className={styles2.comm}>
                       <div>
                         {comment.commentedbyme ?
