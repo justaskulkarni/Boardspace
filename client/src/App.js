@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MentorPrivateRoutes from "./utils/MentorPrivateRoutes";
 import StudentPrivateRoutes from "./utils/StudentPrivateRoutes";
 import AdminPrivateRoutes from "./utils/AdminPrivateRoutes";
+import StudentPassUpdate from "./utils/StudentPassUpdate";
 
 // pages & components
 import Login from "./pages/Login";
@@ -77,6 +78,9 @@ function App() {
 							<Route path="/admin/chatrooms" element={<AdminChatRooms socket={socket} />} />
 						</Route>
 						<Route path="*" element={<Not404 />} />
+						<Route element={<StudentPassUpdate />}>
+							<Route path="/student/updatepass" element={<StudentUpdatePass />} />
+						</Route>
 					</Routes>
 				</BrowserRouter>
 			</div>

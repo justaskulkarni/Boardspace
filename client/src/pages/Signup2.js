@@ -269,12 +269,12 @@ const Signup2 = () => {
 							{(showpass) ?
 								<>
 									<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
-									<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+									<i className="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
 								</>
 								:
 								<>
 									<input type="text" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
-									<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+									<i className="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
 								</>
 							}
 

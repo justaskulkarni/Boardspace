@@ -54,6 +54,15 @@
 	text-align: center;
 }
 
+.login3 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 2rem;
+	font-weight: 500;
+	margin-bottom: 13%;
+	margin-top: 35%;
+	text-align: center;
+}
+
 .newsignup {
 	padding-bottom: 2rem;
 	font-family: "Montserrat", sans-serif;
@@ -137,6 +146,26 @@
 
 .error {
 	height: 1.5rem;
+	width: 17.5rem;
+	background-color: #f8d7da;
+	border-radius: 0.5rem;
+	color: #721c24;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	text-align: center;
+	margin-top: 1rem;
+	font-weight: 500;
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: #fac1c7;
+}
+
+.error2 {
+	height: 2rem;
 	width: 17.5rem;
 	background-color: #f8d7da;
 	border-radius: 0.5rem;

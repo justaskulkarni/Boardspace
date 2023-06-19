@@ -205,7 +205,7 @@ router.post('/signup', async (req, res) => {
         }
 
 
-        if (!validator.isStrongPassword(req.body.password,{minLength : 8, minUppercase : 0, minSymbols:1})) {
+        if (!validator.isStrongPassword(req.body.password,{minLength : 8, minUppercase : 0, minSymbols:0})) {
             throw Error('Password not strong enough')
         }
 
