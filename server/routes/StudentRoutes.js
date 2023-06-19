@@ -4,13 +4,14 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 
-
 const Student = require('../models/student')
 const Notification = require('../models/notification')
 
 const bcrypt = require('bcrypt')
 const validator = require('validator')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const otpgen = require('otp-generators')
+const Mailjet = require('node-mailjet')
 
 const router = express.Router()
 
@@ -19,6 +20,14 @@ const createToken = (id, role) => {
         expiresIn: 3 * 24 * 60 * 60
     });
 }
+
+const createToken2 = (otp) => {
+    return jwt.sign({ otp }, process.env.SECRET, {
+        expiresIn: 10 * 60
+    });
+}
+
+const mailjet = new Mailjet.apiConnect(process.env.MJ_PUBLIC, process.env.MJ_SECRET)
 
 router.post('/login', async (req, res) => {
 
@@ -125,6 +134,59 @@ router.get('/dets/:id', async (req, res) => {
 
         res.json({ success: true, studentdets: reqstudent })
 
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/forgotp', async (req, res) => {
+
+    try {
+
+        if (!req.body.email) {
+            throw Error("Please enter an email")
+        }
+
+        const reqstud = await Student.findOne({ email: req.body.email })
+
+
+        if (reqstud) {
+
+            const genotp = otpgen.generate(6, { alphabets: false, upperCase: false, specialChar: false })
+
+            const request = mailjet
+                .post('send', { version: 'v3.1' })
+                .request({
+                    Messages: [{
+                        From: {
+                            Email: "info@boardspace.in",
+                            Name: "Boardspace"
+                        },
+                        To: [{
+                            Email: req.body.email,
+                            Name: req.body.name
+                        }],
+                        Subject: "Request for password change",
+                        HTMLPart: `
+                        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #DDBBFF;">
+                         <div style="width: 80%; margin: 0 auto; text-align: center; padding-top: 50px;">
+                        <h1 style="font-size: 36px; margin-bottom: 20px;">OTP for password change</h1>
+                        <p style="font-size: 26px;">Here is your OTP: <strong>${genotp}</strong></p>
+                        </div>
+                        </body>
+                        `,
+                        TextPart: `Your otp is : ${genotp} `
+                    }]
+                })
+
+            const token = createToken2(genotp)
+            res.json({ success: true, authToken: token })
+
+        }
+        else {
+            throw Error("Kindly enter a valid email")
+        }
 
     } catch (error) {
         res.status(400).json({ error: error.message })
