@@ -5,7 +5,8 @@ import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 import roomlogo from '../assets/roomarrow.png'
 import { useNavigate ,Link } from "react-router-dom";
-
+import styles3 from '../stylesheets/gotoview.module.css'
+import searchicon from '../assets/search.png'
 import dashboardlogo from '../assets/navbarlogo.png'
 
 const Chat = (props) => {
@@ -16,8 +17,44 @@ const Chat = (props) => {
   const [currentRoom, setCurrentRoom] = useState("")
   const [messages, setMessages] = useState([]);
   var decoded = jwt_decode(localStorage.getItem("Token"))
+  const [gohash, setgohash] = useState("")
+  const [searchError, setSearchError] = useState(null)
   const role = decoded.role
   const userId = decoded.id
+
+  const hello = (e) => {
+    e.preventDefault()
+    setgohash(e.target.value)
+  }
+
+  const srch = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch(`/api/post/isValid/${gohash}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+
+      const json = await response.json()
+      
+      if (json.success) {
+        navigate(`/student/view/${gohash}`)
+        navigate(0)
+      }
+      else{
+        setSearchError("Hashtag invalid")
+        
+        setTimeout(() => {
+          setSearchError(null);
+        }, 4000);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
@@ -124,6 +161,13 @@ const Chat = (props) => {
           </span></button></div>
           <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
+          <form>
+            <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles3.sidform}></input>
+            <button className={styles3.formbutton}><img src={searchicon} className={styles3.srchimg} onClick={srch} /></button>
+          </form>
+          {searchError &&
+            <button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
+          }
         </div>
         {localStorage.getItem("Token") && <button className={styles.logoutbtn} onClick={handleLogout}><span className={styles.welcometext2}>Logout</span></button>}
       </div>
