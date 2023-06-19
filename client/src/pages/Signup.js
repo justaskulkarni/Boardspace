@@ -47,9 +47,9 @@ const Signup = () => {
 				otp: "",
 				name: "",
 			});
-			// setTimeout(() => {
-			// 	setError(null);
-			// }, 4000);
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
 			setTimeout(() => {
 				setIsLoading(false);
 			}, 500);
@@ -144,9 +144,10 @@ const Signup = () => {
 			<div>
 				{showOtpDiv && (
 					<div className={styles.signupform}>
-						<h3 className={styles.login}>Enter your OTP</h3>
+						<h3 className={styles.login}>Enter OTP</h3>
+						<div className={styles.success}>OTP sent on email</div>
 						<form className={styles.forms} onSubmit={handleSubmit2}>
-							<label htmlFor="otp">Enter OTP</label>
+							{/* <label htmlFor="otp">Enter OTP</label> */}
 							<input type="number" value={credentials.otp} name="otp" onChange={onChange} placeholder="" className={styles.fields} />
 							<div>
 								{isLoading ? (
@@ -164,16 +165,12 @@ const Signup = () => {
 									</div>
 								) : (
 									<button className={styles.loginbutton} id="submitButton">
-										<span className={styles.logintext}>Log In</span>
+										<span className={styles.logintext}>Submit OTP</span>
 									</button>
 								)}
 							</div>
+							{error && <div className={styles.error}>{error}</div>}
 						</form>
-						{error && (
-							<div className={styles.error} style={{ marginTop: "1rem" }}>
-								{error}
-							</div>
-						)}
 					</div>
 				)}
 			</div>
