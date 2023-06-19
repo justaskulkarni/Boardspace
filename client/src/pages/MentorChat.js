@@ -6,20 +6,55 @@ import jwt_decode from 'jwt-decode'
 import sendicon from '../assets/send.png'
 import roomlogo from '../assets/roomarrow.png'
 import { useNavigate } from "react-router-dom";
+import styles2 from '../stylesheets/gotoview.module.css'
+import searchicon from '../assets/search.png'
 
-
- const MentorChat = (props) => {
+const MentorChat = (props) => {
 
   const navigate = useNavigate()
   const { socket } = props;
   const [currentMessage, setCurrentMessage] = useState("")
   const [currentUserName, setCurrentUserName] = useState("")
-  const [ fields, setFields ] = useState("")
+  const [fields, setFields] = useState("")
   const [currentRoom, setCurrentRoom] = useState("")
   const [messages, setMessages] = useState([]);
+  const [gohash, setgohash] = useState("")
+  const [searchError, setSearchError] = useState(null)
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const role = decoded.role
   const userId = decoded.id
+
+  const hello = (e) => {
+    e.preventDefault()
+    setgohash(e.target.value)
+  }
+  const srch = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch(`/api/post/isValid/${gohash}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+
+      const json = await response.json()
+
+      if (json.success) {
+        navigate(`/mentor/view/${gohash}`)
+        navigate(0)
+      }
+      else {
+        setSearchError("Hashtag invalid")
+        setTimeout(() => {
+          setSearchError(null);
+        }, 4000);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("Token")
@@ -28,54 +63,54 @@ import { useNavigate } from "react-router-dom";
   }
 
   const viewdoubt = () => {
-        navigate("/mentor/view")
-    }
-  
+    navigate("/mentor/view")
+  }
+
   const handleChange1 = (event) => {
     setCurrentMessage(event.target.value)
   }
-  const handleButtonClick = async(roomName) => {
-    if(!currentRoom){
+  const handleButtonClick = async (roomName) => {
+    if (!currentRoom) {
       socket.emit("join-one", roomName)
     }
-    else{
+    else {
       socket.emit("join-room", currentRoom, roomName)
     }
-    
+
     socket.emit("getpreviouschats", roomName)
 
     setMessages([])
     setCurrentRoom(roomName);
-    
+
   };
-  const handlePersonalChat = async() => {
+  const handlePersonalChat = async () => {
     var roomId = userId
     roomId += 'mentor-admin'
-    if(!currentRoom){
+    if (!currentRoom) {
       socket.emit("join-one", roomId, role)
     }
-    else{
+    else {
       socket.emit("join-room", currentRoom, roomId, role)
     }
-    
+
     socket.emit("getpreviouschats", roomId)
 
     setMessages([])
     setCurrentRoom(roomId);
-    
+
   };
-  const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if(currentMessage.trim() !== ""){
+    if (currentMessage.trim() !== "") {
       socket.emit("send-room", currentRoom, currentMessage, role, userId, currentUserName, fields)
     }
     setCurrentMessage("")
   }
-   
 
-    socket.off("receive-room").on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
-      setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from : senderName, toparea, fromid: id }]); 
-    })
+
+  socket.off("receive-room").on("receive-room", (message, fromrole, date, time, senderName, toparea, id) => {
+    setMessages(prevMessages => [...prevMessages, { content: message, fromrole: fromrole, time: time, date: date, from: senderName, toparea, fromid: id }]);
+  })
 
   socket.off("room-messages").on("room-messages", (roomMessages) => {
     setMessages(roomMessages)
@@ -85,37 +120,44 @@ import { useNavigate } from "react-router-dom";
 
   useEffect(() => {
     chatRef.current.scrollTo(0, chatRef.current.scrollHeight);
-  }, [messages]);    
+  }, [messages]);
 
-  useEffect(() =>{
-    async function getdetails(){
-    
-    const response = await fetch("/api/chat/details", {
+  useEffect(() => {
+    async function getdetails() {
+
+      const response = await fetch("/api/chat/details", {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ role: role, userId: userId})
-    })
+        body: JSON.stringify({ role: role, userId: userId })
+      })
 
-    const json = await response.json()    
-    console.log(json)
-    setCurrentUserName(json.name)
-    setFields(json.fields)
-  }
+      const json = await response.json()
+      console.log(json)
+      setCurrentUserName(json.name)
+      setFields(json.fields)
+    }
 
-  getdetails()
-}, [])
+    getdetails()
+  }, [])
 
-   return (
-     <>
-        <Navbar />
+  return (
+    <>
+      <Navbar />
 
       <div className={styles.column + " " + styles.left}>
         <div className={styles.smallcardleftnew2}>
           <div><button className={styles.leftbuttonnew} onClick={() => handlePersonalChat()}><span className={styles.notificationsnew}>Admin Chat
           </span></button></div>
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
+          <form>
+            <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles2.sidform}></input>
+            <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch} /></button>
+          </form>
+          {searchError &&
+            <button className={styles2.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
+          }
         </div>
       </div>
 
@@ -197,8 +239,8 @@ import { useNavigate } from "react-router-dom";
           </form>
         }
       </div>
-     </>
-   )
- }
+    </>
+  )
+}
 
- export default MentorChat 
+export default MentorChat 
