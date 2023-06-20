@@ -209,7 +209,7 @@ router.post('/enterproc' , async(req,res) => {
             throw Error("Invalid email")
         }
 
-        const token = createToken3(req.body.email,process.env.UPDATE_KEY)
+        const token = createToken3(req.body.email,"Lethimupdate")
         res.json({success : true , granttoken : token})
 
     } catch (error) {
