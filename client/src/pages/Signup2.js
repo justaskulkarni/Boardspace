@@ -1,4 +1,4 @@
-import { useRef, useState} from "react";
+import { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import uploadicon from "../assets/upload.png";
@@ -241,11 +241,11 @@ const Signup2 = () => {
 		await upload(phdd.current, "PHD");
 	};
 
-	const [showpass, setshowpass] = useState(true)
+	const [showpass, setshowpass] = useState(true);
 	const togglepass = (e) => {
-		e.preventDefault()
-		setshowpass(!showpass)
-	}
+		e.preventDefault();
+		setshowpass(!showpass);
+	};
 
 	return (
 		<>
@@ -259,25 +259,43 @@ const Signup2 = () => {
 				<div className={styles.signupform}>
 					<h3 className={styles.login}>Enter your Details </h3>
 
-					{error && <div className={styles.error}>{error}</div>}
 					<form onSubmit={handleSubmit2} encType="multipart/form">
 						<div>
 							<label htmlFor="Password" className={styles.password}>
 								Password
 							</label>
 							<br />
-							{(showpass) ?
+							{showpass ? (
 								<>
-									<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
-									<i className="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+									<div className={styles.hoverpass}>
+										<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
+										<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+									</div>
+									<div className={styles.passpopdiv}>
+										<div class={styles.arrowup}></div>
+										<div className={styles.passpoptext}>
+											<strong>Password must contain :</strong>
+											<br />• atleast 8 characters
+											<br />• atleast 1 number
+										</div>
+									</div>
 								</>
-								:
+							) : (
 								<>
-									<input type="text" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
-									<i className="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+									<div className={styles.hoverpass}>
+										<input type="text" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
+										<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+									</div>
+									<div className={styles.passpopdiv}>
+										<div class={styles.arrowup}></div>
+										<div className={styles.passpoptext}>
+											<strong>Password must contain :</strong>
+											<br />• atleast 8 characters
+											<br />• atleast 1 number
+										</div>
+									</div>
 								</>
-							}
-
+							)}
 
 							<label htmlFor="boardtopper" className={styles.checkboxstyle}>
 								<input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} />
@@ -392,6 +410,7 @@ const Signup2 = () => {
 							)}
 						</div>
 					</form>
+					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			</div>
 		</>
