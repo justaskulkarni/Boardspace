@@ -5,6 +5,7 @@ import MentorPrivateRoutes from "./utils/MentorPrivateRoutes";
 import StudentPrivateRoutes from "./utils/StudentPrivateRoutes";
 import AdminPrivateRoutes from "./utils/AdminPrivateRoutes";
 import StudentPassUpdate from "./utils/StudentPassUpdate";
+import MentorPassUpdate from "./utils/MentorPassUpdate";
 
 // pages & components
 import Login from "./pages/Login";
@@ -33,8 +34,9 @@ import PostViewMentor from "./pages/PostViewMentor";
 import PostGoToViewMentor from "./pages/PostGoToViewMentor";
 import OurTeam from "./pages/OurTeam";
 import StudentForgotPass from "./pages/StudentForgotPass";
+import MentorForgotPass from "./pages/MentorForgotPass";
 import { StudentUpdatePass } from "./pages/StudentUpdatePass";
-
+import { MentorUpdatePass } from "./pages/MentorUpdatePass";
 import { io } from "socket.io-client";
 
 const SOCKET_URL = "http://localhost:6100";
@@ -56,6 +58,7 @@ function App() {
 						<Route path="/notaccepted" element={<Notaccepted />} />
 						<Route path="/ourteam" element={<OurTeam />} />
 						<Route path="/student/forgotpassword" element={<StudentForgotPass />}/>
+						<Route path="/mentor/forgotpassword" element={<MentorForgotPass />} />
 						<Route element={<MentorPrivateRoutes />}>
 							<Route path="/mentor/chat" element={<MentorChat socket={socket} />} />
 							<Route path="/mentor/view/:findhashtag" element={<PostGoToViewMentor />} />
@@ -80,6 +83,9 @@ function App() {
 						<Route path="*" element={<Not404 />} />
 						<Route element={<StudentPassUpdate />}>
 							<Route path="/student/updatepass" element={<StudentUpdatePass />} />
+						</Route>
+						<Route element={<MentorPassUpdate />}>
+							<Route path="/mentor/updatepass" element={<MentorUpdatePass />} />
 						</Route>
 					</Routes>
 				</BrowserRouter>

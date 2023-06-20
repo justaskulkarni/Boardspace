@@ -38,6 +38,18 @@ const createToken = (id, role) => {
     });
 }
 
+const createToken2 = (otp) => {
+    return jwt.sign({ otp }, process.env.SECRET, {
+        expiresIn: 10 * 60
+    });
+}
+
+const createToken3 = (email , note) => {
+    return jwt.sign({email , note}, process.env.SECRET, {
+        expiresIn: 10 * 60
+    });
+}
+
 const mailjet = new Mailjet.apiConnect(process.env.MJ_PUBLIC, process.env.MJ_SECRET)
 
 router.post('/login', async (req, res) => {
@@ -278,6 +290,104 @@ router.post('/images/:id', async(req,res) => {
         }
 
         res.json({urls : imagesurl})
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/forgotp', async (req, res) => {
+
+    try {
+
+        if (!req.body.email) {
+            throw Error("Please enter an email")
+        }
+
+        const reqment = await Mentor.findOne({ email: req.body.email })
+
+
+        if (reqment) {
+
+            const genotp = otpgen.generate(6, { alphabets: false, upperCase: false, specialChar: false })
+
+            const request = mailjet
+                .post('send', { version: 'v3.1' })
+                .request({
+                    Messages: [{
+                        From: {
+                            Email: "info@boardspace.in",
+                            Name: "Boardspace"
+                        },
+                        To: [{
+                            Email: req.body.email,
+                            Name: req.body.name
+                        }],
+                        Subject: "Request for password change",
+                        HTMLPart: `
+                        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #DDBBFF;">
+                         <div style="width: 80%; margin: 0 auto; text-align: center; padding-top: 50px;">
+                        <h1 style="font-size: 36px; margin-bottom: 20px;">OTP for password change</h1>
+                        <p style="font-size: 26px;">Here is your OTP: <strong>${genotp}</strong></p>
+                        </div>
+                        </body>
+                        `,
+                        TextPart: `Your otp is : ${genotp} `
+                    }]
+                })
+
+            const token = createToken2(genotp)
+            res.json({ success: true, authToken: token })
+
+        }
+        else {
+            throw Error("Kindly enter a valid email")
+        }
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/enterproc' , async(req,res) => {
+
+    try {
+        const reqment = await Mentor.findOne({ email: req.body.email })
+
+        if(!reqment)
+        {
+            throw Error("Invalid email")
+        }
+
+        const token = createToken3(req.body.email,"Lethimupdate")
+        res.json({success : true , granttoken : token})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/changepass' , async(req,res) =>{
+
+    try {   
+    
+        if (!validator.isStrongPassword(req.body.pass,{minLength : 8, minUppercase : 0, minSymbols:0})) {
+            throw Error('Password not strong enough')
+        }
+
+        if (!req.body.pass) {
+            throw Error('Kindly enter an password')
+        }
+
+        const reqment = await Mentor.findOne({ email: req.body.email })
+
+        const salt = await bcrypt.genSalt(12)
+        const hashp = await bcrypt.hash(req.body.pass, salt)
+
+        reqment.password = hashp
+        await reqment.save()
+
+        res.json({success : true})  
+
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
