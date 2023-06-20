@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/chat.module.css'
 import dashboardlogo from '../assets/navbarlogo.png'
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 import styles2 from '../stylesheets/postpost.module.css'
@@ -16,7 +16,7 @@ const PostViewStudent = () => {
     const [error, seterror] = useState(null)
     const [jeepost, setjeepost] = useState([])
     const [icsepost, seticsepost] = useState([])
-    const [sscpost , setsscpost ] = useState([])
+    const [sscpost, setsscpost] = useState([])
     const [igcsepost, setigcsepost] = useState([])
     const [cbsepost, setcbsepost] = useState([])
     const [iscpost, setiscpost] = useState([])
@@ -26,7 +26,7 @@ const PostViewStudent = () => {
     const [searchError, setSearchError] = useState(null)
     const [gohash, setgohash] = useState("")
 
-    const getalldoubts = async() => {
+    const getalldoubts = async () => {
 
         const response = await fetch(`/api/post/getallpost/student/${userId}`, {
             method: 'GET',
@@ -37,13 +37,11 @@ const PostViewStudent = () => {
 
         const json = await response.json()
 
-        if(json.error)
-        {
+        if (json.error) {
             seterror(json.error)
         }
 
-        if(json.success)
-        {
+        if (json.success) {
             setjeepost(json.jeep)
             setneetpost(json.neetp)
             seticsepost(json.icsep)
@@ -56,9 +54,9 @@ const PostViewStudent = () => {
         }
     }
 
-    useEffect(() => {  
+    useEffect(() => {
         getalldoubts()
-    },[userId, jeepost,neetpost,cbsepost,sscpost,icsepost,iscpost,ibpost,hscpost,igcsepost])
+    }, [userId, jeepost, neetpost, cbsepost, sscpost, icsepost, iscpost, ibpost, hscpost, igcsepost])
 
     const hello = (e) => {
         e.preventDefault()
@@ -144,105 +142,123 @@ const PostViewStudent = () => {
                 </div>
                 {error && <div>{error}</div>}
                 <div className={styles2.box}>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>JEE Doubts</b> </div>
-                        <div className={styles2.bxcont}>
-                        {jeepost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    {jeepost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>JEE Doubts</b> </div>
+                            <div className={styles2.bxcont}>
+                                {jeepost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>CBSE</b> </div>
-                        <div className={styles2.bxcont}>
-                            {cbsepost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {cbsepost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>CBSE</b> </div>
+                            <div className={styles2.bxcont}>
+                                {cbsepost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>Neet</b> </div>
-                        <div className={styles2.bxcont}>
-                        {neetpost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {neetpost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>Neet</b> </div>
+                            <div className={styles2.bxcont}>
+                                {neetpost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>SSC</b> </div>
-                        <div className={styles2.bxcont}>
-                        {sscpost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {sscpost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>SSC</b> </div>
+                            <div className={styles2.bxcont}>
+                                {sscpost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>HSC</b> </div>
-                        <div className={styles2.bxcont}>
-                        {hscpost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {hscpost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>HSC</b> </div>
+                            <div className={styles2.bxcont}>
+                                {hscpost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>ICSE</b> </div>
-                        <div className={styles2.bxcont}>
-                        {icsepost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {icsepost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>ICSE</b> </div>
+                            <div className={styles2.bxcont}>
+                                {icsepost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>IGCSE</b> </div>
-                        <div className={styles2.bxcont}>
-                        {igcsepost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {igcsepost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>IGCSE</b> </div>
+                            <div className={styles2.bxcont}>
+                                {igcsepost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>IB</b> </div>
-                        <div className={styles2.bxcont}>
-                        {ibpost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {ibpost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>IB</b> </div>
+                            <div className={styles2.bxcont}>
+                                {ibpost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles2.boxes}>
-                        <div className={styles2.intxt}> <b>ISC</b> </div>
-                        <div className={styles2.bxcont}>
-                        {iscpost.map((elem) => {
-                                return <div className={styles2.hashdiv}>
-                                    {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                    <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
-                                </div>
-                            })}
+                    )}
+                    {iscpost.length > 0 && (
+                        <div className={styles2.boxes}>
+                            <div className={styles2.intxt}> <b>ISC</b> </div>
+                            <div className={styles2.bxcont}>
+                                {iscpost.map((elem) => {
+                                    return <div className={styles2.hashdiv}>
+                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                 </div>
 
