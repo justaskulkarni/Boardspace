@@ -76,6 +76,7 @@ const PostGoToViewMentor = () => {
 
       if (json.success) {
         setcomments(json.data)
+        console.log(comments)
       }
     }
 
@@ -90,10 +91,10 @@ const PostGoToViewMentor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch(`/api/comment/create/me/${postdet.pid}`, {
+    const response = await fetch(`/api/comment/create/mentor/${postdet.pid}`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ownerid: userId, orole: 'Mentor', cont: newcomm }),
+      body: JSON.stringify({ ownerid: userId, cont: newcomm }),
     })
 
     const json = await response.json()
@@ -221,13 +222,13 @@ const PostGoToViewMentor = () => {
                 {arr.map((comment, idx) => (
                   <div key={idx} className={styles.contrast}>
                     <div className={styles2.comm}>
-                      <div>
-                        {comment.commentedbyme ?
-                          <div className={styles2.inner2}><p><b>Me</b></p></div>
-                          :
+                    <div>
+                        {comment.commentedbyme &&
+                          <div className={styles2.inner2}><p><b>Owner</b></p></div>
+                        }{!comment.commentedbyme && comment.commentedby &&
                           <div className={styles2.inner}>
-                            <p> <b>Name</b></p>
-                            <p>Tags</p>
+                            <p> <b>{comment.commentedby.name}</b></p>
+                            <p>{comment.commentedby.toparea}</p>
                           </div>}
                       </div>
                       <div className={styles2.commcon}>

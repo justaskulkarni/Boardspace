@@ -31,14 +31,34 @@ router.get('/getall/:id', async(req, res) =>{
     
 })
 
-router.post('/create/me/:id', async(req,res) => {
+router.post('/create/mentor/:id', async(req,res) => {
     const {id} = req.params
 
     try {
         
         const comm = new Comment({
-          commentedbyme : true,
           content : req.body.cont,
+          commentedby : req.body.ownerid,
+          postid : id  
+        })
+
+        await comm.save()
+
+        res.json({success : true})
+
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+})
+
+router.post('/create/student/:id', async(req,res) => {
+    const {id} = req.params
+
+    try {
+        
+        const comm = new Comment({
+          content : req.body.cont,
+          commentedbyme : true,
           postid : id  
         })
 

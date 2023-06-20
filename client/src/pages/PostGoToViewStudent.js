@@ -24,7 +24,7 @@ const PostGoToViewStudent = () => {
   const [fetchedComments, setFetchedComments] = useState(false);
   const [checked, setChecked] = useState(false)
   const [searchError, setSearchError] = useState(null)
-  const [gohash , setgohash] = useState("")
+  const [gohash, setgohash] = useState("")
 
   useEffect(() => {
 
@@ -77,6 +77,7 @@ const PostGoToViewStudent = () => {
 
       if (json.success) {
         setcomments(json.data)
+        console.log(json.data)
       }
     }
 
@@ -93,16 +94,15 @@ const PostGoToViewStudent = () => {
     setChecked(!checked)
     //kd loader daal idr
     const response = await fetch(`/api/post/changsolv/${findhashtag}`, {
-      method : 'GET',
-      headers : {
-        'Content-Type' : 'application/json'
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
       },
     })
 
     const json = await response.json()
-    
-    if(json.error)
-    {
+
+    if (json.error) {
       seterror(json.error)
     }
 
@@ -111,10 +111,10 @@ const PostGoToViewStudent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch(`/api/comment/create/me/${postdet.pid}`, {
+    const response = await fetch(`/api/comment/create/student/${postdet.pid}`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ownerid: userId, orole: 'Student', cont: newcomm }),
+      body: JSON.stringify({ cont: newcomm }),
     })
 
     const json = await response.json()
@@ -122,7 +122,7 @@ const PostGoToViewStudent = () => {
     if (json.error) {
       seterror(json.error)
     }
-    
+
     if (json.success) {
       setnewcomm("")
       navigate(0)
@@ -152,14 +152,14 @@ const PostGoToViewStudent = () => {
       })
 
       const json = await response.json()
-      
+
       if (json.success) {
         navigate(`/student/view/${gohash}`)
         navigate(0)
       }
-      else{
+      else {
         setSearchError("Hashtag invalid")
-        
+
         setTimeout(() => {
           setSearchError(null);
         }, 4000);
@@ -199,7 +199,7 @@ const PostGoToViewStudent = () => {
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
           <form>
             <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles2.sidform}></input>
-            <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch}/></button>
+            <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch} /></button>
           </form>
           {searchError &&
             <button className={styles2.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
@@ -225,26 +225,26 @@ const PostGoToViewStudent = () => {
       </div>
 
       <div className={styles2.rightmost}>
-        
-          {userId === postdet.owner ?
-            <div className={styles2.headingcomm}>
+
+        {userId === postdet.owner ?
+          <div className={styles2.headingcomm}>
             <div className={styles2.nums2}>
               <b className={styles2.nums}>Comments</b>
             </div>
             <div className={styles2.toggleSwitch}>
-            <p className={styles2.solv}>Solved ?</p>
-            <label htmlFor="toggle" className={styles2.togglebutton}>
-              <input type="checkbox" id="toggle" onChange={toggleButton} checked={checked} className={styles2.hidehim}/>
-              <span className={styles2.togglebuttonSlider} style={{ left: checked ? "30px" : "4px" , backgroundColor: checked ? "#7fff7f" : "#ff7f7f"}}></span>
-            </label>
-          </div>
+              <p className={styles2.solv}>Solved ?</p>
+              <label htmlFor="toggle" className={styles2.togglebutton}>
+                <input type="checkbox" id="toggle" onChange={toggleButton} checked={checked} className={styles2.hidehim} />
+                <span className={styles2.togglebuttonSlider} style={{ left: checked ? "30px" : "4px", backgroundColor: checked ? "#7fff7f" : "#ff7f7f" }}></span>
+              </label>
+            </div>
           </div>
           :
-            <div className={styles2.nums3}>
-              <b>Comments</b>
-            </div>
-          }
-        
+          <div className={styles2.nums3}>
+            <b>Comments</b>
+          </div>
+        }
+
 
         <div className={styles2.poster} ref={commentsRef}>
           <div className={styles2.entertxt} >
@@ -252,16 +252,16 @@ const PostGoToViewStudent = () => {
             {arr && (
               <div>
                 {arr.map((comment, idx) => (
-                  <div key = {idx} className={styles.contrast}>
+                  <div key={idx} className={styles.contrast}>
                     <div className={styles2.comm}>
                       <div>
-                        {comment.commentedbyme ? 
-                        <div className={styles2.inner2}><p><b>Me</b></p></div> 
-                        : 
-                        <div className={styles2.inner}> 
-                          <p> <b>Name</b></p>
-                          <p>Tags</p> 
-                        </div>}
+                        {comment.commentedbyme &&
+                          <div className={styles2.inner2}><p><b>Me</b></p></div>
+                        }{!comment.commentedbyme && comment.commentedby &&
+                          <div className={styles2.inner}>
+                            <p> <b>{comment.commentedby.name}</b></p>
+                            <p>{comment.commentedby.toparea}</p>
+                          </div>}
                       </div>
                       <div className={styles2.commcon}>
                         <p>Content: {comment.content}</p>

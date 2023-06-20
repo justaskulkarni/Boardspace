@@ -15,8 +15,6 @@ const MentorPrivateRoutes = () => {
 
     var frole = returnRole(localStorage.getItem("Token"))
 
-    console.log(frole)
-
     return (
         (localStorage.getItem("Token") && frole === "Mentor") ? <Outlet /> : <Navigate to="/login" />
     )
