@@ -83,9 +83,22 @@ const Signup2 = () => {
 
 	const onChange2a = (event) => {
 		let file1 = event.target.files[0];
-		neetd.current = file1;
-		document.getElementById("filename2a").textContent = file1.name;
-		setNeet({ ...isNeetTopper, file: true });
+		const type = file1.type
+		const splittedt = type.split("/")
+		console.log(splittedt)
+		let xyz = 'image'
+		if (splittedt[0] === xyz) {
+			neetd.current = file1;
+			document.getElementById("filename2a").textContent = file1.name;
+			setNeet({ ...isNeetTopper, file: true });
+		}
+		else {
+			setError("Please upload only images");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
+
 	};
 
 	const onChange3 = () => {
@@ -94,9 +107,21 @@ const Signup2 = () => {
 
 	const onChange3a = (event) => {
 		let file1 = event.target.files[0];
-		boardd.current = file1;
-		document.getElementById("filename3a").textContent = file1.name;
-		setBoard({ ...isBoardTopper, file: true });
+		const type = file1.type
+		const splittedt = type.split("/")
+		console.log(splittedt)
+		let xyz = 'image'
+		if (splittedt[0] === xyz) {
+			boardd.current = file1;
+			document.getElementById("filename3a").textContent = file1.name;
+			setBoard({ ...isBoardTopper, file: true });
+		}
+		else {
+			setError("Please upload only images");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
 	};
 
 	const onChange4 = () => {
@@ -105,9 +130,21 @@ const Signup2 = () => {
 
 	const onChange4a = (event) => {
 		let file1 = event.target.files[0];
-		jeed.current = file1;
-		document.getElementById("filename4a").textContent = file1.name;
-		setJee({ ...isJeeTopper, file: true });
+		const type = file1.type
+		const splittedt = type.split("/")
+		console.log(splittedt)
+		let xyz = 'image'
+		if (splittedt[0] === xyz) {
+			jeed.current = file1;
+			document.getElementById("filename4a").textContent = file1.name;
+			setJee({ ...isJeeTopper, file: true });
+		}
+		else {
+			setError("Please upload only images");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
 	};
 
 	const onChange5 = () => {
@@ -116,9 +153,21 @@ const Signup2 = () => {
 
 	const onChange5a = (event) => {
 		let file1 = event.target.files[0];
-		mastd.current = file1;
-		document.getElementById("filename5a").textContent = file1.name;
-		setMaster({ ...isMasters, file: true });
+		const type = file1.type
+		const splittedt = type.split("/")
+		console.log(splittedt)
+		let xyz = 'image'
+		if (splittedt[0] === xyz) {
+			mastd.current = file1;
+			document.getElementById("filename5a").textContent = file1.name;
+			setMaster({ ...isMasters, file: true });
+		}
+		else {
+			setError("Please upload only images");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
 	};
 
 	const onChange6 = () => {
@@ -127,9 +176,21 @@ const Signup2 = () => {
 
 	const onChange6a = (event) => {
 		let file1 = event.target.files[0];
-		phdd.current = file1;
-		document.getElementById("filename6a").textContent = file1.name;
-		setPHD({ ...isPHD, file: true });
+		const type = file1.type
+		const splittedt = type.split("/")
+		console.log(splittedt)
+		let xyz = 'image'
+		if (splittedt[0] === xyz) {
+			phdd.current = file1;
+			document.getElementById("filename6a").textContent = file1.name;
+			setPHD({ ...isPHD, file: true });
+		}
+		else {
+			setError("Please upload only images");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+		}
 	};
 
 	const handleSubmit2 = async (e) => {

@@ -71,14 +71,15 @@
 }
 
 .fields {
-	margin-left: 0rem;
 	margin: 0;
+	margin-bottom: 6%;
 	outline: none;
 	border: none;
 	border-bottom-style: solid;
 	border-bottom-width: 0.7px;
 	border-bottom-color: #c5c5cf;
 	font-size: 1.5rem;
+	background-color: transparent;
 }
 
 .fields:hover {
@@ -91,9 +92,9 @@
 
 .login {
 	font-family: "Work Sans", sans-serif;
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: 400;
-	margin-bottom: 0.8rem;
+	margin-bottom: 2.5rem;
 	text-align: center;
 	width: 30rem;
 	margin-left: -5.5rem;
@@ -103,8 +104,8 @@
 	position: fixed;
 	/* width: 20rem; */
 	height: 33.125rem;
-	margin-top: 1.5%;
-	margin-left: 68%;
+	margin-top: 6%;
+	margin-left: 65%;
 	left: 0;
 	top: 0;
 }

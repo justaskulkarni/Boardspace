@@ -67,15 +67,15 @@ router.post('/login', async (req, res) => {
         }
 
         if (!reqmentor.otpverified) {
-            res.json({ noverify: "Please complete the signup process before attempting to log in." })
+            return res.json({ noverify: "Please complete the signup process before attempting to log in." })
         }
 
         if (!reqmentor.isverify) {
-            res.json({ noverify: "Your verification is currently pending. Please allow for some time for the verification process to be completed." })
+            return res.json({ noverify: "Your verification is currently pending. Please allow for some time for the verification process to be completed." })
         }
 
         if (reqmentor.isreject) {
-            res.json({ reject: "Unfortunately, we must inform you that your signup request has been rejected. For further details, please contact us at info@boardspace.in" })
+            return res.json({ reject: "Unfortunately, we must inform you that your signup request has been rejected. For further details, please contact us at info@boardspace.in" })
         }
 
         const match = await bcrypt.compare(req.body.password, reqmentor.password)
