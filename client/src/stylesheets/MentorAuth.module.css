@@ -22,20 +22,20 @@
 
 .loginform {
 	position: fixed;
-	width: 20rem;
+	width: 18.5rem;
 	height: 33.125rem;
-	margin-top: 5%;
-	margin-left: 65%;
+	margin-top: 7%;
+	margin-left: 61%;
 	left: 0;
 	top: 0;
 }
 
 .signupform {
 	position: absolute;
-	/* height: 90%; */
-	/* width: 20%; */
-	margin-top: 6%;
-	margin-left: 65%;
+	width: 18.5rem;
+	height: 33.125rem;
+	margin-top: 7%;
+	margin-left: 61%;
 	left: 0;
 	top: 0;
 }
@@ -87,6 +87,8 @@
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 300;
+	width: 3rem;
+	position:center;
 }
 
 .forms2 {
@@ -134,11 +136,12 @@
 	color: #16163f;
 	border: 0;
 	text-decoration: underline;
+	width: 9.5rem;
 }
 
 .loginbutton {
 	height: 3rem;
-	width: 20rem;
+	width: 19rem;
 	background-color: #9e3ffd;
 	border: 0;
 }

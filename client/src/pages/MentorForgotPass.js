@@ -120,8 +120,8 @@ const MentorForgotPass = () => {
 
                 <form className={styles.forms2} onSubmit={handleSubmit1}>
 
-                    <label htmlFor="Email">Email</label>
-                    <input type="email" name="email" onChange={onChange} placeholder="" className={styles.fields} />
+                    {/* <label htmlFor="Email">Email</label> */}
+                    <input type="email" name="email" onChange={onChange} placeholder="Enter Email" className={styles.fields} />
 
                     <div>
                         {isLoading && (
