@@ -75,8 +75,20 @@ const StudentSignup = () => {
 						<label htmlFor="Email">Email</label>
 						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
-						<label htmlFor="Password">Password</label>
-						<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
+						<div>
+							<div className={styles.hoverpass}>
+								<label htmlFor="Password">Password</label>
+								<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
+							</div>
+							<div className={styles.passpopdiv}>
+								<div className={styles.arrowup}></div>
+								<div className={styles.passpoptext}>
+									<strong>Password must contain :</strong>
+									<br />• atleast 8 characters
+									<br />• atleast 1 number
+								</div>
+							</div>
+						</div>
 
 						<label htmlFor="Number">Mobile Number (Optional)</label>
 						<input type="number" value={credentials.phonenum} name="phonenum" onChange={onChange} placeholder="" className={styles.fields} />
