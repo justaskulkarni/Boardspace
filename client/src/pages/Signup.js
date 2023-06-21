@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import styles from "../stylesheets/MentorAuth.module.css";
+import navbarlogo from "../assets/navbarlogo.png";
 
 const Signup = () => {
 	const [credentials, setCredentials] = useState({ email: "", otp: "", name: "" });
@@ -10,6 +11,12 @@ const Signup = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	let navigate = useNavigate();
+
+	// Logout from navbar.js
+	const handleLogout = () => {
+		localStorage.removeItem("Token");
+		navigate("/");
+	};
 
 	const handleSubmit1 = async (e) => {
 		e.preventDefault();
@@ -97,7 +104,39 @@ const Signup = () => {
 
 	return (
 		<>
-			<Navbar />{" "}
+			<div className={styles.outerdiv}>
+				<div className={styles.navlogo}>
+					<Link to="/">
+						<img className={styles.navimgdiv} src={navbarlogo} alt="" />
+					</Link>
+				</div>
+				<div className={styles.buttons}>
+					{localStorage.getItem("Token") ? (
+						<button className={styles.tail} onClick={handleLogout}>
+							Logout
+						</button>
+					) : (
+						<>
+							<button className={styles.tail}>
+								<Link className={styles.link1} to="/login">
+									Mentor
+								</Link>
+							</button>
+							<button className={styles.tail}>
+								<Link className={styles.link1} to="/student/login">
+									Student
+								</Link>
+							</button>
+						</>
+					)}
+					<button className={"tail"}>
+						<Link className={"link1"} to="/ourteam">
+							Our Team
+						</Link>
+					</button>
+				</div>
+			</div>
+
 			<div className={styles.colordiv}>
 				<div className={styles.colour1}></div>
 			</div>
@@ -112,9 +151,11 @@ const Signup = () => {
 					</h6>
 					<form className={styles.forms} onSubmit={handleSubmit1}>
 						<label htmlFor="Name">Name</label>
+						<br />
 						<input type="text" value={credentials.name} name="name" onChange={onChange} placeholder="" className={styles.fields} />
-
+						<br />
 						<label htmlFor="Email">Email</label>
+						<br />
 						<input type="email" value={credentials.email} name="email" onChange={onChange} placeholder="" className={styles.fields} />
 
 						<div>

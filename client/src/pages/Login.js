@@ -11,9 +11,9 @@ const Login = () => {
 	let navigate = useNavigate();
 
 	const forgotp = (e) => {
-		e.preventDefault()
-		navigate("/mentor/forgotpassword")
-	}
+		e.preventDefault();
+		navigate("/mentor/forgotpassword");
+	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -95,9 +95,6 @@ const Login = () => {
 						<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
 						<div>
-							<button className={styles.forgot} onClick={forgotp}>Forgot password?</button>
-						</div>
-						<div>
 							{isLoading ? (
 								<div className={styles.loadingAnim}>
 									<div className={styles.dotSpinner}>
@@ -118,6 +115,11 @@ const Login = () => {
 							)}
 						</div>
 						{error && <div className={styles.error}>{error}</div>}
+						<div>
+							<button className={styles.forgot} onClick={forgotp}>
+								Forgot password?
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
