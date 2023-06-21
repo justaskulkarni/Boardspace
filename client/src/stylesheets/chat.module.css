@@ -73,7 +73,7 @@
 
 .notifications1 {
 	color: black;
-	font-size: 1.7rem;
+	font-size: 1.5rem;
 	display: block;
 	width: 100%;
 	padding: 0 0 0 0;
@@ -319,12 +319,21 @@
 	background-color: white;
 	display: block;
 	margin-top: 20%;
+	cursor: pointer;
+}
+
+.leftbuttonnew:hover {
+	color: #9e3ffd;
 }
 
 .notificationsnew {
 	color: #505887;
 	font-size: 1.2rem;
 	display: block;
+}
+
+.notificationsnew:hover {
+	color: #9e3ffd;
 }
 
 .logoutbtn {
