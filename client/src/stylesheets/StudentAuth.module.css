@@ -4,9 +4,7 @@
 
 .colour1 {
 	position: fixed;
-	/* height: 80rem; */
 	height: 170vh;
-	/* width: 55rem; */
 	width: 60vw;
 	background-color: #9e3ffd;
 	transform: rotate(15.59deg);
