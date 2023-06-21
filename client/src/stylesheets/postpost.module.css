@@ -9,13 +9,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 }
 
 .text {
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 500;
-	/* padding-left: 4%; */
+
 }
 
 .inputimg {
@@ -31,11 +32,8 @@
 	height: 100%;
 	justify-content: center;
 }
-/*  */
 
-.scrolldiv {
-	/* overflow-y: scroll; */
-}
+
 
 .right2 {
 	margin-top: 5%;
@@ -66,14 +64,13 @@
 	text-align: center;
 	font-size: 1.5rem;
 	font-weight: bold;
-	/* padding-top: 6%; */
 	margin: 0;
 	margin-top: 8%;
+	position: relative;
 }
 
 .previewdiv {
 	display: flex;
-	/* margin-left: 33%; */
 	flex-direction: column;
 	align-items: center;
 }
@@ -96,12 +93,12 @@
 	padding-left: 1rem;
 }
 
-.imgdiv {
-	/* margin-top: 6%;
+/* .imgdiv {
+	margin-top: 6%;
 	margin-left: -21%;
 	height: 40vh;
-	width: 50%; */
-}
+	width: 50%;
+} */
 
 .previmg {
 	object-fit: contain;
@@ -177,7 +174,6 @@
 .set {
 	border-color: transparent;
 	margin-top: 10%;
-	/* overflow-y: scroll; */
 }
 
 .set legend {
