@@ -169,35 +169,36 @@ const PostPostStudent = () => {
 			</div>
 			<form onSubmit={handleSubmit} encType="multipart/form">
 				<div className={styles.right}>
-					<h3 className={styles.roomname}>Post a doubt</h3>
+					<div className={styles2.postdoubt}>
+						<h3 className={styles.roomname}>Post a doubt</h3>
 
-					<label className={styles2.inputlabel}>
-						<p className={styles2.text}>Upload image of the doubt : </p>
-						<img src={imageupload} style={{ height: "3rem", width: "auto" }} className={styles2.inputimg} alt=" " />
-						<input type="file" onChange={onImageChange} className={styles2.imginput} />
-					</label>
+						<label className={styles2.inputlabel}>
+							<p className={styles2.text}>Upload image of the doubt : </p>
+							<img src={imageupload} style={{ height: "3rem", width: "auto" }} className={styles2.inputimg} alt=" " />
+							<input type="file" onChange={onImageChange} className={styles2.imginput} />
+						</label>
 
-					{image && (
-						<div className={styles2.previewdiv}>
-							<p className={styles2.text}>Image Preview : </p>
-							<div className={styles2.imgdiv}>
-								<img alt="preview" src={image} className={styles2.previmg} />
+						{image && (
+							<div className={styles2.previewdiv}>
+								<p className={styles2.text}>Image Preview : </p>
+								<div className={styles2.imgdiv}>
+									<img alt="preview" src={image} className={styles2.previmg} />
+								</div>
 							</div>
+						)}
+
+						<div className={styles2.captiondiv}>
+							<label className={styles2.text}>Caption :</label>
+							<input type="text" value={inputText} onChange={handleTextChange} className={styles2.capin} />
 						</div>
-					)}
 
-					<div className={styles2.previewdiv}>
-						<label className={styles2.text}>Caption :</label>
-						<input type="text" value={inputText} onChange={handleTextChange} className={styles2.capin} />
+						{error && <div className={styles.error}>{error}</div>}
+
+						<button className={styles2.postbutton} type="submit">
+							<span className={styles2.posttext}>Post Doubt</span>
+						</button>
 					</div>
-
-					{error && <div className={styles.error}>{error}</div>}
 				</div>
-
-				<button className={styles2.postbutton} type="submit">
-					<span className={styles2.posttext}>Post Doubt</span>
-				</button>
-
 				<div className={styles.rightmost}>
 					<fieldset className={styles2.set}>
 						<legend className={styles2.leg}>Select a tag:</legend>
