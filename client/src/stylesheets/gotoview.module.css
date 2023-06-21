@@ -197,6 +197,10 @@
 	right: 0;
 }
 
+.commentbox {
+	display: flex;
+}
+
 .uploadbutton {
 	border: none;
 	border-radius: 0.75rem;

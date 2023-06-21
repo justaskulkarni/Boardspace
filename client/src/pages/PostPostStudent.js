@@ -199,7 +199,7 @@ const PostPostStudent = () => {
 							</div>
 						)}
 						<div className={styles2.captiondiv}>
-							<label className={styles2.text}>Caption :</label>
+							<label className={styles2.text}>Description :</label>
 							<input type="text" value={inputText} onChange={handleTextChange} className={styles2.capin} />
 						</div>
 
@@ -227,57 +227,56 @@ const PostPostStudent = () => {
 						</div>
 					</div>
 				</div>
-				<div className={styles3.scrolldiv}>
-					<div className={styles.rightmost}>
-						<fieldset className={styles2.set}>
-							<legend className={styles2.leg}>Select a tag:</legend>
-							<label>
-								<input type="radio" value="JEE" checked={selectedOption === "JEE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> JEE</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="Neet" checked={selectedOption === "Neet"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> NEET</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="ICSE" checked={selectedOption === "ICSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> ICSE</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="SSC" checked={selectedOption === "SSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> SSC</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="IGCSE" checked={selectedOption === "IGCSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> IGCSE</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="CBSE" checked={selectedOption === "CBSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> CBSE</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="ISC" checked={selectedOption === "ISC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> ISC</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="IB" checked={selectedOption === "IB"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> IB</b>
-							</label>
-							<br />
-							<label>
-								<input type="radio" value="HSC" checked={selectedOption === "HSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-								<b> HSC</b>
-							</label>
-						</fieldset>
-					</div>
+				<div className={styles2.rightmost}>
+					<fieldset className={styles2.set}>
+						<legend className={styles2.leg}>Select a tag:</legend>
+						<label>
+							<input type="radio" value="JEE" checked={selectedOption === "JEE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> JEE</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="Neet" checked={selectedOption === "Neet"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> NEET</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="ICSE" checked={selectedOption === "ICSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> ICSE</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="SSC" checked={selectedOption === "SSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> SSC</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="IGCSE" checked={selectedOption === "IGCSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> IGCSE</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="CBSE" checked={selectedOption === "CBSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> CBSE</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="ISC" checked={selectedOption === "ISC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> ISC</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="IB" checked={selectedOption === "IB"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> IB</b>
+						</label>
+						<br />
+						<label>
+							<input type="radio" value="HSC" checked={selectedOption === "HSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+							<b> HSC</b>
+						</label>
+					</fieldset>
 				</div>
+				{/* </div> */}
 			</form>
 		</React.Fragment>
 	);
