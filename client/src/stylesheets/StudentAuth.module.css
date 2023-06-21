@@ -3,8 +3,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
 
 .colour1 {
-	height: 80rem;
-	width: 55rem;
+	position: fixed;
+	/* height: 80rem; */
+	height: 170vh;
+	/* width: 55rem; */
+	width: 60vw;
 	background-color: #9e3ffd;
 	transform: rotate(15.59deg);
 	margin-left: -12rem;
@@ -21,7 +24,7 @@
 	position: fixed;
 	width: 20rem;
 	height: 33.125rem;
-	margin-top: 5%;
+	margin-top: 6%;
 	margin-left: 65%;
 	left: 0;
 	top: 0;
@@ -31,7 +34,7 @@
 	position: fixed;
 	width: 20rem;
 	height: 33.125rem;
-	margin-top: 2%;
+	margin-top: 3%;
 	margin-left: 65%;
 	left: 0;
 	top: 0;
@@ -241,7 +244,7 @@
 	padding-left: 1.25rem;
 	padding-right: 1.25rem;
 	text-align: center;
-	margin-top: 8.5rem;
+	margin-top: 1.5rem;
 	font-weight: 500;
 	border-width: 0.1rem;
 	border-style: solid;

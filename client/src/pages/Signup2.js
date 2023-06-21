@@ -365,10 +365,10 @@ const Signup2 = () => {
 										<div>
 											<div className={styles.hoverpass}>
 												<input type="password" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
-												<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+												<i className="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
 											</div>
 											<div className={styles.passpopdiv}>
-												<div class={styles.arrowup}></div>
+												<div className={styles.arrowup}></div>
 												<div className={styles.passpoptext}>
 													<strong>Password must contain :</strong>
 													<br />• atleast 8 characters
@@ -382,10 +382,10 @@ const Signup2 = () => {
 										<div>
 											<div className={styles.hoverpass}>
 												<input type="text" value={details.password} name="password" onChange={onChange1} placeholder="" className={styles.fields} id="id_password" />
-												<i class="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
+												<i className="far fa-eye" onClick={togglepass} style={{ marginLeft: "-1.875rem", cursor: "pointer" }}></i>
 											</div>
 											<div className={styles.passpopdiv}>
-												<div class={styles.arrowup}></div>
+												<div className={styles.arrowup}></div>
 												<div className={styles.passpoptext}>
 													<strong>Password must contain :</strong>
 													<br />• atleast 8 characters

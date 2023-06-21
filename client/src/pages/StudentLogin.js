@@ -47,9 +47,9 @@ const StudentLogin = () => {
 	};
 
 	const forgotp = (e) => {
-		e.preventDefault()
-		navigate("/student/forgotpassword")
-	}
+		e.preventDefault();
+		navigate("/student/forgotpassword");
+	};
 
 	const onChange = (event) => {
 		setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -79,9 +79,6 @@ const StudentLogin = () => {
 							<input type="password" value={credentials.password} name="password" onChange={onChange} placeholder="" className={styles.fields} />
 
 							<div>
-								<button className={styles.forgot} onClick={forgotp}>Forgot password?</button>
-							</div>
-							<div>
 								{isLoading ? (
 									<div className={styles.loadingAnim}>
 										<div className={styles.dotSpinner}>
@@ -101,9 +98,14 @@ const StudentLogin = () => {
 									</button>
 								)}
 							</div>
+							{error && <div className={styles.error}>{error}</div>}
+							<div>
+								<button className={styles.forgot} onClick={forgotp}>
+									Forgot password?
+								</button>
+							</div>
 						</form>
 					</div>
-					{error && <div className={styles.error}>{error}</div>}
 				</div>
 			</div>
 		</>
