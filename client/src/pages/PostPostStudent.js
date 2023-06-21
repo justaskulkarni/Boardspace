@@ -19,6 +19,7 @@ const PostPostStudent = () => {
 	const [gohash, setgohash] = useState("");
 	const [searchError, setSearchError] = useState(null);
 	const ufile = useRef(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const hello = (e) => {
 		e.preventDefault();
@@ -80,6 +81,9 @@ const PostPostStudent = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		// show loading sign
+		setIsLoading(true);
 
 		if (selectedOption === "") {
 			setError("Please choose a tag");
@@ -168,10 +172,10 @@ const PostPostStudent = () => {
 				)}
 			</div>
 			<form onSubmit={handleSubmit} encType="multipart/form">
-				<div className={styles.right}>
+				<div className={styles2.right2}>
 					<div className={styles2.postdoubt}>
-						<h3 className={styles.roomname}>Post a doubt</h3>
-
+						<h3 className={styles2.roomname}>Post a doubt</h3>
+						{/* <div className={styles2.scrolldiv}> */}
 						<label className={styles2.inputlabel}>
 							<p className={styles2.text}>Upload image of the doubt : </p>
 							<img src={imageupload} style={{ height: "3rem", width: "auto" }} className={styles2.inputimg} alt=" " />
@@ -194,59 +198,82 @@ const PostPostStudent = () => {
 
 						{error && <div className={styles.error}>{error}</div>}
 
-						<button className={styles2.postbutton} type="submit">
-							<span className={styles2.posttext}>Post Doubt</span>
-						</button>
+						{/* <button className={styles2.postbutton} type="submit">
+							Post Doubt
+						</button> */}
+
+						<div>
+							{isLoading ? (
+								<div className={styles2.loadingAnim}>
+									<div className={styles2.dotSpinner}>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+										<div className={styles2.dotSpinnerDot}></div>
+									</div>
+								</div>
+							) : (
+								<button className={styles2.postbutton} type="submit">
+									Post Doubt
+								</button>
+							)}
+						</div>
 					</div>
 				</div>
-				<div className={styles.rightmost}>
-					<fieldset className={styles2.set}>
-						<legend className={styles2.leg}>Select a tag:</legend>
-						<label>
-							<input type="radio" value="JEE" checked={selectedOption === "JEE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> JEE</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="Neet" checked={selectedOption === "Neet"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> NEET</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="ICSE" checked={selectedOption === "ICSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> ICSE</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="SSC" checked={selectedOption === "SSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> SSC</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="IGCSE" checked={selectedOption === "IGCSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> IGCSE</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="CBSE" checked={selectedOption === "CBSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> CBSE</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="ISC" checked={selectedOption === "ISC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> ISC</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="IB" checked={selectedOption === "IB"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> IB</b>
-						</label>
-						<br />
-						<label>
-							<input type="radio" value="HSC" checked={selectedOption === "HSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
-							<b> HSC</b>
-						</label>
-					</fieldset>
+				<div className={styles3.scrolldiv}>
+					<div className={styles.rightmost}>
+						<fieldset className={styles2.set}>
+							<legend className={styles2.leg}>Select a tag:</legend>
+							<label>
+								<input type="radio" value="JEE" checked={selectedOption === "JEE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> JEE</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="Neet" checked={selectedOption === "Neet"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> NEET</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="ICSE" checked={selectedOption === "ICSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> ICSE</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="SSC" checked={selectedOption === "SSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> SSC</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="IGCSE" checked={selectedOption === "IGCSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> IGCSE</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="CBSE" checked={selectedOption === "CBSE"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> CBSE</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="ISC" checked={selectedOption === "ISC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> ISC</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="IB" checked={selectedOption === "IB"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> IB</b>
+							</label>
+							<br />
+							<label>
+								<input type="radio" value="HSC" checked={selectedOption === "HSC"} onChange={handleOptionChange} style={{ marginTop: "2rem" }} />
+								<b> HSC</b>
+							</label>
+						</fieldset>
+					</div>
 				</div>
 			</form>
 		</React.Fragment>
