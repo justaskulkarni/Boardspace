@@ -22,20 +22,20 @@
 
 .loginform {
 	position: fixed;
-	width: 20rem;
+	width: 19rem;
 	height: 33.125rem;
-	margin-top: 6%;
-	margin-left: 65%;
+	margin-top: 7%;
+	margin-left: 63%;
 	left: 0;
 	top: 0;
 }
 
 .signupform {
 	position: fixed;
-	width: 20rem;
+	width: 19rem;
 	height: 33.125rem;
-	margin-top: 3%;
-	margin-left: 65%;
+	margin-top: 6%;
+	margin-left: 63%;
 	left: 0;
 	top: 0;
 }
@@ -44,17 +44,19 @@
 	font-family: "Work Sans", sans-serif;
 	font-size: 3rem;
 	font-weight: 400;
-	margin-bottom: 0.8rem;
+	margin-bottom: 1.5rem;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .newsignup {
-	padding-bottom: 1.5rem;
+	padding-bottom: 2rem;
 	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 300;
 	margin: 0;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .signupclick {
@@ -111,7 +113,7 @@
 
 .loginbutton {
 	height: 3rem;
-	width: 20rem;
+	width: 18.5rem;
 	background-color: #9e3ffd;
 	border: 0;
 }

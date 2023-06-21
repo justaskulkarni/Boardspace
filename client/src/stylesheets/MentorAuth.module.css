@@ -22,20 +22,20 @@
 
 .loginform {
 	position: fixed;
-	width: 18.5rem;
+	width: 19rem;
 	height: 33.125rem;
 	margin-top: 7%;
-	margin-left: 61%;
+	margin-left: 63%;
 	left: 0;
 	top: 0;
 }
 
 .signupform {
 	position: absolute;
-	width: 18.5rem;
+	width: 19rem;
 	height: 33.125rem;
 	margin-top: 7%;
-	margin-left: 61%;
+	margin-left: 63%;
 	left: 0;
 	top: 0;
 }
@@ -141,7 +141,7 @@
 
 .loginbutton {
 	height: 3rem;
-	width: 19rem;
+	width: 18.5rem;
 	background-color: #9e3ffd;
 	border: 0;
 }
