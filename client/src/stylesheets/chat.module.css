@@ -11,6 +11,7 @@
 	border-radius: 0 3% 3% 0;
 	margin-right: 2%;
 	right: 0;
+	overflow-y: scroll;
 }
 
 .right {
@@ -25,14 +26,14 @@
 }
 
 .column {
-    float: left;
+	float: left;
 }
 
 .left {
-    width: 17%;
-    overflow-y: hidden;
-    position: fixed;
-    left: 0;
+	width: 17%;
+	overflow-y: hidden;
+	position: fixed;
+	left: 0;
 }
 
 .leftbuttonraunak {
@@ -284,7 +285,7 @@
 	cursor: pointer;
 }
 
-.notifstyle{
+.notifstyle {
 	color: red;
 }
 
@@ -298,52 +299,52 @@
 }
 
 .imgstyle {
-    float: left;
-    margin-top: 1.3rem;
-    height: 7rem;
-    width: 100%;
-    object-fit: cover;
+	float: left;
+	margin-top: 1.3rem;
+	height: 7rem;
+	width: 100%;
+	object-fit: cover;
 	margin-bottom: 15%;
 }
 
 .smallcardleftnew {
-    display: block;
-    margin-top: 3vh;
-    margin-bottom: 3vh;
-    margin-left: 2vw;
+	display: block;
+	margin-top: 3vh;
+	margin-bottom: 3vh;
+	margin-left: 2vw;
 }
 
 .leftbuttonnew {
-    border: none;
-    background-color: white;
-    display: block;
-    margin-top: 20%;
+	border: none;
+	background-color: white;
+	display: block;
+	margin-top: 20%;
 }
 
 .notificationsnew {
-    color: #505887;
-    font-size: 1.2rem;
-    display: block;
+	color: #505887;
+	font-size: 1.2rem;
+	display: block;
 }
 
 .logoutbtn {
-    border: white;
-    border-radius: 1rem;
-    background: white;
-    bottom: 0;
-    margin-left: 2vw;
-    margin-top: 80%;
+	border: white;
+	border-radius: 1rem;
+	background: white;
+	bottom: 0;
+	margin-left: 2vw;
+	margin-top: 80%;
 }
 
 .welcometext {
-    color: #9a9a9a;
-    font-size: 1rem;
+	color: #9a9a9a;
+	font-size: 1rem;
 }
 
 .welcometext2 {
-    color: rgb(255, 0, 0);
-    font-size: 1rem;
-    font-weight: bold;
+	color: rgb(255, 0, 0);
+	font-size: 1rem;
+	font-weight: bold;
 	letter-spacing: 0.1rem;
 	font-family: "Poppins", sans-serif;
 }
