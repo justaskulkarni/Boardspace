@@ -1,80 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
 
 .imginput {
-    display: none;
+	display: none;
 }
 
 .inputlabel {
-    margin-top: 2rem;
-    display: flex;
-    margin-left: 33%;
+	margin-top: 2rem;
+	display: flex;
+	margin-left: 33%;
 }
 
-.text{
-    font-family: "Montserrat", sans-serif;
+.text {
+	font-family: "Montserrat", sans-serif;
 	font-size: 1.125rem;
 	font-weight: 500;
-    padding-left: 4%;
+	padding-left: 4%;
 }
 
 .inputimg {
-    margin-left: 3%;
+	margin-left: 3%;
 }
 
-.previewdiv{
-    display: flex;
-    margin-left: 33%;
+.previewdiv {
+	display: flex;
+	margin-left: 33%;
 }
 
 .capin {
-    margin-left: 1rem;
+	margin-left: 1rem;
 	margin-bottom: 1.5625rem;
 	outline: none;
 	border: none;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	border-bottom-color: black;
-    background-color: transparent;
+	background-color: transparent;
 	font-size: 1.25rem;
-    padding-left: 1rem;
+	padding-left: 1rem;
 }
 
 .imgdiv {
-    margin-top: 6%;
-    margin-left: -21%;
-    height: 40vh;
-    width : 50%;
+	margin-top: 6%;
+	margin-left: -21%;
+	height: 40vh;
+	width: 50%;
 }
 
 .previmg {
-    object-fit: contain;
-    height: 40vh;
-    width : 100%;
+	object-fit: contain;
+	height: 40vh;
+	width: 100%;
 }
 
 .postbutton {
-    height: 3rem;
-    width: 20rem;
-    background-color: #9e3ffd;
-    border: 0;
-    margin-left: 39%;
-    position: fixed;
-    margin-top: 40%;
+	height: 3rem;
+	width: 20rem;
+	background-color: #9e3ffd;
+	border: 0;
+	margin-left: 39%;
+	position: fixed;
+	margin-top: 40%;
 }
 
 .posttext {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	color: white;
 }
 
 .innercomment {
 	overflow-y: auto;
 	overflow-x: hidden;
 	max-height: 43%;
-    background-color: aqua;
-    margin-top: 17%;
+	background-color: aqua;
+	margin-top: 17%;
 }
 .space {
 	margin-top: 5%;
@@ -85,68 +85,87 @@
 	border-radius: 2%;
 	margin-left: 17%;
 }
-.hdtxt{
-    position: center;
+.hdtxt {
+	position: center;
 }
 
-.box{
-    max-height: 70vh;
-    display: flex;
-    flex-wrap: wrap;
-    overflow-y: auto;
-
+.box {
+	max-height: 70vh;
+	display: flex;
+	flex-wrap: wrap;
+	overflow-y: auto;
 }
-.boxes{
-    height: 34vh;
-    width:44vh;
-    max-height: 35vh;
-    background-color: #BFACE2;
-    margin: 1rem 2rem 2rem 2rem;
-    border-radius: 1.5vh;
+.boxes {
+	height: 34vh;
+	width: 44vh;
+	max-height: 35vh;
+	background-color: #bface2;
+	margin: 1rem 2rem 2rem 2rem;
+	border-radius: 1.5vh;
 }
-.intxt{
-    font-family: "Montserrat", sans-serif;
+.intxt {
+	font-family: "Montserrat", sans-serif;
 	text-align: center;
 	font-size: 1rem;
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
 }
 
-.bxcont{
-    overflow-y: auto;
-    height: 29vh;
-    max-height: 30vh;
-    margin: 0 1vh 0 1vh;
+.bxcont {
+	overflow-y: auto;
+	height: 29vh;
+	max-height: 30vh;
+	margin: 0 1vh 0 1vh;
 }
 
 .set {
-    border-color: transparent;
-    margin-top: 10%;
+	border-color: transparent;
+	margin-top: 10%;
 }
 
-.set legend{
-    color: black;
+.set legend {
+	color: black;
 	font-size: 1.5rem;
 	display: block;
 	width: 100%;
 	padding: 0 0 0 0;
 	font-weight: bold;
 	margin-left: 7%;
-    font-family: "Poppins", sans-serif;
+	font-family: "Poppins", sans-serif;
 }
 
 .aplebtn {
 	margin: 0 0 0 0;
-    margin-left: 45%;
-    margin-bottom: 2%;
-    background-color: transparent;
-    border: 1px solid black;
-    color: black;   
+	margin-left: 45%;
+	margin-bottom: 2%;
+	background-color: transparent;
+	border: 1px solid black;
+	color: black;
 }
 
 .hashdiv {
-    margin-top: 3%;
-    background-color: rgba(0 ,0, 0, 0.1);
-    border-radius: 5%;
-    padding-left: 3%;
-    padding-top: 0.05%;
+	margin-top: 3%;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 5%;
+	padding-left: 3%;
+	padding-top: 0.05%;
+}
+
+.error {
+	height: 1.5rem;
+	width: 17.5rem;
+	background-color: #f8d7da;
+	border-radius: 0.5rem;
+	color: #721c24;
+	font-size: 1rem;
+	font-family: "Montserrat", sans-serif;
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+	padding-left: 1.25rem;
+	padding-right: 1.25rem;
+	text-align: center;
+	margin-top: 1rem;
+	font-weight: 500;
+	border-width: 0.1rem;
+	border-style: solid;
+	border-color: #fac1c7;
 }
