@@ -335,7 +335,6 @@
 
 .scrolldiv {
 	overflow-y: scroll;
-	height: fit-content;
 }
 
 /* Loading Animation */
@@ -460,7 +459,7 @@
 	padding-left: 1.25rem;
 	padding-right: 1.25rem;
 	text-align: center;
-	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 	font-weight: 500;
 	border-width: 0.1rem;
 	border-style: solid;

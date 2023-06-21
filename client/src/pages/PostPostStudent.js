@@ -87,6 +87,12 @@ const PostPostStudent = () => {
 
 		if (selectedOption === "") {
 			setError("Please choose a tag");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 			return error;
 		}
 
@@ -112,7 +118,9 @@ const PostPostStudent = () => {
 			setInputText("");
 			setSelectedOption("");
 			ufile.current = null;
-
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
 			navigate("/student/view");
 		}
 	};
@@ -190,30 +198,25 @@ const PostPostStudent = () => {
 								</div>
 							</div>
 						)}
-
 						<div className={styles2.captiondiv}>
 							<label className={styles2.text}>Caption :</label>
 							<input type="text" value={inputText} onChange={handleTextChange} className={styles2.capin} />
 						</div>
 
-						{error && <div className={styles.error}>{error}</div>}
-
-						{/* <button className={styles2.postbutton} type="submit">
-							Post Doubt
-						</button> */}
+						{error && <div className={styles3.error}>{error}</div>}
 
 						<div>
 							{isLoading ? (
-								<div className={styles2.loadingAnim}>
-									<div className={styles2.dotSpinner}>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
-										<div className={styles2.dotSpinnerDot}></div>
+								<div className={styles3.loadingAnim}>
+									<div className={styles3.dotSpinner}>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
+										<div className={styles3.dotSpinnerDot}></div>
 									</div>
 								</div>
 							) : (
