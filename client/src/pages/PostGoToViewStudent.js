@@ -276,7 +276,7 @@ const PostGoToViewStudent = () => {
 															{" "}
 															<b>{comment.commentedby.name}</b>
 														</p>
-														<p>{comment.commentedby.toparea}</p>
+														<p>{comment.commentedby.toparea.join(", ")}</p>
 													</div>
 												)}
 											</div>

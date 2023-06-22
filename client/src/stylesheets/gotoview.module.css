@@ -291,6 +291,13 @@
 	float: left;
 	width: 55%;
 	background: transparent;
+	-moz-appearance: textfield;
+}
+
+.sidform::-webkit-inner-spin-button,
+.sidform ::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .formbutton {
