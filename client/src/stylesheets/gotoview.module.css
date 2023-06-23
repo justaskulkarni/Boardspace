@@ -295,9 +295,8 @@
 	float: left;
 	width: 50%;
 	background: transparent;
-<<<<<<< HEAD
 	/* height: 15%; */
-=======
+	-webkit-appearance: textfield;
 	-moz-appearance: textfield;
 }
 
@@ -305,7 +304,6 @@
 .sidform ::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
->>>>>>> 9729659b1ffc0094d11b926a8c20242b5ddcc5c3
 }
 
 .formbutton {
