@@ -128,9 +128,12 @@
 .commcon{
 	margin: 0 2% 3% 2%;
 }
+.inner .tagmain{
+	color: #f8f5f5;
+}
 .inner .tag{
 	font-size: 0.75rem;
-	color: #f8f5f5;
+	color: #171717;
 }
 
 .commcon p {

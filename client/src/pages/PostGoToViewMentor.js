@@ -233,9 +233,9 @@ const PostGoToViewMentor = () => {
 												)}
 												{!comment.commentedbyme && comment.commentedby && (
 													<div className={styles2.inner}>
-														<p>
+														<p className={styles2.tagmain}>
 															{" "}
-															<b>{comment.commentedby.name}</b>
+															{comment.commentedby.name}
 														</p>
 														<p className={styles2.tag}>{comment.commentedby.toparea.join(", ")}</p>
 													</div>
