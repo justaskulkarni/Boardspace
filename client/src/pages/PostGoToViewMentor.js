@@ -250,7 +250,7 @@ const PostGoToViewMentor = () => {
 						)}
 					</div>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles2.ent}>
           <input className={styles2.sub} placeholder='Comment something' onChange={handleinput} value={newcomm} />
           <button className={styles2.uploadbutton}>
             <img src={subicon} className={styles2.butimgdiv} alt="" />
