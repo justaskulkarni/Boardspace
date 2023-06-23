@@ -148,8 +148,11 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {jeepost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        {/* for rucha */}
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                            </button>
                                     </div>
                                 })}
                             </div>
