@@ -117,6 +117,9 @@ const PostGoToViewStudent = () => {
 
 		if (json.error) {
 			seterror(json.error);
+			setTimeout(() => {
+				seterror(null);
+			}, 4000);
 		}
 
 		if (json.success) {
@@ -263,11 +266,7 @@ const PostGoToViewStudent = () => {
 									<div key={idx} className={styles.contrast}>
 										<div className={styles2.comm} style={{marginLeft : comment.commentedbyme ? '27%' : '-5%'}}>
 												{comment.commentedbyme && (
-													
 													<div className={styles2.inner2}>
-														<p>
-															<b>Me</b>
-														</p>
 													</div>
 												)}
 												{!comment.commentedbyme && comment.commentedby && (
