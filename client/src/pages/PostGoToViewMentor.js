@@ -91,6 +91,7 @@ const PostGoToViewMentor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     const response = await fetch(`/api/comment/create/mentor/${postdet.pid}`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -101,6 +102,9 @@ const PostGoToViewMentor = () => {
 
     if (json.error) {
       seterror(json.error)
+      setTimeout(() => {
+				seterror(null);
+			}, 4000);
     }
 
     if (json.success) {
@@ -224,9 +228,7 @@ const PostGoToViewMentor = () => {
 												{comment.commentedbyme && (
 													
 													<div className={styles2.inner2}>
-														<p>
-														<b>Me</b>	
-														</p>
+														
 													</div>
 												)}
 												{!comment.commentedbyme && comment.commentedby && (
