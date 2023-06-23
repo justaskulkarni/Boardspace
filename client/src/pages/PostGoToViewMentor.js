@@ -225,7 +225,7 @@ const PostGoToViewMentor = () => {
 													
 													<div className={styles2.inner2}>
 														<p>
-															<b>Me</b>
+														<b>Me</b>	
 														</p>
 													</div>
 												)}
@@ -235,7 +235,7 @@ const PostGoToViewMentor = () => {
 															{" "}
 															<b>{comment.commentedby.name}</b>
 														</p>
-														<p>{comment.commentedby.toparea.join(", ")}</p>
+														<p className={styles2.tag}>{comment.commentedby.toparea.join(", ")}</p>
 													</div>
 												)}
 											<div className={styles2.commcon}>

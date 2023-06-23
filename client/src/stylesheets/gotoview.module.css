@@ -110,19 +110,32 @@
 	width: 100%;
 }
 
-.inner2 {
-	padding-left: 10%;
+.inner2 p{
+	padding-left: 7%;
 	width: 100%;
+	margin-bottom: 0;
+	font-family: "Poppins", sans-serif;
+	font-size: 0.9rem;
+	color: rgb(29, 29, 29);
 }
 
 .inner p {
 	margin: 0;
 	font-family: "Poppins", sans-serif;
+	font-size: 0.9rem;
+	color: rgb(29, 29, 29);
+}
+.commcon{
+	margin: 0 2% 3% 2%;
+}
+.inner .tag{
+	font-size: 0.75rem;
+	color: #f8f5f5;
 }
 
 .commcon p {
 	font-family: "Poppins", sans-serif;
-	margin-left: 3vh;
+	margin: 0.5% 2% 0 2%;
 	word-break: break-word;
 }
 
