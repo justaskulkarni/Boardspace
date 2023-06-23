@@ -151,8 +151,8 @@ const MentorChat = (props) => {
           <div><button className={styles.leftbuttonnew} onClick={() => handlePersonalChat()}><span className={styles.notificationsnew}>Admin Chat
           </span></button></div>
           <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
-          <form>
-            <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles2.sidform}></input>
+          <form className={styles.gotohash}>
+            <input type="number" placeholder="Go to hashtag" onChange={hello} className={styles2.sidform}></input>
             <button className={styles2.formbutton}><img src={searchicon} className={styles2.srchimg} onClick={srch} /></button>
           </form>
           {searchError &&

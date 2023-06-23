@@ -167,7 +167,7 @@ const Chat = (props) => {
             <button className={styles3.formbutton}><img src={searchicon} className={styles3.srchimg} onClick={srch} /></button>
           </form>
           </div>
-  
+    
           {searchError &&
             <button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>{searchError}</button>
           }
