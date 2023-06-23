@@ -125,8 +125,8 @@ const PostViewStudent = () => {
                     <button className={styles.leftbuttonnew} onClick={gotochat}><span className={styles.notificationsnew}>Chat</span></button>
                     <button className={styles.leftbuttonnew} onClick={gotopost}><span className={styles.notificationsnew}>Post Doubt</span></button>
                     <button className={styles.leftbuttonnew} onClick={viewdoubt}><span className={styles.notificationsnew}>View Doubt</span></button>
-                    <form>
-                        <input type="number" placeholder="Go to hashtag .." onChange={hello} className={styles3.sidform}></input>
+                    <form className={styles.gotohash}>
+                        <input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
                         <button className={styles3.formbutton}><img src={searchicon} className={styles3.srchimg} onClick={srch} /></button>
                     </form>
                     {searchError &&

@@ -60,6 +60,10 @@
 	font-size: 1.5rem;
 	font-weight: bold;
 }
+.gotohash{
+	display: flex;
+	flex-direction: row;
+}
 
 .notifications {
 	color: black;
@@ -342,7 +346,7 @@
 	background: white;
 	bottom: 0;
 	margin-left: 2vw;
-	margin-top: 80%;
+	margin-top: 12%;
 }
 
 .welcometext {
