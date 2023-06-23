@@ -85,6 +85,18 @@ const PostPostStudent = () => {
 		// show loading sign
 		setIsLoading(true);
 
+		if(inputText === "")
+		{
+			setError("Please enter a description");
+			setTimeout(() => {
+				setError(null);
+			}, 4000);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 500);
+			return error;
+		}
+
 		if (selectedOption === "") {
 			setError("Please choose a tag");
 			setTimeout(() => {
