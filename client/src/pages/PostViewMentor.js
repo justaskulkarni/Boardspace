@@ -137,7 +137,7 @@ const PostViewMentor = () => {
 
             <div className={styles2.space}>
                 <div className={styles2.hdtxt}>
-                    <p className={styles.roomname}>All Doubts</p>
+                    <p className={styles.roomname2}>All Doubts</p> 
                 </div>
                 {error && <div>{error}</div>}
                 <div className={styles2.box}>
@@ -147,8 +147,10 @@ const PostViewMentor = () => {
                             {jeepost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -160,8 +162,10 @@ const PostViewMentor = () => {
                             {cbsepost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -173,8 +177,10 @@ const PostViewMentor = () => {
                             {neetpost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -186,8 +192,10 @@ const PostViewMentor = () => {
                             {sscpost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -199,8 +207,10 @@ const PostViewMentor = () => {
                             {hscpost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -212,8 +222,10 @@ const PostViewMentor = () => {
                             {icsepost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -225,8 +237,10 @@ const PostViewMentor = () => {
                             {igcsepost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -238,8 +252,10 @@ const PostViewMentor = () => {
                             {ibpost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}
@@ -251,8 +267,10 @@ const PostViewMentor = () => {
                             {iscpost.map((elem) => {
                                 if (!elem.solved) {
                                     return <div className={styles2.hashdiv}>
-                                        <p>{elem.caption}</p>
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 }
                             })}

@@ -60,6 +60,14 @@
 	font-size: 1.5rem;
 	font-weight: bold;
 }
+
+.roomname2 {
+	font-family: "Montserrat", sans-serif;
+	text-align: center;
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
 .gotohash{
 	display: flex;
 	flex-direction: row;
