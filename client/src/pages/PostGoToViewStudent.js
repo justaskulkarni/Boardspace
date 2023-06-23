@@ -261,9 +261,9 @@ const PostGoToViewStudent = () => {
 							<div>
 								{arr.map((comment, idx) => (
 									<div key={idx} className={styles.contrast}>
-										<div className={styles2.comm}>
-											<div>
+										<div className={styles2.comm} style={{marginLeft : comment.commentedbyme ? '27%' : '-5%'}}>
 												{comment.commentedbyme && (
+													
 													<div className={styles2.inner2}>
 														<p>
 															<b>Me</b>
@@ -279,9 +279,8 @@ const PostGoToViewStudent = () => {
 														<p>{comment.commentedby.toparea.join(", ")}</p>
 													</div>
 												)}
-											</div>
 											<div className={styles2.commcon}>
-												<p>Content: {comment.content}</p>
+												<p>{comment.content}</p>
 											</div>
 										</div>
 									</div>

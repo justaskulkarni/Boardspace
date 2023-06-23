@@ -99,10 +99,8 @@
 
 .comm {
 	background-color: rgba(242, 242, 242, 0.252);
-	height: 15vh;
-	width: 90%;
+	width: 68%;
 	border-radius: 2vh;
-	margin: 1vh 4vh 1vh 2vh;
 }
 
 .inner {
@@ -125,6 +123,7 @@
 .commcon p {
 	font-family: "Poppins", sans-serif;
 	margin-left: 3vh;
+	word-break: break-word;
 }
 
 .sub {

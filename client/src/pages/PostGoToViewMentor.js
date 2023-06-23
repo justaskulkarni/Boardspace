@@ -215,32 +215,38 @@ const PostGoToViewMentor = () => {
 
         <div className={styles2.poster} ref={commentsRef}>
 
-          <div className={styles2.entertxt}>
-
-            {arr && (
-              <div>
-                {arr.map((comment, idx) => (
-                  <div key={idx} className={styles.contrast}>
-                    <div className={styles2.comm}>
-                    <div>
-                        {comment.commentedbyme &&
-                          <div className={styles2.inner2}><p><b>Owner</b></p></div>
-                        }{!comment.commentedbyme && comment.commentedby &&
-                          <div className={styles2.inner}>
-                            <p> <b>{comment.commentedby.name}</b></p>
-                            <p>{comment.commentedby.toparea.join(", ")}</p>
-                          </div>}
-                      </div>
-                      <div className={styles2.commcon}>
-                        <p>Content: {comment.content}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-
-          </div>
+        <div className={styles2.entertxt}>
+						{arr && (
+							<div>
+								{arr.map((comment, idx) => (
+									<div key={idx} className={styles.contrast}>
+										<div className={styles2.comm} style={{marginLeft : comment.commentedbyme ? '27%' : '-5%'}}>
+												{comment.commentedbyme && (
+													
+													<div className={styles2.inner2}>
+														<p>
+															<b>Me</b>
+														</p>
+													</div>
+												)}
+												{!comment.commentedbyme && comment.commentedby && (
+													<div className={styles2.inner}>
+														<p>
+															{" "}
+															<b>{comment.commentedby.name}</b>
+														</p>
+														<p>{comment.commentedby.toparea.join(", ")}</p>
+													</div>
+												)}
+											<div className={styles2.commcon}>
+												<p>{comment.content}</p>
+											</div>
+										</div>
+									</div>
+								))}
+							</div>
+						)}
+					</div>
         </div>
         <form onSubmit={handleSubmit}>
           <input className={styles2.sub} placeholder='Comment something' onChange={handleinput} value={newcomm} />
