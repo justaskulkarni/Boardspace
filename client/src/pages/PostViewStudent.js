@@ -152,7 +152,7 @@ const PostViewStudent = () => {
                                         <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
                                             {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
                                             #{elem.hashtag}
-                                            </button>
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -164,8 +164,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {cbsepost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -177,8 +179,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {neetpost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -190,8 +194,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {sscpost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -203,8 +209,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {hscpost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -216,8 +224,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {icsepost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -229,8 +239,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {igcsepost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -242,8 +254,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {ibpost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
@@ -255,8 +269,10 @@ const PostViewStudent = () => {
                             <div className={styles2.bxcont}>
                                 {iscpost.map((elem) => {
                                     return <div className={styles2.hashdiv}>
-                                        {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
-                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>#{elem.hashtag}</button>
+                                        <button onClick={() => navigatepost(elem.hashtag)} className={styles2.aplebtn}>
+                                            {elem.solved ? <p><s>{elem.caption}</s></p> : <p>{elem.caption}</p>}
+                                            #{elem.hashtag}
+                                        </button>
                                     </div>
                                 })}
                             </div>
