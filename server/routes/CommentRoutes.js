@@ -36,6 +36,11 @@ router.post('/create/mentor/:id', async(req,res) => {
 
     try {
         
+        if(!req.body.cont)
+        {
+            throw Error("Blank comments are not excepted")
+        }
+
         const comm = new Comment({
           content : req.body.cont,
           commentedby : req.body.ownerid,
