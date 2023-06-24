@@ -88,7 +88,7 @@
 	font-size: 1.125rem;
 	font-weight: 300;
 	width: 3rem;
-	position:center;
+	position: center;
 }
 
 .forms2 {
@@ -292,7 +292,7 @@
 	--uib-speed: 0.9s;
 	--uib-color: #183153;
 	position: relative;
-	left: 45%;
+	left: 275%;
 	top: 0;
 	top: 50%;
 	display: flex;
