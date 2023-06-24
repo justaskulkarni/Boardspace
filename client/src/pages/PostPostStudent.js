@@ -85,8 +85,7 @@ const PostPostStudent = () => {
 		// show loading sign
 		setIsLoading(true);
 
-		if(inputText === "")
-		{
+		if (inputText === "") {
 			setError("Please enter a description");
 			setTimeout(() => {
 				setError(null);
@@ -181,12 +180,12 @@ const PostPostStudent = () => {
 							</button>
 						</form>
 					</div>
-						<div className={styles3.popup}>
+					{/* <div className={styles3.popup}>
 							<div className={styles3.arrow}></div>
 							<div className={styles3.popuptxt}>
 								Enter the hashtag of the doubt you want to search
 							</div>
-						</div>
+						</div> */}
 					{searchError && (
 						<button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>
 							{searchError}
@@ -201,9 +200,8 @@ const PostPostStudent = () => {
 			</div>
 			<form onSubmit={handleSubmit} encType="multipart/form">
 				<div className={styles2.right2}>
-					
 					<div className={styles2.postdoubt}>
-					<h3 className={styles2.roomname}>Post a doubt</h3>
+						<h3 className={styles2.roomname}>Post a doubt</h3>
 						<label className={styles2.inputlabel}>
 							<p className={styles2.text}>Upload image of the doubt : </p>
 							<img src={imageupload} style={{ height: "3rem", width: "auto" }} className={styles2.inputimg} alt=" " />
