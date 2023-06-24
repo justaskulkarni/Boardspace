@@ -172,7 +172,7 @@ const PostPostStudent = () => {
 					<button className={styles.leftbuttonnew} onClick={viewdoubt}>
 						<span className={styles.notificationsnew}>View Doubt</span>
 					</button>
-					<div className={styles3.hoverup}>
+					<div className={styles.hoverup}>
 						<form className={styles.gotohash}>
 							<input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
 							<button className={styles3.formbutton}>
@@ -180,12 +180,10 @@ const PostPostStudent = () => {
 							</button>
 						</form>
 					</div>
-					{/* <div className={styles3.popup}>
-							<div className={styles3.arrow}></div>
-							<div className={styles3.popuptxt}>
-								Enter the hashtag of the doubt you want to search
-							</div>
-						</div> */}
+					<div className={styles.popup}>
+						<div className={styles.arrow}></div>
+						<div className={styles.popuptxt}>Search your doubt using hashtag</div>
+					</div>
 					{searchError && (
 						<button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>
 							{searchError}

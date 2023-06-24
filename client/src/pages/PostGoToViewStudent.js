@@ -264,20 +264,17 @@ const PostGoToViewStudent = () => {
 							<div>
 								{arr.map((comment, idx) => (
 									<div key={idx} className={styles.contrast}>
-										<div className={styles2.comm} style={{marginLeft : comment.commentedbyme ? '27%' : '-5%'}}>
-												{comment.commentedbyme && (
-													<div className={styles2.inner2}>
-													</div>
-												)}
-												{!comment.commentedbyme && comment.commentedby && (
-													<div className={styles2.inner}>
-														<p>
-															{" "}
-															<b>{comment.commentedby.name}</b>
-														</p>
-														<p>{comment.commentedby.toparea.join(", ")}</p>
-													</div>
-												)}
+										<div className={styles2.comm} style={{ marginLeft: comment.commentedbyme ? "27%" : "-5%" }}>
+											{comment.commentedbyme && <div className={styles2.inner2}></div>}
+											{!comment.commentedbyme && comment.commentedby && (
+												<div className={styles2.inner}>
+													<p>
+														{" "}
+														<b>{comment.commentedby.name}</b>
+													</p>
+													<p>{comment.commentedby.toparea.join(", ")}</p>
+												</div>
+											)}
 											<div className={styles2.commcon}>
 												<p>{comment.content}</p>
 											</div>
@@ -291,7 +288,7 @@ const PostGoToViewStudent = () => {
 
 				{userId === postdet.owner && (
 					<form onSubmit={handleSubmit}>
-						<input className={styles2.sub} placeholder="Comment something" onChange={handleinput} value={newcomm} />
+						<input className={styles2.sub} placeholder="Let's Discuss!" onChange={handleinput} value={newcomm} />
 						<button className={styles2.uploadbutton}>
 							<img src={subicon} className={styles2.butimgdiv} alt="" />
 						</button>

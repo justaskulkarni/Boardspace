@@ -113,6 +113,8 @@
 	border: none;
 	display: block;
 	background-color: transparent;
+	cursor: pointer;
+	margin-bottom: 1rem;
 }
 
 .chatMessages {

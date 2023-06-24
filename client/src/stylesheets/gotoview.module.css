@@ -143,15 +143,14 @@
 }
 
 .sub {
+	position: absolute;
 	background-color: #f3f0f0;
 	border-radius: 1.5rem;
-	width: 34%;
-	height: 4%;
+	width: 77%;
+	height: 5%;
 	text-align: center;
 	margin: 1% 2% 1% 5%;
-	font-size: 1.5rem;
-	top: 82vh;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	color: black;
 	outline: none;
 	border: 0px;
@@ -160,7 +159,7 @@
 	resize: none;
 	border-bottom-style: solid;
 	border-bottom-width: 0.04rem;
-	position: fixed;
+	padding: 0.1rem 1rem 0.1rem 1rem;
 }
 
 .buts {
@@ -221,6 +220,7 @@
 }
 
 .uploadbutton {
+	position: absolute;
 	border: none;
 	background-color: #a689e1;
 	margin: 0.5% 1% 0 89%;
@@ -228,8 +228,8 @@
 }
 
 .butimgdiv {
-	height: 100%;
-	width: 100%;
+	height: 5vh;
+	width: 2.5vw;
 	/* object-fit: contain; */
 }
 
