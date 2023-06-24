@@ -31,6 +31,7 @@
 
 .left {
 	width: 17%;
+	height: 100%;
 	overflow-y: hidden;
 	position: fixed;
 	left: 0;
