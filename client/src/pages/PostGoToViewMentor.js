@@ -189,7 +189,7 @@ const PostGoToViewMentor = () => {
       <div className={styles.right}>
         <h3 className={styles2.roomname}>#{findhashtag}</h3>
         <div className={styles2.dispimg}>
-          <p className={styles2.txt}>Caption :</p>
+          <p className={styles2.txt}>Description :</p>
           <br />
           <p className={styles2.caption} style={{ fontSize: 17, marginLeft: "2vh" }}>{postdet.caption}</p>
           <div className={styles2.something}>
@@ -199,7 +199,7 @@ const PostGoToViewMentor = () => {
             </div>
           </div>
         </div>
-        {error && <div>{error}</div>}
+        {error && <div className={styles2.error} style={{  marginLeft: "10%" ,marginTop: "-1.5%"}}>No Blank Comments</div>}
       </div>
 
       <div className={styles2.rightmost}>
