@@ -137,6 +137,7 @@
 	border: 0;
 	text-decoration: underline;
 	width: 9.5rem;
+	cursor: pointer;
 }
 
 .loginbutton {
@@ -144,6 +145,7 @@
 	width: 18.5rem;
 	background-color: #9e3ffd;
 	border: 0;
+	cursor: pointer;
 }
 
 .logintext {
