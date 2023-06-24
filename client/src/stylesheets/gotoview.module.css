@@ -222,11 +222,9 @@
 
 .uploadbutton {
 	border: none;
-	/* border-radius: 0.75rem; */
 	background-color: #a689e1;
-	/* position: absolute; */
 	margin: 0.5% 1% 0 89%;
-	/* object-fit: contain; */
+	cursor: pointer;
 }
 
 .butimgdiv {

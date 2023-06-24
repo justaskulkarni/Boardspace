@@ -22,6 +22,7 @@
 
 .inputimg {
 	margin-left: 3%;
+	cursor: pointer;
 }
 
 /* Entire post doubt div */
@@ -118,6 +119,7 @@
 	font-size: 1rem;
 	color: white;
 	padding: 4%;
+	cursor: pointer;
 }
 
 .posttext {

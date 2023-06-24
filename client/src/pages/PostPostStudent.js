@@ -196,7 +196,6 @@ const PostPostStudent = () => {
 					
 					<div className={styles2.postdoubt}>
 					<h3 className={styles2.roomname}>Post a doubt</h3>
-						{/* <div className={styles2.scrolldiv}> */}
 						<label className={styles2.inputlabel}>
 							<p className={styles2.text}>Upload image of the doubt : </p>
 							<img src={imageupload} style={{ height: "3rem", width: "auto" }} className={styles2.inputimg} alt=" " />
