@@ -196,10 +196,9 @@
 
 .success {
 	height: 1.5rem;
-	width: 17.5rem;
+	width: 16rem;
 	background-color: #d4edda;
 	border-radius: 0.5rem;
-	/* color: #721c24; */
 	color: #155724;
 	font-size: 1rem;
 	font-family: "Montserrat", sans-serif;
