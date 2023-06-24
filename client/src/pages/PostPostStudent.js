@@ -174,11 +174,10 @@ const PostPostStudent = () => {
 						<span className={styles.notificationsnew}>View Doubt</span>
 					</button>
 					<form className={styles.gotohash}>
-						<input type="number" placeholder="Search hashtag" onChange={hello} className={styles3.sidform}></input>
+						<input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
 						<button className={styles3.formbutton}>
 							<img src={searchicon} className={styles3.srchimg} onClick={srch} />
 						</button>
-						
 					</form>
 					{searchError && (
 						<button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>
