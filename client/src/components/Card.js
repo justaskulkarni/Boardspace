@@ -111,12 +111,12 @@ const Card = ({ mentid }) => {
 								<img src={document} className={styles.butimgdiv} alt=""></img>
 							</button>
 							<button className={styles.verifybutton} onClick={() => getverify()}>
-								<img src={verify} className={styles.butimgdiv}></img>
+								<img src={verify} className={styles.butimgdiv} alt=""></img>
 							</button>
 							<Popup
 								trigger={
 									<button className={styles.verifybutton}>
-										<img src={noverify} className={styles.butimgdiv}></img>
+										<img src={noverify} className={styles.butimgdiv} alt=""></img>
 									</button>
 								}
 								position="centre"

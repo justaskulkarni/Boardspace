@@ -34,7 +34,7 @@ const RejectCard = ({ mentid }) => {
       const json = await response.json()
 
       if (json.success) {
-        setCredentials({email:json.mentdets.email, mname:json.mentdets.name, topper:json.mentdets.toparea, reason:json.mentdets.rejectreason})
+        setCredentials({email:json.mentdets.email, mname:json.mentdets.name, topper:json.mentdets.toparea.join(" , "), reason:json.mentdets.rejectreason})
         setImgarr(...imags, json.mentdets.idurl)
       }
 
@@ -97,9 +97,9 @@ const RejectCard = ({ mentid }) => {
           </div>
           <div className={styles.innermost}>
             <div className={styles.btncontainer}>
-              <button className={styles.verifybutton} onClick={handleOpen}><img src={document} className={styles.butimgdiv}></img></button>
-              <button className={styles.verifybutton} onClick={() => getundo()}><img src={undo} className={styles.butimgdiv}></img></button>
-              <button className={styles.verifybutton} onClick={() => getdelete()} ><img src={deletelogo} className={styles.butimgdiv}></img></button>
+              <button className={styles.verifybutton} onClick={handleOpen}><img src={document} className={styles.butimgdiv} alt=""></img></button>
+              <button className={styles.verifybutton} onClick={() => getundo()}><img src={undo} className={styles.butimgdiv} alt=""></img></button>
+              <button className={styles.verifybutton} onClick={() => getdelete()} ><img src={deletelogo} className={styles.butimgdiv} alt=""></img></button>
             </div>
           </div>
         </div>

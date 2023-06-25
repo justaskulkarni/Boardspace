@@ -128,7 +128,7 @@ const PostViewMentor = () => {
 						<form className={styles.gotohash}>
 							<input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
 							<button className={styles3.formbutton}>
-								<img src={searchicon} className={styles3.srchimg} onClick={srch} />
+								<img src={searchicon} className={styles3.srchimg} onClick={srch} alt="" />
 							</button>
 						</form>
 					</div>

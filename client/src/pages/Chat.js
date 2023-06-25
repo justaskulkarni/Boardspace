@@ -167,7 +167,7 @@ const Chat = (props) => {
 						<form className={styles.gotohash}>
 							<input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
 							<button className={styles3.formbutton}>
-								<img src={searchicon} className={styles3.srchimg} onClick={srch} />
+								<img src={searchicon} className={styles3.srchimg} onClick={srch} alt="" />
 							</button>
 						</form>
 					</div>
@@ -198,47 +198,47 @@ const Chat = (props) => {
 				<div className={styles.smallcardleft}>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("JEE DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "25%", width: "25%" }} /> JEE
+							<img src={roomlogo} style={{ height: "25%", width: "25%" }} alt="" /> JEE
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "22%", width: "22%" }} /> NEET
+							<img src={roomlogo} style={{ height: "22%", width: "22%" }} alt="" /> NEET
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "22%", width: "22%" }} /> ICSE
+							<img src={roomlogo} style={{ height: "22%", width: "22%" }} alt="" /> ICSE
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "21%", width: "21%" }} /> CBSE
+							<img src={roomlogo} style={{ height: "21%", width: "21%" }} alt="" /> CBSE
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "24%", width: "24%" }} /> SSC
+							<img src={roomlogo} style={{ height: "24%", width: "24%" }} alt="" /> SSC
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "20%", width: "20%" }} /> IGCSE
+							<img src={roomlogo} style={{ height: "20%", width: "20%" }} alt="" /> IGCSE
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "25%", width: "25%" }} /> ISC
+							<img src={roomlogo} style={{ height: "25%", width: "25%" }} alt="" /> ISC
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "30%", width: "30%" }} /> IB
+							<img src={roomlogo} style={{ height: "30%", width: "30%" }} alt="" /> IB
 						</span>
 					</button>
 					<button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}>
 						<span className={styles.notifications}>
-							<img src={roomlogo} style={{ height: "22%", width: "22%" }} /> HSC
+							<img src={roomlogo} style={{ height: "22%", width: "22%" }} alt="" /> HSC
 						</span>
 					</button>
 				</div>
@@ -287,7 +287,7 @@ const Chat = (props) => {
 					<form onSubmit={handleSubmit} className={styles.chatForm}>
 						<input type="text" name="message" value={currentMessage} onChange={handleChange1} placeholder="Type your message here" className={styles.chatInput} />
 						<button type="submit" className={styles.chatButton}>
-							<img src={sendicon} />
+							<img src={sendicon} alt="" />
 						</button>
 					</form>
 				)}

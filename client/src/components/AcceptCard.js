@@ -32,7 +32,7 @@ const AcceptCard = ({ mentid }) => {
 			const json = await response.json();
 
 			if (json.success) {
-				setCredentials({ email: json.mentdets.email, mname: json.mentdets.name, topper: json.mentdets.toparea });
+				setCredentials({ email: json.mentdets.email, mname: json.mentdets.name, topper: json.mentdets.toparea.join(" , ") });
 				setImgarr(...imags, json.mentdets.idurl);
 			}
 
