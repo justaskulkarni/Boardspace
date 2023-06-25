@@ -171,7 +171,7 @@ router.post('/forgotp', async (req, res) => {
                         },
                         To: [{
                             Email: req.body.email,
-                            Name: req.body.name
+                            Name: reqstud.stname
                         }],
                         Subject: "Request for password change",
                         HTMLPart: `
