@@ -24,7 +24,6 @@ const AdminStudentChat = (props) => {
 
   const [notifs, setnotifs] = useState([{id : "", count : "", mname:""}])
   
-
   var decoded = jwt_decode(localStorage.getItem("Token"))
   
   const userId = decoded.id
@@ -41,10 +40,7 @@ const AdminStudentChat = (props) => {
     setCurrentMessage("")
   }
   
-
   const messagesEndRef = useRef(null);
-
-  
 
   async function getname() {
 
@@ -104,9 +100,6 @@ const AdminStudentChat = (props) => {
     
   }
 
-
-
-
   useEffect(() => {
 
     getname()
@@ -127,7 +120,7 @@ const AdminStudentChat = (props) => {
       socket.off("room-messages")
     }
 
-  }, [notifs])
+  })
 
   let navigate = useNavigate()
 
@@ -243,7 +236,7 @@ const AdminStudentChat = (props) => {
               className={styles.chatInput}
             />
             <button type="submit" className={styles.chatButton}>
-              <img src={sendicon} />
+              <img src={sendicon} alt=""/>
             </button>
           </form>
         }

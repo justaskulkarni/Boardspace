@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import styles from "../stylesheets/MentorAuth.module.css";
 
@@ -14,7 +14,6 @@ export const MentorUpdatePass = () => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [showpass, setshowpass] = useState(true);
-
     let navigate = useNavigate();
 
     const handleSubmit1 = async (e) => {

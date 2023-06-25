@@ -23,6 +23,7 @@ const MentorChat = (props) => {
 	const role = decoded.role;
 	const userId = decoded.id;
 
+	
 	const hello = (e) => {
 		e.preventDefault();
 		setgohash(e.target.value);
@@ -125,7 +126,7 @@ const MentorChat = (props) => {
 		}
 
 		getdetails();
-	}, []);
+	}, [role, userId]);
 
 	return (
 		<>

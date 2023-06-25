@@ -23,7 +23,6 @@ const AdminMentorChat = (props) => {
   const [name, setname] = useState("")
 
   const [notifs, setnotifs] = useState([{id : "", count : "", mname:""}])
-  
 
   var decoded = jwt_decode(localStorage.getItem("Token"))
   
@@ -101,9 +100,6 @@ const AdminMentorChat = (props) => {
     console.log(notifs)
   }
 
-  
-
-
   useEffect(() => {
 
     getname()
@@ -123,8 +119,7 @@ const AdminMentorChat = (props) => {
       socket.off("receive-room")
       socket.off("room-messages")
     }
-
-  }, [notifs])
+  })
 
   let navigate = useNavigate()
 
@@ -240,7 +235,7 @@ const AdminMentorChat = (props) => {
               className={styles.chatInput}
             />
             <button type="submit" className={styles.chatButton}>
-              <img src={sendicon} />
+              <img src={sendicon} alt=""/>
             </button>
           </form>
         }

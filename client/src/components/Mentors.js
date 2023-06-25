@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../stylesheets/card.module.css'
-import styles2 from '../stylesheets/imageslider.module.css'
 import { useNavigate } from 'react-router-dom/dist'
 
 const Mentors = ({mentid, notifications}) => {
@@ -14,16 +13,6 @@ const Mentors = ({mentid, notifications}) => {
   const [error, setError] = useState(null)
   const [creadentials, setCredentials] = useState({ email: "", mname: "",topper:[]})
   const [imags, setImgarr] = useState([])
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
 
   useEffect(() => {
     const getdata = async() =>{

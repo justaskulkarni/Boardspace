@@ -19,7 +19,6 @@ const AdminChatRooms = (props) => {
   
   const [messages, setMessages] = useState([])
 
-
   var decoded = jwt_decode(localStorage.getItem("Token"))
   const fromrole = decoded.fromrole
   const userId = decoded.id
@@ -175,7 +174,7 @@ const AdminChatRooms = (props) => {
               className={styles.chatInput}
             />
             <button type="submit" className={styles.chatButton}>
-              <img src={sendicon} />
+              <img src={sendicon} alt=""/>
             </button>
           </form>
         }
@@ -188,15 +187,15 @@ const AdminChatRooms = (props) => {
 
         <div><button className={styles.leftbutton} ><span className={styles.notifications1}>CHAT ROOMS</span></button></div>
         <div className={styles.smallcardleft}>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("JEE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "25%", width: "25%" }} /> JEE</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} /> NEET</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} /> ICSE</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "21%", width: "21%" }} /> CBSE</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "24%", width: "24%" }} /> SSC</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "20%", width: "20%" }} /> IGCSE</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "25%", width: "25%" }} /> ISC</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "30%", width: "30%" }} /> IB</span></button>
-          <button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} /> HSC</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("JEE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "25%", width: "25%" }} alt="" /> JEE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("NEET DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} alt="" /> NEET</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ICSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} alt="" /> ICSE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("CBSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "21%", width: "21%" }} alt="" /> CBSE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("SSC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "24%", width: "24%" }} alt="" /> SSC</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IGCSE DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "20%", width: "20%" }} alt="" /> IGCSE</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("ISC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "25%", width: "25%" }} alt="" /> ISC</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("IB DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "30%", width: "30%" }} alt="" /> IB</span></button>
+          <button className={styles.leftbutton} onClick={() => handleButtonClick("HSC DOUBTS")}><span className={styles.notifications}><img src={roomlogo} style={{ height: "22%", width: "22%" }} alt="" /> HSC</span></button>
         </div>
       </div>
     </>
