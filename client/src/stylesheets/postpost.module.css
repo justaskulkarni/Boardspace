@@ -22,6 +22,7 @@
 
 .inputimg {
 	margin-left: 3%;
+	cursor: pointer;
 }
 
 /* Entire post doubt div */
@@ -118,6 +119,7 @@
 	font-size: 1rem;
 	color: white;
 	padding: 4%;
+	cursor: pointer;
 }
 
 .posttext {
@@ -206,7 +208,7 @@
 
 .error {
 	height: 1.5rem;
-	width: 17.5rem;
+	width: 16rem;
 	background-color: #f8d7da;
 	border-radius: 0.5rem;
 	color: #721c24;

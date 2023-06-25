@@ -107,6 +107,7 @@
 	color: #16163f;
 	border: 0;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .loginbutton {
@@ -114,6 +115,7 @@
 	width: 18.5rem;
 	background-color: #9e3ffd;
 	border: 0;
+	cursor: pointer;
 }
 
 .logintext {
@@ -276,7 +278,7 @@
 
 .error {
 	height: 1.5rem;
-	width: 17.5rem;
+	width: 16rem;
 	background-color: #f8d7da;
 	border-radius: 0.5rem;
 	color: #721c24;

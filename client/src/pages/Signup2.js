@@ -353,6 +353,7 @@ const Signup2 = () => {
 				<div className={styles.rightdiv}>
 					<div className={styles.signupform}>
 						<h3 className={styles.login}>Enter your Details </h3>
+						<div className={styles.success}>Kindly upload your marksheets</div>
 
 						<form onSubmit={handleSubmit2} encType="multipart/form">
 							<div>
@@ -396,6 +397,7 @@ const Signup2 = () => {
 									</>
 								)}
 
+								{/* <div className={styles.checkboxpopup}> */}
 								<label htmlFor="boardtopper" className={styles.checkboxstyle}>
 									<input type="checkbox" defaultChecked={false} value={"Board Topper"} onChange={onChange3} name="Board Topper" className={styles.boxstyle} disabled={isBoardTopper.disable} />
 									<p className={styles.Category}>Board Topper</p>
@@ -414,9 +416,13 @@ const Signup2 = () => {
 										</div>
 									)}
 								</label>
+								{/* </div> */}
+
 								<label htmlFor="jeetopper" className={styles.checkboxstyle}>
 									<input type="checkbox" defaultChecked={false} value={"JEE Topper"} onChange={onChange4} name="JEE Topper" className={styles.boxstyle} disabled={isJeeTopper.disable} />
+
 									<p className={styles.Category}>JEE Topper</p>
+
 									{isJeeTopper.enabled && !isJeeTopper.disable && (
 										<div className={styles.fileinput}>
 											<label htmlFor="jeetop">
@@ -434,7 +440,9 @@ const Signup2 = () => {
 								</label>
 								<label htmlFor="neettopper" className={styles.checkboxstyle}>
 									<input type="checkbox" defaultChecked={false} value={"Neet Topper"} onChange={onChange2} name="Neet Topper" className={styles.boxstyle} disabled={isNeetTopper.disable} />
+
 									<p className={styles.Category}>NEET Topper</p>
+									
 									{isNeetTopper.enabled && !isNeetTopper.disable && (
 										<div className={styles.fileinput}>
 											<label htmlFor="neettop">

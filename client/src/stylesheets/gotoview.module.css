@@ -110,7 +110,7 @@
 	width: 100%;
 }
 
-.inner2 p{
+.inner2 p {
 	padding-left: 7%;
 	width: 100%;
 	margin-bottom: 0;
@@ -125,13 +125,13 @@
 	font-size: 0.9rem;
 	color: rgb(29, 29, 29);
 }
-.commcon{
+.commcon {
 	margin: 0 2% 3% 2%;
 }
-.inner .tagmain{
+.inner .tagmain {
 	color: #f8f5f5;
 }
-.inner .tag{
+.inner .tag {
 	font-size: 0.75rem;
 	color: #171717;
 }
@@ -143,15 +143,14 @@
 }
 
 .sub {
+	position: absolute;
 	background-color: #f3f0f0;
 	border-radius: 1.5rem;
-	width: 34%;
-	height: 4%;
+	width: 77%;
+	height: 5%;
 	text-align: center;
 	margin: 1% 2% 1% 5%;
-	font-size: 1.5rem;
-	top: 82vh;
-	font-size: 1rem;
+	font-size: 1.1rem;
 	color: black;
 	outline: none;
 	border: 0px;
@@ -160,7 +159,7 @@
 	resize: none;
 	border-bottom-style: solid;
 	border-bottom-width: 0.04rem;
-	position: fixed;
+	padding: 0.1rem 1rem 0.1rem 1rem;
 }
 
 .buts {
@@ -168,7 +167,7 @@
 	margin: 1.8% 2% 2% 81.5%;
 	top: 82vh;
 }
-.ent{
+.ent {
 	display: flex;
 	flex-direction: row;
 }
@@ -221,17 +220,16 @@
 }
 
 .uploadbutton {
+	position: absolute;
 	border: none;
-	/* border-radius: 0.75rem; */
 	background-color: #a689e1;
-	/* position: absolute; */
 	margin: 0.5% 1% 0 89%;
-	/* object-fit: contain; */
+	cursor: pointer;
 }
 
 .butimgdiv {
-	height: 100%;
-	width: 100%;
+	height: 5vh;
+	width: 2.5vw;
 	/* object-fit: contain; */
 }
 
@@ -303,7 +301,7 @@
 	margin-top: 0.8vh;
 	padding-right: 1vh;
 }
-.gotohash{
+.gotohash {
 	display: flex;
 	flex-direction: row;
 }
@@ -316,15 +314,15 @@
 	float: left;
 	width: 50%;
 	background: transparent;
-	/* height: 15%; */
 	-webkit-appearance: textfield;
 	-moz-appearance: textfield;
+	outline: none;
 }
 
 .sidform::-webkit-inner-spin-button,
 .sidform ::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 .formbutton {
@@ -350,6 +348,33 @@
 	width: 100%;
 	margin: 0;
 	padding: 0;
+}
+.popup {
+	display: none;
+	z-index: 1;
+	width: 13rem;
+	height: 4rem;
+	position: absolute;
+	background-color: #900000;
+	border-radius: 0.6rem;
+	top: 27.7rem;
+	box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2), 0 0.375rem 1.25rem 0 rgba(0, 0, 0, 0.19);
+}
+.popuptxt {
+	margin: 0.55rem;
+}
+.hoverup:hover + .popup {
+	display: block;
+}
+.arrow {
+	width: 0;
+	height: 0;
+	position: absolute;
+	border-left: 0.6rem solid transparent;
+	border-right: 0.6rem solid transparent;
+	border-bottom: 0.6rem solid #c7c7c7;
+	margin-top: -5.5%;
+	margin-left: 7%;
 }
 
 .searcherrorbtn {
@@ -486,7 +511,7 @@
 
 .error {
 	height: 1.5rem;
-	width: 17.5rem;
+	width: 16rem;
 	background-color: #f8d7da;
 	border-radius: 0.5rem;
 	color: #721c24;

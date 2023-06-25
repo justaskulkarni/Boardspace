@@ -85,8 +85,7 @@ const PostPostStudent = () => {
 		// show loading sign
 		setIsLoading(true);
 
-		if(inputText === "")
-		{
+		if (inputText === "") {
 			setError("Please enter a description");
 			setTimeout(() => {
 				setError(null);
@@ -173,12 +172,18 @@ const PostPostStudent = () => {
 					<button className={styles.leftbuttonnew} onClick={viewdoubt}>
 						<span className={styles.notificationsnew}>View Doubt</span>
 					</button>
-					<form className={styles.gotohash}>
-						<input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
-						<button className={styles3.formbutton}>
-							<img src={searchicon} className={styles3.srchimg} onClick={srch} />
-						</button>
-					</form>
+					<div className={styles.hoverup}>
+						<form className={styles.gotohash}>
+							<input type="number" placeholder="Go to hashtag" onChange={hello} className={styles3.sidform}></input>
+							<button className={styles3.formbutton}>
+								<img src={searchicon} className={styles3.srchimg} onClick={srch} />
+							</button>
+						</form>
+					</div>
+					<div className={styles.popup}>
+						<div className={styles.arrow}></div>
+						<div className={styles.popuptxt}>Search your doubt using hashtag</div>
+					</div>
 					{searchError && (
 						<button className={styles3.searcherrorbtn} style={{ marginTop: "1rem" }}>
 							{searchError}
@@ -193,10 +198,8 @@ const PostPostStudent = () => {
 			</div>
 			<form onSubmit={handleSubmit} encType="multipart/form">
 				<div className={styles2.right2}>
-					
 					<div className={styles2.postdoubt}>
-					<h3 className={styles2.roomname}>Post a doubt</h3>
-						{/* <div className={styles2.scrolldiv}> */}
+						<h3 className={styles2.roomname}>Post a doubt</h3>
 						<label className={styles2.inputlabel}>
 							<p className={styles2.text}>Upload image of the doubt : </p>
 							<img src={imageupload} style={{ height: "3rem", width: "auto" }} className={styles2.inputimg} alt=" " />

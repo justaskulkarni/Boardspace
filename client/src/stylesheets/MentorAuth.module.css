@@ -88,7 +88,7 @@
 	font-size: 1.125rem;
 	font-weight: 300;
 	width: 3rem;
-	position:center;
+	position: center;
 }
 
 .forms2 {
@@ -137,6 +137,7 @@
 	border: 0;
 	text-decoration: underline;
 	width: 9.5rem;
+	cursor: pointer;
 }
 
 .loginbutton {
@@ -144,6 +145,7 @@
 	width: 18.5rem;
 	background-color: #9e3ffd;
 	border: 0;
+	cursor: pointer;
 }
 
 .logintext {
@@ -154,7 +156,7 @@
 
 .error {
 	height: 1.5rem;
-	width: 17.5rem;
+	width: 16rem;
 	background-color: #f8d7da;
 	border-radius: 0.5rem;
 	color: #721c24;
@@ -194,10 +196,9 @@
 
 .success {
 	height: 1.5rem;
-	width: 17.5rem;
+	width: 16rem;
 	background-color: #d4edda;
 	border-radius: 0.5rem;
-	/* color: #721c24; */
 	color: #155724;
 	font-size: 1rem;
 	font-family: "Montserrat", sans-serif;
@@ -291,7 +292,7 @@
 	--uib-speed: 0.9s;
 	--uib-color: #183153;
 	position: relative;
-	left: 45%;
+	left: 275%;
 	top: 0;
 	top: 50%;
 	display: flex;
