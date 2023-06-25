@@ -42,7 +42,7 @@ const AcceptCard = ({ mentid }) => {
 		};
 
 		getdata();
-	}, []);
+	}, [imags , mentid]);
 
 	let navigate = useNavigate();
 
@@ -82,12 +82,12 @@ const AcceptCard = ({ mentid }) => {
 					<div className={styles.innermost}>
 						<div className={styles.btncontainer}>
 							<button className={styles.verifybutton} onClick={handleOpen}>
-								<img src={document} className={styles.butimgdiv}></img>
+								<img src={document} className={styles.butimgdiv} alt=""></img>
 							</button>
 							<Popup
 								trigger={
 									<button className={styles.verifybutton}>
-										<img src={rejectlogo} className={styles.butimgdiv}></img>
+										<img src={rejectlogo} className={styles.butimgdiv} alt=""></img>
 									</button>
 								}
 								position="centre"

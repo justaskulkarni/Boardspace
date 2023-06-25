@@ -52,7 +52,7 @@ const Card = ({ mentid }) => {
 		};
 		getimages();
 		getdata();
-	}, []);
+	}, [mentid]);
 
 	let navigate = useNavigate();
 
@@ -108,7 +108,7 @@ const Card = ({ mentid }) => {
 					<div className={styles.innermost}>
 						<div className={styles.btncontainer}>
 							<button className={styles.verifybutton} onClick={handleOpen}>
-								<img src={document} className={styles.butimgdiv}></img>
+								<img src={document} className={styles.butimgdiv} alt=""></img>
 							</button>
 							<button className={styles.verifybutton} onClick={() => getverify()}>
 								<img src={verify} className={styles.butimgdiv}></img>
